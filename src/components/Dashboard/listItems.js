@@ -3,68 +3,69 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
+import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
+import RowingRoundedIcon from '@material-ui/icons/RowingRounded';
+import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export const mainListItems = (
     <div>
+        <ListSubheader inset>Accounts</ListSubheader>
         <ListItem button>
             <ListItemIcon>
-                <DashboardIcon />
+                <HomeRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="Home" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <ShoppingCartIcon />
+                <FaceRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Orders" />
+            <ListItemText primary="My profile" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <PeopleIcon />
+                <TrackChangesRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Customers" />
+            <ListItemText primary="Hunting ground" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <BarChartIcon />
+                <RowingRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Activities" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <LayersIcon />
+                <SettingsRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Integrations" />
+            <ListItemText primary="Settings" />
         </ListItem>
     </div>
 );
 
 export const secondaryListItems = (
     <div>
-        <ListSubheader inset>Saved reports</ListSubheader>
+        <ListSubheader inset>Your groups</ListSubheader>
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Current month" />
+            <ListItemText primary="CSE dept" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Last quarter" />
+            <ListItemText primary="FOSSers" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
             </ListItemIcon>
-            <ListItemText primary="Year-end sale" />
+            <ListItemText primary="VAST" />
         </ListItem>
     </div>
 );

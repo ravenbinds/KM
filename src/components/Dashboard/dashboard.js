@@ -19,7 +19,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Deposits from './Deposits';
 import SimpleCard from './card'
 
 
@@ -118,6 +117,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
+
+
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -143,7 +146,7 @@ export default function Dashboard() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                    <Typography component="h1" variant="h6" color="inherit" align="left" noWrap className={classes.title}>
                         KoalaMatrix
             </Typography>
                     <IconButton color="inherit">
@@ -179,7 +182,6 @@ export default function Dashboard() {
                         <Grid item xs={8} md={8} lg={9}>
 
                             <Paper className={classes.paper}>
-                                <Deposits />
                             </Paper>
                         </Grid>
                         <Grid item xs={3}>

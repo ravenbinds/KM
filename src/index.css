@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+:root {
+    --bodybackground: #E9F0FF;
+    ;
+}
+
+body {
+    background: var(--bodybackground);
+    font-family: 'PT Sans', sans-serif;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    background: #F6F9FF;
+    border: 10px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+}
+
+.wrapper>div {
+    padding: 1em;
+}
+
+.Left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    position: static;
+    left: 0px;
+    top: 0px;
+    background: #FFFFFF;
+    border-radius: 50px;
+}
+
+.Right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px 10px 10px;
+    position: static;
+    left: 970px;
+    top: 0px;
+    background: #E5EEFC;
+    border-radius: 0px 50px 50px 0px;
+}
+
+.Contents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    position: static;
+    left: 275px;
+    top: 0px;
+}
