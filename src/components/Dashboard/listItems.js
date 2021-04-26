@@ -12,7 +12,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export const mainListItems = (
     <div>
-        <ListSubheader inset>Accounts</ListSubheader>
+        <ListSubheader disableSticky inset>Accounts</ListSubheader>
         <ListItem button>
             <ListItemIcon>
                 <HomeRoundedIcon />
@@ -48,7 +48,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
     <div>
-        <ListSubheader inset>Your groups</ListSubheader>
+        <ListSubheader disableSticky inset>Your groups</ListSubheader>
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />

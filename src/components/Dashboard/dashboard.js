@@ -186,7 +186,6 @@ export default function Dashboard() {
                         </Grid>
                         <Grid item xs={3}>
                             <Paper className={fixedHeightPaper}>
-                                <SimpleCard />
                             </Paper>
                         </Grid>
                     </Grid>
