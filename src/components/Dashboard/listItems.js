@@ -9,35 +9,35 @@ import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
 import RowingRoundedIcon from '@material-ui/icons/RowingRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-
+import { Link } from 'react-router-dom';
 export const mainListItems = (
     <div>
         <ListSubheader disableSticky inset>Accounts</ListSubheader>
-        <ListItem button>
+        <ListItem button component={Link} to="/">
             <ListItemIcon>
                 <HomeRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Myprofile">
             <ListItemIcon>
                 <FaceRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="My profile" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Huntingground">
             <ListItemIcon>
                 <TrackChangesRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Hunting ground" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Activity">
             <ListItemIcon>
                 <RowingRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Activities" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/Settings">
             <ListItemIcon>
                 <SettingsRoundedIcon />
             </ListItemIcon>

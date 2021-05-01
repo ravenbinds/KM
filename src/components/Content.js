@@ -1,20 +1,11 @@
 import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import Divider from '@material-ui/core/Divider';
 import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
-import logo from "../Logo.svg"
 import IconButton from '@material-ui/core/IconButton';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Drawer from '@material-ui/core/Drawer';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Rightbar from './Rightbar';
 import man from "../man.svg"
 
 const useStyles = makeStyles((theme) => ({
