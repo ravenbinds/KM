@@ -1,17 +1,13 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
-
 
 @import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
 :root {
@@ -26,31 +22,26 @@ body {
 
 .wrapper {
     display: grid;
-    grid-template-columns: 25% 50% 25%;
+    grid-template-columns: 20% 60% 20%;
     background: #F6F9FF;
-    border: 10px solid #FFFFFF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 50px;
 }
 
 .wrapper>div {
     padding: 1em;
 }
-.rowheading
-{
-  
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row,
+
+.rowheading {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row,
 }
 
 .Left {
-  @media only screen and (max-width: 480px) {
-  
-    width: 20;
-    
-  }
+    @media only screen and (max-width: 480px) {
+        width: 20;
+    }
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +50,6 @@ body {
     left: 0px;
     top: 0px;
     background: #FFFFFF;
-    border-radius: 50px;
 }
 
 .Right {
@@ -71,7 +61,6 @@ body {
     left: 970px;
     top: 0px;
     background: #E5EEFC;
-    border-radius: 0px 50px 50px 0px;
 }
 
 .Contents {
@@ -82,17 +71,15 @@ body {
     left: 275px;
     top: 0px;
 }
-.Contents-space{
-    padding: 10px;
 
+.Contents-space {
+    padding: 10px;
 }
 
-  .headings{
-      align-items: right;
-  }
-  .textbox{
+.headings {
+    align-items: right;
+}
+
+.textbox {
     border-radius: 50px;
-
-  }
-
-  
+}
