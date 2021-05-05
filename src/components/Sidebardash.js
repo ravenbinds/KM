@@ -10,12 +10,13 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import PropTypes from 'prop-types';
 import LinearProgressWithLabel from './prjectprogress';
 import man from "../man.svg"
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles((theme) => ({
 
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
+    large: {
+        width: theme.spacing(7),
+        height: theme.spacing(7),
     },
 
     root: {
@@ -51,9 +52,7 @@ export default function SimpleCard() {
         <Card className={classes.root}>
             <CardContent>
                 <div className={classes.title}>
-                    <div className="Post-user-avatar">
-                        <img src={man} alt="Meta Icon" color="black" />
-                    </div>
+                    <Avatar alt="Remy Sharp" src={man} className={classes.large} />
                     <div>
                         <Typography color="textPrimary" variant="h6" gutterBottom>
                             Project Name Project NAme

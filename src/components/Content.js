@@ -7,7 +7,8 @@ import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import man from "../man.svg"
-
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
 
     input: {
@@ -16,6 +17,17 @@ const useStyles = makeStyles((theme) => ({
 
     },
 
+    button: {
+        display: 'flex',
+        maxWidth: '64',
+        maxHeight: '39px',
+        position: 'static',
+        color: '#FFFFFF',
+        background: '#8C98FF',
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        borderRadius: '10px',
+
+    },
 
     iconButton: {
         padding: 10,
@@ -27,7 +39,10 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 400,
         padding: '2px 4px',
         alignItems: 'right',
+    },
+    Grid: {
 
+        padding: theme.spacing(2),
 
     },
 
@@ -40,35 +55,51 @@ const Contents = () => {
     return (
 
         <div className="Contents">
-            <Paper component="form" className={classes.Paper}>
-                <InputBase
-                    className={classes.input}
-                    placeholder="Search"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
+            <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                    <Paper component="form" className={classes.Paper}>
 
-                <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                    <SearchIcon />
-                </IconButton>
+                        <InputBase
+                            className={classes.input}
+                            placeholder="Search"
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
 
-            </Paper>
+                        <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                            <SearchIcon />
+                        </IconButton>
 
-            <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                CSE Department VAST
+                    </Paper>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+
+                    <Typography align="right" color="textPrimary" variant="h6" padding="40px">
+                        Hi blah
         </Typography>
-            <div className="rowheading">
+                </Grid>
+            </Grid>
+            <Grid item xs={12} className={classes.Grid}>
+                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                    CSE Department VAST
+        </Typography>
+            </Grid>
+            <Grid container direction="row"
+                justify="space-between"
+                alignItems="center">
+                <Grid item xs={12} sm={6} className={classes.Grid}>
+                    <Typography align="left" color="textPrimary" variant="h6">
+                        Posts
 
-                <Typography align="left" color="textPrimary" variant="h6">
-                    Posts
-
-            </Typography>
-                <div className="button" >
-                    Button
-                    </div>
-            </div>
-
-            <MoreVertRoundedIcon align="right" />
-
+                    </Typography>
+                </Grid>
+                <Button variant="contained" className={classes.button} >
+                    Primary
+                </Button>
+            </Grid>
+            <Grid container justify="flex-end"
+                alignItems="center" className={classes.Grid}>
+                <MoreVertRoundedIcon />
+            </Grid>
             <div className="Contents-space">
                 <Post nickname="Chris" avatar={man} caption="Moving the community!" image="https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" />
             </div>
