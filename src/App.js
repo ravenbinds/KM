@@ -10,6 +10,7 @@ import Myprofile from "./components/Myprofile"
 import Activity from "./components/Activity"
 import Settings from "./components/settings"
 import Projectcollab from './components/pages/projectcollab';
+import Projectadopt from './components/pages/projectadopt';
 
 
 class App extends Component {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/" component={Content} />
             <Route exact path="/Myprofile" component={Myprofile} />
             <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
+            <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
             <Route exact path="/Huntingground" component={Huntingground} />
             <Route exact path="/Activity" component={Activity} />
             <Route exact path="/Settings" component={Settings} />
