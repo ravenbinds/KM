@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import LinearProgressWithLabel from './prjectprogress';
 import man from "../man.svg"
 import Avatar from '@material-ui/core/Avatar';
+// import profilepic from "../Profile.jpg"
+import StarsIcon from '@material-ui/icons/Stars';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -48,28 +50,52 @@ export default function SimpleCard() {
 
 
     return (
-
-        <Card className={classes.root}>
-            <CardContent>
-                <div className={classes.title}>
-                    <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                    <div>
-                        <Typography color="textPrimary" variant="h6" gutterBottom>
-                            Project Name Project NAme
-
-        </Typography>
-                    </div>
+        <div className="Card">
+            <div className="CardHeader">
+                <div className="Profilepic">
+                    <img style={{ width: "50px", height: "50px", borderRadius: "8px" }} src={man} />
                 </div>
-                <Typography color="textPrimary" variant="body2" align="left" gutterBottom>
-                    Progress
+                <div>
+                    <p style={{ textAlign: "left" }}>Project Name Project Name </p>
+                </div>
+            </div>
+            <div className="CardProgressBar">
+                <p>Progress:</p>
+            </div>
+            <div>
+                <div>
+                    <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats
+                </div>
+                <div>
+                </div>
+                <div className="Tag Green">
+                    Completed
+                </div>
+            </div>
+        </div>
+    )
 
-        </Typography>
+    //     <Card className={classes.root}>
+    //         <CardContent>
+    //             <div className={classes.title}>
+    //                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
+    //                 <div>
+    //                     <Typography color="textPrimary" variant="h6" gutterBottom>
+    //                         Project Name Project NAme
 
-                <LinearProgressWithLabel />
-            </CardContent>
-            <CardActions>
+    //     </Typography>
+    //                 </div>
+    //             </div>
+    //             <Typography color="textPrimary" variant="body2" align="left" gutterBottom>
+    //                 Progress
 
-            </CardActions>
-        </Card>
-    );
+    //     </Typography>
+
+    //             <LinearProgressWithLabel />
+    //         </CardContent>
+    //         <CardActions>
+
+    //         </CardActions>
+    //     </Card>
+    // );
 }
