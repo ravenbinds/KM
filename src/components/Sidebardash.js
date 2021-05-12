@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -13,7 +16,7 @@ import man from "../man.svg"
 import Avatar from '@material-ui/core/Avatar';
 // import profilepic from "../Profile.jpg"
 import StarsIcon from '@material-ui/icons/Stars';
-
+import Chip from '@material-ui/core/Chip';
 const useStyles = makeStyles((theme) => ({
 
     large: {
@@ -25,21 +28,49 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
         border: 0,
-        borderRadius: 20,
-        flexDirection: 'row',
+        borderRadius: '30px',
+        flexDirection: 'column',
+        margin: '8px 0px 8px 0px',
         boxShadow: '0px 4px 4px rgba(207, 231, 246, 0.25)',
-        color: 'white',
+        color: 'black',
         minwidth: '245px',
         minheight: '143px',
+        padding: theme.spacing(2),
+        justify: "space-around",
     },
-
+    Grid: {
+        padding: theme.spacing(1),
+    },
     title: {
         fontSize: 14,
         fontWeight: 'bold',
     },
+    chip: {
+        display: 'flex',
+        background: '#8CECDC',
+        fontSize: '12px',
+        borderRadius: '0.5em',
+        fontWeight: 'bold',
+        height: '25px',
+        width: '20',
+        border: '1px',
+        color: 'inherit',
+        padding: theme.spacing(1),
 
+
+    },
     pos: {
         marginBottom: 12,
+
+    },
+    button: {
+        maxHeight: '39px',
+        position: 'static',
+        color: 'inherit',
+        background: '#8C98FF',
+        padding: theme.spacing(0.5),
+        borderRadius: '0.5em',
+        fontSize: '12px',
 
     },
 
@@ -50,29 +81,26 @@ export default function SimpleCard() {
 
 
     return (
-        <div className="Card">
-            <div className="CardHeader">
-                <div className="Profilepic">
-                    <img style={{ width: "50px", height: "50px", borderRadius: "8px" }} src={man} />
-                </div>
-                <div>
-                    <p style={{ textAlign: "left" }}>Project Name Project Name </p>
-                </div>
-            </div>
-            <div className="CardProgressBar">
-                <p>Progress:</p>
-            </div>
-            <div>
-                <div>
-                    <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats
-                </div>
-                <div>
-                </div>
-                <div className="Tag Green">
-                    Completed
-                </div>
-            </div>
-        </div>
+        <Grid className={classes.root}>
+            <Grid
+                container
+                direction="row"
+                justify="flex-start"            >
+                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
+                <Box color="secondary.main" fontWeight="fontWeightBold">
+                    Emotion Detection through Facial Expression
+      </Box>
+            </Grid>
+
+            <Grid item xs={12} className={classes.Grid} align="left">Progress:</Grid>
+            <Grid container direction="column">
+                <Grid item xs={12} className={classes.Grid}><Chip className={classes.chip} label="Completed" /></Grid>
+                <Grid container justify="space-between">
+                    <Grid container item xs={6}><StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
+                    <Button variant="contained" component={Link} to="/Projectpage" className={classes.button} >
+                        View
+                </Button> </Grid></Grid>
+        </Grid>
     )
 
     //     <Card className={classes.root}>

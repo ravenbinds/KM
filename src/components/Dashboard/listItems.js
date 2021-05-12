@@ -6,7 +6,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
-import RowingRoundedIcon from '@material-ui/icons/RowingRounded';
+import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Link } from 'react-router-dom';
@@ -33,9 +33,9 @@ export const mainListItems = (
         </ListItem>
         <ListItem button component={Link} to="/Activity">
             <ListItemIcon>
-                <RowingRoundedIcon />
+                <NotificationsNoneRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Activities" />
+            <ListItemText primary="Notifications" />
         </ListItem>
         <ListItem button component={Link} to="/Settings">
             <ListItemIcon>

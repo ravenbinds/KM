@@ -17,10 +17,6 @@ const useStyles = makeStyles((theme) => ({
         flex: 1,
 
     },
-    iconButton: {
-        padding: 10,
-        justifyContent: 'flex-end',
-    },
 
 
     iconButton: {
@@ -102,14 +98,14 @@ const Huntingground = () => {
 
                     <Typography align="right" color="textPrimary" variant="h6" padding="40px">
                         Hi blah
-         </Typography>
+            </Typography>
                 </Grid>
                 <Grid item xs={12} className={classes.Grid}>
                 </Grid>
                 <Grid item xs={12} className={classes.Grid}>
                     <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                         Hunting ground
-        </Typography>
+            </Typography>
                 </Grid>
                 <Grid item xs={12} className={classes.Grid}>
                 </Grid>

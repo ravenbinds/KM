@@ -1,7 +1,8 @@
 import SimpleCard from './Sidebardash'
+
 const Rightbar = () => {
     return (
-        <div className="Right">
+        <div className="Right" >
             <SimpleCard />
         </div>
     )

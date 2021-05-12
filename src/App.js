@@ -11,25 +11,42 @@ import Activity from "./components/Activity"
 import Settings from "./components/settings"
 import Projectcollab from './components/pages/projectcollab';
 import Projectadopt from './components/pages/projectadopt';
+import Projectpage from './components/pages/Projectpage';
+import errorpage from './components/404';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#985DFF"
+    },
+    secondary: {
+      main: "#000000",
+      text: "#757575",
+    },
+    spacing: [0, 1, 2, 3, 5, 8],
+  }
+});
 class App extends Component {
   render() {
     return <div className="App">
       <div className="wrapper">
         <Router>
-          <Leftbar />
-          <Switch>
-            <Route exact path="/" component={Content} />
-            <Route exact path="/Myprofile" component={Myprofile} />
-            <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
-            <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
-            <Route exact path="/Huntingground" component={Huntingground} />
-            <Route exact path="/Activity" component={Activity} />
-            <Route exact path="/Settings" component={Settings} />
-
-          </Switch>
-          <Rightbar />
+          <ThemeProvider theme={theme}>
+            <Leftbar />
+            <Switch>
+              <Route exact path="/" component={Content} />
+              <Route exact path="/Myprofile" component={Myprofile} />
+              <Route exact path="/Projectpage" component={Projectpage} />
+              <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
+              <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
+              <Route exact path="/Huntingground" component={Huntingground} />
+              <Route exact path="/Activity" component={Activity} />
+              <Route exact path="/Settings" component={Settings} />
+              <Route component={errorpage} />
+            </Switch>
+            <Rightbar />
+          </ThemeProvider>
         </Router>
       </div>
 
