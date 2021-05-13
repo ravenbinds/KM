@@ -98,23 +98,9 @@ body {
     align-content: space-evenly;
 }
 
-.Card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 15px;
-    padding: 16px;
-    margin: 8px 0px 8px 0px;
-    background: linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%);
-    filter: drop-shadow(0px 4px 4px rgba(207, 231, 246, 0.25));
-    border-radius: 30px;
-}
+.Grid {
 
-.Card>div {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0px;
-}
+        padding: theme-spacing(2);
+
+    }
 

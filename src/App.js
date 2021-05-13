@@ -27,6 +27,39 @@ const theme = createMuiTheme({
     spacing: [0, 1, 2, 3, 5, 8],
   }
 });
+theme.typography.h6 = {
+  fontSize: '0.8rem',
+
+  '@media (min-width:600px)': {
+    fontSize: '1.0rem',
+
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '1.1rem',
+
+  },
+};
+theme.typography.button = {
+  fontSize: '0.3rem',
+  '@media (min-width:600px)': {
+    fontSize: '0.5rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '0.9rem',
+
+  },
+};
+theme.typography.h5 = {
+  fontSize: '1.3rem',
+
+  '@media (min-width:600px)': {
+    fontSize: '1.4rem',
+
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '1.5rem',
+  },
+};
 class App extends Component {
   render() {
     return <div className="App">

@@ -40,11 +40,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '2px 4px',
         alignItems: 'right',
     },
-    Grid: {
 
-        padding: theme.spacing(2),
-
-    },
 
 
 }));
@@ -78,7 +74,7 @@ const Contents = () => {
         </Typography>
                 </Grid>
             </Grid>
-            <Grid item xs={12} className={classes.Grid}>
+            <Grid item xs={12} className="Grid">
                 <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                     CSE Department VAST
         </Typography>
@@ -100,6 +96,8 @@ const Contents = () => {
                 alignItems="center" className={classes.Grid}>
                 <MoreVertRoundedIcon />
             </Grid>
+
+
             <div className="Contents-space">
                 <Post nickname="Chris" avatar={man} caption="Moving the community!" image="https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" />
             </div>

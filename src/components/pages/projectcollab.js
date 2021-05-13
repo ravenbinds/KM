@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
         boxSizing: 'border-box',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
+        overflow: 'hidden',
 
     },
     Box2: {
@@ -173,7 +174,7 @@ const Projectcollab = () => {
                             justify="space-between"
                             alignItems="flex-start"
                             className={classes.Grid}>
-                            <Box mt={3} width={0.6}>
+                            <Box mt={3} width={0.5}>
 
                                 <Typography color="textPrimary" variant="body2" align="left" >
                                     Lab redecoration project. With the upcoming random event, the civil lab room no 2323 is undergoing renovation.Final redecoration along with calculated furniture placing required for ensuring maximum comfort, safety and productivity
@@ -189,7 +190,7 @@ const Projectcollab = () => {
                             <Grid container direction="column"
                                 justify="flex-start"
                                 alignItems="flex-start"
-                                className={classes.Box} item xs={4}>
+                                className={classes.Box} xs={5}>
                                 Looking for:
                                 <List dense >
                                     <ListItem >
@@ -267,11 +268,11 @@ const Projectcollab = () => {
                             justify="space-between"
                             alignItems="flex-start"
                             className={classes.Grid}>
-                            <Box mt={3} width={0.6}>
+                            <Box mt={3} width={0.5}>
 
                                 <Typography color="textPrimary" variant="body2" align="left" >
                                     Lab redecoration project. With the upcoming random event, the civil lab room no 2323 is undergoing renovation.Final redecoration along with calculated furniture placing required for ensuring maximum comfort, safety and productivity
-</Typography><Box mt={3} width={0.5}>
+</Typography><Box mt={3} width={0.4}>
                                     <Typography align="left" color="textPrimary" variant="body1">
                                         #PROJECTCOLLABS
 
@@ -283,7 +284,7 @@ const Projectcollab = () => {
                             <Grid container direction="column"
                                 justify="flex-start"
                                 alignItems="flex-start"
-                                className={classes.Box} item xs={4}>
+                                className={classes.Box} xs={5}>
                                 Looking for:
             <List dense >
                                     <ListItem >

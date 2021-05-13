@@ -273,27 +273,27 @@ const Projectpage = () => {
 
 
 
-                        <Box color="secondary.main" fontSize={17}>GALLERY
-                            </Box>
-                        <Grid container direction="row" ustify="center" alignItems="center" className={classes.Grid}>
-                            Nothing to see here
-
-                        </Grid>
-
-                        <Box color="secondary.main" fontSize={17}>SUPPORTED BY
-                            </Box>
-                        <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
-                            Nothing to see here
-                        </Grid>
-
-                        <Box color="secondary.main" fontSize={17}>STAKEHOLDERS
+                        <Box color="secondary.main" mt={2} mb={2} fontSize={17}>GALLERY
                             </Box>
                         <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
                             Nothing to see here
 
                         </Grid>
 
-                        <Box color="secondary.main" fontSize={17}>STATS
+                        <Box color="secondary.main" mt={2} mb={2} fontSize={17}>SUPPORTED BY
+                            </Box>
+                        <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
+                            Nothing to see here
+                        </Grid>
+
+                        <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STAKEHOLDERS
+                            </Box>
+                        <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
+                            Nothing to see here
+
+                        </Grid>
+
+                        <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STATS
                             </Box>
                         <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
                             Tracked by
