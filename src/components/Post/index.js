@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Grid from '@material-ui/core/Grid';
 
 import "./Post.css";
 
@@ -10,7 +11,15 @@ class Post extends Component {
         const image = this.props.image;
         const caption = this.props.caption;
         return (
-            <article className="Post" ref="Post">
+            <Grid className="Post">
+
+                {/* //     <Grid container>
+                    //         <Grid className="Post-user">
+                        //             <Grid className="Post-user-avatar">
+                            //             </Grid></Grid>
+
+            //     </Grid> */}
+
                 <header>
                     <div className="Post-user">
                         <div className="Post-user-avatar">
@@ -29,7 +38,7 @@ class Post extends Component {
                 <div className="Post-caption">
                     <strong>{nickname}</strong> {caption}
                 </div>
-            </article>
+            </Grid>
         );
     }
 }

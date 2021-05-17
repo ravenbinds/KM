@@ -1,15 +1,13 @@
 
 import Grid from '@material-ui/core/Grid';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import Top from '../Top'
 const useStyles = makeStyles((theme) => ({
 
     input: {
@@ -78,205 +76,186 @@ const Huntingground = () => {
 
     return (
         <div className="Contents">
-            <Grid container spacing={3}>
-                <Grid item xs={12} sm={6} >
-                    <Paper component="form" className={classes.Paper}>
 
-                        <InputBase
-                            className={classes.input}
-                            placeholder="Search"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+            <Top />
 
-                        <IconButton type="submit" className={classes.iconButton} aria-label="search">
-                            <SearchIcon />
-                        </IconButton>
 
-                    </Paper>
-                </Grid>
-                <Grid item xs={12} sm={6}>
-
-                    <Typography align="right" color="textPrimary" variant="h6" padding="40px">
-                        Hi blah
+            <Grid item xs={12} className={classes.Grid}>
+            </Grid>
+            <Grid item xs={12} className={classes.Grid}>
+                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                    Hunting ground
             </Typography>
-                </Grid>
-                <Grid item xs={12} className={classes.Grid}>
-                </Grid>
-                <Grid item xs={12} className={classes.Grid}>
-                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                        Hunting ground
-            </Typography>
-                </Grid>
-                <Grid item xs={12} className={classes.Grid}>
-                </Grid>
-                <Grid item xs={12} className={classes.Grid}>
+            </Grid>
+            <Grid item xs={12} className={classes.Grid}>
+            </Grid>
+            <Grid item xs={12} className={classes.Grid}>
 
-                    <Box className={classes.Box}>
+                <Box className={classes.Box}>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="body2" >
-                                Ground#1
+                        <Typography color="textPrimary" align="left" variant="body2" >
+                            Ground#1
                                 </Typography></Grid>
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="h6" >
-                                COLLABORATE WITH NEW TEAMS</Typography></Grid>
+                        <Typography color="textPrimary" align="left" variant="h6" >
+                            COLLABORATE WITH NEW TEAMS</Typography></Grid>
 
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
-                        <Grid item xs={12} justify="flex-start">
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
+                    <Grid item xs={12} justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="body2" >
-                                Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches</Typography></Grid>
-                        <Grid container direction="row"
-                            justify="space-between"
-                            alignItems="flex-end"
-                            className={classes.Grid}>
-                            <Grid item xs={12} sm={6} >
-                                <Typography align="left" color="textPrimary" variant="body2">
-                                    #PROJECTCOLLABS
+                        <Typography color="textPrimary" align="left" variant="body2" >
+                            Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches</Typography></Grid>
+                    <Grid container direction="row"
+                        justify="space-between"
+                        alignItems="flex-end"
+                        className={classes.Grid}>
+                        <Grid item xs={12} sm={6} >
+                            <Typography align="left" color="textPrimary" variant="body2">
+                                #PROJECTCOLLABS
 
                     </Typography>
-                            </Grid>
-                            <Grid item xs={8} sm={4} justify="space-between">
-                                <IconButton type="submit" className={classes.iconButton} aria-label="hg">
-                                    <TrackChangesRoundedIcon fontSize="large" />
-                                </IconButton>
-                                <Button variant="contained" component={Link} to="/Huntingground/projectcollab" className={classes.button} >
-                                    Take Me there
+                        </Grid>
+                        <Grid item xs={8} sm={4} justify="space-between">
+                            <IconButton type="submit" className={classes.iconButton} aria-label="hg">
+                                <TrackChangesRoundedIcon fontSize="large" />
+                            </IconButton>
+                            <Button variant="contained" component={Link} to="/Huntingground/projectcollab" className={classes.button} >
+                                Take Me there
                 </Button>
-                            </Grid>
                         </Grid>
+                    </Grid>
 
 
-                    </Box>
+                </Box>
 
-                </Grid>
+            </Grid>
 
-                <Grid item xs={12} className={classes.Grid}>
+            <Grid item xs={12} className={classes.Grid}>
 
-                    <Box color="primary.contrastText" className={classes.Box2}>
+                <Box color="primary.contrastText" className={classes.Box2}>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography align="left" variant="body2" >
-                                Ground#2            </Typography></Grid>
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
+                        <Typography align="left" variant="body2" >
+                            Ground#2            </Typography></Grid>
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography align="left" variant="h6" >
-                                ADOPT SOME POLISHABLE GEMS</Typography></Grid>
+                        <Typography align="left" variant="h6" >
+                            ADOPT SOME POLISHABLE GEMS</Typography></Grid>
 
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
-                        <Grid item xs={12} justify="flex-start">
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
+                    <Grid item xs={12} justify="flex-start">
 
-                            <Typography align="left" variant="body2" >
-                                Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches</Typography></Grid>
-                        <Grid container direction="row"
-                            justify="space-between"
-                            alignItems="flex-end"
-                            className={classes.Grid}>
-                            <Grid item xs={12} sm={6} >
-                                <Typography align="left" variant="body2">
-                                    #PROJECTADOPTS
+                        <Typography align="left" variant="body2" >
+                            Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches</Typography></Grid>
+                    <Grid container direction="row"
+                        justify="space-between"
+                        alignItems="flex-end"
+                        className={classes.Grid}>
+                        <Grid item xs={12} sm={6} >
+                            <Typography align="left" variant="body2">
+                                #PROJECTADOPTS
 
 </Typography>
-                            </Grid>
-                            <Grid item xs={8} sm={4} justify="space-between">
-                                <IconButton type="submit" className={classes.iconButton} aria-label="hg">
-                                    <TrackChangesRoundedIcon fontSize="large" />
-                                </IconButton>
-                                <Button variant="contained" component={Link} to="/Huntingground/projectadopt" className={classes.button} >
-                                    Take Me there
+                        </Grid>
+                        <Grid item xs={8} sm={4} justify="space-between">
+                            <IconButton type="submit" className={classes.iconButton} aria-label="hg">
+                                <TrackChangesRoundedIcon fontSize="large" />
+                            </IconButton>
+                            <Button variant="contained" component={Link} to="/Huntingground/projectadopt" className={classes.button} >
+                                Take Me there
 </Button>
-                            </Grid>
                         </Grid>
+                    </Grid>
 
 
-                    </Box>
+                </Box>
 
-                </Grid>
+            </Grid>
 
-                <Grid item xs={12} className={classes.Grid}>
+            <Grid item xs={12} className={classes.Grid}>
 
-                    <Box className={classes.Box}>
+                <Box className={classes.Box}>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="body2" >
-                                Ground#3
+                        <Typography color="textPrimary" align="left" variant="body2" >
+                            Ground#3
                                 </Typography></Grid>
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
 
-                        <Grid item xs={12} alignItems="flex-start" justify="flex-start">
+                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="h6" >
-                                LOOKOUT FOR SOME MINDBLOWING IDEAS?? </Typography></Grid>
+                        <Typography color="textPrimary" align="left" variant="h6" >
+                            LOOKOUT FOR SOME MINDBLOWING IDEAS?? </Typography></Grid>
 
-                        <Grid item xs={12} className={classes.Grid}>
-                        </Grid>
-                        <Grid item xs={12} justify="flex-start">
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
+                    <Grid item xs={12} justify="flex-start">
 
-                            <Typography color="textPrimary" align="left" variant="body2" >
-                                Dont stress your brain to get the rumoured inspiration. There are couch potatoes to help you with the thinking. Come and find them ideas.</Typography></Grid>
-                        <Grid container direction="row"
-                            justify="space-between"
-                            alignItems="flex-end"
-                            className={classes.Grid}>
-                            <Grid item xs={12} sm={6} >
-                                <Typography align="left" color="textPrimary" variant="body2">
-                                    #PROBLEMSTATEMENTS
+                        <Typography color="textPrimary" align="left" variant="body2" >
+                            Dont stress your brain to get the rumoured inspiration. There are couch potatoes to help you with the thinking. Come and find them ideas.</Typography></Grid>
+                    <Grid container direction="row"
+                        justify="space-between"
+                        alignItems="flex-end"
+                        className={classes.Grid}>
+                        <Grid item xs={12} sm={6} >
+                            <Typography align="left" color="textPrimary" variant="body2">
+                                #PROBLEMSTATEMENTS
 
                     </Typography>
-                            </Grid>
-                            <Grid item xs={8} sm={4} justify="space-between">
-                                <IconButton type="submit" className={classes.iconButton} aria-label="hg">
-                                    <TrackChangesRoundedIcon fontSize="large" />
-                                </IconButton>
-                                <Button variant="contained" className={classes.button} >
-                                    Take Me there
+                        </Grid>
+                        <Grid item xs={8} sm={4} justify="space-between">
+                            <IconButton type="submit" className={classes.iconButton} aria-label="hg">
+                                <TrackChangesRoundedIcon fontSize="large" />
+                            </IconButton>
+                            <Button variant="contained" className={classes.button} >
+                                Take Me there
                 </Button>
 
-                            </Grid>
                         </Grid>
+                    </Grid>
 
-                    </Box>
+                </Box>
 
-
-
-                </Grid>
-
-
-                <Grid container flexDirection="row" className={classes.Grid}>
-                    <Box className={classes.Box} width={1 / 2}>
-                        <Typography color="textPrimary" align="left" variant="h6" >
-                            FREELANCER’S CORNER
-                            </Typography>
-                        <Box mt={5}>
-                            #PARTTIMEJOBS</Box>
-
-                    </Box>
-                    <Box className={classes.Box} fontWeight="fontWeightMedium" color="info.main" width={1 / 2}>
-                        <Typography align="left" >
-                            Contribute your ideas to the Hunting Ground. And get your dream project started.
-                            </Typography>
-                        <Box mt={3} component={Link} to="/Huntingground">
-                            Click here
-                            </Box>
-                    </Box>
-
-                </Grid>
 
 
             </Grid>
+
+
+            <Grid container flexDirection="row" className={classes.Grid}>
+                <Box className={classes.Box} width={1 / 2}>
+                    <Typography color="textPrimary" align="left" variant="h6" >
+                        FREELANCER’S CORNER
+                            </Typography>
+                    <Box mt={5}>
+                        #PARTTIMEJOBS</Box>
+
+                </Box>
+                <Box className={classes.Box} fontWeight="fontWeightMedium" color="info.main" width={1 / 2}>
+                    <Typography align="left" >
+                        Contribute your ideas to the Hunting Ground. And get your dream project started.
+                            </Typography>
+                    <Box mt={3} component={Link} to="/Huntingground">
+                        Click here
+                            </Box>
+                </Box>
+
+            </Grid>
+
+
 
 
         </div >
