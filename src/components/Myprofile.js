@@ -1,35 +1,37 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
+import InputBase from '@material-ui/core/InputBase';
 import Divider from '@material-ui/core/Divider';
 import Button from '@material-ui/core/Button';
-import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
-import FolderOpenRoundedIcon from '@material-ui/icons/FolderOpenRounded';
 import IconButton from '@material-ui/core/IconButton';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import man from "../man.svg"
-import Avatar from '@material-ui/core/Avatar';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
-import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
-import { Link } from 'react-router-dom';
-import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
-const useStyles = makeStyles((theme) => ({
 
+import man from "../man.svg"
+import Avatar from '@material-ui/core/Avatar';
+import SearchIcon from '@material-ui/icons/Search';
+import FolderOpenRoundedIcon from '@material-ui/icons/FolderOpenRounded';
+import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
+import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
+
+const useStyles = makeStyles((theme) => ({
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
-
     },
+
     heading: {
         fontSize: theme.typography.pxToRem(16),
         flexBasis: '33.33%',
@@ -42,12 +44,13 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '8px',
         padding: theme.spacing(1),
         background: "#FFFFFF",
-
     },
+
     iconButton: {
         padding: 10,
         justifyContent: 'flex-end',
     },
+
     Box: {
         display: 'flex',
         flexDirection: 'row',
@@ -58,34 +61,34 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '8px',
         overflow: 'hidden'
     },
+
     Paper: {
         display: 'flex',
         borderRadius: '400px 400px 400px 400px',
         padding: '2px 4px',
         alignItems: 'right',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-
     },
 
     Grid2: {
         padding: theme.spacing(2),
         justify: "space-around",
-
     },
+
     Grid1: {
         padding: theme.spacing(2),
         flexDirection: 'row',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-
     },
+
     Grid: {
         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
         padding: theme.spacing(2),
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '30px',
     },
-    Paper1: {
 
+    Paper1: {
         borderRadius: '30px',
         display: 'flex',
         flexWrap: 'wrap',
@@ -94,16 +97,15 @@ const useStyles = makeStyles((theme) => ({
             width: theme.spacing(8),
             height: theme.spacing(8),
         },
-
-
     },
 
     large: {
-
         width: theme.spacing(10),
         height: theme.spacing(10),
     },
-}));
+}
+));
+
 const Myprofile = () => {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
@@ -117,40 +119,27 @@ const Myprofile = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12} sm={6} >
                     <Paper component="form" className={classes.Paper}>
-
-                        <InputBase
-                            className={classes.input}
-                            placeholder="Search"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
+                        <InputBase className={classes.input} placeholder="Search" inputProps={{ 'aria-label': 'search' }}/>
 
                         <IconButton type="submit" className={classes.iconButton} aria-label="search">
                             <SearchIcon />
                         </IconButton>
-
                     </Paper>
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
-
-                    <Typography align="right" color="textPrimary" variant="h6" padding="40px">
-                        Hi blah
-             </Typography>
+                    <Typography align="right" color="textPrimary" variant="h6" padding="40px">Hi blah</Typography>
                 </Grid>
-                <Grid item xs={12} className={classes.Grid2}  >
 
+                <Grid item xs={12} className={classes.Grid2}  >
                     <Grid item xs={12} className={classes.Grid} >
-                        <Grid
-                            container
-                            direction="row"
-                            justify="flex-start"
-                            alignItems="center"
-                        >
+                        <Grid container direction="row" justify="flex-start" alignItems="center" >
                             <Avatar alt="Remy Sharp" src={man} className={classes.large} />
                             <Grid item xs={6} sm={3} alignItems="flex-start" justify="flex-start">
-
                                 <Typography color="textPrimary" variant="h6" >
                                     Name
-            </Typography></Grid>
+                                </Typography>
+                            </Grid>
                         </Grid>
 
                         <Grid item xs={12} className={classes.Grid2}  >
