@@ -9,27 +9,6 @@ import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import Top from '../Top'
 const useStyles = makeStyles((theme) => ({
-
-    input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
-
-    },
-
-
-    iconButton: {
-        padding: 10,
-        justifyContent: 'flex-end',
-    },
-    Paper: {
-        display: 'flex',
-        borderRadius: '400px 400px 400px 400px',
-        padding: '2px 4px',
-        alignItems: 'right',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-
-    },
     Grid: {
         padding: theme.spacing(1),
 

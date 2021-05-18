@@ -3,57 +3,26 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Top from './Top';
+import man from '../man.svg'
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+
 const useStyles = makeStyles((theme) => ({
 
-    input: {
-        marginLeft: theme.spacing(1),
-        flex: 1,
 
-    },
-
-
-    iconButton: {
-        padding: 10,
-        justifyContent: 'flex-end',
-    },
-    Paper: {
-        display: 'flex',
-        borderRadius: '400px 400px 400px 400px',
-        padding: '2px 4px',
-        alignItems: 'right',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-
-    },
     Grid: {
         padding: theme.spacing(1),
 
     },
-
-    Box: {
+    Grid2: {
+        padding: theme.spacing(1),
         display: 'flex',
-        alignItems: 'flex-start ',
-        padding: theme.spacing(2),
-        flexDirection: 'column',
         background: '#FFFFFF',
-        border: '1px solid #985DFF',
-        boxSizing: 'border-box',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
-
     },
-    Box2: {
-        display: 'flex',
-        alignItems: 'left',
-        padding: theme.spacing(2),
-        flexDirection: 'column',
-        background: '#985DFF',
-        border: '1px solid #985DFF',
-        boxSizing: 'border-box',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '8px',
 
-    },
+
     button: {
         maxWidth: '64',
         maxHeight: '39px',
@@ -72,10 +41,35 @@ const Activity = () => {
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid}>
-                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                    Notifications
+            <Grid container justify="space-evenly" alignItems="flex-start">
+                <Grid item xs={12} className={classes.Grid}>
+                </Grid>
+                <Grid item xs={12} className={classes.Grid}>
+                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                        Notifications
 </Typography>
+                </Grid>
+                <Grid container justify="space-evenly" alignItems="flex-start" className={classes.Grid}>
+                    <Grid item xs={12} className={classes.Grid2}  >
+                        <Avatar alt="Remy Sharp" src={man} />
+                        <Box mt={1} ml={2}>
+
+                            <Typography color="textPrimary" variant="body1" >
+                                THis is a sample notification. THis is a sample notification. THis is a sample notification.
+</Typography></Box>
+                    </Grid>
+                    <Grid item xs={12} className={classes.Grid}>
+                    </Grid>
+                    <Grid item xs={12} className={classes.Grid2} >
+                        <Avatar alt="Remy Sharp" src={man} />
+                        <Box mt={1} ml={2}>
+
+                            <Typography color="textPrimary" variant="body1" >
+                                THis is a sample notification. THis is a sample notification. THis is a sample notification.
+</Typography></Box>
+                    </Grid>
+
+                </Grid>
             </Grid>
         </div>
     )
