@@ -17,6 +17,8 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
+import { IconButton } from '@material-ui/core';
+
 const useStyles = makeStyles((theme) => ({
 
     heading: {
@@ -82,50 +84,40 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(10),
     },
 }));
-const Myprofile = () => {
+
+
+function ProfileHeader() {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
-
     return (
-        <div className="Contents">
-            <Top />
-            <Grid item xs={12} className={classes.Grid2}  >
-
-                <Grid item xs={12} className={classes.Grid} >
-                    <Grid
-                        container
-                        direction="row"
-                        justify="flex-start"
-                        alignItems="center"
-                    >
+        <Grid container direction="row" justify="flex-start" alignItems="center">
                         <Avatar alt="Remy Sharp" src={man} className={classes.large} />
                         <Grid item xs={6} sm={3} alignItems="flex-start" justify="flex-start">
-
                             <Typography color="textPrimary" variant="h6" >
                                 Name
-            </Typography></Grid>
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <IconButton>
+
+                            </IconButton>
+                        </Grid>
                     </Grid>
+    );
+}
 
-                    <Grid item xs={12} className={classes.Grid2}  >
-
-                        <Box className={classes.Box}>
-                            <Grid
-                                container
-                                direction="row"
-                                justify="space-around"
-                                alignItems="baseline"
-                            >
-                                <Typography color="textSecondary" gutterBottom>
-                                    Spotlight
-            </Typography>
+function Spotlight() {
+    const classes = useStyles();
+    return (
+        <Grid item xs={12} className={classes.Grid2}  >
+            <Box className={classes.Box}>
+                <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                    <Typography color="textSecondary" gutterBottom> 
+                        Spotlight
+                    </Typography>
                                 <Card className={classes.root}>
                                     <Typography color="textSecondary" gutterBottom>
                                         31
-            </Typography>
+                                    </Typography>
                                     <CardActions>
                                         <Button size="small" > Projects</Button>
                                     </CardActions>
@@ -133,7 +125,7 @@ const Myprofile = () => {
                                 <Card className={classes.root}>
                                     <Typography color="textSecondary" gutterBottom>
                                         13
-            </Typography>
+                                    </Typography>
                                     <CardActions>
                                         <Button size="small">Certifications</Button>
                                     </CardActions>
@@ -141,7 +133,7 @@ const Myprofile = () => {
                                 <Card className={classes.root}>
                                     <Typography color="textSecondary" gutterBottom>
                                         12
-            </Typography>
+                                    </Typography>
                                     <CardActions>
                                         <Button size="small">Jobs done</Button>
                                     </CardActions>
@@ -149,70 +141,59 @@ const Myprofile = () => {
                             </Grid>
                         </Box>
                     </Grid>
-                    <Typography color="textSecondary" align="left" padding="20px">
-                        Recent activities
-            </Typography>
-                    <Grid item xs={12} className={classes.Grid2}  >
+    );
+}
 
+function RecentActivities() {
+    const classes = useStyles();
+    return(
+        <Grid container direction="column" justify="flex-start" alignItems="center">
+            <Typography color="textSecondary" align="left" padding="20px">
+                        Recent activities
+                    </Typography>
+                    <Grid item xs={12} className={classes.Grid2}  >
                         <Box className={classes.Box}>
                             <CardActions>
                                 <Button size="small" > <EventNoteRoundedIcon fontSize="large" /></Button>
                             </CardActions>
                             <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-
                                 Completed certification course Neural Networks and Deep Learning by deeplearning.ai on Coursera
-                                </Typography>
-
+                            </Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} className={classes.Grid2}  >
-
                         <Box className={classes.Box}>
                             <CardActions>
                                 <Button size="small" > <EventNoteRoundedIcon fontSize="large" /></Button>
                             </CardActions>
                             <Typography align="left" color="textprimary" gutterBottom>
                                 Started workshop titled Fundamentals of Digital Marketing Google
-            </Typography>
-
+                            </Typography>
                         </Box>
                     </Grid>
-
 
                     <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
                         see all activities...
-            </Typography>
-                    <Typography color="textSecondary" align="left" padding="20px">
+                    </Typography>
+        </Grid>
+        
+    )
+}
+
+
+function DetailsAccordion (){
+    const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
+    };
+    return (
+        <Grid container direction="column" justify="flex-start" alignItems="center">
+            <Typography color="textSecondary" align="left" padding="20px">
                         Details
-            </Typography>
-
-                    <Grid item xs={12} className={classes.Grid2}  >
-
-
-                        <Box className={classes.Box}>
-
-                            <Typography color="textprimary" variant="body1" align="left" padding="20px">
-                                Experience
-            </Typography>
-
-                            <Grid item xs={12} className={classes.Grid2}  >
-
-                                <Typography align="left" color="textSecondary" >
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae praesent quisque egestas egestas eleifend congue nibh neque. Consequat elementum non adipiscing eget posuere.
-    </Typography></Grid>
-
-                        </Box>
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                    </Grid>
-                    <Typography color="textSecondary" align="left" padding="20px">
-                        Details
-            </Typography>
-
-                    <Grid item xs={12} className={classes.Grid2}  >
-
+                    </Typography>
+        <Grid item xs={12} className={classes.Grid2}  >
                         <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}
@@ -222,23 +203,18 @@ const Myprofile = () => {
                                 <Typography className={classes.heading}>Posts</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
+                                <Button>Add</Button>
                                 <Box className={classes.Box}>
                                     <Grid item xs={1} className={classes.Grid2}  >
                                         <FolderOpenRoundedIcon fontSize="large" />
                                     </Grid>
                                     <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>
-
-
-                                            Emotion Detection through Facial Expression.
-            </Typography>
+                                        <Typography>Emotion Detection through Facial Expression.</Typography>
                                     </Grid>
                                     <Grid item xs={3} flexDirection='row'>
-                                        <Typography>
-                                            <CheckRoundedIcon />Completed
-            </Typography>
-
-                                    </Grid></Box>
+                                        <Typography><CheckRoundedIcon />Completed</Typography>
+                                    </Grid>
+                                </Box>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -248,7 +224,6 @@ const Myprofile = () => {
                                 id="panel2bh-header"
                             >
                                 <Typography className={classes.heading}>Experiences</Typography>
-
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Box className={classes.Box}>
@@ -257,17 +232,15 @@ const Myprofile = () => {
                                     </Grid>
                                     <Grid item xs={10} className={classes.Grid2}  >
                                         <Typography>
-
-
                                             Emotion Detection through Facial Expression.
-            </Typography>
+                                        </Typography>
                                     </Grid>
                                     <Grid item xs={3} flexDirection='row'>
                                         <Typography>
                                             <CheckRoundedIcon />Completed
-            </Typography>
-
-                                    </Grid></Box>
+                                        </Typography>           
+                                    </Grid>
+                                </Box>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
@@ -277,7 +250,6 @@ const Myprofile = () => {
                                 id="panel3bh-header"
                             >
                                 <Typography className={classes.heading}>Education</Typography>
-
                             </AccordionSummary>
                             <AccordionDetails>
                                 <Box className={classes.Box}>
@@ -286,17 +258,14 @@ const Myprofile = () => {
                                     </Grid>
                                     <Grid item xs={10} className={classes.Grid2}  >
                                         <Typography>
-
-
                                             Emotion Detection through Facial Expression.
-            </Typography>
+                                        </Typography>
                                     </Grid>
                                     <Grid item xs={3} flexDirection='row'>
                                         <Typography>
-                                            <CheckRoundedIcon />Completed
-            </Typography>
-
-                                    </Grid></Box>
+                                            <CheckRoundedIcon />Completed</Typography>
+                                    </Grid>
+                                </Box>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
@@ -314,17 +283,15 @@ const Myprofile = () => {
                                     </Grid>
                                     <Grid item xs={10} className={classes.Grid2}  >
                                         <Typography>
-
-
                                             Emotion Detection through Facial Expression.
-            </Typography>
+                                        </Typography>
                                     </Grid>
                                     <Grid item xs={3} flexDirection='row'>
                                         <Typography>
                                             <CheckRoundedIcon />Completed
-            </Typography>
-
-                                    </Grid></Box>
+                                        </Typography>       
+                                    </Grid>
+                                </Box>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
@@ -342,26 +309,59 @@ const Myprofile = () => {
                                     </Grid>
                                     <Grid item xs={10} className={classes.Grid2}  >
                                         <Typography>
-
-
                                             Emotion Detection through Facial Expression.
-            </Typography>
+                                        </Typography>
                                     </Grid>
                                     <Grid item xs={3} flexDirection='row'>
                                         <Typography>
                                             <CheckRoundedIcon />Completed
-            </Typography>
-
-                                    </Grid></Box>
+                                        </Typography>
+                                    </Grid>
+                                </Box>
                             </AccordionDetails>
                         </Accordion>
+                        </Grid>
+        </Grid>
+    );
+    }
+
+const Myprofile = () => {
+    const classes = useStyles();
+
+    return (
+        <div className="Contents">
+            <Top />
+            <Grid item xs={12} className={classes.Grid2}  >
+                <Grid item xs={12} className={classes.Grid} >
+                    <ProfileHeader/>
+                    <Spotlight/>
+                    <RecentActivities/>
+                
+                    <Typography color="textSecondary" align="left" padding="20px">
+                        Details
+                    </Typography>
+                    <Grid item xs={12} className={classes.Grid2}  >
+                        <Box className={classes.Box}>
+                            <Typography color="textprimary" variant="body1" align="left" padding="20px">
+                                Experience
+                            </Typography>
+                            <Grid item xs={12} className={classes.Grid2}  >
+                                <Typography align="left" color="textSecondary" >
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae praesent quisque egestas egestas eleifend congue nibh neque. Consequat elementum non adipiscing eget posuere.
+                                </Typography>
+                            </Grid>
+                        </Box>
                     </Grid>
 
-                </Grid></Grid>
-
-
+                    <Grid item xs={12} className={classes.Grid2}  >
+                    </Grid>
+                    <Grid item xs={12} className={classes.Grid2}  >
+                    </Grid>
+                    
+                    <DetailsAccordion/>
+                </Grid>
+            </Grid>
         </div >
-
     )
 }
 
