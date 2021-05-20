@@ -15,6 +15,9 @@ import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import SignIn from './components/signin/Signin';
+import Register from './components/Actions/registration';
+import { Create } from '@material-ui/icons';
+import create from './components/pages/createpage';
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -56,14 +59,14 @@ theme.typography.button = {
   },
 };
 theme.typography.h5 = {
-  fontSize: '1.3rem',
+  fontSize: '1.2rem',
 
   '@media (min-width:600px)': {
-    fontSize: '1.4rem',
+    fontSize: '1.3rem',
 
   },
   [theme.breakpoints.up('md')]: {
-    fontSize: '1.5rem',
+    fontSize: '1.4rem',
   },
 };
 class App extends Component {
@@ -74,7 +77,9 @@ class App extends Component {
           <ThemeProvider theme={theme}>
             <Leftbar />
             <Switch>
-              <Route exact path="/signin" component={SignIn} />
+              <Route exact path="/login" component={SignIn} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/createpages" component={create} />
               <Route exact path="/" component={Content} />
               <Route exact path="/Myprofile" component={Myprofile} />
               <Route exact path="/Projectpage" component={Projectpage} />
