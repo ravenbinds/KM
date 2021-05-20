@@ -14,6 +14,7 @@ import Projectadopt from './components/pages/projectadopt';
 import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import AddProfileSection from './components/AddProfileSection'
 
 const theme = createMuiTheme({
   palette: {
@@ -82,6 +83,7 @@ class App extends Component {
               <Route exact path="/Huntingground" component={Huntingground} />
               <Route exact path="/Activity" component={Activity} />
               <Route exact path="/Settings" component={Settings} />
+              <Route exact path="/AddProfileSection" component={AddProfileSection} />
               <Route component={errorpage} />
             </Switch>
             <Rightbar />

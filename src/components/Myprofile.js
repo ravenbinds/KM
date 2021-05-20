@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -85,6 +85,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+function DropdownMenu() {
+
+    const [open,setOpen] = useState(false);
+
+  
+    function DropdownItem(props) {
+      return (
+        <a href={props.formlink} className="menu-item" >
+          <span className="icon-button">{props.leftIcon}</span>
+          {props.children}
+          <span className="icon-right">{props.rightIcon}</span>
+        </a>
+      );
+    }
+  
+    return (
+        <Button variant="contained" component={Link} to="/AddProfileSection">Add Profile Section</Button>
+    //     <div className="menu">
+    //     <DropdownItem rightIcon={<ArrowDropDownCircleIcon formlink={'#'}/>}>Add Project</DropdownItem>
+    //     <DropdownItem rightIcon={<ArrowDropDownCircleIcon />}>Add Skills</DropdownItem>
+    //   </div>
+    );
+  }
 
 function ProfileHeader() {
     const classes = useStyles();
@@ -96,10 +119,9 @@ function ProfileHeader() {
                                 Name
                             </Typography>
                         </Grid>
-                        <Grid item>
-                            <IconButton>
-
-                            </IconButton>
+                        
+                        <Grid item xs={6} sm={3}>
+                            <DropdownMenu></DropdownMenu>
                         </Grid>
                     </Grid>
     );

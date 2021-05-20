@@ -20,19 +20,19 @@ body {
     /* font-family: 'PT Sans', sans-serif; */
 }
 
- .wrapper {/*{@media only screen and (max-width: 250px) {
+.wrapper {
+    /*{@media only screen and (max-width: 250px) {
     width: 20;
     overflow: hidden;
     align-items: left;
     padding: 0em;
 } */
-    
     display: grid;
     grid-template-columns: 20% 58% 24%;
     background: #F6F9FF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 1em  5em;
+    padding: 1em 5em;
 }
 
 .wrapper>div {
@@ -50,15 +50,13 @@ body {
         width: 20;
         overflow: hidden;
         align-items: left;
-
     }
     display: flex;
     flex-direction: column;
     padding: 10px;
     position: static;
     left: 0px;
-            overflow: hidden;
-
+    overflow: hidden;
     top: 0px;
     background: #FFFFFF;
 }
@@ -67,7 +65,6 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-
     align-items: center;
     padding: 10px 20px 10px 10px;
     position: static;
@@ -96,6 +93,7 @@ body {
 .textbox {
     border-radius: 50px;
 }
+
 .container {
     display: flex;
     flex-direction: column;
@@ -103,6 +101,3 @@ body {
     justify-content: flex-start;
     align-content: space-evenly;
 }
-
-
-
