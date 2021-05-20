@@ -11,7 +11,7 @@ const Leftbar = () => {
         <Grid className="Left">
             <img src={logo} alt="KM" />
             <Divider />
-            <List>{mainListItems}</List>
+            <List primary>{mainListItems}</List>
             <Divider />
             <List>{secondaryListItems}</List>
         </Grid>

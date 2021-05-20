@@ -18,13 +18,19 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: "#985DFF"
+      main: "#985DFF",
     },
     secondary: {
       main: "#000000",
       text: "#757575",
     },
     spacing: [0, 1, 2, 3, 5, 8],
+  },
+  typography: {
+    body1: {
+      fontSize: '0.9rem',
+
+    },
   }
 });
 theme.typography.h6 = {

@@ -20,7 +20,13 @@ body {
     /* font-family: 'PT Sans', sans-serif; */
 }
 
-.wrapper {
+ .wrapper {/*{@media only screen and (max-width: 250px) {
+    width: 20;
+    overflow: hidden;
+    align-items: left;
+    padding: 0em;
+} */
+    
     display: grid;
     grid-template-columns: 20% 58% 24%;
     background: #F6F9FF;
@@ -80,7 +86,7 @@ body {
 }
 
 .Contents-space {
-    padding: 10px;
+    padding: 30px;
 }
 
 .headings {
@@ -98,9 +104,5 @@ body {
     align-content: space-evenly;
 }
 
-.Grid {
 
-        padding: theme-spacing(2);
-
-    }
 
