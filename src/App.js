@@ -14,7 +14,7 @@ import Projectadopt from './components/pages/projectadopt';
 import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-
+import SignIn from './components/signin/Signin';
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -74,6 +74,7 @@ class App extends Component {
           <ThemeProvider theme={theme}>
             <Leftbar />
             <Switch>
+              <Route exact path="/signin" component={SignIn} />
               <Route exact path="/" component={Content} />
               <Route exact path="/Myprofile" component={Myprofile} />
               <Route exact path="/Projectpage" component={Projectpage} />
