@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+
 import Top from '../Top'
 const useStyles = makeStyles((theme) => ({
     Grid: {
@@ -227,7 +228,8 @@ const Huntingground = () => {
                     <Typography align="left" >
                         Contribute your ideas to the Hunting Ground. And get your dream project started.
                             </Typography>
-                    <Box mt={3} component={Link} to="/Huntingground">
+                    <Box mt={3} component={Link} to="/createpages">
+
                         Click here
                             </Box>
                 </Box>

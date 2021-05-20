@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
 import "./Post.css";
+import { Checkbox, FormControlLabel, IconButton } from "@material-ui/core";
+import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
 
 class Post extends Component {
 
@@ -38,6 +41,18 @@ class Post extends Component {
                 <div className="Post-caption">
                     <strong>{nickname}</strong> {caption}
                 </div>
+                <Grid container justify="space-evenly" >
+                    <FormControlLabel
+                        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
+                    />
+
+                    <IconButton aria-label="share">
+                        <ShareIcon />
+                    </IconButton>
+                    <IconButton aria-label="comment">
+                        <Comment />
+                    </IconButton></Grid>
+
             </Grid>
         );
     }
