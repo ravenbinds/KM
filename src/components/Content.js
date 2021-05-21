@@ -61,7 +61,7 @@ const Contents = () => {
                     </Typography>
                 </Grid>
                 <Button variant="contained" className={classes.button} >
-                    Primary
+                    Logout
                 </Button>
             </Grid>
             <Grid container justify="flex-end"
@@ -80,8 +80,7 @@ const Contents = () => {
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
                 >
-                    <MenuItem onClick={handleClose}>Profile</MenuItem>
-                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Settings</MenuItem>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>

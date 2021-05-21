@@ -160,7 +160,7 @@ export default function Createpages() {
                             Submit
           </Button>
                         <Button
-                            type="submit"
+                            type="reset"
                             fullWidth
                             variant="contained"
                             color="primary"
@@ -172,11 +172,13 @@ export default function Createpages() {
                     </form>
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    Item Two
-      </TabPanel>
+                    <Supportreq />
+                    <Supportreq />
+                </TabPanel>
                 <TabPanel value={value} index={2}>
-                    Item Three
-      </TabPanel>
+                    <Supportreq />
+                    <Supportreq />
+                </TabPanel>
                 <TabPanel value={value} index={3}>
                     <Supportreq />
                     <Supportreq />
