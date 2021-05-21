@@ -1,20 +1,20 @@
 import { FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
-import React,{useState, useEffect} from 'react'
+import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
 import Top from './Top'
 import {useForm, Form} from './useForm';
 import Button from '@material-ui/core/Button'
-import Input from './controls/Input';
-import { Add, PlusOne } from '@material-ui/icons';
+import { Add} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
     Grid: {
         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
-        padding: theme.spacing(2),
+        padding: theme.spacing(1),
         margin: theme.spacing(2),
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '30px',
+        border: '0.01em solid #985DFF'
     },
 }));
 

@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -17,7 +17,9 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import { IconButton } from '@material-ui/core';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Add, ArrowDownward} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -52,20 +54,15 @@ const useStyles = makeStyles((theme) => ({
         justify: "space-around",
 
     },
-    Grid1: {
-        padding: theme.spacing(2),
-        flexDirection: 'row',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 
-    },
     Grid: {
         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
         padding: theme.spacing(2),
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '30px',
     },
-    Paper1: {
 
+    Paper1: {
         borderRadius: '30px',
         display: 'flex',
         flexWrap: 'wrap',
@@ -74,40 +71,45 @@ const useStyles = makeStyles((theme) => ({
             width: theme.spacing(8),
             height: theme.spacing(8),
         },
-
-
     },
 
     large: {
-
         width: theme.spacing(10),
         height: theme.spacing(10),
     },
 }));
 
-function DropdownMenu() {
+function SimpleMenu() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
-    const [open,setOpen] = useState(false);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-  
-    function DropdownItem(props) {
-      return (
-        <a href={props.formlink} className="menu-item" >
-          <span className="icon-button">{props.leftIcon}</span>
-          {props.children}
-          <span className="icon-right">{props.rightIcon}</span>
-        </a>
-      );
-    }
-  
-    return (
-        <Button variant="contained" component={Link} to="/AddProfileSection">Add Profile Section</Button>
-    //     <div className="menu">
-    //     <DropdownItem rightIcon={<ArrowDropDownCircleIcon formlink={'#'}/>}>Add Project</DropdownItem>
-    //     <DropdownItem rightIcon={<ArrowDropDownCircleIcon />}>Add Skills</DropdownItem>
-    //   </div>
-    );
-  }
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <Button size="small" endIcon={<ArrowDownward/>} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+        Add Profile Section
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem component={Link} to="/ProjectForm" onClick={handleClose}>Add Project</MenuItem>
+        <MenuItem onClick={handleClose}>Add Experience</MenuItem>
+        <MenuItem onClick={handleClose}>Add Certification</MenuItem>
+      </Menu>
+    </div>
+  );
+}
+
 
 function ProfileHeader() {
     const classes = useStyles();
@@ -119,9 +121,11 @@ function ProfileHeader() {
                                 Name
                             </Typography>
                         </Grid>
-                        
-                        <Grid item xs={6} sm={3}>
-                            <DropdownMenu></DropdownMenu>
+                        <Grid item xs={4}>
+                            <SimpleMenu/>
+                        </Grid>
+                        <Grid item xs={2} sm={3}>
+                            <Button size="small" variant="outlined" component={Link} to="/AddProfileSection"><Add/></Button>
                         </Grid>
                     </Grid>
     );
@@ -225,7 +229,6 @@ function DetailsAccordion (){
                                 <Typography className={classes.heading}>Posts</Typography>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Button>Add</Button>
                                 <Box className={classes.Box}>
                                     <Grid item xs={1} className={classes.Grid2}  >
                                         <FolderOpenRoundedIcon fontSize="large" />
