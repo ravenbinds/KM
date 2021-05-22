@@ -4,20 +4,17 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import FolderOpenRoundedIcon from '@material-ui/icons/FolderOpenRounded';
+import WorkOutline from '@material-ui/icons/WorkOutline';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import man from "../man.svg"
 import Avatar from '@material-ui/core/Avatar';
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import { Add} from '@material-ui/icons';
+import { Add, School} from '@material-ui/icons';
 import SimpleMenu from './controls/SimpleMenu'
 import SimpleAccordion from './controls/SimpleAccordion';
 
@@ -52,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
     Grid2: {
         padding: theme.spacing(2),
         justify: "space-around",
-
     },
 
     Grid: {
@@ -60,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '30px',
+        margin: theme.spacing(2)
     },
 
     Paper1: {
@@ -184,22 +181,22 @@ function RecentActivities() {
 function DetailsAccordion (){
 
     const items = [
-        {title:'Posts',panel:'panel1'},
-        {title:'Experiences',panel:'panel2'},
-        {title:'Education',panel:'panel3'},
-        {title:'Certifications',panel:'panel4'},
-        {title:'Projects',panel:'panel5'},
+        {title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Completed"}, {heading:"Abc", description:"Abcd", status:"Completed"}]},
+        {title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
+        {title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
+        {title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
+        {title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
         
     ]
 
     const classes = useStyles();
 
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="center">
+        <Grid container direction="column" justify="flex-start" alignItems="stretch">
             <Typography color="textSecondary" align="left" padding="20px">
                         Details
                     </Typography>
-                        <Grid item xs={12} className={classes.Grid2}  >
+                        <Grid item xs={12} className={classes.Grid2}>
                             <SimpleAccordion items={items}/>
                         </Grid>
         </Grid>
@@ -212,35 +209,27 @@ const Myprofile = () => {
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid2}  >
-                <Grid item xs={12} className={classes.Grid} >
-                    <ProfileHeader/>
-                    <Spotlight/>
-                    <RecentActivities/>
+            <Grid item xs={12} className={classes.Grid} >
+                <ProfileHeader/>
+                <Spotlight/>
+                <RecentActivities/>
                 
-                    <Typography color="textSecondary" align="left" padding="20px">
-                        Details
-                    </Typography>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Box className={classes.Box}>
-                            <Typography color="textprimary" variant="body1" align="left" padding="20px">
-                                Experience
+                <Typography color="textSecondary" align="left" padding="20px">
+                    Details
+                </Typography>
+                <Grid item xs={12} className={classes.Grid2}  >
+                    <Box className={classes.Box}>
+                        <Typography color="textprimary" variant="body1" align="left" padding="20px">
+                            Experience
+                        </Typography>
+                        <Grid item xs={12} className={classes.Grid2}  >
+                            <Typography align="left" color="textSecondary" >
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae praesent quisque egestas egestas eleifend congue nibh neque. Consequat elementum non adipiscing eget posuere.
                             </Typography>
-                            <Grid item xs={12} className={classes.Grid2}  >
-                                <Typography align="left" color="textSecondary" >
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae praesent quisque egestas egestas eleifend congue nibh neque. Consequat elementum non adipiscing eget posuere.
-                                </Typography>
-                            </Grid>
-                        </Box>
-                    </Grid>
-
-                    <Grid item xs={12} className={classes.Grid2}  >
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                    </Grid>
-                    
-                    <DetailsAccordion/>
-                </Grid>
+                        </Grid>
+                    </Box>
+                </Grid>                    
+                <DetailsAccordion/>
             </Grid>
         </div >
     )

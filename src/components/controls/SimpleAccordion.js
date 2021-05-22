@@ -27,15 +27,50 @@ const useStyles = makeStyles((theme) => ({
         background: '#FFFFFF',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        margin: theme.spacing(1),
     },
 
     Grid2: {
         padding: theme.spacing(2),
         justify: "space-around",
 
+    },
+
+    cardText: {
+        paddingLeft: theme.spacing(1)
     }
 }));
+
+function ItemCard(props){
+
+    const {startIcon, heading, description, statusIcon, status} = props;
+
+    const classes = useStyles();
+    return(        
+        <Box className={classes.Box}>
+            <Grid container xs={12} direction="column">
+                <Grid container direction="row" justify="space-between">
+                    <Grid item xs={1}>
+                        {startIcon} 
+                    </Grid>
+                    <Grid item xs={11} className={classes.cardText}>
+                        <Typography align="left" variant="h6"> {heading} </Typography>
+                        <Typography align="left" variant="body1"> {description} </Typography>
+                    </Grid> 
+                </Grid>
+                <Grid item xs={12} >
+                    <Grid container direction="row" justify='flex-end' alignItems="center">
+                        <Grid item> {statusIcon} </Grid>
+                        <Grid item>
+                        <Typography align="right">  {status} </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Box>
+    );
+}
 
 function SimpleAccordion(props) {
 
@@ -50,7 +85,7 @@ function SimpleAccordion(props) {
     };
 
     return (
-      <div>
+      <Grid item xs={12} alignItems="flex-start">
             {
                 items.map(item=>(
                     <Accordion expanded={expanded === item.panel} onChange={handleChange(item.panel)}>
@@ -58,28 +93,19 @@ function SimpleAccordion(props) {
                             <Typography className={classes.heading}>{item.title}</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                        <Box className={classes.Box}>
-                            <Grid item xs={1} className={classes.Grid2}>
-                                <FolderOpenRoundedIcon fontSize="large" />
+                            <Grid container direction="column">
+                                {
+                                    item.entries.map(entry=>(
+                                        <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={<CheckRoundedIcon />}/>
+                                    ))
+                                }
                             </Grid>
-                            <Grid item xs={10} className={classes.Grid2}>
-                                <Typography>
-                                Emotion Detection through Facial Expression.
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={3} flexDirection="row">
-                                <Typography>
-                                <CheckRoundedIcon />
-                                Completed
-                                </Typography>
-                            </Grid>
-                        </Box>
+                            
                         </AccordionDetails>
                     </Accordion>
                 ))
             }
-
-      </div>
+      </Grid>
     );
 }
 
