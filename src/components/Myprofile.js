@@ -17,9 +17,9 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Add, ArrowDownward} from '@material-ui/icons';
+import { Add} from '@material-ui/icons';
+import SimpleMenu from './controls/SimpleMenu'
+import SimpleAccordion from './controls/SimpleAccordion';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -79,40 +79,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function SimpleMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  return (
-    <div>
-      <Button size="small" endIcon={<ArrowDownward/>} variant="outlined" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Add Profile Section
-      </Button>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem component={Link} to="/ProjectForm" onClick={handleClose}>Add Project</MenuItem>
-        <MenuItem onClick={handleClose}>Add Experience</MenuItem>
-        <MenuItem onClick={handleClose}>Add Certification</MenuItem>
-      </Menu>
-    </div>
-  );
-}
-
-
 function ProfileHeader() {
     const classes = useStyles();
+
+    const menuitems = [
+        {title:'Add Project', link:'/ProjectForm'},
+        {title:'Add Experience', link:'#'},
+        {title:'Add Certifications', link:'#'}
+    ]
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
                         <Avatar alt="Remy Sharp" src={man} className={classes.large} />
@@ -122,7 +96,7 @@ function ProfileHeader() {
                             </Typography>
                         </Grid>
                         <Grid item xs={4}>
-                            <SimpleMenu/>
+                            <SimpleMenu items={menuitems}/>
                         </Grid>
                         <Grid item xs={2} sm={3}>
                             <Button size="small" variant="outlined" component={Link} to="/AddProfileSection"><Add/></Button>
@@ -208,143 +182,25 @@ function RecentActivities() {
 
 
 function DetailsAccordion (){
-    const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
 
-    const handleChange = (panel) => (event, isExpanded) => {
-        setExpanded(isExpanded ? panel : false);
-    };
+    const items = [
+        {title:'Posts',panel:'panel1'},
+        {title:'Experiences',panel:'panel2'},
+        {title:'Education',panel:'panel3'},
+        {title:'Certifications',panel:'panel4'},
+        {title:'Projects',panel:'panel5'},
+        
+    ]
+
+    const classes = useStyles();
+
     return (
         <Grid container direction="column" justify="flex-start" alignItems="center">
             <Typography color="textSecondary" align="left" padding="20px">
                         Details
                     </Typography>
-        <Grid item xs={12} className={classes.Grid2}  >
-                        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel1bh-content"
-                                id="panel1bh-header"
-                            >
-                                <Typography className={classes.heading}>Posts</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box className={classes.Box}>
-                                    <Grid item xs={1} className={classes.Grid2}  >
-                                        <FolderOpenRoundedIcon fontSize="large" />
-                                    </Grid>
-                                    <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>Emotion Detection through Facial Expression.</Typography>
-                                    </Grid>
-                                    <Grid item xs={3} flexDirection='row'>
-                                        <Typography><CheckRoundedIcon />Completed</Typography>
-                                    </Grid>
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel2bh-content"
-                                id="panel2bh-header"
-                            >
-                                <Typography className={classes.heading}>Experiences</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box className={classes.Box}>
-                                    <Grid item xs={1} className={classes.Grid2}  >
-                                        <FolderOpenRoundedIcon fontSize="large" />
-                                    </Grid>
-                                    <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>
-                                            Emotion Detection through Facial Expression.
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3} flexDirection='row'>
-                                        <Typography>
-                                            <CheckRoundedIcon />Completed
-                                        </Typography>           
-                                    </Grid>
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel3bh-content"
-                                id="panel3bh-header"
-                            >
-                                <Typography className={classes.heading}>Education</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box className={classes.Box}>
-                                    <Grid item xs={1} className={classes.Grid2}  >
-                                        <FolderOpenRoundedIcon fontSize="large" />
-                                    </Grid>
-                                    <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>
-                                            Emotion Detection through Facial Expression.
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3} flexDirection='row'>
-                                        <Typography>
-                                            <CheckRoundedIcon />Completed</Typography>
-                                    </Grid>
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel4bh-content"
-                                id="panel4bh-header"
-                            >
-                                <Typography className={classes.heading}>Certifications</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box className={classes.Box}>
-                                    <Grid item xs={1} className={classes.Grid2}  >
-                                        <FolderOpenRoundedIcon fontSize="large" />
-                                    </Grid>
-                                    <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>
-                                            Emotion Detection through Facial Expression.
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3} flexDirection='row'>
-                                        <Typography>
-                                            <CheckRoundedIcon />Completed
-                                        </Typography>       
-                                    </Grid>
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
-                            <AccordionSummary
-                                expandIcon={<ExpandMoreIcon />}
-                                aria-controls="panel5bh-content"
-                                id="panel5bh-header"
-                            >
-                                <Typography className={classes.heading}>Projects</Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <Box className={classes.Box}>
-                                    <Grid item xs={1} className={classes.Grid2}  >
-                                        <FolderOpenRoundedIcon fontSize="large" />
-                                    </Grid>
-                                    <Grid item xs={10} className={classes.Grid2}  >
-                                        <Typography>
-                                            Emotion Detection through Facial Expression.
-                                        </Typography>
-                                    </Grid>
-                                    <Grid item xs={3} flexDirection='row'>
-                                        <Typography>
-                                            <CheckRoundedIcon />Completed
-                                        </Typography>
-                                    </Grid>
-                                </Box>
-                            </AccordionDetails>
-                        </Accordion>
+                        <Grid item xs={12} className={classes.Grid2}  >
+                            <SimpleAccordion items={items}/>
                         </Grid>
         </Grid>
     );
