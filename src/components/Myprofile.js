@@ -14,7 +14,7 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import { Add, School} from '@material-ui/icons';
+import { Add, School, Timelapse} from '@material-ui/icons';
 import SimpleMenu from './controls/SimpleMenu'
 import SimpleAccordion from './controls/SimpleAccordion';
 
@@ -181,11 +181,11 @@ function RecentActivities() {
 function DetailsAccordion (){
 
     const items = [
-        {title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Completed"}, {heading:"Abc", description:"Abcd", status:"Completed"}]},
-        {title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
-        {title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
-        {title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
-        {title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl"}]},
+        {title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Incomplete", statusIcon:<Timelapse/>}, {heading:"Abc", description:"Abcd", status:"Completed", statusIcon:<CheckRoundedIcon/>}]},
+        {title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
         
     ]
 
