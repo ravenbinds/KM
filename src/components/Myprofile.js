@@ -142,33 +142,32 @@ function Spotlight() {
 }
 
 function RecentActivities() {
+
+    const items = [
+        {startIcon: <EventNoteRoundedIcon fontSize="large"/>, content: "Completed certification course Neural Networks and Deep Learning by deeplearning.ai on Coursera"},
+        {startIcon: <EventNoteRoundedIcon fontSize="large"/>, content: "Started workshop titled Fundamentals of Digital Marketing Google"}
+    ]
+
     const classes = useStyles();
     return(
         <Grid container direction="column" justify="flex-start" alignItems="center">
             <Typography color="textSecondary" align="left" padding="20px">
                         Recent activities
                     </Typography>
-                    <Grid item xs={12} className={classes.Grid2}  >
+                    {
+                        items.map(item=>(
+                            <Grid item xs={12} className={classes.Grid2}  >
                         <Box className={classes.Box}>
                             <CardActions>
-                                <Button size="small" > <EventNoteRoundedIcon fontSize="large" /></Button>
+                                <Button size="small" >{item.startIcon}</Button>
                             </CardActions>
                             <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-                                Completed certification course Neural Networks and Deep Learning by deeplearning.ai on Coursera
+                                {item.content}
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Box className={classes.Box}>
-                            <CardActions>
-                                <Button size="small" > <EventNoteRoundedIcon fontSize="large" /></Button>
-                            </CardActions>
-                            <Typography align="left" color="textprimary" gutterBottom>
-                                Started workshop titled Fundamentals of Digital Marketing Google
-                            </Typography>
-                        </Box>
-                    </Grid>
-
+                        ))
+                    }
                     <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
                         see all activities...
                     </Typography>
@@ -195,10 +194,10 @@ function DetailsAccordion (){
         <Grid container direction="column" justify="flex-start" alignItems="stretch">
             <Typography color="textSecondary" align="left" padding="20px">
                         Details
-                    </Typography>
-                        <Grid item xs={12} className={classes.Grid2}>
-                            <SimpleAccordion items={items}/>
-                        </Grid>
+            </Typography>
+            <Grid item xs={12} className={classes.Grid2}>
+                <SimpleAccordion items={items}/>
+            </Grid>
         </Grid>
     );
     }
