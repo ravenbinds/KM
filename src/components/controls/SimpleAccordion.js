@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import FolderOpenRoundedIcon from '@material-ui/icons/FolderOpenRounded';
 import Typography from '@material-ui/core/Typography';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -63,7 +62,7 @@ function ItemCard(props){
                     <Grid container direction="row" justify='flex-end' alignItems="center">
                         <Grid item> {statusIcon} </Grid>
                         <Grid item>
-                        <Typography align="right">  {status} </Typography>
+                        <Typography align="right" className={classes.cardText}>  {status} </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -96,7 +95,7 @@ function SimpleAccordion(props) {
                             <Grid container direction="column">
                                 {
                                     item.entries.map(entry=>(
-                                        <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={<CheckRoundedIcon />}/>
+                                        <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon}/>
                                     ))
                                 }
                             </Grid>
