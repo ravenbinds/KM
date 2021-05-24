@@ -15,8 +15,11 @@ import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
 import { Add, School, Timelapse} from '@material-ui/icons';
-import SimpleMenu from './controls/SimpleMenu'
 import SimpleAccordion from './controls/SimpleAccordion';
+import ProjectForm from './Actions/ProjectForm';
+import ExperienceForm from './Actions/ExperienceForm'
+import CertificationForm from './Actions/CertificationForm'
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -79,65 +82,52 @@ const useStyles = makeStyles((theme) => ({
 function ProfileHeader() {
     const classes = useStyles();
 
-    const menuitems = [
-        {title:'Add Project', link:'/ProjectForm'},
-        {title:'Add Experience', link:'#'},
-        {title:'Add Certifications', link:'#'}
-    ]
+    const userdetails = {avatar: man, name: 'Kri'}
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
-                        <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                        <Grid item xs={6} sm={3} alignItems="flex-start" justify="flex-start">
-                            <Typography color="textPrimary" variant="h6" >
-                                Name
-                            </Typography>
-                        </Grid>
-                        <Grid item xs={4}>
-                            <SimpleMenu items={menuitems}/>
-                        </Grid>
-                        <Grid item xs={2} sm={3}>
-                            <Button size="small" variant="outlined" component={Link} to="/AddProfileSection"><Add/></Button>
-                        </Grid>
-                    </Grid>
+            <Avatar alt="Remy Sharp" src={userdetails.avatar} className={classes.large} />
+            <Grid item xs={6} sm={3} alignItems="flex-start" justify="flex-start" style={{background: 'pink'}}>
+                <Typography color="textPrimary" variant="h6" align='left'>
+                    {userdetails.name}
+                </Typography>
+            </Grid>
+        </Grid>
     );
 }
 
 function Spotlight() {
+
+    const spotlightitems = [
+        {category:'Project', count:31},
+        {category:'Certifications', count:31},
+        {category:'Jobs done', count:31},
+    ]
+
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.Grid2}  >
             <Box className={classes.Box}>
-                <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                <Grid container direction="column" justify="space-around" alignItems="baseline" >
                     <Typography color="textSecondary" gutterBottom> 
                         Spotlight
                     </Typography>
-                                <Card className={classes.root}>
+                    <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                        {
+                            spotlightitems.map(item=>(
+                                <Card className={classes.root} style={{width:'28%'}}>
                                     <Typography color="textSecondary" gutterBottom>
-                                        31
+                                        {item.count}
                                     </Typography>
-                                    <CardActions>
-                                        <Button size="small" > Projects</Button>
+                                    <CardActions style={{background:"pink", display:'flex' ,justify:'center'}}>
+                                        <Button size="small" style={{background:"yellow"}}>{item.category}</Button>
                                     </CardActions>
                                 </Card>
-                                <Card className={classes.root}>
-                                    <Typography color="textSecondary" gutterBottom>
-                                        13
-                                    </Typography>
-                                    <CardActions>
-                                        <Button size="small">Certifications</Button>
-                                    </CardActions>
-                                </Card>
-                                <Card className={classes.root}>
-                                    <Typography color="textSecondary" gutterBottom>
-                                        12
-                                    </Typography>
-                                    <CardActions>
-                                        <Button size="small">Jobs done</Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        </Box>
-                    </Grid>
+                            ))
+                        }
+                    </Grid>            
+                </Grid>
+            </Box>
+        </Grid>
     );
 }
 
@@ -176,16 +166,14 @@ function RecentActivities() {
     )
 }
 
-
 function DetailsAccordion (){
 
     const items = [
-        {title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Incomplete", statusIcon:<Timelapse/>}, {heading:"Abc", description:"Abcd", status:"Completed", statusIcon:<CheckRoundedIcon/>}]},
-        {title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        
+        {form: <ProjectForm/>,title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Incomplete", statusIcon:<Timelapse/>}, {heading:"Abc", description:"Abcd", status:"Completed", statusIcon:<CheckRoundedIcon/>}]},
+        {form: <ExperienceForm/>,title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {form: <ProjectForm/>,title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {form: <CertificationForm/>,title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
+        {form: <ProjectForm/>,title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},    
     ]
 
     const classes = useStyles();
