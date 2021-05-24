@@ -81,7 +81,7 @@ class App extends Component {
             <Leftbar />
             <Switch>
               <Route exact path="/login" component={SignIn} />
-              <Route exact path="/register" component={Register} />
+              <Route exact path="/registration" component={Register} />
               <Route exact path="/createpages" component={create} />
               <Route exact path="/" component={Content} />
               <Route exact path="/Myprofile" component={Myprofile} />

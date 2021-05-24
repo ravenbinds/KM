@@ -105,8 +105,7 @@ const Register = props => {
                                 variant="contained"
                                 color="primary"
                                 className={classes.submit}
-                                onClick={() => setIsAuth(true)}
-                                to="../dash"
+
                             >
                                 Sign In
           </Button>
@@ -127,12 +126,12 @@ const Register = props => {
               </Link>
                                 </Grid>
                                 <Grid item>
-                                    <Link href="/dash" variant="body2">
+                                    <Link href="#" variant="body2">
                                         {"Direct dash"}
                                     </Link>
                                 </Grid>
                             </Grid>
-                            <ProtectedRoute path="/dash" component={dash} isAuth={isAuth} />
+                            {/* <ProtectedRoute path="#" component={dash} isAuth={isAuth} /> */}
                         </form>
                     </div>
                     <Box mt={8}>
