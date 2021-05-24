@@ -14,12 +14,10 @@ import Projectadopt from './components/pages/projectadopt';
 import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import AddProfileSection from './components/AddProfileSection'
 import SignIn from './components/signin/Signin';
 import Register from './components/Actions/registration';
 import { Create } from '@material-ui/icons';
 import create from './components/pages/createpage';
-import ProjectForm from './components/ProjectForm'
 
 const theme = createMuiTheme({
   palette: {
@@ -91,8 +89,6 @@ class App extends Component {
               <Route exact path="/Huntingground" component={Huntingground} />
               <Route exact path="/Activity" component={Activity} />
               <Route exact path="/Settings" component={Settings} />
-              <Route exact path="/AddProfileSection" component={AddProfileSection} />
-              <Route exact path="/ProjectForm" component={ProjectForm} />
               <Route component={errorpage} />
             </Switch>
             <Rightbar />

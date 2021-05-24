@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Accordion from '@material-ui/core/Accordion';
@@ -6,8 +6,10 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
-import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
+import { Add } from '@material-ui/icons';
+import Popup from '../Popup';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
     cardText: {
         paddingLeft: theme.spacing(1)
-    }
+    },
 }));
 
 function ItemCard(props){
@@ -83,6 +85,8 @@ function SimpleAccordion(props) {
         setExpanded(isExpanded ? panel : false);
     };
 
+    const [openPopup, setOpenPopup] = useState(false);
+
     return (
       <Grid item xs={12} alignItems="flex-start">
             {
@@ -93,13 +97,24 @@ function SimpleAccordion(props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid container direction="column">
-                                {
-                                    item.entries.map(entry=>(
-                                        <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon}/>
-                                    ))
-                                }
+                                <Grid container direction="column">
+                                    {
+                                        item.entries.map(entry=>(
+                                            <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon}/>
+                                        ))
+                                    }
+                                </Grid>
+                                <Grid>
+                                    <Button variant='outlined' color='primary' startIcon={<Add/>} onClick={() => setOpenPopup(true)}>{"Add " + item.title}</Button>
+                                    <Popup
+                                        openPopup={openPopup}
+                                        setOpenPopup={setOpenPopup}
+                                        title={"Add " + item.title}
+                                    >
+                                        {item.form}
+                                    </Popup>
+                                </Grid>
                             </Grid>
-                            
                         </AccordionDetails>
                     </Accordion>
                 ))
