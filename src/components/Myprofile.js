@@ -103,41 +103,38 @@ function ProfileHeader() {
 }
 
 function Spotlight() {
+
+    const spotlightitems = [
+        {category:'Project', count:31},
+        {category:'Certifications', count:31},
+        {category:'Jobs done', count:31},
+    ]
+
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.Grid2}  >
             <Box className={classes.Box}>
-                <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                <Grid container direction="column" justify="space-around" alignItems="baseline" >
                     <Typography color="textSecondary" gutterBottom> 
                         Spotlight
                     </Typography>
-                                <Card className={classes.root}>
+                    <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                        {
+                            spotlightitems.map(item=>(
+                                <Card className={classes.root} style={{width:'28%'}}>
                                     <Typography color="textSecondary" gutterBottom>
-                                        31
+                                        {item.count}
                                     </Typography>
-                                    <CardActions>
-                                        <Button size="small" > Projects</Button>
+                                    <CardActions style={{background:"pink", display:'flex' ,justify:'center'}}>
+                                        <Button size="small" style={{background:"yellow"}}>{item.category}</Button>
                                     </CardActions>
                                 </Card>
-                                <Card className={classes.root}>
-                                    <Typography color="textSecondary" gutterBottom>
-                                        13
-                                    </Typography>
-                                    <CardActions>
-                                        <Button size="small">Certifications</Button>
-                                    </CardActions>
-                                </Card>
-                                <Card className={classes.root}>
-                                    <Typography color="textSecondary" gutterBottom>
-                                        12
-                                    </Typography>
-                                    <CardActions>
-                                        <Button size="small">Jobs done</Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        </Box>
-                    </Grid>
+                            ))
+                        }
+                    </Grid>            
+                </Grid>
+            </Box>
+        </Grid>
     );
 }
 
@@ -175,7 +172,6 @@ function RecentActivities() {
         
     )
 }
-
 
 function DetailsAccordion (){
 
