@@ -2,62 +2,19 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import man from "../../man.svg"
-import { Link, Route } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Top from '../Top';
 import Divider from '@material-ui/core/Divider';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import HGPosts from '../HGPosts';
+
+
 const useStyles = makeStyles((theme) => ({
-
-    large: {
-
-        width: theme.spacing(7),
-        height: theme.spacing(7),
-    },
-
     Grid: {
         display: 'flex',
         padding: theme.spacing(1),
 
     },
-
-    Box: {
-        display: 'flex',
-        alignItems: 'flex-start ',
-        padding: theme.spacing(2),
-        flexDirection: 'column',
-        background: '#FFFFFF',
-        border: '1px solid #985DFF',
-        boxSizing: 'border-box',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '8px',
-        overflow: 'hidden',
-
-    },
-    Box2: {
-        display: 'flex',
-        alignItems: 'left',
-        padding: theme.spacing(2),
-        flexDirection: 'row',
-        background: '#985DFF',
-        border: '1px solid #985DFF',
-        boxSizing: 'border-box',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '8px',
-
-    },
-    button: {
-        maxWidth: '64',
-        maxHeight: '39px',
-        position: 'static',
-        color: '#FFFFFF',
-        background: '#8C98FF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '10px',
-
-    },
-
 }));
 
 function handleClick(event) {

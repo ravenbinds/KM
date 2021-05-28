@@ -6,6 +6,10 @@ import Top from './Top'
 import man from '../man.svg'
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
+import { useState } from 'react';
+import classNames from 'classnames'
+
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -20,8 +24,12 @@ const useStyles = makeStyles((theme) => ({
         background: '#FFFFFF',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
+        margin: theme.spacing(1)
     },
 
+    unreadBox: {
+        background: 'rgba(140, 152, 255, 0.15)'
+    },
 
     button: {
         maxWidth: '64',
@@ -35,40 +43,53 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
+
+function Notification(props) {
+    const [isRead, setRead] = useState(props.read)
+
+    const classes = useStyles();
+
+    const notificationClass = classNames({
+        'classes.Grid2' : true,
+        'classes.unreadBox': !isRead,
+    })
+
+    return (
+        <Grid item xs={12} className={classes.Grid2}  >
+        {/* <Grid item xs={12} className={notificationClass}  > */}
+            <Avatar alt="Remy Sharp" src={man} />
+            <Box mt={1} ml={2}>
+                <Typography color="textPrimary" variant="body1" >
+                    {props.message}
+                </Typography>
+            </Box>
+        </Grid>
+    )
+}
+
 const Notifications = () => {
     const classes = useStyles();
+
+    const notifications = [
+        {read: true, message: "THis is a sample notification. THis is a sample notification. THis is a sample notification."},
+        {read: false, message: "THis is a sample notification. THis is a sample notification. THis is a sample notification."},
+    ]
 
     return (
         <div className="Contents">
             <Top />
             <Grid container justify="space-evenly" alignItems="flex-start">
                 <Grid item xs={12} className={classes.Grid}>
-                </Grid>
-                <Grid item xs={12} className={classes.Grid}>
                     <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                         Notifications
-</Typography>
+                    </Typography>
                 </Grid>
-                <Grid container justify="space-evenly" alignItems="flex-start" className={classes.Grid}>
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Avatar alt="Remy Sharp" src={man} />
-                        <Box mt={1} ml={2}>
-
-                            <Typography color="textPrimary" variant="body1" >
-                                THis is a sample notification. THis is a sample notification. THis is a sample notification.
-</Typography></Box>
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid}>
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid2} >
-                        <Avatar alt="Remy Sharp" src={man} />
-                        <Box mt={1} ml={2}>
-
-                            <Typography color="textPrimary" variant="body1" >
-                                THis is a sample notification. THis is a sample notification. THis is a sample notification.
-</Typography></Box>
-                    </Grid>
-
+                <Grid container justify="space-evenly" alignItems="flex-start" >
+                    {
+                        notifications.map(notification=>(
+                            <Notification read={notification.read} message={notification.message} />
+                        ))
+                    }
                 </Grid>
             </Grid>
         </div>
