@@ -9,6 +9,7 @@ import man from "../../man.svg"
 import Avatar from '@material-ui/core/Avatar';
 import Top from '../Top'
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import HGPosts from '../HGPosts';
 const useStyles = makeStyles((theme) => ({
 
     large: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     Grid: {
         display: 'flex',
         padding: theme.spacing(1),
-
+        marginTop: theme.spacing(1)
     },
 
     Box: {
@@ -66,176 +67,29 @@ function handleClick(event) {
 }
 const Projectadopt = () => {
     const classes = useStyles();
+    const hgpost = [
+        {username:"Alfred West",avatar:man,title:"AUTO IRRIGATION SYSTEM",description:"Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.",tag:"#PROJECTADOPTS"},
+        {username:"Alfred West",avatar:man,title:"AUTO IRRIGATION SYSTEM",description:"Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.",tag:"#PROJECTADOPTS"}
+    ]
 
     return (
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid}>
-            </Grid>
-            <Grid item xs={12} className={classes.Grid}>
-
                 <Typography align="right" color="textPrimary" variant="h5" padding="40px">
                     Hunting ground</Typography>
-
-
                 {/* <Breadcrumbs aria-label="breadcrumb">
                         <Route path="/" render={() => (<MuiLink component={Link} to="/Huntingground">Huntinground   </MuiLink>)} />
 
                         <Typography color="textPrimary">Projectcollab</Typography>
                     </Breadcrumbs> */}
             </Grid>
-            <Grid item xs={12} className={classes.Grid}>
-            </Grid>
-
-
-
-
-
-            <Grid item xs={12} className={classes.Grid}>
-
-                <Box className={classes.Box} >
-
-                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
-
-                        <Grid
-                            container
-                            direction="row"
-                            justify="flex-start"
-
-                        >
-
-                            <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                            <Box mt={2} ml={2}>
-
-                                <Typography color="textPrimary" variant="h6" >
-                                    Alfred West
-            </Typography></Box>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid}>
-                    </Grid>
-
-                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
-
-                        <Typography color="textPrimary" align="left" variant="h6" >
-                            AUTO IRRIGATION SYSTEM</Typography></Grid>
-
-
-                    <Grid container direction="row"
-                        justify="space-between"
-                        alignItems="flex-start"
-                        className={classes.Grid}>
-                        <Box mt={3} width={0.5}>
-
-                            <Typography color="textPrimary" variant="body2" align="left" >
-                                Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.
-</Typography><Box mt={3} width={0.5}>
-                                <Typography align="left" color="textPrimary" variant="body1">
-                                    #PROJECTADOPTS
-
-                    </Typography>
-
-
-                            </Box>
-                        </Box>
-                        <Grid container direction="column"
-                            justify="flex-start"
-                            alignItems="flex-start"
-                            className={classes.Box} item xs={5}>
-                            <IconButton type="submit" className={classes.iconButton} aria-label="hg">
-                                <TrackChangesRoundedIcon fontSize="large" />
-                            </IconButton>
-
-                            <Grid container direction="row" justify="space-between">
-                                <Button variant="contained" className={classes.button} >
-                                    See more
-                </Button>
-                                <Button variant="contained" className={classes.button} >
-                                    Adopt
-                </Button></Grid></Grid>
-
-                    </Grid>
-
-
-                </Box>
-
-            </Grid>
-
-            <Grid item xs={12} className={classes.Grid}>
-
-                <Box className={classes.Box} >
-
-                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
-
-                        <Grid
-                            container
-                            direction="row"
-                            justify="flex-start"
-
-                        >
-
-                            <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                            <Box mt={2} ml={2}>
-
-                                <Typography color="textPrimary" variant="h6" >
-                                    Alfred West
-            </Typography></Box>
-                        </Grid>
-                    </Grid>
-                    <Grid item xs={12} className={classes.Grid}>
-                    </Grid>
-
-                    <Grid item xs={12} alignItems="flex-start" justify="flex-start">
-
-                        <Typography color="textPrimary" align="left" variant="h6" >
-                            AUTO IRRIGATION SYSTEM</Typography></Grid>
-
-
-                    <Grid container direction="row"
-                        justify="space-between"
-                        alignItems="flex-start"
-                        className={classes.Grid}>
-                        <Box mt={3} width={0.5}>
-
-                            <Typography color="textPrimary" variant="body2" align="left" >
-                                Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.
-</Typography><Box mt={3} width={0.5}>
-                                <Typography align="left" color="textPrimary" variant="body1">
-                                    #PROJECTADOPTS
-
-                    </Typography>
-
-
-                            </Box>
-                        </Box>
-                        <Grid container direction="column"
-                            justify="flex-start"
-                            alignItems="flex-start"
-                            className={classes.Box} item xs={5}>
-                            <IconButton type="submit" className={classes.iconButton} aria-label="hg">
-                                <TrackChangesRoundedIcon fontSize="large" />
-                            </IconButton>
-
-                            <Grid container direction="row" justify="space-between">
-                                <Button variant="contained" className={classes.button} >
-                                    See more
-                </Button>
-                                <Button variant="contained" className={classes.button} >
-                                    Adopt
-                </Button></Grid></Grid>
-
-                    </Grid>
-
-
-                </Box>
-
-            </Grid>
-
-
-
-
+            {
+                hgpost.map(post=>(
+                    <HGPosts username={post.username} title={post.title} tag={post.tag} category='2' description={post.description} buttonText='Adopt' />
+                ))
+            }
         </div >
-
     )
 }
 
