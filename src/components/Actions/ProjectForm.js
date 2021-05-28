@@ -9,8 +9,7 @@ import { Add} from '@material-ui/icons';
 const useStyles = makeStyles((theme) => ({
     Grid: {
         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
-        padding: theme.spacing(1),
-        margin: theme.spacing(2),
+        padding: theme.spacing(2),
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '30px',
         border: '0.01em solid #985DFF'
@@ -36,9 +35,8 @@ function ProjectForm() {
     const {values, setValues, handleInputChange} = useForm(initialFValues);
     
     return (
-        <Grid item xs={12} direction="column" className={classes.Grid}>
-            <Typography variant="h6">Add Project</Typography>        
-            <Form>
+        <Form>
+            <Grid container justify='center' alignItems='center' className={classes.Grid} alig> 
                 <Grid item xs={12}>
                     <TextField
                         variant="outlined"
@@ -46,6 +44,9 @@ function ProjectForm() {
                         name="projectName"
                         value={values.projectName}
                         onChange={handleInputChange}
+                        InputLabelProps={{
+                            shrink: true,
+                          }}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -116,12 +117,12 @@ function ProjectForm() {
                         }}
                     />
                 </Grid>
-                <Grid item xs={12} justify="flex-end">
+                <Grid item xs={12} justify="flex-end" alignItems='flex-end'>
                     <Button variant="outlined" size="medium" color="primary" onClick="" startIcon={<Add/>} >Add</Button>
                 </Grid>
             
-        </Form>
       </Grid>
+        </Form>
     )
 }
 

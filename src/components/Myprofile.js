@@ -91,7 +91,7 @@ function ProfileHeader() {
                     {userdetails.name}
                 </Typography>
             </Grid>
-        </Grid>
+        </Grid> 
     );
 }
 
