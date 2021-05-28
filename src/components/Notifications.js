@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-const Activity = () => {
+const Notifications = () => {
     const classes = useStyles();
 
     return (
@@ -75,4 +75,4 @@ const Activity = () => {
     )
 }
 
-export default Activity
+export default Notifications
