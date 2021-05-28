@@ -1,8 +1,4 @@
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
-import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import man from "../../man.svg"
