@@ -34,8 +34,8 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
         padding: theme.spacing(1),
+        marginInline: theme.spacing(0.5),
         background: "#FFFFFF",
-
     },
 
     Box: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     Grid2: {
-        padding: theme.spacing(2),
+        margin: theme.spacing(2),
         justify: "space-around",
     },
 
@@ -76,22 +76,23 @@ const useStyles = makeStyles((theme) => ({
     large: {
         width: theme.spacing(10),
         height: theme.spacing(10),
+        margin: theme.spacing(1)
     },
 }));
 
 function ProfileHeader() {
     const classes = useStyles();
 
-    const userdetails = {avatar: man, name: 'Kri'}
+    const userdetails = {avatar: man, name: 'Krishnaja R Nair mlold jhi'}
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
             <Avatar alt="Remy Sharp" src={userdetails.avatar} className={classes.large} />
-            <Grid item xs={6} sm={3} alignItems="flex-start" justify="flex-start" style={{background: 'pink'}}>
+            <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
                 <Typography color="textPrimary" variant="h6" align='left'>
                     {userdetails.name}
                 </Typography>
             </Grid>
-        </Grid>
+        </Grid> 
     );
 }
 
@@ -114,14 +115,16 @@ function Spotlight() {
                     <Grid container direction="row" justify="space-around" alignItems="baseline" >
                         {
                             spotlightitems.map(item=>(
-                                <Card className={classes.root} style={{width:'28%'}}>
-                                    <Typography color="textSecondary" gutterBottom>
+                                <Grid item xs={4}>
+                                <Card className={classes.root} alignItems='center' justify='center'>
+                                    <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
                                         {item.count}
                                     </Typography>
-                                    <CardActions style={{background:"pink", display:'flex' ,justify:'center'}}>
-                                        <Button size="small" style={{background:"yellow"}}>{item.category}</Button>
+                                    <CardActions>
+                                        <Typography>{item.category}</Typography>
                                     </CardActions>
                                 </Card>
+                                </Grid>
                             ))
                         }
                     </Grid>            
@@ -179,7 +182,7 @@ function DetailsAccordion (){
     const classes = useStyles();
 
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="stretch">
+        <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
             <Typography color="textSecondary" align="left" padding="20px">
                         Details
             </Typography>

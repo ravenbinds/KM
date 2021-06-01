@@ -7,7 +7,7 @@ import Rightbar from './Rightbar';
 import errorpage from './404';
 import Huntingground from "./pages/Huntingground"
 import Myprofile from "./Myprofile"
-import Activity from "./Activity"
+import Notifications from "./Notifications"
 import Settings from "./settings"
 import Projectcollab from './pages/projectcollab';
 import Projectadopt from './pages/projectadopt';
@@ -26,7 +26,7 @@ function Dash() {
                         <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
                         <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
                         <Route exact path="/Huntingground" component={Huntingground} />
-                        <Route exact path="/Activity" component={Activity} />
+                        <Route exact path="/Notifications" component={Notifications} />
                         <Route exact path="/Settings" component={Settings} />
                         <Route component={errorpage} />
 

@@ -10,8 +10,6 @@ import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
-
-
     button: {
         display: 'flex',
         maxWidth: '64',
@@ -26,13 +24,18 @@ const useStyles = makeStyles((theme) => ({
 
     Grid: {
         padding: theme.spacing(1),
-
     },
-
 }));
 
 const Contents = () => {
     const classes = useStyles();
+
+    const groupName = "CSE Department VAST"
+    const posts = [
+        {nickname: "Chris",avatar: man, caption:"Moving the community!", image:"https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" },
+        {nickname: "OG", avatar: man, caption: "Holding a mic", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg"}
+    ]
+
     const [anchorEl, setAnchorEl] = React.useState(null);
 
     const handleClick = (event) => {
@@ -43,13 +46,12 @@ const Contents = () => {
         setAnchorEl(null);
     };
     return (
-
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid}>
                 <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                    CSE Department VAST
-        </Typography>
+                    {groupName}
+                </Typography>
             </Grid>
             <Grid container direction="row"
                 justify="space-between"
@@ -57,7 +59,6 @@ const Contents = () => {
                 <Grid item xs={12} sm={6} className={classes.Grid}>
                     <Typography align="left" color="textPrimary" variant="h6">
                         Posts
-
                     </Typography>
                 </Grid>
                 <Button variant="contained" className={classes.button} >
@@ -70,7 +71,6 @@ const Contents = () => {
                     aria-controls="long-menu"
                     aria-haspopup="true"
                     onClick={handleClick}>
-
                     <MoreVertRoundedIcon />
                 </IconButton>
                 <Menu
@@ -85,16 +85,14 @@ const Contents = () => {
                 </Menu>
             </Grid>
 
-
-            <Grid className="Contents-space">
-                <Post nickname="Chris" avatar={man} caption="Moving the community!" image="https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" />
-            </Grid>
-            <Grid className="Contents-space">
-                <Post nickname="OG" avatar={man} caption="Holding a mic" image="https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" />
-            </Grid>
-
+            {
+                posts.map(post=>(
+                    <Grid className="Contents-space">
+                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image}/>
+                    </Grid>
+                ))
+            }
         </div>
-
     )
 }
 

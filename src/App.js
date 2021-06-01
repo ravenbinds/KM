@@ -7,7 +7,7 @@ import Leftbar from "./components/Leftbar"
 import Rightbar from "./components/Rightbar"
 import Huntingground from "./components/pages/Huntingground"
 import Myprofile from "./components/Myprofile"
-import Activity from "./components/Activity"
+import Notifications from "./components/Notifications"
 import Settings from "./components/settings"
 import Projectcollab from './components/pages/projectcollab';
 import Projectadopt from './components/pages/projectadopt';
@@ -87,7 +87,7 @@ class App extends Component {
               <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
               <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
               <Route exact path="/Huntingground" component={Huntingground} />
-              <Route exact path="/Activity" component={Activity} />
+              <Route exact path="/Notifications" component={Notifications} />
               <Route exact path="/Settings" component={Settings} />
               <Route component={errorpage} />
             </Switch>
