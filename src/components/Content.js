@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -61,7 +62,7 @@ const Contents = () => {
                         Posts
                     </Typography>
                 </Grid>
-                <Button variant="contained" className={classes.button} >
+                <Button variant="contained" className={classes.button} component={Link} to='/login'>
                     Logout
                 </Button>
             </Grid>
