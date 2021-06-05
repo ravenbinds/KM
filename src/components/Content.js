@@ -64,7 +64,7 @@ const Contents = () => {
                     </Typography>
                 </Grid>
                 <Button variant="contained" className={classes.button} component={Link} to='/login'>
-                    Logout
+                    Add Post
                 </Button>
             </Grid>
             <Grid container justify="flex-end"
@@ -83,7 +83,7 @@ const Contents = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem component={Link} to='/Login' onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>
             <Grid className="Contents-space">
