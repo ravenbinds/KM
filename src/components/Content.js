@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
-
+import db from './firebase';
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -31,13 +31,18 @@ const Contents = () => {
     const classes = useStyles();
 
     const groupName = "CSE Department VAST"
-    const posts = [
-        {nickname: "Chris",avatar: man, caption:"Moving the community!", image:"https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" },
-        {nickname: "OG", avatar: man, caption: "Holding a mic", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg"}
-    ]
+    // const posts = [
+    //     { nickname: "Chris", avatar: man, caption: "Moving the community!", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" },
+    //     { nickname: "OG", avatar: man, caption: "Holding a mic", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" }
+    // ]
+    const [posts, setPosts] = useState([])
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-
+    useEffect(() => {
+        db.collection("posts").onSnapshot((snapshot) =>
+            setPosts(snapshot.docs.map((doc) => doc.data()))
+        );
+    }, []);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -84,14 +89,15 @@ const Contents = () => {
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>
+            <Grid className="Contents-space">
 
-            {
-                posts.map(post=>(
-                    <Grid className="Contents-space">
-                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image}/>
-                    </Grid>
-                ))
-            }
+                {
+                    posts.map(post => (
+                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                    ))
+                }
+            </Grid>
+
         </div>
     )
 }

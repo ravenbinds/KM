@@ -20,8 +20,8 @@ import Chip from '@material-ui/core/Chip';
 const useStyles = makeStyles((theme) => ({
 
     large: {
-        width: theme.spacing(7),
-        height: theme.spacing(7),
+        width: theme.spacing(4),
+        height: theme.spacing(4),
     },
 
     root: {
@@ -84,8 +84,9 @@ export default function SimpleCard() {
         <Grid className={classes.root}>
             <Grid
                 container
+                justify="space-between"
                 direction="row"
-                justify="flex-start"            >
+            >
                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
                 <Box color="secondary.main" fontWeight="fontWeightBold">
                     Emotion Detection through Facial Expression
@@ -96,7 +97,8 @@ export default function SimpleCard() {
             <Grid container direction="column">
                 <Grid item xs={12} className={classes.Grid}><Chip className={classes.chip} label="Completed" /></Grid>
                 <Grid container justify="space-between">
-                    <Grid container item xs={6}><StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
+                    <Grid container xs={6}>
+                        <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
                     <Button variant="contained" component={Link} to="/Projectpage" className={classes.button} >
                         View
                 </Button> </Grid></Grid>
