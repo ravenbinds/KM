@@ -70,6 +70,12 @@ const Contents = () => {
                         Posts
                     </Typography>
                 </Grid>
+                <Button variant="contained" className={classes.button} component={Link} to='/login'>
+                    Add Post
+                </Button>
+            </Grid>
+            <Grid container justify="flex-end"
+                alignItems="center" className={classes.Grid}>
                 <IconButton aria-label="more"
                     aria-controls="long-menu"
                     aria-haspopup="true"
@@ -84,7 +90,7 @@ const Contents = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem component={Link} to='/Login' onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>
 

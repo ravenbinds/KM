@@ -6,19 +6,19 @@ import {useForm, Form} from '../useForm';
 import Button from '@material-ui/core/Button'
 import { Add} from '@material-ui/icons';
 
-const useStyles = makeStyles((theme) => ({
-    Grid: {
-        background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
-        padding: theme.spacing(2),
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '30px',
-        border: '0.01em solid #985DFF'
-    },
-}));
+// const useStyles = makeStyles((theme) => ({
+//     Grid: {
+//         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
+//         padding: theme.spacing(2),
+//         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+//         borderRadius: '30px',
+//         border: '0.01em solid #985DFF'
+//     },
+// }));
 
 function ProjectForm() {
 
-    const classes = useStyles();
+    // const classes = useStyles();
 
     const initialFValues = {
         projectName: '',
@@ -35,8 +35,8 @@ function ProjectForm() {
     const {values, setValues, handleInputChange} = useForm(initialFValues);
     
     return (
-        <Form>
-            <Grid container justify='center' alignItems='center' className={classes.Grid} alig> 
+        <Form >
+            <Grid container justify='center' align='center'> 
                 <Grid item xs={12}>
                     <TextField
                         variant="outlined"
