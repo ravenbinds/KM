@@ -15,6 +15,7 @@ import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import SignIn from './components/signin/Signin';
+import SignUp from './components/signin/SignUp';
 import Register from './components/Actions/registration';
 import { Create } from '@material-ui/icons';
 import create from './components/pages/createpage';
@@ -79,6 +80,7 @@ class App extends Component {
             <Leftbar />
             <Switch>
               <Route exact path="/login" component={SignIn} />
+              <Route exact path="/signup" component={SignUp} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/createpages" component={create} />
               <Route exact path="/" component={Content} />
