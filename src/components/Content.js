@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import db from './firebase';
+import { Link } from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -66,7 +68,7 @@ const Contents = () => {
                         Posts
                     </Typography>
                 </Grid>
-                <Button variant="contained" className={classes.button} >
+                <Button variant="contained" className={classes.button} component={Link} to='/login'>
                     Logout
                 </Button>
             </Grid>

@@ -1,10 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-// import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -17,6 +13,7 @@ import * as Yup from 'yup';
 import Textfield from '../FormsUI/Textfield'
 import Button from '../FormsUI/Button';
 import Checkbox from '../FormsUI/Checkbox';
+import { AddCircleOutlineOutlined } from '@material-ui/icons';
 
 function Copyright() {
     return (
@@ -52,9 +49,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const INITIAL_FORM_STATE = {
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
-    rememberMe: false,
+    termsOfService: false,
 };
 
 const FORM_VALIDATION = Yup.object().shape({
@@ -62,11 +61,11 @@ const FORM_VALIDATION = Yup.object().shape({
     lastName: Yup.string().required('Required'),
     email: Yup.string().email('Invalid email').required('Required'),
     phone: Yup.number().integer().typeError('Please enter a valid phone number').required('Required'),
-    // termsOfService: Yup.boolean()
-    // .oneOf([true], 'The terms and conditions must be accepted.')
-    // .required('The terms and conditions must be accepted.'),
-    rememberMe: Yup.boolean(),
+    termsOfService: Yup.boolean()
+    .oneOf([true], 'The terms and conditions must be accepted.')
+    .required('The terms and conditions must be accepted.'),
     password: Yup.string().label('Password').required().min(4, 'Seems a bit short...').max(10, 'We prefer insecure system, try a shorter password.'),
+    passwordConfirmation: Yup.string().test('passwords-match', 'Passwords must match', function(value){return this.parent.password === value}).required('Required')
 });
 
 export default function SignIn() {
@@ -84,12 +83,18 @@ export default function SignIn() {
                     }}
                 >
                     <Form>                    
-                        <Grid container spacing={1}>
-                            <Grid item xs={12} align='center'>
-                                <Avatar className={classes.avatar}> <LockOutlinedIcon /> </Avatar>
+                        <Grid container spacing={1} align='center'>
+                            <Grid item xs={12}>
+                                <Avatar className={classes.avatar}> <AddCircleOutlineOutlined/> </Avatar>
                             </Grid>
-                            <Grid item xs={12} align='center'>
-                                <Typography component="h1" variant="h5">Sign in</Typography>
+                            <Grid item xs={12}>
+                                <Typography component="h1" variant="h5">Sign Up</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Textfield name="firstName" label="First Name" />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Textfield name="lastName" label="Last Name" />
                             </Grid>
                             <Grid item xs={12}>
                                 <Textfield label="Email Address" name="email"/>
@@ -98,22 +103,17 @@ export default function SignIn() {
                                 <Textfield name="password" label="Password" type='password' />
                             </Grid>
                             <Grid item xs={12}>
-                                <Checkbox name="rememberMe" label="Remember Me" />
+                                <Textfield name="passwordConfirmation" label="Confirm Password" type='password' />
                             </Grid>
                             <Grid item xs={12}>
-                                <Button> Sign In </Button>
+                                {/* <Checkbox name="termsOfService" legend="Terms Of Service" label="I agree" /> */}
+                                <Checkbox name="termsOfService" label="I agree to terms and conditions" />
                             </Grid>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href='/SignUp' variant="body2">
-                                        {"Don't have an account? Sign Up"}
-                                    </Link>
-                                </Grid>
+                            <Grid item xs={12}>
+                                <Button> Sign Up </Button>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <Link href='/Login' variant='body2'>Already have an account? Sign in.</Link>
                             </Grid>
                         </Grid>
                     </Form>
@@ -125,68 +125,3 @@ export default function SignIn() {
         </Container>
     );
 }
-
-
-{/* <Container component="main" maxWidth="xs">
-<CssBaseline />
-<div className={classes.paper}>
-    <Avatar className={classes.avatar}>
-        <LockOutlinedIcon />
-    </Avatar>
-    <Typography component="h1" variant="h5">
-        Sign in
-</Typography>
-    <form className={classes.form} noValidate>
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-        />
-        <TextField
-            variant="outlined"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-        />
-        <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-        />
-        <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-        >
-            Sign In
-</Button>
-        <Grid container>
-            <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-  </Link>
-            </Grid>
-            <Grid item>
-                <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                </Link>
-            </Grid>
-        </Grid>
-    </form>
-</div>
-<Box mt={8}>
-    <Copyright />
-</Box>
-</Container> */}
