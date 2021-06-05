@@ -10,7 +10,6 @@ import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import db from './firebase';
 import { Link } from 'react-router-dom';
-
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -33,10 +32,6 @@ const Contents = () => {
     const classes = useStyles();
 
     const groupName = "CSE Department VAST"
-    // const posts = [
-    //     { nickname: "Chris", avatar: man, caption: "Moving the community!", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" },
-    //     { nickname: "OG", avatar: man, caption: "Holding a mic", image: "https://pbs.twimg.com/media/DOXI0IEXkAAkokm.jpg" }
-    // ]
     const [posts, setPosts] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
 
