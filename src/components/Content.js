@@ -3,13 +3,14 @@ import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
-import man from "../man.svg"
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import db from './firebase';
 import { Link } from 'react-router-dom';
+import Sendposts from './sendposts';
+
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -30,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Contents = () => {
     const classes = useStyles();
-
     const groupName = "CSE Department VAST"
     const [posts, setPosts] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
@@ -50,11 +50,18 @@ const Contents = () => {
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid}>
-                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                    {groupName}
-                </Typography>
-            </Grid>
+            <Grid container direction="row"
+                justify="space-between"
+                alignItems="center">
+                <Grid item xs={12} sm={6} className={classes.Grid}>
+                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                        {groupName}
+                    </Typography>
+
+                </Grid><Button variant="contained" className={classes.button} component={Link} to='/login'>
+                    Logout
+                </Button></Grid>
+            <Sendposts />
             <Grid container direction="row"
                 justify="space-between"
                 alignItems="center">
@@ -63,12 +70,6 @@ const Contents = () => {
                         Posts
                     </Typography>
                 </Grid>
-                <Button variant="contained" className={classes.button} component={Link} to='/login'>
-                    Logout
-                </Button>
-            </Grid>
-            <Grid container justify="flex-end"
-                alignItems="center" className={classes.Grid}>
                 <IconButton aria-label="more"
                     aria-controls="long-menu"
                     aria-haspopup="true"
@@ -86,14 +87,15 @@ const Contents = () => {
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>
-            <Grid className="Contents-space">
 
-                {
-                    posts.map(post => (
+            {
+                posts.map(post => (
+                    <Grid className="Contents-space">
                         <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                    ))
-                }
-            </Grid>
+                    </Grid>
+                ))
+            }
+
 
         </div>
     )

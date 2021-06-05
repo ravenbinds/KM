@@ -105,27 +105,4 @@ export default function SimpleCard() {
         </Grid>
     )
 
-    //     <Card className={classes.root}>
-    //         <CardContent>
-    //             <div className={classes.title}>
-    //                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-    //                 <div>
-    //                     <Typography color="textPrimary" variant="h6" gutterBottom>
-    //                         Project Name Project NAme
-
-    //     </Typography>
-    //                 </div>
-    //             </div>
-    //             <Typography color="textPrimary" variant="body2" align="left" gutterBottom>
-    //                 Progress
-
-    //     </Typography>
-
-    //             <LinearProgressWithLabel />
-    //         </CardContent>
-    //         <CardActions>
-
-    //         </CardActions>
-    //     </Card>
-    // );
 }

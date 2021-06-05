@@ -101,3 +101,8 @@ body {
     justify-content: flex-start;
     align-content: space-evenly;
 }
+
+.grid{
+
+    padding: themespacing(1);
+}
