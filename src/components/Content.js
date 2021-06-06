@@ -7,10 +7,11 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import db from './firebase';
+import db from '../firebase';
 import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
+import app from 'firebase'
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -58,7 +59,7 @@ const Contents = () => {
                         {groupName}
                     </Typography>
 
-                </Grid><Button variant="contained" className={classes.button} component={Link} to='/login'>
+                </Grid><Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
                     Logout
                 </Button></Grid>
             <Sendposts />
