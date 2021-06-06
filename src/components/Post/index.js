@@ -39,7 +39,9 @@ const Post = forwardRef(
                     <IconButton aria-label="comment">
                         <Comment />
                     </IconButton></Grid>
-
+                <Grid >
+                    <strong>{nickname}</strong> {caption}
+                </Grid>
             </Grid>
         );
     }
