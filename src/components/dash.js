@@ -20,7 +20,7 @@ function Dash() {
                 <Router>
                     <Leftbar />
                     <Switch>
-                        <Route exact path="/Content" component={Content} />
+                        <Route exact path="/" component={Content} />
                         <Route exact path="/Myprofile" component={Myprofile} />
                         <Route exact path="/Projectpage" component={Projectpage} />
                         <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
