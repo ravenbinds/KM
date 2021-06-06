@@ -10,7 +10,7 @@ import { IconButton, Menu, MenuItem } from "@material-ui/core";
 import db from './firebase';
 import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
-
+import FlipMove from "react-flip-move";
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -93,16 +93,16 @@ const Contents = () => {
                     <MenuItem component={Link} to='/Login' onClick={handleClose}>Logout</MenuItem>
                 </Menu>
             </Grid>
+            <FlipMove>
+                {
+                    posts.map(post => (
+                        <Grid className="Contents-space">
+                            <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                        </Grid>
+                    ))
+                }
 
-            {
-                posts.map(post => (
-                    <Grid className="Contents-space">
-                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                    </Grid>
-                ))
-            }
-
-
+            </FlipMove>
         </div>
     )
 }
