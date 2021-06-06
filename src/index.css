@@ -13,26 +13,33 @@ code {
 :root {
     --bodybackground: #E9F0FF;
     ;
+
 }
 
 body {
     background: var(--bodybackground);
     /* font-family: 'PT Sans', sans-serif; */
 }
+/* @media only screen and (max-width: 750px) {
+    .wrapper{
+        display: grid;
+        grid-template-columns: 10% 90% 0%;
+        background: #F6F9FF;
+        box-sizing: border-box;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        padding: 1em 5em;
 
-.wrapper {
-    /*{@media only screen and (max-width: 250px) {
-    width: 20;
-    overflow: hidden;
-    align-items: left;
-    padding: 0em;
+    }
 } */
+.wrapper {
+   
     display: grid;
     grid-template-columns: 20% 50% 30%;
     background: #F6F9FF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     padding: 1em 5em;
+    
 }
 
 .wrapper>div {
@@ -46,11 +53,7 @@ body {
 }
 
 .Left {
-    @media only screen and (max-width: 250px) {
-        width: 20;
-        overflow: hidden;
-        align-items: left;
-    }
+  
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -62,18 +65,20 @@ body {
 }
 
 .Right {
+
     display: flex;
     flex-direction: column;
     overflow: hidden;
     align-items: center;
     padding: 10px 20px 10px 10px;
-    position: static;
+    position: inherit;
     left: 970px;
     top: 0px;
     background: #E5EEFC;
 }
 
 .Contents {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     padding-top: 30px;
@@ -100,9 +105,4 @@ body {
     text-align: left;
     justify-content: flex-start;
     align-content: space-evenly;
-}
-
-.grid{
-
-    padding: themespacing(1);
 }

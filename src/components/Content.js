@@ -104,6 +104,7 @@ const Contents = () => {
                 }
 
             </FlipMove>
+
         </div>
     )
 }
