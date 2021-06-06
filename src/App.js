@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from 'react-router-dom';
 import Dashboard from './components/Dashboard/dashboard'
+import Home from './components/Home'
 import Content from "./components/Content"
 import Leftbar from "./components/Leftbar"
 import Rightbar from "./components/Rightbar"
@@ -14,11 +15,15 @@ import Projectadopt from './components/pages/projectadopt';
 import Projectpage from './components/pages/Projectpage';
 import errorpage from './components/404';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
-import SignIn from './components/signin/Signin';
-import SignUp from './components/signin/SignUp';
+// import SignIn from './components/signin/Signin';
+// import SignUp from './components/signin/SignUp';
+import Login from './Login'
+import SignUp from './SignUp'
 import Register from './components/Actions/registration';
 import { Create } from '@material-ui/icons';
 import create from './components/pages/createpage';
+import { AuthProvider } from './contexts/AuthContext';
+import PrivateRoute from './PrivateRoute'
 
 const theme = createMuiTheme({
   palette: {
@@ -75,15 +80,17 @@ class App extends Component {
   render() {
     return <div className="App">
       <div className="wrapper">
+        <AuthProvider>
         <Router>
           <ThemeProvider theme={theme}>
             <Leftbar />
             <Switch>
-              <Route exact path="/login" component={SignIn} />
+              <PrivateRoute exact path="/" component={Home}/>
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={SignUp} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/createpages" component={create} />
-              <Route exact path="/" component={Content} />
+              <Route exact path="/Content" component={Content} />
               <Route exact path="/Myprofile" component={Myprofile} />
               <Route exact path="/Projectpage" component={Projectpage} />
               <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
@@ -96,6 +103,7 @@ class App extends Component {
             <Rightbar />
           </ThemeProvider>
         </Router>
+        </AuthProvider>
       </div>
 
     </div>;

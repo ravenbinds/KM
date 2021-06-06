@@ -3,29 +3,32 @@ import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import {Formik, Form} from 'formik';
+import {useForm} from '../useForm';
 import * as Yup from 'yup';
 import Textfield from '../FormsUI/Textfield'
 import Button from '../FormsUI/Button';
 import Checkbox from '../FormsUI/Checkbox';
-import { AddCircleOutlineOutlined } from '@material-ui/icons';
+import { AddCircleOutlineOutlined, FormatLineSpacing } from '@material-ui/icons';
+import {useAuth} from '../../contexts/AuthContext'
+import { FormControl } from '@material-ui/core';
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-      </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+// function Copyright() {
+//     return (
+//         <Typography variant="body2" color="textSecondary" align="center">
+//             {'Copyright © '}
+//             <Link color="inherit" href="https://material-ui.com/">
+//                 Your Website
+//       </Link>{' '}
+//             {new Date().getFullYear()}
+//             {'.'}
+//         </Typography>
+//     );
+// }
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -67,9 +70,12 @@ const FORM_VALIDATION = Yup.object().shape({
     passwordConfirmation: Yup.string().test('passwords-match', 'Passwords must match', function(value){return this.parent.password === value}).required('Required')
 });
 
-export default function SignIn() {
-    const classes = useStyles();
 
+
+export default function SignUp() {
+    const classes = useStyles();
+    const {signup} = useAuth();
+    const {values, setValues} = useState(INITIAL_FORM_STATE)
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -106,7 +112,9 @@ export default function SignIn() {
                             </Grid>
                             <Grid item xs={12}>
                                 {/* <Checkbox name="termsOfService" legend="Terms Of Service" label="I agree" /> */}
-                                <Checkbox name="termsOfService" label="I agree to terms and conditions" />
+                                <FormControl control= {<Checkbox name="termsOfService" label="I agree to terms and conditions" />}>
+                                
+                                </FormControl>
                             </Grid>
                             <Grid item xs={12}>
                                 <Button> Sign Up </Button>
@@ -118,9 +126,9 @@ export default function SignIn() {
                     </Form>
                 </Formik>
             </div>
-            <Box mt={8}>
+            {/* <Box mt={8}>
                 <Copyright />
-            </Box>
+            </Box> */}
         </Container>
     );
 }

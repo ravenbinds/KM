@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Button, InputBase } from "@material-ui/core";
-import db from "./firebase";
+import db from "../firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import { Form } from './useForm';
 import Box from '@material-ui/core/Box';
