@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Add } from '@material-ui/icons';
 import { Button, Dialog, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import ActionButton from './ActionButton';
@@ -69,8 +68,8 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <Button type="button" variant='outlined' color='primary' startIcon={<Add/>} onClick={handleOpen}>
-        {props.title}
+      <Button type="button" variant='outlined' color='primary' startIcon={props.startIcon} onClick={handleOpen}>
+        {props.button}
       </Button>
       <Modal
         open={open}

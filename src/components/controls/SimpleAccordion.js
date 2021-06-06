@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 // import { Button } from '@material-ui/core';
-// import { Add } from '@material-ui/icons';
+import { Add } from '@material-ui/icons';
 // import Popup from '../Popup';
 import SimpleModal from './SimpleModal';
 
@@ -106,7 +106,7 @@ function SimpleAccordion(props) {
                                     }
                                 </Grid>
                                 <Grid item align='right'>
-                                    <SimpleModal body = {item.form} title={"Add " + item.title}/>
+                                    <SimpleModal body={item.form} startIcon={<Add/>} title={"Add " + item.title} button={"Add " + item.title}/>
                                     {/* <Button variant='outlined' color='primary' startIcon={<Add/>} onClick={() => setOpenPopup(true)}>{"Add " + item.title}</Button>
                                     <Popup
                                         openPopup={openPopup}

@@ -7,8 +7,10 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import SimpleModal from '../controls/SimpleModal'
 
 import Top from '../Top'
+import CreateHGPost from '../Actions/CreateHGPost';
 const useStyles = makeStyles((theme) => ({
     Grid: {
         padding: theme.spacing(1),
@@ -229,9 +231,9 @@ const Huntingground = () => {
                         Contribute your ideas to the Hunting Ground. And get your dream project started.
                             </Typography>
                     <Box mt={3} component={Link} to="/createpages">
-
-                        Click here
-                            </Box>
+                     Click here
+                    </Box>
+                    <SimpleModal body = {<CreateHGPost/>} title="Contribute to Hunting Ground" button="Click here"/>
                 </Box>
 
             </Grid>
