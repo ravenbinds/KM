@@ -22,18 +22,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import SimpleCard from './card'
 
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://material-ui.com/">
-                Your Website
-        </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
+
 
 const drawerWidth = 240;
 
@@ -120,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
+//To be used for mini variant sidebar:Content will be called here
 export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
@@ -130,7 +119,6 @@ export default function Dashboard() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
         <div className={classes.root}>
@@ -173,27 +161,7 @@ export default function Dashboard() {
                 <Divider />
                 <List>{secondaryListItems}</List>
             </Drawer>
-            <main className={classes.content}>
-                <div className={classes.appBarSpacer} />
-                <Container maxWidth="lg" className={classes.container}>
-                    {/* Recent Deposits */
-                    }
-                    <Grid item xs>
-                        <Grid item xs={8} md={8} lg={9}>
 
-                            <Paper className={classes.paper}>
-                            </Paper>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Paper className={fixedHeightPaper}>
-                            </Paper>
-                        </Grid>
-                    </Grid>
-                    <Box pt={4}>
-                        <Copyright />
-                    </Box>
-                </Container>
-            </main>
         </div >
     );
 }

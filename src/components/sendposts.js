@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Avatar, Button, InputBase } from "@material-ui/core";
+import { Avatar, Button, ButtonGroup, InputBase, Typography } from "@material-ui/core";
 import db from "./firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import { Form } from './useForm';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-
+import VideocamIcon from '@material-ui/icons/Videocam';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -80,7 +82,18 @@ function Sendposts() {
                                 placeholder="Optional: Enter image URL"
                                 type="text"
                             /></Grid>
-                        <Grid item xs={12} alignItems="flex-end">
+                        <Grid container xs={4} justify="space-around">
+                            <Typography align="left" color="primary">
+                                Add
+                    </Typography>
+                            <ButtonGroup color="primary" size="small">
+                                <Button><AddAPhotoIcon /></Button>
+                                <Button><VideocamIcon /></Button>
+                                <Button><EmojiEventsIcon /></Button>
+                            </ButtonGroup>
+
+                        </Grid>
+                        <Grid container xs={8} justify="flex-end" alignItems="flex-end">
 
                             <Button
                                 onClick={sendPosts}
