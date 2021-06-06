@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { forwardRef } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -6,15 +6,10 @@ import "./Post.css";
 import { Avatar, Checkbox, FormControlLabel, IconButton } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
 
-class Post extends Component {
-
-    render() {
-        const nickname = this.props.nickname;
-        const avatar = this.props.avatar;
-        const image = this.props.image;
-        const caption = this.props.caption;
+const Post = forwardRef(
+    ({ nickname, caption, image, avatar }, ref) => {
         return (
-            <Grid className="Post">
+            <Grid className="Post" ref={ref}>
                 <header>
                     <Grid className="Post-user">
                         <Grid className="Post-user-avatar">
@@ -48,6 +43,6 @@ class Post extends Component {
             </Grid>
         );
     }
-}
+);
 
 export default Post;
