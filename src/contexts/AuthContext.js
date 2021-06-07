@@ -5,9 +5,11 @@ const AuthContext = createContext();
 export function useAuth() {
   return useContext(AuthContext);
 }
+
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
+
   const signup = (email, password, fullName) => {
     let promise = new Promise(function (resolve, reject) {
       auth
@@ -22,6 +24,7 @@ export function AuthProvider({ children }) {
     });
     return promise;
   };
+
   const signin = (email, password) => {
     let promise = new Promise(function (resolve, reject) {
       auth
@@ -35,9 +38,11 @@ export function AuthProvider({ children }) {
     });
     return promise;
   };
+
   const signout = () => {
     return auth.signOut();
   };
+
   const passwordReset = (email) => {
     let promise = new Promise(function (resolve, reject) {
       auth
@@ -51,6 +56,7 @@ export function AuthProvider({ children }) {
     });
     return promise;
   };
+
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -58,13 +64,9 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   }, [currentUser]);
-const value = {
-    currentUser,
-    signup,
-    signin,
-    signout,
-    passwordReset
-};
+
+  const value = { currentUser, signup, signin, signout, passwordReset };
+  
   return (
     <AuthContext.Provider value={value}>
       {!loading && children}
