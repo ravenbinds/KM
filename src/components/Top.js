@@ -6,6 +6,9 @@ import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+
+import { UserContext, useUserContext } from "../UserContext";
+
 const useStyles = makeStyles((theme) => ({
 
     input: {
@@ -32,6 +35,8 @@ const useStyles = makeStyles((theme) => ({
 const Top = () => {
     const classes = useStyles();
 
+    const currentUser = useUserContext();
+
     return (
         <Grid container >
 
@@ -53,7 +58,7 @@ const Top = () => {
             <Grid item xs={12} sm={6}>
 
                 <Typography align="right" color="textPrimary" variant="h6" padding="40px">
-                    Hi blah
+                    Hi {currentUser.displayName}
             </Typography>
             </Grid>
 

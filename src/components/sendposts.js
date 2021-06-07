@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
     },
 }));
-function Sendposts() {
+function Sendposts(props) {
     const classes = useStyles();
     const [sendCaption, setsendCaption] = useState("");
     const [sendImage, setsendImage] = useState("");
@@ -65,7 +65,7 @@ function Sendposts() {
                 <Box className={classes.Box}>
                     <Grid container alignItems="flex-start" justify="flex-start">
                         <Grid item xs={12} justify="flex-start" alignItems="flex-start">
-                            <Avatar className="Post-user-avatar" src="https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png" />
+                            <Avatar className="Post-user-avatar" src={props.avatar} />
                             <InputBase
                                 onChange={(e) => setsendCaption(e.target.value)}
                                 value={sendCaption}

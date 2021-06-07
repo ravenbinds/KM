@@ -11,10 +11,8 @@ import FlipMove from "react-flip-move";
 import {db} from '../firebase';
 import app from 'firebase'
 
-import { useAuth } from "../contexts/AuthContext";
 
-
-
+import { useUserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -47,7 +45,7 @@ const Contents = () => {
         );
     }, []);
 
-    const { currentUser } = useAuth();
+    const currentUser = useUserContext();
 
     // if (currentUser) {
     //     alert(JSON.stringify(currentUser))
@@ -66,7 +64,7 @@ const Contents = () => {
                         Logout
                     </Button>
                 </Grid>
-                <Sendposts />
+                <Sendposts avatar={currentUser.photoURL}/>
                 <FlipMove>
                     {   posts.map(post => (
                             <Grid className="Contents-space">
