@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
 //Firebase
-import db from '../firebase';
-import app from 'firebase'
+import { db } from '../firebase';
+import app from 'firebase';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,14 +36,14 @@ const useStyles = makeStyles((theme) => ({
 const Contents = () => {
     const classes = useStyles();
     const groupName = "CSE Department VAST"
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
 
-    // useEffect(() => {
-    //     db.collection("posts").onSnapshot((snapshot) =>
-    //         setPosts(snapshot.docs.map((doc) => doc.data()))
-    //     );
-    // }, []);
+    useEffect(() => {
+        db.collection("posts").onSnapshot((snapshot) => {
+            setPosts(snapshot.docs.map((doc) => doc.data()))
+        });
+    }, []);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -64,7 +64,7 @@ const Contents = () => {
                     </Typography>
 
                 </Grid>
-                <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                <Button variant="contained" className={classes.button} onClick={() => app.auth().signOut()}>
                     Logout
                 </Button>
             </Grid>
@@ -97,7 +97,7 @@ const Contents = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={()=> app.auth().signOut()}>Logout</MenuItem>
+                    <MenuItem onClick={() => app.auth().signOut()}>Logout</MenuItem>
                 </Menu>
             </Grid>
             <FlipMove>

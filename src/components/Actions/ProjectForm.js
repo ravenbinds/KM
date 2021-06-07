@@ -1,11 +1,11 @@
 import { FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
-import {useForm, Form} from '../useForm';
+import { useForm, Form } from '../useForm';
 import Button from '@material-ui/core/Button'
-import { Add} from '@material-ui/icons';
-
+import { Add } from '@material-ui/icons';
+import { db } from '../../firebase';
 // const useStyles = makeStyles((theme) => ({
 //     Grid: {
 //         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
@@ -14,12 +14,31 @@ import { Add} from '@material-ui/icons';
 //         borderRadius: '30px',
 //         border: '0.01em solid #985DFF'
 //     },
-// }));
+// }));b        
 
 function ProjectForm() {
 
     // const classes = useStyles();
 
+    const sendInfo = (e) => {
+        e.preventDefault();
+
+        {
+            db.collection("projects").set({
+                pname: values.projectName,
+                description: values.description,
+                owner: values.owner,
+                teamMembers: values.teammembers,
+                startDate: values.startDate,
+                status: values.status,
+                mentor: values.mentor,
+
+            });
+
+        }
+
+        setValues("");
+    };
     const initialFValues = {
         projectName: '',
         description: '',
@@ -32,11 +51,11 @@ function ProjectForm() {
         tags: '',
     };
 
-    const {values, setValues, handleInputChange} = useForm(initialFValues);
-    
+    const { values, setValues, handleInputChange } = useForm(initialFValues);
+
     return (
         <Form >
-            <Grid container justify='center' align='center'> 
+            <Grid container justify='center' align='center'>
                 <Grid item xs={12}>
                     <TextField
                         variant="outlined"
@@ -46,7 +65,7 @@ function ProjectForm() {
                         onChange={handleInputChange}
                         InputLabelProps={{
                             shrink: true,
-                          }}
+                        }}
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -76,34 +95,34 @@ function ProjectForm() {
                         name="mentor"
                         value={values.mentor}
                         onChange={handleInputChange}
-                        InputProps = {{startAdornment: <InputAdornment position="start">@</InputAdornment>}}
+                        InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
                     />
                 </Grid>
                 <Grid item xs={12} alignItems="flex-start">
                     <FormControl style={{ alignItems: "flex-start" }}>
-                    <FormLabel>Status</FormLabel>
-                    <RadioGroup
-                        row
-                        name="status"
-                        value={values.status}
-                        onChange={handleInputChange}
-                    >
-                        <FormControlLabel
-                        value="incomplete"
-                        control={<Radio />}
-                        label="Incomplete"
-                        />
-                        <FormControlLabel
-                        value="complete"
-                        control={<Radio />}
-                        label="Complete"
-                        />
-                        <FormControlLabel
-                        value="freezed"
-                        control={<Radio />}
-                        label="Freezed"
-                        />
-                    </RadioGroup>
+                        <FormLabel>Status</FormLabel>
+                        <RadioGroup
+                            row
+                            name="status"
+                            value={values.status}
+                            onChange={handleInputChange}
+                        >
+                            <FormControlLabel
+                                value="incomplete"
+                                control={<Radio />}
+                                label="Incomplete"
+                            />
+                            <FormControlLabel
+                                value="complete"
+                                control={<Radio />}
+                                label="Complete"
+                            />
+                            <FormControlLabel
+                                value="freezed"
+                                control={<Radio />}
+                                label="Freezed"
+                            />
+                        </RadioGroup>
                     </FormControl>
                 </Grid>
                 <Grid item xs={12}>
@@ -118,10 +137,10 @@ function ProjectForm() {
                     />
                 </Grid>
                 <Grid item xs={12} justify="flex-end" alignItems='flex-end'>
-                    <Button variant="outlined" size="medium" color="primary" onClick="" startIcon={<Add/>} >Add</Button>
+                    <Button variant="outlined" size="medium" color="primary" onClick={sendInfo} startIcon={<Add />} >Add</Button>
                 </Grid>
-            
-      </Grid>
+
+            </Grid>
         </Form>
     )
 }
