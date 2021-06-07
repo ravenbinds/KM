@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -17,7 +17,7 @@ import Checkbox from './components/FormsUI/Checkbox';
 
 import { withRouter, Redirect } from "react-router";
 import app from "./firebase";
-import { AuthContext } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -66,7 +66,7 @@ const Login = ({ history }) => {
       catch (error) { alert(error);}
     }, [history] );
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useAuth();
 
   if (currentUser) {
     return <Redirect to="/" />;

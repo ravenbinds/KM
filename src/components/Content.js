@@ -11,8 +11,12 @@ import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
 //Firebase
-import db from '../firebase';
+import {db} from '../firebase';
 import app from 'firebase'
+
+import { useAuth } from "../contexts/AuthContext";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,11 +43,19 @@ const Contents = () => {
     const [posts, setPosts] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
 
-    // useEffect(() => {
-    //     db.collection("posts").onSnapshot((snapshot) =>
-    //         setPosts(snapshot.docs.map((doc) => doc.data()))
-    //     );
-    // }, []);
+    useEffect(() => {
+        db.collection("posts").onSnapshot((snapshot) => {
+
+            setPosts(snapshot.docs.map((doc) => doc.data()))
+        }
+        );
+    }, []);
+
+    const { currentUser } = useAuth();
+
+    // if (currentUser) {
+    //     alert(JSON.stringify(currentUser))
+    // }
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -55,62 +67,43 @@ const Contents = () => {
     return (
         <div className="Contents">
             <Top />
-            <Grid container direction="row"
-                justify="space-between"
-                alignItems="center">
-                <Grid item xs={12} sm={6} className={classes.Grid}>
-                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                        {groupName}
-                    </Typography>
-
+                <Grid container direction="row"justify="space-between" alignItems="center">
+                    <Grid item xs={12} sm={6} className={classes.Grid}>
+                        <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                            {groupName}
+                        </Typography>
+                    </Grid>
+                    <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                        Logout
+                    </Button>
                 </Grid>
-                <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
-                    Logout
-                </Button>
-            </Grid>
-            <Sendposts />
-            <Grid container direction="row"
-                justify="space-between"
-                alignItems="center">
-                <Grid item xs={12} sm={6} className={classes.Grid}>
-                    <Typography align="left" color="textPrimary" variant="h6">
-                        Posts
-                    </Typography>
+                <Sendposts />
+                {/* <Grid container direction="row" justify="space-between" alignItems="center"> <Grid item xs={12} sm={6} className={classes.Grid}>
+                        <Typography align="left" color="textPrimary" variant="h6">
+                            Posts
+                        </Typography>
+                    </Grid>
+                    <Button variant="contained" className={classes.button} component={Link} to='/login'>
+                        Add Post
+                    </Button>
                 </Grid>
-                <Button variant="contained" className={classes.button} component={Link} to='/login'>
-                    Add Post
-                </Button>
-            </Grid>
-            <Grid container justify="flex-end"
-                alignItems="center" className={classes.Grid}>
-                <IconButton aria-label="more"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick}>
-                    <MoreVertRoundedIcon />
-                </IconButton>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={()=> app.auth().signOut()}>Logout</MenuItem>
-                </Menu>
-            </Grid>
-            <FlipMove>
-                {
-                    posts.map(post => (
-                        <Grid className="Contents-space">
-                            <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                        </Grid>
-                    ))
-                }
-
-            </FlipMove>
-
+                <Grid container justify="flex-end" alignItems="center" className={classes.Grid}>
+                    <IconButton aria-label="more" aria-controls="long-menu" aria-haspopup="true" onClick={handleClick}>
+                        <MoreVertRoundedIcon />
+                    </IconButton>
+                    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
+                        <MenuItem onClick={handleClose}>Settings</MenuItem>
+                        <MenuItem onClick={()=> app.auth().signOut()}>Logout</MenuItem>
+                    </Menu>
+                </Grid> */}
+                <FlipMove>
+                    {   posts.map(post => (
+                            <Grid className="Contents-space">
+                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                            </Grid>
+                        ))
+                    }
+                </FlipMove>
         </div>
     )
 }
