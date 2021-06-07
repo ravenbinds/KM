@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
-import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
 //Firebase
 import { db } from '../firebase';
-import app from 'firebase';
+import app from 'firebase'
+
+import { useAuth } from "../contexts/AuthContext";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,81 +37,44 @@ const useStyles = makeStyles((theme) => ({
 const Contents = () => {
     const classes = useStyles();
     const groupName = "CSE Department VAST"
-    const [posts, setPosts] = useState([]);
-    const [anchorEl, setAnchorEl] = useState(null);
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => {
+
             setPosts(snapshot.docs.map((doc) => doc.data()))
-        });
+        }
+        );
     }, []);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+    const { currentUser } = useAuth();
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+    // if (currentUser) {
+    //     alert(JSON.stringify(currentUser))
+    // }
+
     return (
         <div className="Contents">
             <Top />
-            <Grid container direction="row"
-                justify="space-between"
-                alignItems="center">
+            <Grid container direction="row" justify="space-between" alignItems="center">
                 <Grid item xs={12} sm={6} className={classes.Grid}>
                     <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                         {groupName}
                     </Typography>
-
                 </Grid>
                 <Button variant="contained" className={classes.button} onClick={() => app.auth().signOut()}>
                     Logout
-                </Button>
+                    </Button>
             </Grid>
             <Sendposts />
-            <Grid container direction="row"
-                justify="space-between"
-                alignItems="center">
-                <Grid item xs={12} sm={6} className={classes.Grid}>
-                    <Typography align="left" color="textPrimary" variant="h6">
-                        Posts
-                    </Typography>
-                </Grid>
-                <Button variant="contained" className={classes.button} component={Link} to='/login'>
-                    Add Post
-                </Button>
-            </Grid>
-            <Grid container justify="flex-end"
-                alignItems="center" className={classes.Grid}>
-                <IconButton aria-label="more"
-                    aria-controls="long-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick}>
-                    <MoreVertRoundedIcon />
-                </IconButton>
-                <Menu
-                    id="simple-menu"
-                    anchorEl={anchorEl}
-                    keepMounted
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                >
-                    <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem onClick={() => app.auth().signOut()}>Logout</MenuItem>
-                </Menu>
-            </Grid>
             <FlipMove>
-                {
-                    posts.map(post => (
-                        <Grid className="Contents-space">
-                            <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                        </Grid>
-                    ))
+                {posts.map(post => (
+                    <Grid className="Contents-space">
+                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                    </Grid>
+                ))
                 }
-
             </FlipMove>
-
         </div>
     )
 }
