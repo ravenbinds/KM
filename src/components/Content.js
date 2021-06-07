@@ -7,11 +7,14 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import db from '../firebase';
 import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
+//Firebase
+import db from '../firebase';
 import app from 'firebase'
+
+
 const useStyles = makeStyles((theme) => ({
     button: {
         display: 'flex',
@@ -36,11 +39,12 @@ const Contents = () => {
     const [posts, setPosts] = useState([])
     const [anchorEl, setAnchorEl] = useState(null);
 
-    useEffect(() => {
-        db.collection("posts").onSnapshot((snapshot) =>
-            setPosts(snapshot.docs.map((doc) => doc.data()))
-        );
-    }, []);
+    // useEffect(() => {
+    //     db.collection("posts").onSnapshot((snapshot) =>
+    //         setPosts(snapshot.docs.map((doc) => doc.data()))
+    //     );
+    // }, []);
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -59,9 +63,11 @@ const Contents = () => {
                         {groupName}
                     </Typography>
 
-                </Grid><Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                </Grid>
+                <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
                     Logout
-                </Button></Grid>
+                </Button>
+            </Grid>
             <Sendposts />
             <Grid container direction="row"
                 justify="space-between"
@@ -91,7 +97,7 @@ const Contents = () => {
                     onClose={handleClose}
                 >
                     <MenuItem onClick={handleClose}>Settings</MenuItem>
-                    <MenuItem component={Link} to='/Login' onClick={handleClose}>Logout</MenuItem>
+                    <MenuItem onClick={()=> app.auth().signOut()}>Logout</MenuItem>
                 </Menu>
             </Grid>
             <FlipMove>
