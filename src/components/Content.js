@@ -2,12 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import MoreVertRoundedIcon from '@material-ui/icons/MoreVertRounded';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
-import { IconButton, Menu, MenuItem } from "@material-ui/core";
-import { Link } from 'react-router-dom';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
 //Firebase
@@ -41,7 +38,6 @@ const Contents = () => {
     const classes = useStyles();
     const groupName = "CSE Department VAST"
     const [posts, setPosts] = useState([])
-    const [anchorEl, setAnchorEl] = useState(null);
 
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => {
@@ -57,13 +53,6 @@ const Contents = () => {
     //     alert(JSON.stringify(currentUser))
     // }
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
     return (
         <div className="Contents">
             <Top />
@@ -78,24 +67,6 @@ const Contents = () => {
                     </Button>
                 </Grid>
                 <Sendposts />
-                {/* <Grid container direction="row" justify="space-between" alignItems="center"> <Grid item xs={12} sm={6} className={classes.Grid}>
-                        <Typography align="left" color="textPrimary" variant="h6">
-                            Posts
-                        </Typography>
-                    </Grid>
-                    <Button variant="contained" className={classes.button} component={Link} to='/login'>
-                        Add Post
-                    </Button>
-                </Grid>
-                <Grid container justify="flex-end" alignItems="center" className={classes.Grid}>
-                    <IconButton aria-label="more" aria-controls="long-menu" aria-haspopup="true" onClick={handleClick}>
-                        <MoreVertRoundedIcon />
-                    </IconButton>
-                    <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose} >
-                        <MenuItem onClick={handleClose}>Settings</MenuItem>
-                        <MenuItem onClick={()=> app.auth().signOut()}>Logout</MenuItem>
-                    </Menu>
-                </Grid> */}
                 <FlipMove>
                     {   posts.map(post => (
                             <Grid className="Contents-space">
