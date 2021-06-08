@@ -46,7 +46,7 @@ const Contents = () => {
     }, []);
 
     const currentUser = useUserContext();
-    
+
     return (
         <div className="Contents">
             <Grid container justify='flex-start' spacing={2}>
@@ -55,14 +55,21 @@ const Contents = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container direction="row"justify="space-between" alignItems="center">
-                        <Grid item xs={12} sm={6} className={classes.Grid}>
-                            <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                                {groupName}
-                            </Typography>
+                        <Grid container>
+                            <Grid item>
+
+                            </Grid>
+                            <Grid item xs={12} sm={6} className={classes.Grid}>
+                                <Typography variant='caption' color=''>#COMMUNITY</Typography>
+                                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                                    {groupName}
+                                </Typography>
+                            </Grid>
                         </Grid>
-                        <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                        
+                        {/* <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
                             Logout
-                        </Button>
+                        </Button> */}
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>

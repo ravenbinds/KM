@@ -56,6 +56,10 @@ theme.typography.h5 = {
   },
 };
 
+theme.typography.caption = {
+  color: theme.palette.primary.main
+}
+
 function App() {
 
     const currentUser = useUserContext();
