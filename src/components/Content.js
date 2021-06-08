@@ -46,11 +46,7 @@ const Contents = () => {
     }, []);
 
     const currentUser = useUserContext();
-
-    // if (currentUser) {
-    //     alert(JSON.stringify(currentUser))
-    // }
-
+    
     return (
         <div className="Contents">
             <Grid container justify='flex-start' spacing={2}>
