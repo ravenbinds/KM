@@ -61,12 +61,15 @@ function App() {
 
     return (
       <>
-      {   currentUser &&
-              <ThemeProvider theme={theme}>
-                <Dash/>
-              </ThemeProvider>
+      {   currentUser ? (
+        <ThemeProvider theme={theme}>
+        <Dash/>
+      </ThemeProvider>
+      ) : (
+        <AuthPage/>
+      )
+              
       }
-    <AuthPage/>
     </>    
     );
   }
