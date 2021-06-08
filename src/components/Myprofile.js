@@ -82,31 +82,31 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileHeader() {
     const classes = useStyles();
-    // const [userDetails, setuserDetails] = useState([])
-    const Name = db.doc("Users/Username/Profile/Name")
-    // useEffect(() => {
-    //     db.collection("Users/Username/Profile   ").onSnapshot((snapshot) => {
+    const [userDetails, setuserDetails] = useState([])
 
-    //         setuserDetails(snapshot.docs.map((doc) => doc.data()))
-    //     }
-    //     );
-    // }, []);
+    useEffect(() => {
+        db.collection("Users").onSnapshot((snapshot) => {
+
+            setuserDetails(snapshot.docs.map((doc) => doc.data()))
+        }
+        );
+    }, []);
 
     const userdetails = { avatar: man, name: 'Krishnaja R Nair mlold jhi' }
     return (
         <div>
-            {/* {
-                userDetails.map(userdetails => ( */}
+            {
+                userDetails.map(userdetails => (
 
-            <Grid container direction="row" justify="flex-start" alignItems="center">
-                <Avatar alt="Remy Sharp" src={userdetails.avatar} className={classes.large} />
-                <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
-                    <Typography color="textPrimary" variant="h6" align='left'>
-                        {Name}
-                    </Typography>
-                </Grid>
-            </Grid>
-            {/* ))} */}
+                    <Grid container direction="row" justify="flex-start" alignItems="center">
+                        <Avatar alt="Remy Sharp" src={userdetails.Profile.avatar} className={classes.large} />
+                        <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
+                            <Typography color="textPrimary" variant="h6" align='left'>
+                                {userdetails.Profile.Name}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                ))}
         </div >
     );
 }
