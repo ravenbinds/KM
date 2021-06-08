@@ -31,15 +31,14 @@ body {
 
     }
 } */
+
 .wrapper {
-   
     display: grid;
     grid-template-columns: 20% 50% 30%;
+    grid-template-rows: 100vh;
     background: #F6F9FF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    padding: 1em 5em;
-    
 }
 
 .wrapper>div {
@@ -52,8 +51,7 @@ body {
     flex-direction: row,
 }
 
-.Left {
-  
+/* .Left {
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -62,10 +60,9 @@ body {
     overflow: hidden;
     top: 0px;
     background: #FFFFFF;
-}
+} */
 
-.Right {
-
+/* .Right {
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -75,10 +72,10 @@ body {
     left: 970px;
     top: 0px;
     background: #E5EEFC;
-}
+} */
 
 .Contents {
-    overflow: hidden;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     padding-top: 30px;
