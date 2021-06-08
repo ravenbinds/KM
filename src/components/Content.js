@@ -53,26 +53,37 @@ const Contents = () => {
 
     return (
         <div className="Contents">
-            <Top />
-                <Grid container direction="row"justify="space-between" alignItems="center">
-                    <Grid item xs={12} sm={6} className={classes.Grid}>
-                        <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                            {groupName}
-                        </Typography>
-                    </Grid>
-                    <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
-                        Logout
-                    </Button>
+            <Grid container justify='flex-start' spacing={2}>
+                <Grid item xs={12}>
+                    <Top />
                 </Grid>
-                <Sendposts avatar={currentUser.photoURL}/>
-                <FlipMove>
-                    {   posts.map(post => (
-                            <Grid className="Contents-space">
-                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                            </Grid>
-                        ))
-                    }
-                </FlipMove>
+                <Grid item xs={12}>
+                    <Grid container direction="row"justify="space-between" alignItems="center">
+                        <Grid item xs={12} sm={6} className={classes.Grid}>
+                            <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                                {groupName}
+                            </Typography>
+                        </Grid>
+                        <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                            Logout
+                        </Button>
+                    </Grid>
+                </Grid>
+                <Grid item xs={12}>
+                    <Sendposts avatar={currentUser.photoURL}/>
+                    <FlipMove>
+                        {   posts.map(post => (
+                                <Grid className="Contents-space">
+                                    <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                                </Grid>
+                            ))
+                        }
+                    </FlipMove>
+                </Grid>
+                <Grid item xs={12}>
+                    
+                </Grid>
+            </Grid>
         </div>
     )
 }

@@ -35,6 +35,7 @@ theme.typography.h6 = {
   };
 
 theme.typography.button = {
+  textTransform: 'none',
   fontSize: "0.3rem",
   "@media (min-width:600px)": {
     fontSize: "0.5rem",
@@ -67,8 +68,7 @@ function App() {
       </ThemeProvider>
       ) : (
         <AuthPage/>
-      )
-              
+      )    
       }
     </>    
     );

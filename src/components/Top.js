@@ -29,7 +29,9 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 
     },
-
+    greeting: {
+        color: theme.palette.primary.main,
+    },
 
 }));
 const Top = () => {
@@ -38,28 +40,20 @@ const Top = () => {
     const currentUser = useUserContext();
 
     return (
-        <Grid container >
-
+        <Grid container alignItems='center'>
             <Grid item xs={12} sm={6} >
                 <Paper component="form" className={classes.Paper}>
-
-                    <InputBase
-                        className={classes.input}
-                        placeholder="Search"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
+                    <InputBase className={classes.input} placeholder="Search" inputProps={{ 'aria-label': 'search' }} />
 
                     <IconButton type="submit" className={classes.iconButton} aria-label="search">
                         <SearchIcon />
                     </IconButton>
-
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
-
-                <Typography align="right" color="textPrimary" variant="h6" padding="40px">
-                    Hi {currentUser.displayName}
-            </Typography>
+                <Typography align="right" className={classes.greeting} variant="h6" padding="40px">
+                    Hi, {currentUser.displayName}
+                </Typography>
             </Grid>
 
         </Grid>
