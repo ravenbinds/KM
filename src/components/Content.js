@@ -8,7 +8,7 @@ import Top from './Top';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
 //Firebase
-import {db} from '../firebase';
+import { db } from '../firebase';
 import app from 'firebase'
 
 

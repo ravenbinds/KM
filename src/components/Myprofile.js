@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -14,12 +14,12 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import { Add, School, Timelapse} from '@material-ui/icons';
+import { Add, School, Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
 import ExperienceForm from './Actions/ExperienceForm'
 import CertificationForm from './Actions/CertificationForm'
-
+import { db } from '../firebase';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -82,26 +82,41 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileHeader() {
     const classes = useStyles();
+    const [userDetails, setuserDetails] = useState([])
 
-    const userdetails = {avatar: man, name: 'Krishnaja R Nair mlold jhi'}
+    useEffect(() => {
+        db.collection("Users").onSnapshot((snapshot) => {
+
+            setuserDetails(snapshot.docs.map((doc) => doc.data()))
+        }
+        );
+    }, []);
+
+    const userdetails = { avatar: man, name: 'Krishnaja R Nair mlold jhi' }
     return (
-        <Grid container direction="row" justify="flex-start" alignItems="center">
-            <Avatar alt="Remy Sharp" src={userdetails.avatar} className={classes.large} />
-            <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
-                <Typography color="textPrimary" variant="h6" align='left'>
-                    {userdetails.name}
-                </Typography>
-            </Grid>
-        </Grid> 
+        <div>
+            {
+                userDetails.map(userdetails => (
+
+                    <Grid container direction="row" justify="flex-start" alignItems="center">
+                        <Avatar alt="Remy Sharp" src={userdetails.Profile.avatar} className={classes.large} />
+                        <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
+                            <Typography color="textPrimary" variant="h6" align='left'>
+                                {userdetails.Profile.Name}
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                ))}
+        </div >
     );
 }
 
 function Spotlight() {
 
     const spotlightitems = [
-        {category:'Project', count:31},
-        {category:'Certifications', count:31},
-        {category:'Jobs done', count:31},
+        { category: 'Project', count: 31 },
+        { category: 'Certifications', count: 31 },
+        { category: 'Jobs done', count: 31 },
     ]
 
     const classes = useStyles();
@@ -109,25 +124,25 @@ function Spotlight() {
         <Grid item xs={12} className={classes.Grid2}  >
             <Box className={classes.Box}>
                 <Grid container direction="column" justify="space-around" alignItems="baseline" >
-                    <Typography color="textSecondary" gutterBottom> 
+                    <Typography color="textSecondary" gutterBottom>
                         Spotlight
                     </Typography>
                     <Grid container direction="row" justify="space-around" alignItems="baseline" >
                         {
-                            spotlightitems.map(item=>(
+                            spotlightitems.map(item => (
                                 <Grid item xs={4}>
-                                <Card className={classes.root} alignItems='center' justify='center'>
-                                    <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
-                                        {item.count}
-                                    </Typography>
-                                    <CardActions>
-                                        <Typography>{item.category}</Typography>
-                                    </CardActions>
-                                </Card>
+                                    <Card className={classes.root} alignItems='center' justify='center'>
+                                        <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
+                                            {item.count}
+                                        </Typography>
+                                        <CardActions>
+                                            <Typography>{item.category}</Typography>
+                                        </CardActions>
+                                    </Card>
                                 </Grid>
                             ))
                         }
-                    </Grid>            
+                    </Grid>
                 </Grid>
             </Box>
         </Grid>
@@ -137,19 +152,19 @@ function Spotlight() {
 function RecentActivities() {
 
     const items = [
-        {startIcon: <EventNoteRoundedIcon fontSize="large"/>, content: "Completed certification course Neural Networks and Deep Learning by deeplearning.ai on Coursera"},
-        {startIcon: <EventNoteRoundedIcon fontSize="large"/>, content: "Started workshop titled Fundamentals of Digital Marketing Google"}
+        { startIcon: <EventNoteRoundedIcon fontSize="large" />, content: "Completed certification course Neural Networks and Deep Learning by deeplearning.ai on Coursera" },
+        { startIcon: <EventNoteRoundedIcon fontSize="large" />, content: "Started workshop titled Fundamentals of Digital Marketing Google" }
     ]
 
     const classes = useStyles();
-    return(
+    return (
         <Grid container direction="column" justify="flex-start" alignItems="center">
             <Typography color="textSecondary" align="left" padding="20px">
-                        Recent activities
+                Recent activities
                     </Typography>
-                    {
-                        items.map(item=>(
-                            <Grid item xs={12} className={classes.Grid2}  >
+            {
+                items.map(item => (
+                    <Grid item xs={12} className={classes.Grid2}  >
                         <Box className={classes.Box}>
                             <CardActions>
                                 <Button size="small" >{item.startIcon}</Button>
@@ -159,24 +174,24 @@ function RecentActivities() {
                             </Typography>
                         </Box>
                     </Grid>
-                        ))
-                    }
-                    <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
-                        see all activities...
+                ))
+            }
+            <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
+                see all activities...
                     </Typography>
         </Grid>
-        
+
     )
 }
 
-function DetailsAccordion (){
+function DetailsAccordion() {
 
     const items = [
-        {form: <ProjectForm/>,title:'Posts',panel:'panel1', startIcon:<FolderOpenRoundedIcon fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Incomplete", statusIcon:<Timelapse/>}, {heading:"Abc", description:"Abcd", status:"Completed", statusIcon:<CheckRoundedIcon/>}]},
-        {form: <ExperienceForm/>,title:'Experiences',panel:'panel2', startIcon:<WorkOutline fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {form: <ProjectForm/>,title:'Education',panel:'panel3', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {form: <CertificationForm/>,title:'Certifications',panel:'panel4', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},
-        {form: <ProjectForm/>,title:'Projects',panel:'panel5', startIcon:<School fontSize="large"/>, entries: [{heading:"Abc", description:"Abcd", status:"Compl", statusIcon:<CheckRoundedIcon/>}]},    
+        { form: <ProjectForm />, title: 'Posts', panel: 'panel1', startIcon: <FolderOpenRoundedIcon fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Incomplete", statusIcon: <Timelapse /> }, { heading: "Abc", description: "Abcd", status: "Completed", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <ExperienceForm />, title: 'Experiences', panel: 'panel2', startIcon: <WorkOutline fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <ProjectForm />, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <CertificationForm />, title: 'Certifications', panel: 'panel4', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <ProjectForm />, title: 'Projects', panel: 'panel5', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
     ]
 
     const classes = useStyles();
@@ -184,14 +199,14 @@ function DetailsAccordion (){
     return (
         <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
             <Typography color="textSecondary" align="left" padding="20px">
-                        Details
+                Details
             </Typography>
             <Grid item xs={12} className={classes.Grid2}>
-                <SimpleAccordion items={items}/>
+                <SimpleAccordion items={items} />
             </Grid>
         </Grid>
     );
-    }
+}
 
 const Myprofile = () => {
     const classes = useStyles();
@@ -200,10 +215,10 @@ const Myprofile = () => {
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid} >
-                <ProfileHeader/>
-                <Spotlight/>
-                <RecentActivities/>
-                
+                <ProfileHeader />
+                <Spotlight />
+                <RecentActivities />
+
                 <Typography color="textSecondary" align="left" padding="20px">
                     Details
                 </Typography>
@@ -218,8 +233,8 @@ const Myprofile = () => {
                             </Typography>
                         </Grid>
                     </Box>
-                </Grid>                    
-                <DetailsAccordion/>
+                </Grid>
+                <DetailsAccordion />
             </Grid>
         </div >
     )
