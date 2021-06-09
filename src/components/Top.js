@@ -44,7 +44,6 @@ const Top = () => {
                     <IconButton type="submit" className={classes.iconButton} aria-label="search" color="secondary.text">
                         <SearchIcon />
                     </IconButton>
-
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>

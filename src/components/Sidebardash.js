@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-export default function SimpleCard() {
+const SimpleCard = () => {
     const classes = useStyles();
 
 
@@ -104,3 +104,4 @@ export default function SimpleCard() {
     )
 
 }
+export default SimpleCard;

@@ -39,6 +39,7 @@ theme.typography.h6 = {
   };
 
 theme.typography.button = {
+  textTransform: 'none',
   fontSize: "0.3rem",
   "@media (min-width:600px)": {
     fontSize: "0.5rem",
@@ -59,6 +60,10 @@ theme.typography.h5 = {
   },
 };
 
+theme.typography.caption = {
+  color: theme.palette.primary.main
+}
+
 function App() {
 
     const currentUser = useUserContext();
@@ -71,8 +76,7 @@ function App() {
       </ThemeProvider>
       ) : (
         <AuthPage/>
-      )
-              
+      )    
       }
     </>    
     );
