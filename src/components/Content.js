@@ -40,9 +40,10 @@ const Contents = () => {
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => {
 
-            setPosts(snapshot.docs.map((doc) => doc.data()))
+            setPosts(snapshot.docs.map((doc) => doc.data()
+            ));
         }
-        );
+        )
     }, []);
 
     const currentUser = useUserContext();

@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import { useForm, Form } from '../useForm';
 import Button from '@material-ui/core/Button'
 import { Add } from '@material-ui/icons';
-
+import { db } from '../../firebase';
 function ExperienceForm() {
   const initialFValues = {
     company: '',
@@ -15,6 +15,25 @@ function ExperienceForm() {
     employmentType: ''
   };
 
+  const sendInfo = (e) => {
+    e.preventDefault();
+
+    {
+      db.collection("profile/YpDaruUKtfj8RENfJV86/experience").doc()
+        .set({
+          company: values.company,
+          jobTitle: values.jobTitle,
+          description: values.description,
+          startDate: values.startDate,
+          endDate: values.endDate,
+          employmentType: values.employmentType,
+
+        }, { merge: true });
+
+    }
+
+    setValues("");
+  };
   const { values, setValues, handleInputChange } = useForm(initialFValues);
 
   return (
@@ -94,7 +113,7 @@ function ExperienceForm() {
         </Grid>
         <Grid item xs={12} justify="flex-end">
 
-          <Button variant="outlined" size="medium" color="primary" onClick="" startIcon={<Add />} >Add</Button>
+          <Button variant="outlined" size="medium" color="primary" onClick={sendInfo} startIcon={<Add />} >Add</Button>
         </Grid>
       </Grid>
     </Form>

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
     },
 }));
-function Sendposts(props) {
+const Sendposts = (nickname, avatar) => {
     const classes = useStyles();
     const [sendCaption, setsendCaption] = useState("");
     const [sendImage, setsendImage] = useState("");
@@ -49,11 +49,10 @@ function Sendposts(props) {
         e.preventDefault();
 
         db.collection("posts").add({
-            nickname: "Something",
+            nickname: { nickname },
             caption: sendCaption,
             image: sendImage,
-            avatar:
-                "https://kajabi-storefronts-production.global.ssl.fastly.net/kajabi-storefronts-production/themes/284832/settings_images/rLlCifhXRJiT0RoN2FjK_Logo_roundbackground_black.png",
+            avatar: { avatar },
         });
 
         setsendCaption("");

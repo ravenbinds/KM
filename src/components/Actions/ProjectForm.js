@@ -24,16 +24,17 @@ function ProjectForm() {
         e.preventDefault();
 
         {
-            db.collection("projects").set({
-                pname: values.projectName,
-                description: values.description,
-                owner: values.owner,
-                teamMembers: values.teammembers,
-                startDate: values.startDate,
-                status: values.status,
-                mentor: values.mentor,
+            db.collection("projects").doc()
+                .set({
+                    pname: values.projectName,
+                    description: values.description,
+                    owner: values.owner,
+                    teamMembers: values.teammembers,
+                    startDate: values.startDate,
+                    status: values.status,
+                    mentor: values.mentor,
 
-            });
+                }, { merge: true });
 
         }
 
