@@ -29,12 +29,12 @@ const theme = createMuiTheme({
 
 theme.typography.h6 = {
   fontSize: "0.8rem",
-
+  fontWeight: 'normal',
   "@media (min-width:600px)": {
     fontSize: "1.0rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "1.1rem",
+    fontSize: "1rem",
   },
   };
 

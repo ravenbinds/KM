@@ -53,7 +53,7 @@ const Contents = () => {
 
     return (
         <div className="Contents">
-            <Top />
+            <Top/>
                 <Grid container direction="row"justify="space-between" alignItems="center">
                     <Grid item xs={12} sm={6} className={classes.Grid}>
                         <Typography align="left" color="textPrimary" variant="h5" padding="40px">
