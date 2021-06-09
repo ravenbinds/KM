@@ -80,35 +80,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ProfileHeader() {
+function ProfileHeader(props) {
     const classes = useStyles();
-    const [userDetails, setuserDetails] = useState([])
-
-    useEffect(() => {
-        db.collection("UsersTest").onSnapshot((snapshot) => {
-
-            setuserDetails(snapshot.docs.map((doc) => doc.data()))
-        }
-        );
-    }, []);
-
-    const userdetails = { avatar: man, name: 'Krishnaja R Nair mlold jhi' }
     return (
-        <div>
-            {
-                userDetails.map(userdetails => (
-
-                    <Grid container direction="row" justify="flex-start" alignItems="center">
-                        <Avatar alt="Remy Sharp" src={userdetails.Profile.avatar} className={classes.large} />
+        <Grid container direction="row" justify="flex-start" alignItems="center">
+                        <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
                         <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
                             <Typography color="textPrimary" variant="h6" align='left'>
-                                {userdetails.Profile.Name}
+                                {props.Name}
                             </Typography>
                         </Grid>
                     </Grid>
-                ))}
-        </div >
     );
+}
+
+ProfileHeader.defaultProps = {
+    avatar: man,
+    Name: "Name here",
 }
 
 function Spotlight() {
@@ -208,36 +196,47 @@ function DetailsAccordion() {
     );
 }
 
-const Myprofile = () => {
+function Profile(props) {
     const classes = useStyles();
+    const [userDetails, setuserDetails] = useState({});
+    const [loading, setLoading] = useState(false);
+
+    const ref = db.collection('UsersTest').doc(props.userdocumentID);
+
+    function getUser(){
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const userdata = querySnapshot.data();
+            setuserDetails(userdata);
+            console.log('document retrieved')
+        })
+        
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getUser();
+    },[])
+
+    if(loading){
+        return <h2>Loading...</h2>
+    }
 
     return (
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid} >
-                <ProfileHeader />
+                <ProfileHeader Name={userDetails.Name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
-
-                <Typography color="textSecondary" align="left" padding="20px">
-                    Details
-                </Typography>
-                <Grid item xs={12} className={classes.Grid2}  >
-                    <Box className={classes.Box}>
-                        <Typography color="textprimary" variant="body1" align="left" padding="20px">
-                            Experience
-                        </Typography>
-                        <Grid item xs={12} className={classes.Grid2}  >
-                            <Typography align="left" color="textSecondary" >
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae praesent quisque egestas egestas eleifend congue nibh neque. Consequat elementum non adipiscing eget posuere.
-                            </Typography>
-                        </Grid>
-                    </Box>
-                </Grid>
                 <DetailsAccordion />
             </Grid>
         </div >
     )
 }
 
-export default Myprofile
+export default Profile
+
+Profile.defaultProps = {
+    userdocumentID: 'VXOoE5LnkrGrEA0GQcOB'
+}
