@@ -67,7 +67,7 @@ const Sendposts = (nickname, avatar) => {
                         <Grid item xs={12}>
                             <Grid container direction='row' justify='flex-start' alignItems='center'>
                                 <Grid item>
-                                    <Avatar className="Post-user-avatar" src={props.avatar} />
+                                    <Avatar className="Post-user-avatar" src={avatar} />
                                 </Grid>
                                 <Grid item>
                                     <InputBase
