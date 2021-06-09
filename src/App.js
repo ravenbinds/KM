@@ -17,8 +17,12 @@ const theme = createMuiTheme({
   },
 
   typography: {
+    fontFamily: [
+      'PT Sans'
+    ],
     body1: {
       fontSize: "0.9rem",
+      fontWeight: 'inherit'
       },
     },
 });

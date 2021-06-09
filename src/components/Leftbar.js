@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         top: '0px',
         background: '#FFFFFF',
-        width: 'fit-content',
+        width: 'calc("fit-content" + 2px)',
         borderRadius: '0px 1.5em 1.5em 0px',
-        boxShadow: '3px 0 10px #47474722',
+        boxShadow: '3px 0 14px #4747470f',
         [theme.breakpoints.down('sm')]: {
             position: 'absolute',
             transform: 'translateX(-100%)',
@@ -35,6 +35,19 @@ const useStyles = makeStyles((theme) => ({
                 transform: 'translateX(0%)',
             }
         },
+        "& .active": {
+            color : '#985DFF',
+            "& .MuiSvgIcon-root" : {
+                fill: '#985DFF',
+            },
+            "& .MuiListItemText-root" : {
+                fontWeight: 'bold'
+            },
+        },
+        "& .MuiListSubheader-root" : {
+            fontWeight: 'bold',
+            color: 'black',
+        }
     },
     logo : {
         width: '25%',
