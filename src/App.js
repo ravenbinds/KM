@@ -1,13 +1,8 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router,  Route,  Switch,} from "react-router-dom";
+import AuthPage from './AuthPage'
+import { useUserContext } from "./UserContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";
-import errorpage from "./components/404";
-import Login from "./Login";
-import SignUp from "./SignUp";
 import Dash from "./components/dash";
-// import Register from "./components/Actions/registration";
-import { AuthProvider } from "./contexts/AuthContext";
-import PrivateRoute from "./PrivateRoute";
 
 const theme = createMuiTheme({
   palette: {
@@ -40,6 +35,7 @@ theme.typography.h6 = {
   };
 
 theme.typography.button = {
+  textTransform: 'none',
   fontSize: "0.3rem",
   "@media (min-width:600px)": {
     fontSize: "0.5rem",
@@ -60,25 +56,26 @@ theme.typography.h5 = {
   },
 };
 
-class App extends Component {
-  render() {
+theme.typography.caption = {
+  color: theme.palette.primary.main
+}
+
+function App() {
+
+    const currentUser = useUserContext();
+
     return (
-      <div className="App">
-        <AuthProvider>
-          <Router>
-            <ThemeProvider theme={theme}>
-              <Switch>
-                <PrivateRoute exact path="/" component={Dash} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/signup" component={SignUp} />
-                {/* <Route exact path="/register" component={Register} /> */}
-                <Route component={errorpage} />
-              </Switch>
-            </ThemeProvider>
-          </Router>
-        </AuthProvider>
-      </div>
+      <>
+      {   currentUser ? (
+        <ThemeProvider theme={theme}>
+        <Dash/>
+      </ThemeProvider>
+      ) : (
+        <AuthPage/>
+      )    
+      }
+    </>    
     );
   }
-}
+
 export default App;

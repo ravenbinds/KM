@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, } from "react-router-dom";
 import Content from "./Content";
 import Leftbar from "./Leftbar";
@@ -14,11 +14,11 @@ import errorpage from "./404";
 import create from "./pages/createpage";
 // import Dashboard from './Dashboard/dashboard'
 // import Register from './Actions/registration';
-import {useAuth} from "../contexts/AuthContext";
+import { useUserContext } from "../UserContext";
 
 function Dash() {
 
-  const { currentUser } = useAuth();
+  const currentUser = useUserContext();
 
 
   return (

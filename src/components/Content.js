@@ -11,10 +11,8 @@ import FlipMove from "react-flip-move";
 import { db } from '../firebase';
 import app from 'firebase'
 
-import { useAuth } from "../contexts/AuthContext";
 
-
-
+import { useUserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -48,34 +46,48 @@ const Contents = () => {
         )
     }, []);
 
-    const { currentUser } = useAuth();
-
-    // if (currentUser) {
-    //     alert(JSON.stringify(currentUser))
-    // }
+    const currentUser = useUserContext();
 
     return (
         <div className="Contents">
-            <Top />
-            <Grid container direction="row" justify="space-between" alignItems="center">
-                <Grid item xs={12} sm={6} className={classes.Grid}>
-                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                        {groupName}
-                    </Typography>
+            <Grid container justify='flex-start' spacing={2}>
+                <Grid item xs={12}>
+                    <Top />
                 </Grid>
-                <Button variant="contained" className={classes.button} onClick={() => app.auth().signOut()}>
-                    Logout
-                    </Button>
-            </Grid>
-            <Sendposts />
-            <FlipMove>
-                {posts.map(post => (
-                    <Grid className="Contents-space">
-                        <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                <Grid item xs={12}>
+                    <Grid container direction="row"justify="space-between" alignItems="center">
+                        <Grid container>
+                            <Grid item>
+
+                            </Grid>
+                            <Grid item xs={12} sm={6} className={classes.Grid}>
+                                <Typography variant='caption' color=''>#COMMUNITY</Typography>
+                                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                                    {groupName}
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                        
+                        {/* <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
+                            Logout
+                        </Button> */}
                     </Grid>
-                ))
-                }
-            </FlipMove>
+                </Grid>
+                <Grid item xs={12}>
+                    <Sendposts avatar={currentUser.photoURL}/>
+                    <FlipMove>
+                        {   posts.map(post => (
+                                <Grid className="Contents-space">
+                                    <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                                </Grid>
+                            ))
+                        }
+                    </FlipMove>
+                </Grid>
+                <Grid item xs={12}>
+                    
+                </Grid>
+            </Grid>
         </div>
     )
 }
