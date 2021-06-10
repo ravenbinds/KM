@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '39px',
         color: '#FFFFFF',
         background: '#8C98FF',
-        fontFamily: 'PT Sans',
         boxShadow: '0px 4px 14px #47474744',
         borderRadius: '10px',
     },

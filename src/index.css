@@ -2,10 +2,9 @@
 
 body {
     margin: 0;
-    /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; */
-    font-family: "PT Sans"!important;
+    -moz-osx-font-smoothing: grayscale;
     letter-spacing: .33px!important;
 }
 
@@ -22,7 +21,6 @@ code {
 
 body {
     background: var(--bodybackground);
-    /* font-family: 'PT Sans', sans-serif; */
 }
 /* @media only screen and (max-width: 750px) {
     .wrapper{
