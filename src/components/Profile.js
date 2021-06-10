@@ -302,12 +302,12 @@ function DetailsAccordion() {
     );
 }
 
-function Profile(userdocumentID) {
+function Profile(props) {
     const classes = useStyles();
     const [userDetails, setuserDetails] = useState({});
     const [loading, setLoading] = useState(false);
 
-    const ref = db.collection('users').doc(userdocumentID);
+    const ref = db.collection('users').doc(props.userdocumentID);
 
     function getUser() {
         setLoading(true);
@@ -332,7 +332,7 @@ function Profile(userdocumentID) {
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid} >
-                <ProfileHeader Name={userDetails.Name} avatar={userDetails.avatar} />
+                <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
                 <DetailsAccordion />
@@ -344,5 +344,5 @@ function Profile(userdocumentID) {
 export default Profile
 
 Profile.defaultProps = {
-    userdocumentID: 'VXOoE5LnkrGrEA0GQcOB'
+    userdocumentID: "7aROHQMUiZXrqavWooPmIyrJVDh2"
 }
