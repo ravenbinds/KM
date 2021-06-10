@@ -87,7 +87,7 @@ function ProfileHeader(props) {
             <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
             <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
                 <Typography color="textPrimary" variant="h6" align='left'>
-                    {props.Name}
+                    {props.name}
                 </Typography>
             </Grid>
         </Grid>
@@ -96,7 +96,7 @@ function ProfileHeader(props) {
 
 ProfileHeader.defaultProps = {
     avatar: man,
-    Name: "Name here",
+    name: "Name here",
 }
 
 function Spotlight() {
@@ -302,12 +302,12 @@ function DetailsAccordion() {
     );
 }
 
-function Profile(props) {
+function Profile(userdocumentID) {
     const classes = useStyles();
     const [userDetails, setuserDetails] = useState({});
     const [loading, setLoading] = useState(false);
 
-    const ref = db.collection('UsersTest').doc(props.userdocumentID);
+    const ref = db.collection('users').doc(userdocumentID);
 
     function getUser() {
         setLoading(true);

@@ -50,7 +50,7 @@ const Contents = () => {
     const currentUser = useUserContext();
 
 
-    const ref = db.collection('UsersTest').doc(currentUser.uid);
+    const ref = db.collection('users').doc(currentUser.uid);
 
     function getUser(){
         setLoading(true);
