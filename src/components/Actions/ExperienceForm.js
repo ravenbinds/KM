@@ -8,7 +8,7 @@ import { db } from '../../firebase';
 import { useUserContext } from '../../UserContext';
 
 
-function ExperienceForm() {
+function ExperienceForm(props) {
   
   const currentUser = useUserContext();
 
@@ -25,7 +25,7 @@ function ExperienceForm() {
     e.preventDefault();
 
     {
-      db.collection("profile/"+currentUser.uid+"/experience").doc()
+      db.collection("profile/"+props.userdocumentID+"/experience").doc()
         .set({
           company: values.company,
           jobTitle: values.jobTitle,
@@ -126,3 +126,7 @@ function ExperienceForm() {
 }
 
 export default ExperienceForm
+
+ExperienceForm.defaultProps = {
+  userdocumentID: 'sampleuser'
+}

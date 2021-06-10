@@ -211,9 +211,7 @@ function DetailsAccordion(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const certref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("certification").doc("9IKyr5eoGyMviEgjH5dF");
-
-    const ref = db.doc('profile/'+'YpDaruUKtfj8RENfJV86') //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
+    const ref = db.doc('profile/'+props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
 
     //Function to get all projects of given user
     function getProject() {
@@ -305,24 +303,24 @@ function DetailsAccordion(props) {
     const items = [
         //Post data
         {
-            form: <ProjectForm />,
+            form: <ProjectForm userdocumentID={props.userdocumentID}/>,
             title: 'Posts', panel: 'panel1',
             startIcon: <FolderOpenRoundedIcon fontSize="large" />,
             entries: postDetails,
         },
         //Experience data
         {
-            form: <ExperienceForm />,
+            form: <ExperienceForm userdocumentID={props.userdocumentID}/>,
             title: 'Experiences',
             panel: 'panel2',
             startIcon: <WorkOutline fontSize="large" />,
             entries: experienceDetails,
         },
 
-        { form: <ProjectForm />, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <ProjectForm userdocumentID={props.userdocumentID}/>, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
         //Certification data
         {
-            form: <CertificationForm />,
+            form: <CertificationForm userdocumentID={props.userdocumentID}/>,
             title: 'Certifications',
             panel: 'panel4',
             startIcon: <School fontSize="large" />,
@@ -330,10 +328,10 @@ function DetailsAccordion(props) {
         },
         //Project data
         {
-            form: <ProjectForm />, title: 'Projects',
+            form: <ProjectForm userdocumentID={props.userdocumentID}/>, title: 'Projects',
             panel: 'panel5',
             startIcon: <School fontSize="large" />,
-            entries: projectDetails
+            entries: projectDetails,
         },
     ]
 
@@ -350,13 +348,16 @@ function DetailsAccordion(props) {
     );
 }
 
+DetailsAccordion.defaultProps = {
+    userdocumentID: "sampleuser"
+}
+
 function Profile(props) {
     const classes = useStyles();
     const [userDetails, setuserDetails] = useState({});
     const [loading, setLoading] = useState(false);
 
     const ref = db.collection('users').doc(props.userdocumentID);
-
     function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
@@ -383,7 +384,7 @@ function Profile(props) {
                 <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
-                <DetailsAccordion user={props.userdocumentID}/>
+                <DetailsAccordion userdocumentID={props.userdocumentID}/>
             </Grid>
         </div >
     )
