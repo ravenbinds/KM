@@ -155,20 +155,6 @@ const Projectpage = () => {
                                         {project.teamMembers}
                                     </Typography></Box>
                             </Grid>
-                            <Grid item xs={12} className={classes.Grid}>
-                            </Grid>
-                            <Grid item xs={12} className={classes.Grid2} >
-                                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                                <Box mt={1} ml={2}>
-
-                                    <Typography color="textPrimary" variant="body1" >
-                                        Adrien Agreste
-</Typography></Box>
-                            </Grid>
-
-
-
-
 
 
                             <Grid item xs={12} className={classes.Grid}>
@@ -184,16 +170,7 @@ const Projectpage = () => {
                                         {project.mentor}
                                     </Typography></Box>
                             </Grid>
-                            <Grid item xs={12} className={classes.Grid}>
-                            </Grid>
-                            <Grid item xs={12} className={classes.Grid2} >
-                                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                                <Box mt={1} ml={2}>
 
-                                    <Typography color="textPrimary" variant="body1" >
-                                        Alfred West
-</Typography></Box>
-                            </Grid>
                             <Grid item xs={12} className={classes.Grid}>
                             </Grid>
                             <Box color="secondary.main" fontSize={17}>LINKS
