@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Avatar, Button, ButtonGroup, InputBase, Typography } from "@material-ui/core";
-import db from "../firebase";
+import { Avatar, Button, ButtonGroup, InputBase, TextField, Typography } from "@material-ui/core";
+import { db } from "../firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import { Form } from './useForm';
 import Box from '@material-ui/core/Box';
@@ -70,10 +70,12 @@ const Sendposts = (nickname, avatar) => {
                                     <Avatar className="Post-user-avatar" src={avatar} />
                                 </Grid>
                                 <Grid item>
-                                    <InputBase
+                                    <TextField
+                                        InputProps={{ disableUnderline: true }}
                                         onChange={(e) => setsendCaption(e.target.value)}
                                         value={sendCaption}
                                         className={classes.input}
+
                                         placeholder="What's happening?"
                                         type="text"
                                     />
@@ -82,9 +84,11 @@ const Sendposts = (nickname, avatar) => {
                         </Grid>
 
                         <Grid item xs={12} >
-                            <InputBase value={sendImage}
+                            <TextField value={sendImage}
+                                InputProps={{ disableUnderline: true }}
                                 onChange={(e) => setsendImage(e.target.value)}
                                 className={classes.input}
+
                                 placeholder="Optional: Enter image URL"
                                 type="text"
                             />
@@ -109,7 +113,7 @@ const Sendposts = (nickname, avatar) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        
+
                     </Grid>
                 </Box>
             </Form>

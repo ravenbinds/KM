@@ -32,22 +32,22 @@ const useStyles = makeStyles((theme) => ({
     Grid: {
         padding: theme.spacing(1),
     },
-    popular : {
-        width:'100vw',
+    popular: {
+        width: '100vw',
         height: 'min-content',
         background: '#E5EEFC',
         "& > div": {
-            width:"100%",
+            width: "100%",
         },
         [theme.breakpoints.up('md')]: {
-            display:'none',
+            display: 'none',
         },
     },
-    popularCards : {
+    popularCards: {
         flexWrap: 'nowrap',
 
     },
-    gridTile : {
+    gridTile: {
         height: "min-content!important",
         minWidth: "200px",
         marginRight: "10px",
@@ -74,22 +74,22 @@ const Contents = () => {
 
     const ref = db.collection('users').doc(currentUser.uid);
 
-    function getUser(){
+    function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
             const userdata = querySnapshot.data();
             setuserDetails(userdata);
             console.log('document retrieved')
         })
-        
+
         setLoading(false)
     }
 
     useEffect(() => {
         getUser();
-    },[])
+    }, [])
 
-    if(loading){
+    if (loading) {
         return <h2>Loading...</h2>
     }
 
@@ -118,7 +118,7 @@ const Contents = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Grid container direction="row"justify="space-between" alignItems="center">
+                    <Grid container direction="row" justify="space-between" alignItems="center">
                         <Grid container>
                             <Grid item>
 
@@ -130,25 +130,25 @@ const Contents = () => {
                                 </Typography>
                             </Grid>
                         </Grid>
-                        
+
                         {/* <Button variant="contained" className={classes.button} onClick={()=> app.auth().signOut()}>
                             Logout
                         </Button> */}
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Sendposts avatar={userDetails.avatar}/>
+                    <Sendposts nickname={userDetails.nickname} avatar={userDetails.avatar} />
                     <FlipMove>
-                        {   posts.map(post => (
-                                <Grid className="Contents-space">
-                                    <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
-                                </Grid>
-                            ))
+                        {posts.map(post => (
+                            <Grid className="Contents-space">
+                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                            </Grid>
+                        ))
                         }
                     </FlipMove>
                 </Grid>
                 <Grid item xs={12}>
-                    
+
                 </Grid>
             </Grid>
         </div>

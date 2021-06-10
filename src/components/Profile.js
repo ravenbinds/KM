@@ -302,13 +302,11 @@ function DetailsAccordion() {
     );
 }
 
-function Profile(userdocumentID) {
+function Profile(props) {
     const classes = useStyles();
     const [userDetails, setuserDetails] = useState({});
     const [loading, setLoading] = useState(false);
-
-    const ref = db.collection('users').doc(userdocumentID);
-
+    const ref = db.collection('users').doc(props.userdocumentID);
     function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
