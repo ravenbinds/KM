@@ -36,10 +36,11 @@ const Contents = () => {
     const classes = useStyles();
     const groupName = "CSE Department VAST"
     const [posts, setPosts] = useState([])
+    const [userDetails, setuserDetails] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => {
-
             setPosts(snapshot.docs.map((doc) => doc.data()
             ));
         }
@@ -47,6 +48,28 @@ const Contents = () => {
     }, []);
 
     const currentUser = useUserContext();
+
+
+    const ref = db.collection('UsersTest').doc(currentUser.uid);
+
+    function getUser(){
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const userdata = querySnapshot.data();
+            setuserDetails(userdata);
+            console.log('document retrieved')
+        })
+        
+        setLoading(false)
+    }
+
+    useEffect(() => {
+        getUser();
+    },[])
+
+    if(loading){
+        return <h2>Loading...</h2>
+    }
 
     return (
         <div className="Contents">
@@ -74,7 +97,7 @@ const Contents = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Sendposts avatar={currentUser.photoURL}/>
+                    <Sendposts avatar={userDetails.avatar}/>
                     <FlipMove>
                         {   posts.map(post => (
                                 <Grid className="Contents-space">

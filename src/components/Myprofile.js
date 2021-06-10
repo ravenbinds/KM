@@ -1,11 +1,13 @@
 import React from 'react';
 import Profile from './Profile'
-
+import {useUserContext} from '../UserContext'
 
 const Myprofile = () => {
 
+    const currentUser = useUserContext();
+
     return (
-            <Profile userdocumentID='tT8cr7h3Gs7tFpxKM5LI'/>
+            <Profile userdocumentID={currentUser.uid} />
     )
 }
 
