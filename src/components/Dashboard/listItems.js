@@ -9,35 +9,35 @@ import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
 import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 export const mainListItems = (
     <div>
-        <ListSubheader disableSticky inset>Accounts</ListSubheader>
-        <ListItem button component={Link} to="/">
+        <ListSubheader disableSticky>Account</ListSubheader>
+        <ListItem button component={NavLink} to="/" exact={true}>
             <ListItemIcon>
                 <HomeRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
         </ListItem>
-        <ListItem button component={Link} to="/Myprofile">
+        <ListItem button component={NavLink} to="/Myprofile">
             <ListItemIcon>
                 <FaceRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="My profile" />
         </ListItem>
-        <ListItem button component={Link} to="/Huntingground">
+        <ListItem button component={NavLink} to="/Huntingground">
             <ListItemIcon>
                 <TrackChangesRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Hunting ground" />
         </ListItem>
-        <ListItem button component={Link} to="/Notifications">
+        <ListItem button component={NavLink} to="/Notifications">
             <ListItemIcon>
                 <NotificationsNoneRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Notifications" />
         </ListItem>
-        <ListItem button component={Link} to="/Settings">
+        <ListItem button component={NavLink} to="/Settings">
             <ListItemIcon>
                 <SettingsRoundedIcon />
             </ListItemIcon>
@@ -48,7 +48,7 @@ export const mainListItems = (
 
 export const secondaryListItems = (
     <div>
-        <ListSubheader disableSticky inset>Your groups</ListSubheader>
+        <ListSubheader disableSticky>Your groups</ListSubheader>
         <ListItem button>
             <ListItemIcon>
                 <AssignmentIcon />
