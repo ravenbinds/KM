@@ -17,20 +17,24 @@ const theme = createMuiTheme({
   },
 
   typography: {
+    fontFamily: [
+      'PT Sans'
+    ],
     body1: {
       fontSize: "0.9rem",
+      fontWeight: 'inherit'
       },
     },
 });
 
 theme.typography.h6 = {
   fontSize: "0.8rem",
-
+  fontWeight: 'normal',
   "@media (min-width:600px)": {
     fontSize: "1.0rem",
   },
   [theme.breakpoints.up("md")]: {
-    fontSize: "1.1rem",
+    fontSize: "1rem",
   },
   };
 

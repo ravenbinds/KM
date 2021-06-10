@@ -65,13 +65,11 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         maxHeight: '39px',
-        position: 'static',
         color: 'inherit',
         background: '#8C98FF',
         padding: theme.spacing(0.5),
         borderRadius: '0.5em',
         fontSize: '12px',
-
     },
 
 }));
@@ -99,9 +97,9 @@ const SimpleCard = () => {
                 <Grid container justify="space-between">
                     <Grid container xs={6}>
                         <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
-                    <Button variant="contained" component={Link} to="/Projectpage" className={classes.button} >
-                        View
-                </Button> </Grid></Grid>
+                        <Button  component={Link} to="/Projectpage" className={classes.button} >View</Button>
+                </Grid>
+                </Grid>
         </Grid>
     )
 
