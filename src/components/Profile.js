@@ -306,7 +306,9 @@ function Profile(props) {
     const classes = useStyles();
     const [userDetails, setuserDetails] = useState({});
     const [loading, setLoading] = useState(false);
+
     const ref = db.collection('users').doc(props.userdocumentID);
+
     function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
@@ -330,7 +332,7 @@ function Profile(props) {
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid} >
-                <ProfileHeader Name={userDetails.Name} avatar={userDetails.avatar} />
+                <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
                 <DetailsAccordion />
@@ -342,5 +344,5 @@ function Profile(props) {
 export default Profile
 
 Profile.defaultProps = {
-    userdocumentID: 'VXOoE5LnkrGrEA0GQcOB'
+    userdocumentID: "7aROHQMUiZXrqavWooPmIyrJVDh2"
 }
