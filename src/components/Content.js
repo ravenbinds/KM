@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import Post from "./Post/index";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import { Grid, GridList, GridListTile } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Top from './Top';
 import Sendposts from './sendposts';
 import FlipMove from "react-flip-move";
+import SimpleCard from './Sidebardash'
 //Firebase
 import { db } from '../firebase';
 import app from 'firebase'
@@ -30,6 +32,26 @@ const useStyles = makeStyles((theme) => ({
     Grid: {
         padding: theme.spacing(1),
     },
+    popular : {
+        width:'100vw',
+        height: 'min-content',
+        background: '#E5EEFC',
+        "& > div": {
+            width:"100%",
+        },
+        [theme.breakpoints.up('md')]: {
+            display:'none',
+        },
+    },
+    popularCards : {
+        flexWrap: 'nowrap',
+
+    },
+    gridTile : {
+        height: "min-content!important",
+        minWidth: "200px",
+        marginRight: "10px",
+    }
 }));
 
 const Contents = () => {
@@ -76,6 +98,24 @@ const Contents = () => {
             <Grid container justify='flex-start' spacing={2}>
                 <Grid item xs={12}>
                     <Top />
+                </Grid>
+                <Grid item xs={12}>
+                    <Grid container direction='column' className={classes.popular} justify='flex-start' spacing={3}>
+                        <Grid item width="100%">
+                            <Grid component={Typography} variant='h5'>Popular Projects</Grid>
+                            <GridList cols={2.5} className={classes.popularCards}>
+                                <GridListTile className={classes.gridTile}>
+                                    <SimpleCard />
+                                </GridListTile>
+                                <GridListTile className={classes.gridTile}>
+                                    <SimpleCard />
+                                </GridListTile>
+                                <GridListTile className={classes.gridTile}>
+                                    <SimpleCard />
+                                </GridListTile>
+                            </GridList>
+                        </Grid>
+                    </Grid>
                 </Grid>
                 <Grid item xs={12}>
                     <Grid container direction="row"justify="space-between" alignItems="center">

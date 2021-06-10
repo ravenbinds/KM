@@ -10,11 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import { UserContext, useUserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
-
     input: {
         marginLeft: theme.spacing(1),
         flex: 1,
-
     },
     iconButton: {
         padding: 10,
@@ -22,38 +20,34 @@ const useStyles = makeStyles((theme) => ({
     },
     Paper: {
         display: 'flex',
-        borderRadius: '400px 400px 400px 400px',
+        borderRadius: '400px',
+        boxShadow : 'none',
+        border: '2px solid #DDD',
         padding: '2px 4px',
         alignItems: 'right',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-
     },
-    greeting: {
-        color: theme.palette.primary.main,
-    },
-
 }));
 const Top = () => {
     const classes = useStyles();
-
     const currentUser = useUserContext();
-
     return (
-        <Grid container alignItems='center'>
+        <Grid container alignItems="center">
             <Grid item xs={12} sm={6} >
                 <Paper component="form" className={classes.Paper}>
-                    <InputBase className={classes.input} placeholder="Search" inputProps={{ 'aria-label': 'search' }} />
-
-                    <IconButton type="submit" className={classes.iconButton} aria-label="search">
+                    <InputBase
+                        className={classes.input}
+                        placeholder="Search"
+                        inputProps={{ 'aria-label': 'search' }}
+                    />
+                    <IconButton type="submit" className={classes.iconButton} aria-label="search" color="secondary.text">
                         <SearchIcon />
                     </IconButton>
                 </Paper>
             </Grid>
             <Grid item xs={12} sm={6}>
-                <Typography align="right" className={classes.greeting} variant="h6" padding="40px">
-                    Hi, {currentUser.displayName}
-                </Typography>
+                <Typography align="right" color="primary" variant="h6" padding="40px">
+                    Hi {currentUser.displayName}
+            </Typography>
             </Grid>
 
         </Grid>

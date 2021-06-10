@@ -1,34 +1,23 @@
 import React, {useState, useEffect} from 'react'
 import firebase from 'firebase'
 import app from './firebase'
+import "./index.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { Button } from '@material-ui/core';
+import { Button, Box } from '@material-ui/core';
 import logo from "./Logo.svg"
 import koala from './koala.svg'
-import Grid from '@material-ui/core/Grid';
 import { AccountCircle } from '@material-ui/icons';
 import {db} from './firebase'
 
 const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(24),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
     button: {
-        display: 'flex',
-        maxWidth: '64',
-        maxHeight: '39px',
-        position: 'static',
+        minHeight: '39px',
         color: '#FFFFFF',
         background: '#8C98FF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        fontFamily: 'PT Sans',
+        boxShadow: '0px 4px 14px #47474744',
         borderRadius: '10px',
-
     },
   }));
 
@@ -61,19 +50,10 @@ function AuthPage() {
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <div className={classes.paper}>
-                <Grid container spacing={2} align='center'>
-                    <Grid item xs={12}>
-                        <img src={koala} alt="KOALA MATRIX" style={{ height: "5rem", width: "5rem"}}></img>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Button variant="contained" className={classes.button} onClick={authWithGoogle} startIcon={<AccountCircle/>}>Sign In With Google</Button>
-                    </Grid>
-                </Grid>
-            </div>
-        </Container>
+        <Box  display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100vh" width="100vw">
+            <Box p={3} width="10rem"><img src={koala} alt="KOALA MATRIX" width="100%"></img></Box>
+            <Button variant="contained" className={classes.button} onClick={authWithGoogle} startIcon={<AccountCircle/>}>Sign In With Google</Button>
+        </Box>
     )
 }
 

@@ -1,8 +1,9 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Link, Redirect, } from "react-router-dom";
+import React, {useState, useRef} from "react";
+import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation } from "react-router-dom";
 import Content from "./Content";
 import Leftbar from "./Leftbar";
 import Rightbar from "./Rightbar";
+import TopBar from "./TopBar";
 import Huntingground from "./pages/Huntingground";
 import Myprofile from "./Myprofile";
 import Notifications from "./Notifications";
@@ -15,20 +16,35 @@ import create from "./pages/createpage";
 // import Dashboard from './Dashboard/dashboard'
 // import Register from './Actions/registration';
 import { useUserContext } from "../UserContext";
+import { makeStyles } from '@material-ui/core/styles';
+import { useOnClickOutside } from '../hooks';
+
+const useStyles = makeStyles((theme) => ({
+  wrapper: {
+    [theme.breakpoints.down('sm')]: {
+      gridTemplateColumns: '1fr',
+      background: '#fafafa',
+      gridTemplateRows: '8vh 92vh'
+    },
+  },
+}));
 
 function Dash() {
-
+  const classes = useStyles();
   const currentUser = useUserContext();
 
-
+  const [open, setOpen] = useState(false);
+  const node = useRef(); 
+  useOnClickOutside(node, () => setOpen(false));
   return (
     <>
     {
       currentUser ? (
         <div className="App">
-          <div className="wrapper">
+          <div className={`wrapper ${classes.wrapper}`} ref={node}>
             <Router>
-              <Leftbar />
+              <TopBar open={open} setOpen={setOpen}/>
+              <Leftbar open={open} setOpen={setOpen} />
               <Switch>
                 <Route exact path="/" component={Content} />
                 <Route exact path="/createpages" component={create} />
