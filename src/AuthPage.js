@@ -46,7 +46,7 @@ function AuthPage() {
 
     const authWithGoogle = () => {
         firebase.auth().signInWithPopup(provider).then((cred) => {
-           return db.collection("UsersTest").doc(cred.user.uid).set(
+           return db.collection("users").doc(cred.user.uid).set(
                {
                    name: cred.user.displayName,
                    avatar: cred.user.photoURL,
