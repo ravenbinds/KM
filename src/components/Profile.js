@@ -84,13 +84,13 @@ function ProfileHeader(props) {
     const classes = useStyles();
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
-                        <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
-                        <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
-                            <Typography color="textPrimary" variant="h6" align='left'>
-                                {props.Name}
-                            </Typography>
-                        </Grid>
-                    </Grid>
+            <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
+            <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
+                <Typography color="textPrimary" variant="h6" align='left'>
+                    {props.Name}
+                </Typography>
+            </Grid>
+        </Grid>
     );
 }
 
@@ -173,16 +173,122 @@ function RecentActivities() {
 }
 
 function DetailsAccordion() {
+    const classes = useStyles();
+
+    const [projectDetails, setprojectDetails] = useState({});
+    const [postDetails, setpostDetails] = useState({});
+    const [experienceDetails, setexperienceDetails] = useState({});
+    const [certificationDetails, setcertificationDetails] = useState({});
+
+    const [loading, setLoading] = useState(false);
+
+    const ref = db.collection('projects').doc("Procastination");
+    const postref = db.collection('posts').doc("dydLi329a3JuvhpagYTh");
+    const experref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("experience").doc("LazyCorp");
+    const certref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("certification").doc("9IKyr5eoGyMviEgjH5dF");
+
+    function getProject() {
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const projectdata = querySnapshot.data();
+            setprojectDetails(projectdata);
+            console.log('document retrieved')
+        })
+
+        setLoading(false)
+    }
+    function getPost() {
+        setLoading(true);
+        postref.onSnapshot((querySnapshot) => {
+            const postdata = querySnapshot.data();
+            setpostDetails(postdata);
+            console.log('document retrieved')
+        })
+
+        setLoading(false)
+    }
+    function getExperience() {
+        setLoading(true);
+        experref.onSnapshot((querySnapshot) => {
+            const expdata = querySnapshot.data();
+            setexperienceDetails(expdata);
+            console.log('document retrieved')
+        })
+
+        setLoading(false)
+    }
+    function getCertifications() {
+        setLoading(true);
+        certref.onSnapshot((querySnapshot) => {
+            const certdata = querySnapshot.data();
+            setcertificationDetails(certdata);
+            console.log('document retrieved')
+        })
+
+        setLoading(false)
+    }
+    useEffect(() => {
+        getProject();
+        getPost();
+        getExperience();
+        getCertifications();
+    }, [])
+
+    if (loading) {
+        return <h2>Loading...</h2>
+    }
 
     const items = [
-        { form: <ProjectForm />, title: 'Posts', panel: 'panel1', startIcon: <FolderOpenRoundedIcon fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Incomplete", statusIcon: <Timelapse /> }, { heading: "Abc", description: "Abcd", status: "Completed", statusIcon: <CheckRoundedIcon /> }] },
-        { form: <ExperienceForm />, title: 'Experiences', panel: 'panel2', startIcon: <WorkOutline fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        {
+            form: <ProjectForm />,
+            title: 'Posts', panel: 'panel1',
+            startIcon: <FolderOpenRoundedIcon fontSize="large" />,
+            entries: [{
+                heading: postDetails.nickname,
+                description: postDetails.caption,
+                status: postDetails.image,
+
+                statusIcon: < Timelapse />
+            }]
+        },
+        {
+            form: <ExperienceForm />,
+            title: 'Experiences',
+            panel: 'panel2',
+            startIcon: <WorkOutline fontSize="large" />,
+            entries: [{
+                heading: experienceDetails.jobTitle,
+                description: experienceDetails.description,
+                status: experienceDetails.company,
+                statusIcon: <CheckRoundedIcon />
+            }]
+        },
         { form: <ProjectForm />, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
-        { form: <CertificationForm />, title: 'Certifications', panel: 'panel4', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
-        { form: <ProjectForm />, title: 'Projects', panel: 'panel5', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        {
+            form: <CertificationForm />,
+            title: 'Certifications',
+            panel: 'panel4',
+            startIcon: <School fontSize="large" />,
+            entries: [{
+                heading: certificationDetails.certificationName,
+                description: certificationDetails.credentialID,
+                status: certificationDetails.description,
+                statusIcon: <CheckRoundedIcon />
+            }]
+        },
+        {
+            form: <ProjectForm />, title: 'Projects',
+            panel: 'panel5',
+            startIcon: <School fontSize="large" />,
+            entries: [{
+                heading: projectDetails.pname,
+                description: projectDetails.description,
+                status: projectDetails.status,
+                statusIcon: <CheckRoundedIcon />
+            }]
+        },
     ]
 
-    const classes = useStyles();
 
     return (
         <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
@@ -203,22 +309,22 @@ function Profile(props) {
 
     const ref = db.collection('UsersTest').doc(props.userdocumentID);
 
-    function getUser(){
+    function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
             const userdata = querySnapshot.data();
             setuserDetails(userdata);
             console.log('document retrieved')
         })
-        
+
         setLoading(false)
     }
 
     useEffect(() => {
         getUser();
-    },[])
+    }, [])
 
-    if(loading){
+    if (loading) {
         return <h2>Loading...</h2>
     }
 
