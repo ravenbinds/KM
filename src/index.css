@@ -106,3 +106,7 @@ body {
     justify-content: flex-start;
     align-content: space-evenly;
 }
+.Post-image img {
+    width: 10;
+    height: 10;
+}
