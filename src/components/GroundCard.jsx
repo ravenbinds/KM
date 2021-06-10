@@ -52,12 +52,12 @@ const GroundCard = ( props ) => {
     const Icon = props.icon;
     return (
         <ButtonBase className={classes.touch}>
-        <NavLink to="/" className={classes.navlink} exact>
+        <NavLink to={props.link} className={classes.navlink} exact>
             <Box textAlign="center" px={4} py={3} className={classes.card} >
                 <Icon className={classes.icon}/>
                 <Typography className={classes.title} variant="h5" textAlign="justify">{props.title}</Typography>
                 <Typography variant="body2">{props.desc}</Typography>
-                <Typography variant="caption" >{props.tag}</Typography>
+                <Typography variant="overline" color="primary">{props.tag}</Typography>
             </Box>
         </NavLink>
         </ButtonBase>
