@@ -7,9 +7,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-// import { Button } from '@material-ui/core';
 import { Add } from '@material-ui/icons';
-// import Popup from '../Popup';
 import SimpleModal from './SimpleModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -75,18 +73,15 @@ function ItemCard(props){
 }
 
 function SimpleAccordion(props) {
+    const classes = useStyles();
 
     const {items} = props;
 
-    const classes = useStyles();
-
+    //MODAL variables, form
     const [expanded, setExpanded] = React.useState(false);
-
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-
-    const [openPopup, setOpenPopup] = useState(false);
 
     return (
       <Grid item xs={12} alignItems="flex-start">
@@ -98,23 +93,23 @@ function SimpleAccordion(props) {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid container direction="column" spacing={3}>
-                                <Grid container direction="column">
-                                    {
-                                        item.entries.map(entry=>(
-                                            <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon}/>
-                                        ))
-                                    }
-                                </Grid>
+                                {   (item.entries.length>0) ? 
+                                        <Grid item>
+                                            <Grid container direction="column">
+                                                {   
+                                                    item.entries.map(entry=>(
+                                                        <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon}/>
+                                                    )) 
+                                                }
+                                            </Grid> 
+                                        </Grid>
+                                        : 
+                                        <Grid item align='center'>
+                                            <Typography variant='subtitle1'>Nothing to show here</Typography>
+                                        </Grid>
+                                        }
                                 <Grid item align='right'>
                                     <SimpleModal body={item.form} startIcon={<Add/>} title={"Add " + item.title} button={"Add " + item.title}/>
-                                    {/* <Button variant='outlined' color='primary' startIcon={<Add/>} onClick={() => setOpenPopup(true)}>{"Add " + item.title}</Button>
-                                    <Popup
-                                        openPopup={openPopup}
-                                        setOpenPopup={setOpenPopup}
-                                        title={"Add " + item.title}
-                                    >
-                                        {item.form}
-                                    </Popup> */}
                                 </Grid>
                             </Grid>
                         </AccordionDetails>

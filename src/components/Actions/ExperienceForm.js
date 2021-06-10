@@ -5,7 +5,13 @@ import { useForm, Form } from '../useForm';
 import Button from '@material-ui/core/Button'
 import { Add } from '@material-ui/icons';
 import { db } from '../../firebase';
+import { useUserContext } from '../../UserContext';
+
+
 function ExperienceForm() {
+  
+  const currentUser = useUserContext();
+
   const initialFValues = {
     company: '',
     jobTitle: '',
@@ -19,7 +25,7 @@ function ExperienceForm() {
     e.preventDefault();
 
     {
-      db.collection("profile/YpDaruUKtfj8RENfJV86/experience").doc()
+      db.collection("profile/"+currentUser.uid+"/experience").doc()
         .set({
           company: values.company,
           jobTitle: values.jobTitle,
@@ -27,7 +33,6 @@ function ExperienceForm() {
           startDate: values.startDate,
           endDate: values.endDate,
           employmentType: values.employmentType,
-
         }, { merge: true });
 
     }
