@@ -13,11 +13,10 @@ import Projectadopt from "./pages/projectadopt";
 import Projectpage from "./pages/Projectpage";
 import errorpage from "./404";
 import create from "./pages/createpage";
-// import Dashboard from './Dashboard/dashboard'
-// import Register from './Actions/registration';
 import { useUserContext } from "../UserContext";
 import { makeStyles } from '@material-ui/core/styles';
 import { useOnClickOutside } from '../hooks';
+import followers from './pages/followers'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -56,6 +55,7 @@ function Dash() {
                 <Route exact path="/Huntingground" component={Huntingground} />
                 <Route exact path="/Notifications" component={Notifications} />
                 <Route exact path="/Settings" component={Settings} />
+                <Route exact path="/followers" component={followers}/>
                 <Route component={errorpage} />
               </Switch>
               <Rightbar />

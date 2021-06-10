@@ -1,3 +1,7 @@
+/*
+SHOULD ADD SOMETHING FOR EDUCATION
+*/
+
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -20,6 +24,8 @@ import ProjectForm from './Actions/ProjectForm';
 import ExperienceForm from './Actions/ExperienceForm'
 import CertificationForm from './Actions/CertificationForm'
 import { db } from '../firebase';
+import { useUserContext } from '../UserContext';
+
 
 const useStyles = makeStyles((theme) => ({
 
@@ -84,11 +90,31 @@ function ProfileHeader(props) {
     const classes = useStyles();
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
+            <Grid item>
             <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
-            <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
-                <Typography color="textPrimary" variant="h6" align='left'>
-                    {props.name}
-                </Typography>
+            </Grid>
+            <Grid item>
+            <Grid container direction='column'>
+                <Grid item>
+                    <Typography color="textPrimary" variant="h6" align='left'>
+                        {props.name}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Grid container direction='row' spacing={1}>
+                        <Grid item>
+                            <Typography variant='body1' component={Link} to='/followers'>
+                                {props.followers} followers
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="body1" component={Link} to='/following'>
+                                {props.following} following
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
             </Grid>
         </Grid>
     );
@@ -97,6 +123,8 @@ function ProfileHeader(props) {
 ProfileHeader.defaultProps = {
     avatar: man,
     name: "Name here",
+    followers: 0,
+    following: 0,
 }
 
 function Spotlight() {
@@ -172,65 +200,101 @@ function RecentActivities() {
     )
 }
 
-function DetailsAccordion() {
+function DetailsAccordion(props) {
+
     const classes = useStyles();
 
-    const [projectDetails, setprojectDetails] = useState({});
-    const [postDetails, setpostDetails] = useState({});
-    const [experienceDetails, setexperienceDetails] = useState({});
-    const [certificationDetails, setcertificationDetails] = useState({});
+    const [projectDetails, setprojectDetails] = useState([]);
+    const [postDetails, setpostDetails] = useState([]);
+    const [experienceDetails, setexperienceDetails] = useState([]);
+    const [certificationDetails, setcertificationDetails] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
-    const ref = db.collection('projects').doc("Procastination");
-    const postref = db.collection('posts').doc("dydLi329a3JuvhpagYTh");
-    const experref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("experience").doc("LazyCorp");
     const certref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("certification").doc("9IKyr5eoGyMviEgjH5dF");
 
+    const ref = db.doc('profile/'+'YpDaruUKtfj8RENfJV86') //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
+
+    //Function to get all projects of given user
     function getProject() {
         setLoading(true);
-        ref.onSnapshot((querySnapshot) => {
-            const projectdata = querySnapshot.data();
-            setprojectDetails(projectdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('projects').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: "Project title",
+                    description: "Project description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setprojectDetails(items);
+            setLoading(false);
+        });
     }
+
+    //Function to get all posts of given user
     function getPost() {
         setLoading(true);
-        postref.onSnapshot((querySnapshot) => {
-            const postdata = querySnapshot.data();
-            setpostDetails(postdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('posts').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: "Post title",
+                    description: "Post description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setpostDetails(items)
+            setLoading(false);
+        });
     }
-    function getExperience() {
+
+    //Function to get all experiences of given user
+    function getExperiences() {
         setLoading(true);
-        experref.onSnapshot((querySnapshot) => {
-            const expdata = querySnapshot.data();
-            setexperienceDetails(expdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('experience').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().jobTitle,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setexperienceDetails(items)
+            setLoading(false);
+        });
     }
+
+    //Function to get all certifications of given user
     function getCertifications() {
         setLoading(true);
-        certref.onSnapshot((querySnapshot) => {
-            const certdata = querySnapshot.data();
-            setcertificationDetails(certdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('certification').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().certificationName,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setcertificationDetails(items)
+            setLoading(false);
+        });
     }
+
     useEffect(() => {
         getProject();
         getPost();
-        getExperience();
+        getExperiences();
         getCertifications();
     }, [])
 
@@ -239,53 +303,37 @@ function DetailsAccordion() {
     }
 
     const items = [
+        //Post data
         {
             form: <ProjectForm />,
             title: 'Posts', panel: 'panel1',
             startIcon: <FolderOpenRoundedIcon fontSize="large" />,
-            entries: [{
-                heading: postDetails.nickname,
-                description: postDetails.caption,
-                status: postDetails.image,
-
-                statusIcon: < Timelapse />
-            }]
+            entries: postDetails,
         },
+        //Experience data
         {
             form: <ExperienceForm />,
             title: 'Experiences',
             panel: 'panel2',
             startIcon: <WorkOutline fontSize="large" />,
-            entries: [{
-                heading: experienceDetails.jobTitle,
-                description: experienceDetails.description,
-                status: experienceDetails.company,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: experienceDetails,
         },
+
         { form: <ProjectForm />, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        //Certification data
         {
             form: <CertificationForm />,
             title: 'Certifications',
             panel: 'panel4',
             startIcon: <School fontSize="large" />,
-            entries: [{
-                heading: certificationDetails.certificationName,
-                description: certificationDetails.credentialID,
-                status: certificationDetails.description,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: certificationDetails,
         },
+        //Project data
         {
             form: <ProjectForm />, title: 'Projects',
             panel: 'panel5',
             startIcon: <School fontSize="large" />,
-            entries: [{
-                heading: projectDetails.pname,
-                description: projectDetails.description,
-                status: projectDetails.status,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: projectDetails
         },
     ]
 
@@ -335,7 +383,7 @@ function Profile(props) {
                 <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
-                <DetailsAccordion />
+                <DetailsAccordion user={props.userdocumentID}/>
             </Grid>
         </div >
     )
