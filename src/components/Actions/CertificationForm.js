@@ -6,12 +6,13 @@ import Button from '@material-ui/core/Button'
 import { Add } from '@material-ui/icons';
 import { db } from '../../firebase'
 
-function CertificationForm() {
+function CertificationForm(props) {
   const sendInfo = (e) => {
     e.preventDefault();
 
     {
-      db.collection("profile/YpDaruUKtfj8RENfJV86/certification").doc()
+      // db.collection("profile/YpDaruUKtfj8RENfJV86/certification").doc()
+      db.collection('profile/'+ props.userdocumentID +'/certification').doc()
         .set({
           certificationName: values.certificationName,
           issuingOrganization: values.issuingOrganization,
@@ -123,3 +124,7 @@ function CertificationForm() {
 }
 
 export default CertificationForm
+
+CertificationForm.defaultProps = {
+  userdocumentID: "sampleuser"
+}
