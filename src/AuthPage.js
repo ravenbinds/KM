@@ -9,7 +9,7 @@ import logo from "./Logo.svg"
 import koala from './koala.svg'
 import Grid from '@material-ui/core/Grid';
 import { AccountCircle } from '@material-ui/icons';
-
+import {db} from './firebase'
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 function AuthPage() {
 
     const [currentUser, setCurrentUser] = useState()
+    const [id, setId] = useState()
     const provider = new firebase.auth.GoogleAuthProvider()
 
     useEffect(() => {
@@ -44,7 +45,17 @@ function AuthPage() {
     },[])
 
     const authWithGoogle = () => {
-        firebase.auth().signInWithPopup(provider)
+        firebase.auth().signInWithPopup(provider).then((cred) => {
+           return db.collection("UsersTest").doc(cred.user.uid).set(
+               {
+                   name: cred.user.displayName,
+                   avatar: cred.user.photoURL,
+                   nickname: cred.user.displayName,
+                   email: cred.user.email,
+                   emailverified: cred.user.emailVerified,
+               }
+           );
+        })
     }
 
     const classes = useStyles();
