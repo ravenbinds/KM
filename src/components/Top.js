@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Top = () => {
     const classes = useStyles();
-
     const currentUser = useUserContext();
     return (
         <Grid container alignItems="center">
@@ -40,7 +39,6 @@ const Top = () => {
                         placeholder="Search"
                         inputProps={{ 'aria-label': 'search' }}
                     />
-
                     <IconButton type="submit" className={classes.iconButton} aria-label="search" color="secondary.text">
                         <SearchIcon />
                     </IconButton>

@@ -79,7 +79,8 @@ body {
 } */
 
 .Contents {
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     padding-top: 30px;
@@ -87,6 +88,28 @@ body {
     left: 275px;
     top: 0px;
 }
+
+/* Works on Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #ddd #fafafa00;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #fafafa00;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 20px;
+    border: 3px solid #fafafa00;
+  }
 
 .Contents-space {
     padding: 5px;

@@ -12,7 +12,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import { NavLink } from 'react-router-dom';
 export const mainListItems = (
     <div>
-        <ListSubheader disableSticky>Accounts</ListSubheader>
+        <ListSubheader disableSticky>Account</ListSubheader>
         <ListItem button component={NavLink} to="/" exact={true}>
             <ListItemIcon>
                 <HomeRoundedIcon />

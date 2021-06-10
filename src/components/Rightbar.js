@@ -1,12 +1,11 @@
 import SimpleCard from './Sidebardash'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-import app from 'firebase'
-import { NotificationsOutlined } from '@material-ui/icons'
-import {Link} from 'react-router-dom'
-
-
-
+import IconButton from '@material-ui/core/IconButton'
+import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles';
+import UserDropDown from './controls/UserDropDown';
+import { UserContext, useUserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
     rightbar: {
@@ -24,20 +23,15 @@ const Rightbar = () => {
     const classes = useStyles();
     const currentUser = useUserContext();
     return (
-        <div className="Right" >
+        <div className={classes.rightbar} >
             <Grid container direction='column' justify='flex-start' spacing={1}>
                 <Grid item xs={12}>
                     <Grid container direction='row' justify='flex-end' spacing={1} alignItems='center'>
-                        <Grid item>
-                            <Button component={Link} to='/Notifications'><NotificationsOutlined/></Button>
-                        </Grid>
-                        <Grid item >
-                            <Button variant='outlined' onClick={()=>app.auth().signOut()}>Logout</Button>
-                        </Grid>
+                        <UserDropDown/>
                     </Grid>
                 </Grid>
                 <Grid item>
-                    <h6>Popular Projects</h6>
+                    <Grid component={Typography} variant='h5'>Popular Projects</Grid>
                     <SimpleCard />
                 </Grid>
             </Grid>
