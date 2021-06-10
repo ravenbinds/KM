@@ -1,5 +1,6 @@
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, ButtonBase, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     card : {
@@ -12,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
         minHeight: "200px",
         transition: "all .2s",
         boxShadow: "0px 4px 14px #4747470F",
-        cursor: "pointer",
         transform: "translateZ(0)",
         backfaceVisibility: "hidden",
         fontSmoothing: "antialiased",
@@ -33,6 +33,16 @@ const useStyles = makeStyles((theme) => ({
     },
     icon : {
         fontSize: "3rem"
+    },
+    touch: {
+        "& .MuiTouchRipple-root": {
+            borderRadius: "10px",
+            transform:"scale(1.01)",
+        }
+    },
+    navlink : {
+        color: 'inherit',
+        textDecoration: 'inherit'
     }
 }));
 
@@ -41,12 +51,16 @@ const GroundCard = ( props ) => {
     const classes = useStyles();
     const Icon = props.icon;
     return (
-        <Box className={classes.card} textAlign="center" px={4} mx={2} my={2} py={3}>
-            <Icon className={classes.icon}/>
-            <Typography className={classes.title} variant="h5" textAlign="justify">{props.title}</Typography>
-            <Typography variant="body2">{props.desc}</Typography>
-            <Typography variant="caption" >{props.tag}</Typography>
-        </Box>
+        <ButtonBase className={classes.touch}>
+        <NavLink to="/" className={classes.navlink} exact>
+            <Box textAlign="center" px={4} py={3} className={classes.card} >
+                <Icon className={classes.icon}/>
+                <Typography className={classes.title} variant="h5" textAlign="justify">{props.title}</Typography>
+                <Typography variant="body2">{props.desc}</Typography>
+                <Typography variant="caption" >{props.tag}</Typography>
+            </Box>
+        </NavLink>
+        </ButtonBase>
     )
 }
 

@@ -30,7 +30,7 @@ const Huntingground = () => {
                 </Typography>
             </Box>
 
-            <Grid container>
+            <Grid container spacing={2}>
                 <Grid item xs={6}>
                     <GroundCard
                         icon={GroupSharp}
@@ -56,6 +56,14 @@ const Huntingground = () => {
                     />
                 </Grid>
                 <Grid item xs={6}>
+                    <GroundCard
+                        icon={Work}
+                        title="Freelancers' For Hire"
+                        desc="Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches"
+                        tag="#PARTTIMEJOBS"
+                    />
+                </Grid>
+                <Grid item xs={12}>
                     <GroundCard
                         icon={Work}
                         title="Freelancers' For Hire"
