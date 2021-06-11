@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
         padding: "0",
         borderRadius: "500px",
         "& .photo": {
-            height: "6vh",
-            width: "6vh",
+            height: "5vh",
+            width: "5vh",
         },
     },
 }));
