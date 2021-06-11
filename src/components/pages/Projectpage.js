@@ -59,12 +59,11 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-const Projectpage = () => {
+const Projectpage = (props) => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
     useEffect(() => {
-        db.collection("projects")
-
+        db.collection("projects").where('pname', '==', (props.pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
@@ -83,7 +82,7 @@ const Projectpage = () => {
                     <Grid item xs={12} className={classes.Grid}>
                         <Typography align="left" color="textPrimary" variant="h6" padding="40px">
                             #Projects
-                 </Typography>
+                        </Typography>
 
                         <Grid container direction="column" justify="center" alignItems="center" className={classes.Grid1}>
                             <Box color="primary.main" fontSize="h5.fontSize">
@@ -117,21 +116,21 @@ const Projectpage = () => {
 
                                 <TrackChangesRoundedIcon fontSize="large" color="primary" />
                                 <Box color="secondary.main" fontSize={17}>ON THE HUNT
-                            </Box></Grid>
+                                </Box></Grid>
 
                             <Grid container xs={12} direction="row" justify="space-between" alignItems="flex-end">
 
                                 <List dense > Looking for:
-                                <ListItem >
+                                    <ListItem >
                                         <ListItemIcon>
                                             +
-                    </ListItemIcon>
+                                        </ListItemIcon>
                                         <ListItemText primary="Logo Designer" />
                                     </ListItem>
                                     <ListItem >
                                         <ListItemIcon>
                                             +
-                    </ListItemIcon>
+                                        </ListItemIcon>
                                         <ListItemText primary="Software Tester" />
                                     </ListItem>
 
@@ -219,26 +218,26 @@ const Projectpage = () => {
                             <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
                                 Nothing to see here
 
-                        </Grid>
+                            </Grid>
 
                             <Box color="secondary.main" mt={2} mb={2} fontSize={17}>SUPPORTED BY
                             </Box>
                             <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
                                 Nothing to see here
-                        </Grid>
+                            </Grid>
 
                             <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STAKEHOLDERS
                             </Box>
                             <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
                                 Nothing to see here
 
-                        </Grid>
+                            </Grid>
 
                             <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STATS
                             </Box>
                             <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
                                 Tracked by
-                        </Grid>
+                            </Grid>
                         </Grid>
 
                     </Grid>
@@ -249,3 +248,7 @@ const Projectpage = () => {
 }
 
 export default Projectpage
+
+Projectpage.defaultProps = {
+    pname: 'Emotion Detection through Facial Expression',
+}

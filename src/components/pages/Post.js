@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     Grid1: {
-        boxShadow: '0 2px 0px 0 rgba(0, 0, 0, 0.1),0 1px 0px 0 rgba(121, 121, 121, 0.19)',
+        boxShadow: '0 1px 0px 0 rgba(0, 0, 0, 0.1),0 1px 0px 0 rgba(121, 121, 121, 0.19)',
 
     },
     Grid2: {

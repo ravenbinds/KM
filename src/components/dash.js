@@ -19,6 +19,7 @@ import { useOnClickOutside } from '../hooks';
 import followers from './pages/followers'
 import Freelance from "./pages/Freelance";
 import ProblemStatement from './pages/ProblemStatement';
+import getProject from './pages/getProject'
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     [theme.breakpoints.down('sm')]: {
@@ -50,7 +51,7 @@ function Dash() {
                   <Route exact path="/createpages" component={create} />
                   <Route exact path="/Content" component={Content} />
                   <Route exact path="/Myprofile" component={Myprofile} />
-                  <Route exact path="/Projectpage" component={Projectpage} />
+                  <Route exact path="/Projectpage" component={getProject} />
                   <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
                   <Route exact path="/Huntingground/freelance" component={Freelance} />
                   <Route exact path="/Huntingground/problemstatement" component={ProblemStatement} />

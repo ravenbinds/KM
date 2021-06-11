@@ -8,7 +8,10 @@ import { useState } from 'react';
 import classNames from 'classnames'
 import Top from '../Top';
 import { db } from '../../firebase';
-
+import { Button } from '@material-ui/core';
+import Projectpage from './Projectpage';
+import GetProject from './getProject';
+import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 
 
@@ -24,7 +27,9 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '8px',
         margin: theme.spacing(1)
     },
-
+    user: {
+        fontWeight: '700',
+    },
     button: {
         maxWidth: '64',
         maxHeight: '39px',
@@ -41,6 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const ProjectLists = () => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
+
     useEffect(() => {
         db.collection("projects")
 
@@ -61,22 +67,33 @@ const ProjectLists = () => {
                 <Grid container justify="space-evenly" alignItems="flex-start" >
                     {
                         projects.map(project => (
-                            <Grid item xs={12} className={classes.Grid2}  >
-                                {/* <Grid item xs={12} className={notificationClass}  > */}
-                                <Typography color="textPrimary" variant="body1" >
-                                    {project.owner}
-                                </Typography>
-                                <Box mt={1} ml={2}>
-                                    <Typography color="textPrimary" variant="body1" >
-                                        {project.pname}
+                            <Grid container justify="flex-start" alignItems="center" className={classes.Grid2}  >
+                                <Grid item xs={12}  >
+                                    <Typography color="primary" variant="h6" className={classes.user}>
+                                        Project Name: {project.pname}
                                     </Typography>
-                                </Box>
+                                </Grid>
+                                <Grid item xs={12} >
+                                    <Typography color="textSecondary" variant="body1" >
+                                        Owned by: {project.owner}
+                                    </Typography></Grid>
+
+                                <Grid container xs={12} justify="flex-end" alignItems="flex-end">
+                                    <Button component={Link} to={{
+                                        pathname: "/Projectpage",
+                                        aboutProps: {
+                                            pname: project.pname
+                                        }
+                                    }} className={classes.button} >
+                                        View
+                                    </Button>
+                                </Grid>
                             </Grid>
                         ))
                     }
                 </Grid>
             </Grid>
-        </div>
+        </div >
     )
 }
 
