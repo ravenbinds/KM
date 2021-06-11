@@ -70,10 +70,10 @@ const Sendposts = (props) => {
 
                         <Grid item xs={12}>
                             <Grid container direction='row' justify='flex-start' alignItems='center'>
-                                <Grid item>
+                                <Grid item xs={1}>
                                     <Avatar className={classes.large} src={props.avatar} />
                                 </Grid>
-                                <Grid item>
+                                <Grid item xs>
                                     <TextField
                                         InputProps={{ disableUnderline: true }}
                                         onChange={(e) => setsendCaption(e.target.value)}
