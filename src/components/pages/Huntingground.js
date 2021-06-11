@@ -74,7 +74,7 @@ const Huntingground = () => {
                                 color="primary"
                                 endIcon={<KeyboardArrowRightSharp/>}
                             >
-                                <Typography>Get Started</Typography>
+                                <Typography variant="h6">Get Started</Typography>
                             </Button>
                         </NavLink>
                     </Box>
