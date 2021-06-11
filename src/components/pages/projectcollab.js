@@ -32,26 +32,23 @@ const Projectcollab = () => {
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid}>
-                <Typography align="right" color="textPrimary" variant="h5" padding="40px">
-                    Hunting ground
-                </Typography>
-                {/* <Breadcrumbs aria-label="breadcrumb">
-                        <Route path="/" render={() => (<MuiLink component={Link} to="/Huntingground">Huntinground   </MuiLink>)} />
-
-                        <Typography color="textPrimary">Projectcollab</Typography>
-                    </Breadcrumbs> */}
+            <Grid container justify="flex-start" alignItems="flex-start" className={classes.Grid}>
+                <Grid item xs={12} className={classes.Grid}>
+                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                        Hunting ground
+                    </Typography></Grid>
+                <Grid item xs={12} >
+                    <Grid container justify="flex-start" alignItems="flex-start" spacing={2}>
+                        {
+                            hgpost.map(post => (
+                                <Grid item xs={12}>
+                                    <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
+                                </Grid>
+                            ))
+                        }
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid container direction='column' justify='flex-start' spacing={2}>
-                {
-                    hgpost.map(post => (
-                        <Grid item xs={12}>
-                            <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
-                        </Grid>
-                    ))
-                }
-            </Grid>
-
         </div >
     )
 }
