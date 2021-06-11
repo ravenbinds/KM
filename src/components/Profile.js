@@ -18,18 +18,13 @@ import { Add, School, Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
 import ExperienceForm from './Actions/ExperienceForm'
+import EducationForm from './Actions/EducationForm'
 import CertificationForm from './Actions/CertificationForm'
 import { db } from '../firebase';
+import { useUserContext } from '../UserContext';
+
 
 const useStyles = makeStyles((theme) => ({
-
-    heading: {
-        fontSize: theme.typography.pxToRem(16),
-        flexBasis: '33.33%',
-        flexShrink: 0,
-        color: '#00296B',
-    },
-
     root: {
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
@@ -61,18 +56,6 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '30px',
         margin: theme.spacing(2)
     },
-
-    Paper1: {
-        borderRadius: '30px',
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > *': {
-            margin: theme.spacing(1),
-            width: theme.spacing(8),
-            height: theme.spacing(8),
-        },
-    },
-
     large: {
         width: theme.spacing(10),
         height: theme.spacing(10),
@@ -84,11 +67,31 @@ function ProfileHeader(props) {
     const classes = useStyles();
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
+            <Grid item>
             <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
-            <Grid item xs={9} sm={6} alignItems="flex-start" justify="flex-start">
-                <Typography color="textPrimary" variant="h6" align='left'>
-                    {props.name}
-                </Typography>
+            </Grid>
+            <Grid item>
+            <Grid container direction='column'>
+                <Grid item>
+                    <Typography color="textPrimary" variant="h6" align='left'>
+                        {props.name}
+                    </Typography>
+                </Grid>
+                <Grid item>
+                    <Grid container direction='row' spacing={1}>
+                        <Grid item>
+                            <Typography variant='body1' component={Link} to='/followers'>
+                                {props.followers} followers
+                            </Typography>
+                        </Grid>
+                        <Grid item>
+                            <Typography variant="body1" component={Link} to='/following'>
+                                {props.following} following
+                            </Typography>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
             </Grid>
         </Grid>
     );
@@ -97,6 +100,8 @@ function ProfileHeader(props) {
 ProfileHeader.defaultProps = {
     avatar: man,
     name: "Name here",
+    followers: 0,
+    following: 0,
 }
 
 function Spotlight() {
@@ -147,91 +152,153 @@ function RecentActivities() {
     const classes = useStyles();
     return (
         <Grid container direction="column" justify="flex-start" alignItems="center">
-            <Typography color="textSecondary" align="left" padding="20px">
-                Recent activities
-                    </Typography>
-            {
-                items.map(item => (
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Box className={classes.Box}>
-                            <CardActions>
-                                <Button size="small" >{item.startIcon}</Button>
-                            </CardActions>
-                            <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-                                {item.content}
-                            </Typography>
-                        </Box>
-                    </Grid>
-                ))
-            }
-            <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
+            <Grid item xs={12}>
+                <Typography color="textSecondary" align="left" padding="20px">
+                    Recent activities
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Grid container direction='column' justify='flex-start'>
+                {
+                    items.map(item => (
+                        <Grid item xs={12} className={classes.Grid2}  >
+                            <Box className={classes.Box}>
+                                <CardActions>
+                                    <Button size="small" >{item.startIcon}</Button>
+                                </CardActions>
+                                <Typography align="left" color="textprimary" variant="body1" gutterBottom>
+                                    {item.content}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    ))
+                }
+                </Grid>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
                 see all activities...
-                    </Typography>
+                </Typography>
+            </Grid>
+
         </Grid>
 
     )
 }
 
-function DetailsAccordion() {
-    const classes = useStyles();
+function DetailsAccordion(props) {
 
-    const [projectDetails, setprojectDetails] = useState({});
-    const [postDetails, setpostDetails] = useState({});
-    const [experienceDetails, setexperienceDetails] = useState({});
-    const [certificationDetails, setcertificationDetails] = useState({});
+    const [projectDetails, setprojectDetails] = useState([]);
+    const [postDetails, setpostDetails] = useState([]);
+    const [experienceDetails, setexperienceDetails] = useState([]);
+    const [certificationDetails, setcertificationDetails] = useState([]);
+    const [educationDetails, setEducationDetails] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
-    const ref = db.collection('projects').doc("Procastination");
-    const postref = db.collection('posts').doc("dydLi329a3JuvhpagYTh");
-    const experref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("experience").doc("LazyCorp");
-    const certref = db.collection('profile').doc("YpDaruUKtfj8RENfJV86").collection("certification").doc("9IKyr5eoGyMviEgjH5dF");
+    const ref = db.doc('profile/'+props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
 
+    //Function to get all projects of given user
     function getProject() {
         setLoading(true);
-        ref.onSnapshot((querySnapshot) => {
-            const projectdata = querySnapshot.data();
-            setprojectDetails(projectdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('projects').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: "Project title",
+                    description: "Project description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setprojectDetails(items);
+            setLoading(false);
+        });
     }
+
+    //Function to get all education details of given user
+    function getEducation() {
+        setLoading(true);
+        ref.collection('education').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().degree,
+                    description: doc.data().school,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setEducationDetails(items);
+            setLoading(false);
+        });
+    }
+
+    //Function to get all posts of given user
     function getPost() {
         setLoading(true);
-        postref.onSnapshot((querySnapshot) => {
-            const postdata = querySnapshot.data();
-            setpostDetails(postdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('posts').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: "Post title",
+                    description: "Post description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setpostDetails(items)
+            setLoading(false);
+        });
     }
-    function getExperience() {
+
+    //Function to get all experiences of given user
+    function getExperiences() {
         setLoading(true);
-        experref.onSnapshot((querySnapshot) => {
-            const expdata = querySnapshot.data();
-            setexperienceDetails(expdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('experience').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().jobTitle,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setexperienceDetails(items)
+            setLoading(false);
+        });
     }
+
+    //Function to get all certifications of given user
     function getCertifications() {
         setLoading(true);
-        certref.onSnapshot((querySnapshot) => {
-            const certdata = querySnapshot.data();
-            setcertificationDetails(certdata);
-            console.log('document retrieved')
-        })
-
-        setLoading(false)
+        ref.collection('certification').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().certificationName,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setcertificationDetails(items)
+            setLoading(false);
+        });
     }
+
     useEffect(() => {
         getProject();
         getPost();
-        getExperience();
+        getExperiences();
         getCertifications();
+        getEducation();
     }, [])
 
     if (loading) {
@@ -239,67 +306,53 @@ function DetailsAccordion() {
     }
 
     const items = [
+        //Post data
         {
-            form: <ProjectForm />,
+            form: <ProjectForm userdocumentID={props.userdocumentID}/>,
             title: 'Posts', panel: 'panel1',
             startIcon: <FolderOpenRoundedIcon fontSize="large" />,
-            entries: [{
-                heading: postDetails.nickname,
-                description: postDetails.caption,
-                status: postDetails.image,
-
-                statusIcon: < Timelapse />
-            }]
+            entries: postDetails,
         },
+        //Experience data
         {
-            form: <ExperienceForm />,
+            form: <ExperienceForm userdocumentID={props.userdocumentID}/>,
             title: 'Experiences',
             panel: 'panel2',
             startIcon: <WorkOutline fontSize="large" />,
-            entries: [{
-                heading: experienceDetails.jobTitle,
-                description: experienceDetails.description,
-                status: experienceDetails.company,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: experienceDetails,
         },
-        { form: <ProjectForm />, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+
+        { 
+            form: <EducationForm userdocumentID={props.userdocumentID}/>, 
+            title: 'Education', 
+            panel: 'panel3', 
+            startIcon: <School fontSize="large" />, 
+            entries: educationDetails 
+        },
+        //Certification data
         {
-            form: <CertificationForm />,
+            form: <CertificationForm userdocumentID={props.userdocumentID}/>,
             title: 'Certifications',
             panel: 'panel4',
             startIcon: <School fontSize="large" />,
-            entries: [{
-                heading: certificationDetails.certificationName,
-                description: certificationDetails.credentialID,
-                status: certificationDetails.description,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: certificationDetails,
         },
+        //Project data
         {
-            form: <ProjectForm />, title: 'Projects',
+            form: <ProjectForm userdocumentID={props.userdocumentID}/>, title: 'Projects',
             panel: 'panel5',
             startIcon: <School fontSize="large" />,
-            entries: [{
-                heading: projectDetails.pname,
-                description: projectDetails.description,
-                status: projectDetails.status,
-                statusIcon: <CheckRoundedIcon />
-            }]
+            entries: projectDetails,
         },
     ]
 
-
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
-            <Typography color="textSecondary" align="left" padding="20px">
-                Details
-            </Typography>
-            <Grid item xs={12} className={classes.Grid2}>
-                <SimpleAccordion items={items} />
-            </Grid>
-        </Grid>
+                <SimpleAccordion items={items} userdocumentID={props.userdocumentID}/>
     );
+}
+
+DetailsAccordion.defaultProps = {
+    userdocumentID: "sampleuser"
 }
 
 function Profile(props) {
@@ -308,7 +361,6 @@ function Profile(props) {
     const [loading, setLoading] = useState(false);
 
     const ref = db.collection('users').doc(props.userdocumentID);
-
     function getUser() {
         setLoading(true);
         ref.onSnapshot((querySnapshot) => {
@@ -335,7 +387,7 @@ function Profile(props) {
                 <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
-                <DetailsAccordion />
+                <DetailsAccordion userdocumentID={props.userdocumentID}/>
             </Grid>
         </div >
     )

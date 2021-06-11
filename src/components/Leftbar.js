@@ -1,4 +1,4 @@
-import logo from "../Logo.svg"
+import logo from "../logo.svg"
 import { mainListItems, secondaryListItems } from './Dashboard/listItems';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
@@ -36,30 +36,30 @@ const useStyles = makeStyles((theme) => ({
             }
         },
         "& .active": {
-            color : '#985DFF',
-            "& .MuiSvgIcon-root" : {
+            color: '#985DFF',
+            "& .MuiSvgIcon-root": {
                 fill: '#985DFF',
             },
-            "& .MuiListItemText-root" : {
+            "& .MuiListItemText-root": {
                 fontWeight: 'bold'
             },
         },
-        "& .MuiListSubheader-root" : {
+        "& .MuiListSubheader-root": {
             fontWeight: 'bold',
             color: 'black',
         }
     },
-    logo : {
+    logo: {
         width: '25%',
         minWidth: '30px',
         maxWidth: '8em',
         margin: '1em '
     },
     topsection: {
-        display:'flex',
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center',
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
     },
     close: {
         display: 'none',
@@ -75,7 +75,7 @@ const Leftbar = ({ open, setOpen }) => {
         <Grid className={classes.leftbar} open={open}>
             <div className={classes.topsection}>
                 <img src={logo} className={classes.logo} alt="KM" />
-                <IconButton className={classes.close} onClick={() => setOpen(!open)}><ArrowBack/></IconButton>
+                <IconButton className={classes.close} onClick={() => setOpen(!open)}><ArrowBack /></IconButton>
             </div>
             <Divider />
             <List className={classes.list} onClick={() => setOpen(!open)} primary>{mainListItems}</List>

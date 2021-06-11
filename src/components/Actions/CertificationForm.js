@@ -1,16 +1,20 @@
-import { TextField } from '@material-ui/core';
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from '@material-ui/core';
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import { useForm, Form } from '../useForm';
-import Button from '@material-ui/core/Button'
-import { Add } from '@material-ui/icons';
-import { db } from '../../firebase'
-function CertificationForm() {
-  const sendInfo = (e) => {
-    e.preventDefault();
+import { db } from '../../firebase';
+import {Formik, Form} from 'formik'
+import * as Yup from 'yup'
+import Textfield from '../FormsUI/Textfield';
+import DateTimePicker from '../FormsUI/DateTimePicker';
+import Button from '../FormsUI/Button';
+// import Select from '../FormsUI/Select';
+// import Checkbox from '../FormsUI/Checkbox';
+// import { Typography } from '@material-ui/core';
 
-    {
-      db.collection("profile/YpDaruUKtfj8RENfJV86/certification").doc()
+function CertificationForm(props) {
+  
+  function sendInfo(values) {
+    db.collection('profile/'+ props.userdocumentID +'/certification').doc()
         .set({
           certificationName: values.certificationName,
           issuingOrganization: values.issuingOrganization,
@@ -20,13 +24,11 @@ function CertificationForm() {
           credentialID: values.credentialID,
           credentialURL: values.credentialURL,
 
-        }, { merge: true });
+        })
+  }
+  
 
-    }
-
-    setValues("");
-  };
-  const initialFValues = {
+  const INITIAL_FORM_VALUES = {
     certificationName: '',
     issuingOrganization: '',
     description: '',
@@ -36,89 +38,62 @@ function CertificationForm() {
     credentialURL: ''
   };
 
-  const { values, setValues, handleInputChange } = useForm(initialFValues);
+  const FORM_VALIDATION = Yup.object().shape(
+    {
+        certificationName: Yup.string().required('Required'),
+        issuingOrganization: Yup.string().required('Required'),
+        description: Yup.string(),
+        issueDate: Yup.date().required('Required'),
+        expiryDate: Yup.date(),
+        credentialID: Yup.string(),
+        credentialURL: Yup.string(),
+    }
+  )
+
 
   return (
-    <Form>
-      <Grid container justify="flex-start">
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            label="Name"
-            name="certificationName"
-            value={values.certificationName}
-            onChange={handleInputChange}
-          />
+    <Formik
+      initialValues = {{INITIAL_FORM_VALUES}}
+      validationSchema = {FORM_VALIDATION}
+      onSubmit = {values => {
+        console.log('Certification value: ',values);
+        sendInfo(values);
+    }}
+    >
+      <Form>
+        <Grid container spacing={1}>
+            <Grid item xs={12}>
+                <Textfield name='certificationName' label='Certification Name'/>
+            </Grid>
+            <Grid item xs={12}>
+                <Textfield name='issuingOrganization' label='Issuing Organization'/>
+            </Grid>
+            <Grid item xs={12}>
+                <Textfield multiline name='description' label='Description'/>
+            </Grid>
+            <Grid item xs={6}>
+                <DateTimePicker name='issueDate' label='Date issued'/>
+            </Grid>
+            <Grid item xs={6}>
+                <DateTimePicker name='expiryDate' label='Expiry Date'/>
+            </Grid>
+            <Grid item xs={12}>
+                <Textfield name='credentialID' label='Credential ID'/>
+            </Grid>
+            <Grid item xs={12}>
+                <Textfield name='credentialURL' label='Credential URL'/>
+            </Grid>
+            <Button>
+                Submit
+            </Button>
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            label="Issuing Organization"
-            name="issuingOrganization"
-            value={values.issuingOrganization}
-            onChange={handleInputChange}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            multiline
-            variant="outlined"
-            label="Description"
-            name="description"
-            value={values.description}
-            onChange={handleInputChange}
-          ></TextField>
-        </Grid>
-
-        <Grid item xs={6}>
-          <TextField
-            name={values.issueDate}
-            label="Issuing Date"
-            type="date"
-            defaultValue="2017-05-24"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <TextField
-            name={values.expiryDate}
-            label="Expiry Date"
-            type="date"
-            defaultValue="2017-05-24"
-            InputLabelProps={{
-              shrink: true,
-            }}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            label="Credential ID"
-            name="credentialID"
-            margin="dense"
-            value={values.credentialID}
-            onChange={handleInputChange}
-          ></TextField>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            variant="outlined"
-            label="Credential URL"
-            name="credentialURL"
-            margin="dense"
-            value={values.credentialURL}
-            onChange={handleInputChange}
-          ></TextField>
-        </Grid>
-        <Grid item xs={12} justify="flex-end">
-
-          <Button variant="outlined" size="medium" color="primary" onClick={sendInfo} startIcon={<Add />} >Add</Button>
-        </Grid>
-      </Grid>
-    </Form>
+      </Form>
+    </Formik>
   );
 }
 
 export default CertificationForm
+
+CertificationForm.defaultProps = {
+  userdocumentID: 'sampleuser'
+}

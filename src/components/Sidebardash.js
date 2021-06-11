@@ -3,12 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import logo from "../Logo.svg"
+import logo from "../logo.svg"
 import LinearProgress from '@material-ui/core/LinearProgress';
 import PropTypes from 'prop-types';
 import LinearProgressWithLabel from './prjectprogress';
@@ -17,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 // import profilepic from "../Profile.jpg"
 import StarsIcon from '@material-ui/icons/Stars';
 import Chip from '@material-ui/core/Chip';
+import GetProject from './pages/getProject';
 const useStyles = makeStyles((theme) => ({
 
     large: {
@@ -65,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         maxHeight: '39px',
-        color: 'inherit',
+        color: '#FFFFFF',
         background: '#8C98FF',
         padding: theme.spacing(0.5),
         borderRadius: '0.5em',
@@ -86,9 +84,9 @@ const SimpleCard = () => {
                 direction="row"
             >
                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                <Box color="secondary.main" fontWeight="fontWeightBold">
+                <Box fontWeight="fontWeightBold">
                     Emotion Detection through Facial Expression
-      </Box>
+                </Box>
             </Grid>
 
             <Grid item xs={12} className={classes.Grid} align="left">Progress:</Grid>
@@ -97,9 +95,14 @@ const SimpleCard = () => {
                 <Grid container justify="space-between">
                     <Grid container xs={6}>
                         <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
-                        <Button  component={Link} to="/Projectpage" className={classes.button} >View</Button>
+                    <Button component={Link} to={{
+                        pathname: "/Projectpage",
+                        aboutProps: {
+                            pname: "Emotion Detection through Facial Expression"
+                        }
+                    }} className={classes.button} >View</Button>
                 </Grid>
-                </Grid>
+            </Grid>
         </Grid>
     )
 

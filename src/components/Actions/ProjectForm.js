@@ -1,49 +1,34 @@
-import { FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup, TextField, Typography } from '@material-ui/core';
 import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid'
-import { useForm, Form } from '../useForm';
-import Button from '@material-ui/core/Button'
-import { Add } from '@material-ui/icons';
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
 import { db } from '../../firebase';
-// const useStyles = makeStyles((theme) => ({
-//     Grid: {
-//         background: 'linear-gradient(86.77deg, #FFFFFF 4.11%, rgba(242, 250, 255, 0.5) 91.8%, rgba(242, 250, 255, 0) 96.87%)',
-//         padding: theme.spacing(2),
-//         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-//         borderRadius: '30px',
-//         border: '0.01em solid #985DFF'
-//     },
-// }));b        
+import Textfield from '../FormsUI/Textfield';
+import Select from '../FormsUI/Select';
+import DateTimePicker from '../FormsUI/DateTimePicker';
+import Checkbox from '../FormsUI/Checkbox';
+import Button from '../FormsUI/Button';
+import { Typography } from '@material-ui/core';
 
-function ProjectForm() {
+function ProjectForm(props) {
 
-    // const classes = useStyles();
+    function sendInfo(values) {
+        db.collection("projects").doc()
+            .set({
+                pname: values.projectName,
+                description: values.description,
+                owner: values.owner,
+                teamMembers: values.teammembers,
+                startDate: values.startDate,
+                status: values.status,
+                mentor: values.mentor,
+            });
+    }
 
-    const sendInfo = (e) => {
-        e.preventDefault();
-
-        {
-            db.collection("projects").doc()
-                .set({
-                    pname: values.projectName,
-                    description: values.description,
-                    owner: values.owner,
-                    teamMembers: values.teammembers,
-                    startDate: values.startDate,
-                    status: values.status,
-                    mentor: values.mentor,
-
-                }, { merge: true });
-
-        }
-
-        setValues("");
-    };
-    const initialFValues = {
+    const INITIAL_FORM_VALUES = {
         projectName: '',
         description: '',
-        owner: '',
+        owner: props.userdocumentID,
         teammembers: '',
         startDate: new Date(),
         status: '',
@@ -52,98 +37,82 @@ function ProjectForm() {
         tags: '',
     };
 
-    const { values, setValues, handleInputChange } = useForm(initialFValues);
+    const FORM_VALIDATION = Yup.object().shape(
+        {
+            projectName: Yup.string().required('Please enter a Project title'),
+            description: Yup.string().required('Describe a bit please!'),
+            teammembers: Yup.string(),
+            startDate: Yup.date().required('Please enter start date'),
+            status: Yup.string().required('Required'),
+            // status: Yup.string().oneOf(['Completed','Incomplete','Freezed']).required('Required'),
+            mentor: Yup.string(),
+            // links: '',
+            // tags: '',
+        }
+    )
+
+    const [isComplete, setIsComplete] = useState(false);
 
     return (
-        <Form >
-            <Grid container justify='center' align='center'>
-                <Grid item xs={12}>
-                    <TextField
-                        variant="outlined"
-                        label="Project Name"
-                        name="projectName"
-                        value={values.projectName}
-                        onChange={handleInputChange}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        multiline
-                        variant="outlined"
-                        label="Description"
-                        name="description"
-                        value={values.description}
-                        onChange={handleInputChange}
-                    >
-                    </TextField>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        variant="outlined"
-                        label="Team Members"
-                        name="teamMembers"
-                        value={values.teamMembers}
-                        onChange={handleInputChange}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        variant="outlined"
-                        label="Mentor"
-                        name="mentor"
-                        value={values.mentor}
-                        onChange={handleInputChange}
-                        InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
-                    />
-                </Grid>
-                <Grid item xs={12} alignItems="flex-start">
-                    <FormControl style={{ alignItems: "flex-start" }}>
-                        <FormLabel>Status</FormLabel>
-                        <RadioGroup
-                            row
-                            name="status"
-                            value={values.status}
-                            onChange={handleInputChange}
-                        >
-                            <FormControlLabel
-                                value="incomplete"
-                                control={<Radio />}
-                                label="Incomplete"
-                            />
-                            <FormControlLabel
-                                value="complete"
-                                control={<Radio />}
-                                label="Complete"
-                            />
-                            <FormControlLabel
-                                value="freezed"
-                                control={<Radio />}
-                                label="Freezed"
-                            />
-                        </RadioGroup>
-                    </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                    <TextField
-                        name={values.startDate}
-                        label="Start Date"
-                        type="date"
-                        defaultValue="2017-05-24"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                    />
-                </Grid>
-                <Grid item xs={12} justify="flex-end" alignItems='flex-end'>
-                    <Button variant="outlined" size="medium" color="primary" onClick={sendInfo} startIcon={<Add />} >Add</Button>
-                </Grid>
+        <Formik
+            initialValues={{ ...INITIAL_FORM_VALUES }}
+            validationSchema={FORM_VALIDATION}
+            onSubmit={values => {
+                console.log('Project value: ', values);
+                sendInfo(values);
 
-            </Grid>
-        </Form>
+            }}
+        >
+            <Form>
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <Textfield name='projectName' label='Project Name' />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Textfield multiline name='description' label='Description' />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Textfield name='teammembers' label='Team members' />
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Select name='status' label='Project status' options={['Completed', 'Incomplete', 'Freezed']} />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Checkbox name='isCompleted' label='Completed?' onChange={() => { setIsComplete(true) }} />
+                    </Grid>
+                    {
+                        isComplete ?
+                            <Grid item xs={6}>
+                                <Typography>Complete</Typography>
+                            </Grid>
+                            :
+                            <Grid item xs={6}>
+                                <Typography>Not complete</Typography>
+                            </Grid>
+                    }
+                    <Grid item xs={6}>
+                        <DateTimePicker name='startDate' label='Start Date' />
+                    </Grid>
+                    {/* status */}
+                    {/* if completed then completed date */}
+                    <Grid item xs={12}>
+                        <Textfield name='mentor' label='Mentor' />
+                    </Grid>
+                    {/* links */}
+                    {/* tags */}
+                    <Grid item xs={12}>
+                        <Button>Submit</Button>
+                    </Grid>
+                </Grid>
+            </Form>
+        </Formik>
+
     )
 }
 
 export default ProjectForm
+
+ProjectForm.defaultProps = {
+    userdocumentID: 'sampleuser'
+}
+

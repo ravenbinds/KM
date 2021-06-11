@@ -26,11 +26,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     // width: '40rem',
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid' + theme.palette.primary ,
-    borderRadius: '8px' ,
+    border: '2px solid' + theme.palette.primary,
+    borderRadius: '8px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+
 }));
 
 export default function SimpleModal(props) {
@@ -48,27 +49,27 @@ export default function SimpleModal(props) {
   };
 
   const body = (
-  <Dialog open={open} maxWidth="lg" classes={{paper: classes.dialogWrapper}}>
-  <DialogTitle>
-      <div style={{display: 'flex'}}>
-          <Typography variant="h6" style={{flexGrow:1}}>
-              {props.title}
+    <Dialog open={open} maxWidth="lg" classes={{ paper: classes.dialogWrapper }}>
+      <DialogTitle>
+        <div style={{ display: 'flex' }}>
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            {props.title}
           </Typography>
           <ActionButton onClick={() => setOpen(false)}>
-              <Close fontSize='small'/>
+            <Close fontSize='small' />
           </ActionButton>
-      </div>
-      
-  </DialogTitle>
-  <DialogContent dividers>
-      {props.body}
-  </DialogContent>
-</Dialog>
-);
+        </div>
+
+      </DialogTitle>
+      <DialogContent dividers>
+        {props.body}
+      </DialogContent>
+    </Dialog>
+  );
 
   return (
     <div>
-      <Button type="button" variant='outlined' color='primary' startIcon={props.startIcon} onClick={handleOpen}>
+      <Button type="button" variant={props.variant} color={props.color} startIcon={props.startIcon} onClick={handleOpen}>
         {props.button}
       </Button>
       <Modal
@@ -78,9 +79,14 @@ export default function SimpleModal(props) {
         aria-describedby="simple-modal-description"
       >
         <div style={modalStyle} className={classes.paper}>
-            {body}
+          {body}
         </div>
       </Modal>
     </div>
   );
+}
+
+SimpleModal.defaultProps = {
+  variant: '',
+  color: 'primary'
 }

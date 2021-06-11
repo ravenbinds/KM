@@ -1,17 +1,13 @@
-
+import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Top from './Top'
-import man from '../man.svg'
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import { useState } from 'react';
 import classNames from 'classnames'
-import ProjectLists from './pages/Projectlist';
-import UserLists from './pages/Userlist';
-
-
+import Top from '../Top';
+import { db } from '../../firebase';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -29,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1)
     },
 
-    unreadBox: {
-        background: 'rgba(140, 152, 255, 0.15)'
-    },
-
     button: {
         maxWidth: '64',
         maxHeight: '39px',
@@ -46,51 +38,37 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Notification(props) {
-    const [isRead, setRead] = useState(props.read)
-
+const UserLists = () => {
     const classes = useStyles();
+    const [users, setUsers] = useState([])
+    useEffect(() => {
+        db.collection("users")
 
-    const notificationClass = classNames({
-        'classes.Grid2': true,
-        'classes.unreadBox': !isRead,
-    })
-
-    return (
-        <Grid item xs={12} className={classes.Grid2}  >
-            {/* <Grid item xs={12} className={notificationClass}  > */}
-            <Avatar alt="Remy Sharp" src={man} />
-            <Box mt={1} ml={2}>
-                <Typography color="textPrimary" variant="body1" >
-                    {props.message}
-                </Typography>
-            </Box>
-        </Grid>
-    )
-}
-
-const Notifications = () => {
-    const classes = useStyles();
-
-    const notifications = [
-        { read: true, message: "THis is a sample notification. THis is a sample notification. THis is a sample notification." },
-        { read: false, message: "THis is a sample notification. THis is a sample notification. THis is a sample notification." },
-    ]
+            .onSnapshot((snapshot) => {
+                setUsers(snapshot.docs.map((doc) => doc.data()))
+            });
+    }, []);
 
     return (
         <div className="Contents">
-            <Top />
             <Grid container justify="space-evenly" alignItems="flex-start">
                 <Grid item xs={12} className={classes.Grid}>
                     <Typography align="left" color="textPrimary" variant="h5" padding="40px">
-                        Notifications
+                        Users List
                     </Typography>
                 </Grid>
-
                 <Grid container justify="space-evenly" alignItems="flex-start" >
                     {
-                        notifications.map(notification => (
-                            <Notification read={notification.read} message={notification.message} />
+                        users.map(user => (
+                            <Grid item xs={12} className={classes.Grid2}  >
+                                {/* <Grid item xs={12} className={notificationClass}  > */}
+                                <Avatar alt="Remy Sharp" src={user.avatar} />
+                                <Box mt={1} ml={2}>
+                                    <Typography color="textPrimary" variant="body1" >
+                                        {user.nickname}
+                                    </Typography>
+                                </Box>
+                            </Grid>
                         ))
                     }
                 </Grid>
@@ -99,4 +77,4 @@ const Notifications = () => {
     )
 }
 
-export default Notifications
+export default UserLists

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, { useState, useRef } from "react";
 import { BrowserRouter as Router, Route, Switch, Link, Redirect, useLocation } from "react-router-dom";
 import Content from "./Content";
 import Leftbar from "./Leftbar";
@@ -14,12 +14,13 @@ import Projectpage from "./pages/Projectpage";
 import GroupsPage from "./pages/GroupsPage";
 import errorpage from "./404";
 import create from "./pages/createpage";
-// import Dashboard from './Dashboard/dashboard'
-// import Register from './Actions/registration';
 import { useUserContext } from "../UserContext";
 import { makeStyles } from '@material-ui/core/styles';
 import { useOnClickOutside } from '../hooks';
-
+import followers from './pages/followers'
+import Freelance from "./pages/Freelance";
+import ProblemStatement from './pages/ProblemStatement';
+import getProject from './pages/getProject'
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     [theme.breakpoints.down('sm')]: {
@@ -35,7 +36,7 @@ function Dash() {
   const currentUser = useUserContext();
 
   const [open, setOpen] = useState(false);
-  const node = useRef(); 
+  const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
   return (
     <>
@@ -63,11 +64,10 @@ function Dash() {
               <Rightbar />
             </Router>
           </div>
-        </div>
-      ): (
-        <Redirect to="/login"/>
-      )
-    }
+        ) : (
+          <Redirect to="/login" />
+        )
+      }
     </>
   );
 }
