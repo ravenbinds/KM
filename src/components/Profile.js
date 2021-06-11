@@ -152,34 +152,41 @@ function RecentActivities() {
     const classes = useStyles();
     return (
         <Grid container direction="column" justify="flex-start" alignItems="center">
-            <Typography color="textSecondary" align="left" padding="20px">
-                Recent activities
-                    </Typography>
-            {
-                items.map(item => (
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Box className={classes.Box}>
-                            <CardActions>
-                                <Button size="small" >{item.startIcon}</Button>
-                            </CardActions>
-                            <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-                                {item.content}
-                            </Typography>
-                        </Box>
-                    </Grid>
-                ))
-            }
-            <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
+            <Grid item xs={12}>
+                <Typography color="textSecondary" align="left" padding="20px">
+                    Recent activities
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Grid container direction='column' justify='flex-start'>
+                {
+                    items.map(item => (
+                        <Grid item xs={12} className={classes.Grid2}  >
+                            <Box className={classes.Box}>
+                                <CardActions>
+                                    <Button size="small" >{item.startIcon}</Button>
+                                </CardActions>
+                                <Typography align="left" color="textprimary" variant="body1" gutterBottom>
+                                    {item.content}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    ))
+                }
+                </Grid>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
                 see all activities...
-                    </Typography>
+                </Typography>
+            </Grid>
+
         </Grid>
 
     )
 }
 
 function DetailsAccordion(props) {
-
-    const classes = useStyles();
 
     const [projectDetails, setprojectDetails] = useState([]);
     const [postDetails, setpostDetails] = useState([]);
@@ -339,16 +346,8 @@ function DetailsAccordion(props) {
         },
     ]
 
-
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
-            <Typography color="textSecondary" align="left" padding="20px">
-                Details
-            </Typography>
-            <Grid item xs={12} className={classes.Grid2}>
                 <SimpleAccordion items={items} userdocumentID={props.userdocumentID}/>
-            </Grid>
-        </Grid>
     );
 }
 

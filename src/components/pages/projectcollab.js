@@ -42,11 +42,16 @@ const Projectcollab = () => {
                         <Typography color="textPrimary">Projectcollab</Typography>
                     </Breadcrumbs> */}
             </Grid>
-            {
-                hgpost.map(post=>(
-                    <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply'/>
-                ))
-            }
+            <Grid container direction='column' justify='flex-start' spacing={2}>
+                {
+                    hgpost.map(post=>(
+                        <Grid item xs={12}>
+                            <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply'/>
+                        </Grid>
+                    ))
+                }
+            </Grid>
+            
         </div >
     )
 }

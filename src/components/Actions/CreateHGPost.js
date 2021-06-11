@@ -27,8 +27,8 @@ function CreateHGPost(props) {
             hgtitle: values.hgtitle,
             paid: values.paid,
             userid: currentUser.uid, //should be the user profile details, not google details
-            avatar: currentUser.avatar,
-            nickname: currentUser.nickname,
+            avatar: currentUser.photoURL,
+            nickname: currentUser.displayName,
             createdDate: values.createdDate,
             timestamp: values.timestamp,
         })
