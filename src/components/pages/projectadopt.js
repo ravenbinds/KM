@@ -64,27 +64,31 @@ function handleClick(event) {
 const Projectadopt = () => {
     const classes = useStyles();
     const hgpost = [
-        {username:"Alfred West",avatar:man,title:"AUTO IRRIGATION SYSTEM",description:"Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.",tag:"#PROJECTADOPTS"},
-        {username:"Alfred West",avatar:man,title:"AUTO IRRIGATION SYSTEM",description:"Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.",tag:"#PROJECTADOPTS"}
+        { username: "Alfred West", avatar: man, title: "AUTO IRRIGATION SYSTEM", description: "Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.", tag: "#PROJECTADOPTS" },
+        { username: "Alfred West", avatar: man, title: "AUTO IRRIGATION SYSTEM", description: "Ground level irrigation system installation halted as the pandemic started. This project is now freezed. If you wish to continue this project, apply here. Resource information and permits available.", tag: "#PROJECTADOPTS" }
     ]
 
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid}>
-                <Typography align="right" color="textPrimary" variant="h5" padding="40px">
-                    Hunting ground</Typography>
-                {/* <Breadcrumbs aria-label="breadcrumb">
-                        <Route path="/" render={() => (<MuiLink component={Link} to="/Huntingground">Huntinground   </MuiLink>)} />
+            <Grid container justify="flex-start" alignItems="flex-start" className={classes.Grid}>
+                <Grid item xs={12} className={classes.Grid}>
+                    <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                        Hunting ground
+                    </Typography></Grid>
+                <Grid item xs={12} >
+                    <Grid container justify="flex-start" alignItems="flex-start" spacing={2}>
+                        {
+                            hgpost.map(post => (
+                                <Grid item xs={12}>
 
-                        <Typography color="textPrimary">Projectcollab</Typography>
-                    </Breadcrumbs> */}
+                                    <HGPosts username={post.username} title={post.title} tag={post.tag} category='2' description={post.description} buttonText='Adopt' />
+                                </Grid>
+                            ))
+                        }
+                    </Grid>
+                </Grid>
             </Grid>
-            {
-                hgpost.map(post=>(
-                    <HGPosts username={post.username} title={post.title} tag={post.tag} category='2' description={post.description} buttonText='Adopt' />
-                ))
-            }
         </div >
     )
 }
