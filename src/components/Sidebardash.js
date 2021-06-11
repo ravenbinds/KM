@@ -3,12 +3,9 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import logo from "../Logo.svg"
+import logo from "../logo.svg"
 import LinearProgress from '@material-ui/core/LinearProgress';
 import PropTypes from 'prop-types';
 import LinearProgressWithLabel from './prjectprogress';
@@ -97,9 +94,9 @@ const SimpleCard = () => {
                 <Grid container justify="space-between">
                     <Grid container xs={6}>
                         <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
-                        <Button  component={Link} to="/Projectpage" className={classes.button} >View</Button>
+                    <Button component={Link} to="/Projectpage" className={classes.button} >View</Button>
                 </Grid>
-                </Grid>
+            </Grid>
         </Grid>
     )
 

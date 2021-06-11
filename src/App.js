@@ -18,13 +18,13 @@ const theme = createMuiTheme({
 
   typography: {
     fontFamily: [
-      'PT Sans'
+      'sans-serif'
     ],
     body1: {
       fontSize: "0.9rem",
       fontWeight: 'inherit'
-      },
     },
+  },
 });
 
 theme.typography.h6 = {
@@ -36,13 +36,13 @@ theme.typography.h6 = {
   [theme.breakpoints.up("md")]: {
     fontSize: "1rem",
   },
-  };
+};
 
 theme.typography.button = {
   textTransform: 'none',
-  fontSize: "0.3rem",
+  fontSize: "0.7rem",
   "@media (min-width:600px)": {
-    fontSize: "0.5rem",
+    fontSize: "0.8rem",
   },
   [theme.breakpoints.up("md")]: {
     fontSize: "0.9rem",
@@ -66,20 +66,20 @@ theme.typography.caption = {
 
 function App() {
 
-    const currentUser = useUserContext();
+  const currentUser = useUserContext();
 
-    return (
-      <>
+  return (
+    <>
       {   currentUser ? (
         <ThemeProvider theme={theme}>
-        <Dash/>
-      </ThemeProvider>
+          <Dash />
+        </ThemeProvider>
       ) : (
-        <AuthPage/>
-      )    
+        <AuthPage />
+      )
       }
-    </>    
-    );
-  }
+    </>
+  );
+}
 
 export default App;

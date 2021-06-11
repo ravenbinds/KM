@@ -1,10 +1,14 @@
 
 import Grid from '@material-ui/core/Grid';
+import ProjectLists from './pages/Projectlist';
+import UserLists from './pages/Userlist';
 
 const Settings = () => {
     return (
-        <Grid >Settings</Grid>
-
+        <div className="Contents">
+            <Grid ><ProjectLists />
+                <UserLists /></Grid>
+        </div>
     )
 }
 

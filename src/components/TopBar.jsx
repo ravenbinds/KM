@@ -1,4 +1,4 @@
-import logo from "../Logo.svg"
+import logo from "../logo.svg"
 import { makeStyles } from '@material-ui/core/styles';
 import { MenuRounded, ArrowDropDown, NotificationsOutlined } from '@material-ui/icons';
 import { IconButton, Avatar, Box, Button, Grow, Paper, Popper, Menu, MenuItem } from '@material-ui/core';
@@ -42,7 +42,7 @@ const TopBar = ({ open, setOpen }) => {
         <header className={classes.topbar}>
             <IconButton className={classes.exm} onClick={() => setOpen(!open)}><MenuRounded /></IconButton>
             <img src={logo} className={classes.logo} alt="KM" />
-            <UserDropDown/>
+            <UserDropDown />
         </header>
     )
 }
