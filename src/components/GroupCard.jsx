@@ -19,8 +19,18 @@ const useStyles = makeStyles((theme) => ({
         background: "#acb6e5", /* fallback for old browsers */
         background: "linear-gradient(to right, #acb6e5, #86fde8)",
         minHeight: "150px",
+        maxHeight: "150px",
         width: "100%",
         borderRadius: "10px 10px 0px 0px",
+        overflow: "hidden",
+        display:"flex",
+
+        "& img" : {
+            flexShrink: "0",
+            minWidth: "100%",
+            minHeight: "100%",
+            objectFit: "cover",
+        }
     },
     groupname : {
         padding: "10px"
@@ -52,7 +62,7 @@ const GroupCard = ( props ) => {
         <NavLink to="#" className={classes.navlink} exact>
             <Box textAlign="center" className={classes.card}>
                 <Box className={classes.image}>
-                    <img src=""/>
+                    <Container component="img" src={props.image} disableGutters="true"/>
                 </Box>
                 <Typography className={classes.groupname} variant="h6">{props.groupname}</Typography>
             </Box>

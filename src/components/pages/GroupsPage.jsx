@@ -9,8 +9,11 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
     groups: {
         display: "grid",
-        gridTemplateColumns: "1fr 1fr 1fr",
+        gridTemplateColumns: "1fr 1fr 1fr 1fr",
         gap: "20px",
+        [theme.breakpoints.down('md')]: {
+            gridTemplateColumns: "1fr 1fr 1fr"
+        },
         [theme.breakpoints.down('xs')]: {
             gridTemplateColumns: "1fr 1fr"
         },
@@ -37,12 +40,19 @@ const GroupsPage = () => {
             <Box className={classes.groups}>
                 <GroupCard
                     groupname="CSE Dept."
+                    image=""
                 />
                 <GroupCard
                     groupname="FOSSers"
+                    image=""
+                />
+                <GroupCard
+                    groupname="Army"
+                    image=""
                 />
                 <GroupCard
                     groupname="VAST"
+                    image=""
                 />
             </Box>
 
