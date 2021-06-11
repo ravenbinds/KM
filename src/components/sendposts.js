@@ -79,7 +79,7 @@ const Sendposts = (props) => {
                                         onChange={(e) => setsendCaption(e.target.value)}
                                         value={sendCaption}
                                         className={classes.input}
-
+                                        multiline
                                         placeholder="What's happening?"
                                         type="text"
                                     />
