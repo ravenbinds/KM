@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Post from "./Post/Post";
+import Post from "./pages/Post";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Grid, GridList, GridListTile } from '@material-ui/core';

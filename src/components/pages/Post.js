@@ -2,7 +2,6 @@ import React, { forwardRef } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import "./Post.css";
 import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
