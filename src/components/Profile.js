@@ -25,14 +25,6 @@ import { useUserContext } from '../UserContext';
 
 
 const useStyles = makeStyles((theme) => ({
-
-    heading: {
-        fontSize: theme.typography.pxToRem(16),
-        flexBasis: '33.33%',
-        flexShrink: 0,
-        color: '#00296B',
-    },
-
     root: {
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
@@ -64,18 +56,6 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '30px',
         margin: theme.spacing(2)
     },
-
-    Paper1: {
-        borderRadius: '30px',
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > *': {
-            margin: theme.spacing(1),
-            width: theme.spacing(8),
-            height: theme.spacing(8),
-        },
-    },
-
     large: {
         width: theme.spacing(10),
         height: theme.spacing(10),
@@ -205,6 +185,7 @@ function DetailsAccordion(props) {
     const [postDetails, setpostDetails] = useState([]);
     const [experienceDetails, setexperienceDetails] = useState([]);
     const [certificationDetails, setcertificationDetails] = useState([]);
+    const [educationDetails, setEducationDetails] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -225,6 +206,25 @@ function DetailsAccordion(props) {
                 );
             });
             setprojectDetails(items);
+            setLoading(false);
+        });
+    }
+
+    //Function to get all education details of given user
+    function getEducation() {
+        setLoading(true);
+        ref.collection('education').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().degree,
+                    description: doc.data().school,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setEducationDetails(items);
             setLoading(false);
         });
     }
@@ -291,6 +291,7 @@ function DetailsAccordion(props) {
         getPost();
         getExperiences();
         getCertifications();
+        getEducation();
     }, [])
 
     if (loading) {
@@ -314,7 +315,13 @@ function DetailsAccordion(props) {
             entries: experienceDetails,
         },
 
-        { form: <EducationForm userdocumentID={props.userdocumentID}/>, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { 
+            form: <EducationForm userdocumentID={props.userdocumentID}/>, 
+            title: 'Education', 
+            panel: 'panel3', 
+            startIcon: <School fontSize="large" />, 
+            entries: educationDetails 
+        },
         //Certification data
         {
             form: <CertificationForm userdocumentID={props.userdocumentID}/>,
