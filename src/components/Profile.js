@@ -339,7 +339,7 @@ function DetailsAccordion(props) {
                 Details
             </Typography>
             <Grid item xs={12} className={classes.Grid2}>
-                <SimpleAccordion items={items} />
+                <SimpleAccordion items={items} userdocumentID={props.userdocumentID}/>
             </Grid>
         </Grid>
     );
