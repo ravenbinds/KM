@@ -14,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 // import profilepic from "../Profile.jpg"
 import StarsIcon from '@material-ui/icons/Stars';
 import Chip from '@material-ui/core/Chip';
+import GetProject from './pages/getProject';
 const useStyles = makeStyles((theme) => ({
 
     large: {
@@ -85,7 +86,7 @@ const SimpleCard = () => {
                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
                 <Box fontWeight="fontWeightBold">
                     Emotion Detection through Facial Expression
-      </Box>
+                </Box>
             </Grid>
 
             <Grid item xs={12} className={classes.Grid} align="left">Progress:</Grid>
@@ -94,7 +95,12 @@ const SimpleCard = () => {
                 <Grid container justify="space-between">
                     <Grid container xs={6}>
                         <StarsIcon style={{ color: "#000000", fontSize: "1.5em" }} /> stats</Grid>
-                    <Button component={Link} to="/Projectpage" className={classes.button} >View</Button>
+                    <Button component={Link} to={{
+                        pathname: "/Projectpage",
+                        aboutProps: {
+                            pname: "Emotion Detection through Facial Expression"
+                        }
+                    }} className={classes.button} >View</Button>
                 </Grid>
             </Grid>
         </Grid>
