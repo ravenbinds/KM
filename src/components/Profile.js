@@ -25,14 +25,6 @@ import { useUserContext } from '../UserContext';
 
 
 const useStyles = makeStyles((theme) => ({
-
-    heading: {
-        fontSize: theme.typography.pxToRem(16),
-        flexBasis: '33.33%',
-        flexShrink: 0,
-        color: '#00296B',
-    },
-
     root: {
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
@@ -64,18 +56,6 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '30px',
         margin: theme.spacing(2)
     },
-
-    Paper1: {
-        borderRadius: '30px',
-        display: 'flex',
-        flexWrap: 'wrap',
-        '& > *': {
-            margin: theme.spacing(1),
-            width: theme.spacing(8),
-            height: theme.spacing(8),
-        },
-    },
-
     large: {
         width: theme.spacing(10),
         height: theme.spacing(10),
@@ -172,26 +152,35 @@ function RecentActivities() {
     const classes = useStyles();
     return (
         <Grid container direction="column" justify="flex-start" alignItems="center">
-            <Typography color="textSecondary" align="left" padding="20px">
-                Recent activities
-                    </Typography>
-            {
-                items.map(item => (
-                    <Grid item xs={12} className={classes.Grid2}  >
-                        <Box className={classes.Box}>
-                            <CardActions>
-                                <Button size="small" >{item.startIcon}</Button>
-                            </CardActions>
-                            <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-                                {item.content}
-                            </Typography>
-                        </Box>
-                    </Grid>
-                ))
-            }
-            <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
+            <Grid item xs={12}>
+                <Typography color="textSecondary" align="left" padding="20px">
+                    Recent activities
+                </Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Grid container direction='column' justify='flex-start'>
+                {
+                    items.map(item => (
+                        <Grid item xs={12} className={classes.Grid2}  >
+                            <Box className={classes.Box}>
+                                <CardActions>
+                                    <Button size="small" >{item.startIcon}</Button>
+                                </CardActions>
+                                <Typography align="left" color="textprimary" variant="body1" gutterBottom>
+                                    {item.content}
+                                </Typography>
+                            </Box>
+                        </Grid>
+                    ))
+                }
+                </Grid>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
                 see all activities...
-                    </Typography>
+                </Typography>
+            </Grid>
+
         </Grid>
 
     )
@@ -199,12 +188,11 @@ function RecentActivities() {
 
 function DetailsAccordion(props) {
 
-    const classes = useStyles();
-
     const [projectDetails, setprojectDetails] = useState([]);
     const [postDetails, setpostDetails] = useState([]);
     const [experienceDetails, setexperienceDetails] = useState([]);
     const [certificationDetails, setcertificationDetails] = useState([]);
+    const [educationDetails, setEducationDetails] = useState([]);
 
     const [loading, setLoading] = useState(false);
 
@@ -225,6 +213,25 @@ function DetailsAccordion(props) {
                 );
             });
             setprojectDetails(items);
+            setLoading(false);
+        });
+    }
+
+    //Function to get all education details of given user
+    function getEducation() {
+        setLoading(true);
+        ref.collection('education').onSnapshot((querySnapshot)=>{
+            const items=[];
+            querySnapshot.forEach((doc)=>{
+                items.push({
+                    heading: doc.data().degree,
+                    description: doc.data().school,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setEducationDetails(items);
             setLoading(false);
         });
     }
@@ -291,6 +298,7 @@ function DetailsAccordion(props) {
         getPost();
         getExperiences();
         getCertifications();
+        getEducation();
     }, [])
 
     if (loading) {
@@ -314,7 +322,13 @@ function DetailsAccordion(props) {
             entries: experienceDetails,
         },
 
-        { form: <EducationForm userdocumentID={props.userdocumentID}/>, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { 
+            form: <EducationForm userdocumentID={props.userdocumentID}/>, 
+            title: 'Education', 
+            panel: 'panel3', 
+            startIcon: <School fontSize="large" />, 
+            entries: educationDetails 
+        },
         //Certification data
         {
             form: <CertificationForm userdocumentID={props.userdocumentID}/>,
@@ -332,16 +346,8 @@ function DetailsAccordion(props) {
         },
     ]
 
-
     return (
-        <Grid container direction="column" justify="flex-start" alignItems="stretch" className='classes.Grid2'>
-            <Typography color="textSecondary" align="left" padding="20px">
-                Details
-            </Typography>
-            <Grid item xs={12} className={classes.Grid2}>
                 <SimpleAccordion items={items} userdocumentID={props.userdocumentID}/>
-            </Grid>
-        </Grid>
     );
 }
 

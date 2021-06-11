@@ -6,9 +6,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
-import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
+import LiveHelpIcon from '@material-ui/icons/LiveHelpRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import GroupIcon from '@material-ui/icons/Group';
 import { NavLink } from 'react-router-dom';
 export const mainListItems = (
     <div>
@@ -23,19 +24,25 @@ export const mainListItems = (
             <ListItemIcon>
                 <FaceRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="My profile" />
+            <ListItemText primary="My Profile" />
+        </ListItem>
+        <ListItem button component={NavLink} to="/groups">
+            <ListItemIcon>
+                <GroupIcon/>
+            </ListItemIcon>
+            <ListItemText primary="Groups" />
         </ListItem>
         <ListItem button component={NavLink} to="/Huntingground">
             <ListItemIcon>
                 <TrackChangesRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Hunting ground" />
+            <ListItemText primary="Hunting Ground" />
         </ListItem>
-        <ListItem button component={NavLink} to="/Notifications">
+        <ListItem button component={NavLink} to="/createpages">
             <ListItemIcon>
-                <NotificationsNoneRoundedIcon />
+                <LiveHelpIcon />
             </ListItemIcon>
-            <ListItemText primary="Notifications" />
+            <ListItemText primary="Support Requests" />
         </ListItem>
         <ListItem button component={NavLink} to="/Settings">
             <ListItemIcon>

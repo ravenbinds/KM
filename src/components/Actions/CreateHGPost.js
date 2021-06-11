@@ -18,20 +18,20 @@ function CreateHGPost(props) {
 
 
     function sendInfo(values) {
-        db.collection("HuntingGround").doc()
-            .set({
-                category: values.category,
-                seeklist: values.seeklist,
-                application: [],
-                hgdescription: values.hgdescription,
-                hgtitle: values.hgtitle,
-                paid: values.paid,
-                userid: currentUser.uid, //should be the user profile details, not google details
-                avatar: currentUser.avatar,
-                nickname: currentUser.nickname,
-                createdDate: values.createdDate,
-                timestamp: values.timestamp,
-            })
+        db.collection("huntingground").doc()
+        .set({
+            category: values.category,
+            seeklist: values.seeklist,
+            application: [],
+            hgdescription: values.hgdescription,
+            hgtitle: values.hgtitle,
+            paid: values.paid,
+            userid: currentUser.uid, //should be the user profile details, not google details
+            avatar: currentUser.photoURL,
+            nickname: currentUser.displayName,
+            createdDate: values.createdDate,
+            timestamp: values.timestamp,
+        })
     }
 
 
