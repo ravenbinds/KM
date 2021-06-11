@@ -10,7 +10,7 @@ import Checkbox from '../FormsUI/Checkbox';
 import Button from '../FormsUI/Button';
 import { Typography } from '@material-ui/core';
 
-function ProjectTrialForm(props) {
+function ProjectForm(props) {
 
     function sendInfo(values) {
         db.collection("projects").doc()
@@ -110,9 +110,9 @@ function ProjectTrialForm(props) {
     )
 }
 
-export default ProjectTrialForm
+export default ProjectForm
 
-ProjectTrialForm.defaultProps = {
+ProjectForm.defaultProps = {
     userdocumentID: 'sampleuser'
 }
 

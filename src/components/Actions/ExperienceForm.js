@@ -11,7 +11,7 @@ import Button from '../FormsUI/Button';
 // import Checkbox from '../FormsUI/Checkbox';
 // import { Typography } from '@material-ui/core';
 
-function ExperienceTrialForm(props) {
+function ExperienceForm(props) {
   
   function sendInfo(values) {
     db.collection("profile/"+props.userdocumentID+"/experience").doc()
@@ -86,8 +86,8 @@ function ExperienceTrialForm(props) {
   );
 }
 
-export default ExperienceTrialForm
+export default ExperienceForm
 
-ExperienceTrialForm.defaultProps = {
+ExperienceForm.defaultProps = {
   userdocumentID: 'sampleuser'
 }

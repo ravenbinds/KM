@@ -11,7 +11,7 @@ import Button from '../FormsUI/Button';
 // import Checkbox from '../FormsUI/Checkbox';
 // import { Typography } from '@material-ui/core';
 
-function ExperienceTrialForm(props) {
+function EducationForm(props) {
   
   function sendInfo(values) {
     db.collection("profile/"+props.userdocumentID+"/education").doc()
@@ -44,7 +44,7 @@ function ExperienceTrialForm(props) {
         fieldOfStudy: Yup.string(),
         startDate: Yup.date(),
         endDate: Yup.date(),
-        grade: Yup.number(),
+        grade: Yup.number().positive(),
         activities: Yup.string(),
     }
   )
@@ -89,8 +89,8 @@ function ExperienceTrialForm(props) {
   );
 }
 
-export default ExperienceTrialForm
+export default EducationForm
 
-ExperienceTrialForm.defaultProps = {
+EducationForm.defaultProps = {
   userdocumentID: 'sampleuser'
 }
