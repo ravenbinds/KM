@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         maxHeight: '39px',
-        color: 'inherit',
+        color: '#FFFFFF',
         background: '#8C98FF',
         padding: theme.spacing(0.5),
         borderRadius: '0.5em',
@@ -83,7 +83,7 @@ const SimpleCard = () => {
                 direction="row"
             >
                 <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                <Box color="secondary.main" fontWeight="fontWeightBold">
+                <Box fontWeight="fontWeightBold">
                     Emotion Detection through Facial Expression
       </Box>
             </Grid>

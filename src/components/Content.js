@@ -137,7 +137,7 @@ const Contents = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12}>
-                    <Sendposts nickname={userDetails.nickname} avatar={userDetails.avatar} />
+                    <Sendposts nickname={userDetails.nickname} avatar={userDetails.avatar} uid={currentUser.uid} />
                     <FlipMove>
                         {posts.map(post => (
                             <Grid className="Contents-space">

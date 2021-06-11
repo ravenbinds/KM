@@ -41,20 +41,19 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(1),
     },
 }));
-const Sendposts = (nickname, avatar) => {
+const Sendposts = (props) => {
     const classes = useStyles();
     const [sendCaption, setsendCaption] = useState("");
     const [sendImage, setsendImage] = useState("");
     const sendPosts = (e) => {
         e.preventDefault();
-
         db.collection("posts").add({
-            nickname: { nickname },
+            nickname: props.nickname,
             caption: sendCaption,
             image: sendImage,
-            avatar: { avatar },
-        });
-
+            avatar: props.avatar,
+            userid: props.uid,
+        }, { merge: true });
         setsendCaption("");
         setsendImage("");
     };
@@ -67,7 +66,7 @@ const Sendposts = (nickname, avatar) => {
                         <Grid item xs={12}>
                             <Grid container direction='row' justify='flex-start' alignItems='center'>
                                 <Grid item>
-                                    <Avatar className="Post-user-avatar" src={avatar} />
+                                    <Avatar className="Post-user-avatar" src={props.avatar} />
                                 </Grid>
                                 <Grid item>
                                     <TextField
