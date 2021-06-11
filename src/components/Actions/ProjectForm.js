@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import {Formik, Form} from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { db } from '../../firebase';
-
 import Textfield from '../FormsUI/Textfield';
 import Select from '../FormsUI/Select';
 import DateTimePicker from '../FormsUI/DateTimePicker';
@@ -14,16 +13,16 @@ import { Typography } from '@material-ui/core';
 function ProjectTrialForm(props) {
 
     function sendInfo(values) {
-            db.collection("projects").doc()
-                .set({
-                    pname: values.projectName,
-                    description: values.description,
-                    owner: values.owner,
-                    teamMembers: values.teammembers,
-                    startDate: values.startDate,
-                    status: values.status,
-                    mentor: values.mentor,
-                });
+        db.collection("projects").doc()
+            .set({
+                pname: values.projectName,
+                description: values.description,
+                owner: values.owner,
+                teamMembers: values.teammembers,
+                startDate: values.startDate,
+                status: values.status,
+                mentor: values.mentor,
+            });
     }
 
     const INITIAL_FORM_VALUES = {
@@ -40,59 +39,59 @@ function ProjectTrialForm(props) {
 
     const FORM_VALIDATION = Yup.object().shape(
         {
-        projectName: Yup.string().required('Please enter a Project title'),
-        description: Yup.string().required('Describe a bit please!'),
-        teammembers: Yup.string(),
-        startDate: Yup.date().required('Please enter start date'),
-        status: Yup.string().required('Required'),
-        // status: Yup.string().oneOf(['Completed','Incomplete','Freezed']).required('Required'),
-        mentor: Yup.string(),
-        // links: '',
-        // tags: '',
-    }
+            projectName: Yup.string().required('Please enter a Project title'),
+            description: Yup.string().required('Describe a bit please!'),
+            teammembers: Yup.string(),
+            startDate: Yup.date().required('Please enter start date'),
+            status: Yup.string().required('Required'),
+            // status: Yup.string().oneOf(['Completed','Incomplete','Freezed']).required('Required'),
+            mentor: Yup.string(),
+            // links: '',
+            // tags: '',
+        }
     )
 
-    const [isComplete, setIsComplete] =useState(false);
+    const [isComplete, setIsComplete] = useState(false);
 
     return (
         <Formik
-            initialValues = {{...INITIAL_FORM_VALUES}}
-            validationSchema = {FORM_VALIDATION}
+            initialValues={{ ...INITIAL_FORM_VALUES }}
+            validationSchema={FORM_VALIDATION}
             onSubmit={values => {
-                console.log('Project value: ',values);
+                console.log('Project value: ', values);
                 sendInfo(values);
-                
+
             }}
         >
             <Form>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
-                        <Textfield name='projectName' label='Project Name'/>
+                        <Textfield name='projectName' label='Project Name' />
                     </Grid>
                     <Grid item xs={12}>
-                        <Textfield multiline name='description' label='Description'/>
+                        <Textfield multiline name='description' label='Description' />
                     </Grid>
                     <Grid item xs={12}>
-                        <Textfield name='teammembers' label='Team members'/>
+                        <Textfield name='teammembers' label='Team members' />
                     </Grid>
                     <Grid item xs={12}>
-                        <Select name='status' label='Project status' options={['Completed','Incomplete','Freezed']} />
+                        <Select name='status' label='Project status' options={['Completed', 'Incomplete', 'Freezed']} />
                     </Grid>
                     <Grid item xs={6}>
-                        <Checkbox name='isCompleted' label='Completed?' onChange={()=>{setIsComplete(true)}} />
+                        <Checkbox name='isCompleted' label='Completed?' onChange={() => { setIsComplete(true) }} />
                     </Grid>
                     {
-                        isComplete ? 
+                        isComplete ?
                             <Grid item xs={6}>
                                 <Typography>Complete</Typography>
                             </Grid>
-                            : 
+                            :
                             <Grid item xs={6}>
                                 <Typography>Not complete</Typography>
                             </Grid>
                     }
                     <Grid item xs={6}>
-                        <DateTimePicker name='startDate' label='Start Date'/>
+                        <DateTimePicker name='startDate' label='Start Date' />
                     </Grid>
                     {/* status */}
                     {/* if completed then completed date */}
@@ -107,13 +106,13 @@ function ProjectTrialForm(props) {
                 </Grid>
             </Form>
         </Formik>
-        
+
     )
 }
 
 export default ProjectTrialForm
 
-ProjectTrialForm.defaultProps ={
+ProjectTrialForm.defaultProps = {
     userdocumentID: 'sampleuser'
 }
 

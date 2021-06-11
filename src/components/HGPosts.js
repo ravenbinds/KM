@@ -136,31 +136,34 @@ function HGPosts(props) {
                         {isFreelance && seeklist && <div>
                             <Grid
                                 container
-                                direction="row"
+                                direction="column"
                                 justify="flex-start"
                                 alignItems="flex-start"
-                                className={classes.Box1}
 
                             >
-                                <Grid item xs={12} >
-                                    <Typography>
-                                        Looking for:
-                                    </Typography></Grid>
-                                <Grid item xs={12} >
-                                    <Grid direction="row"
+                                <Grid item xs={12} className={classes.Box} >
+                                    <Grid container direction="column"
                                         justify="flex-start"
-                                        alignItems="flex-start">
-                                        {
-                                            seeklist &&
-                                            seeklist.map(item => (
-                                                <ListItem>
-                                                    <ListItemIcon>+</ListItemIcon>
-                                                    <ListItemText primary={item} />
-                                                </ListItem>
-                                            ))
-                                        }
+                                        alignItems="flex-start" >
+                                        <Grid item xs={12} >
+                                            <Typography>
+                                                Looking for:
+                                            </Typography></Grid>
+                                        <Grid item xs={12} >
+
+                                            {seeklist &&
+                                                seeklist.map(item => (
+                                                    <div>
+                                                        <Grid item xs={12} className={classes.Grid}>
+                                                            <Typography variant="body1">+{item}</Typography></Grid>
+                                                    </div>
+
+                                                ))
+                                            }</Grid>
+
                                     </Grid>
                                 </Grid>
+
                             </Grid>
 
                         </div>
