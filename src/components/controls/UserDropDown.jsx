@@ -17,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
             width: "5vh",
         },
     },
+    notification : {
+        "&.active" : {
+            color: "#985dff",
+        },
+    }
 }));
 
 const UserDropDown = () => {
@@ -36,7 +41,7 @@ const UserDropDown = () => {
 
     return (
         <Box display="flex" flexDirection="row" alignItems="center" ml="auto" >
-            <IconButton component={NavLink} to='/Notifications' size="small"><NotificationsOutlined /></IconButton>
+            <IconButton component={NavLink} className={classes.notification} to='/Notifications' size="small"><NotificationsOutlined /></IconButton>
             <Button className={classes.userDropdown} disableElevation onClick={handleClick}>
                 <ArrowDropDown style={{ color: '#aaa' }} />
                 <Avatar className="photo" src={currentUser.photoURL} />
