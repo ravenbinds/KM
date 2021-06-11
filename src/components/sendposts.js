@@ -9,6 +9,11 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 const useStyles = makeStyles((theme) => ({
+    large: {
+
+        width: theme.spacing(6),
+        height: theme.spacing(6),
+    },
     button: {
         display: 'flex',
         maxWidth: '64',
@@ -66,7 +71,7 @@ const Sendposts = (props) => {
                         <Grid item xs={12}>
                             <Grid container direction='row' justify='flex-start' alignItems='center'>
                                 <Grid item>
-                                    <Avatar className="Post-user-avatar" src={props.avatar} />
+                                    <Avatar className={classes.large} src={props.avatar} />
                                 </Grid>
                                 <Grid item>
                                     <TextField
