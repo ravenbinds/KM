@@ -20,7 +20,7 @@ import { useOnClickOutside } from '../hooks';
 import followers from './pages/followers'
 import Freelance from "./pages/Freelance";
 import ProblemStatement from './pages/ProblemStatement';
-import getProject from './pages/getProject'
+import GetProject from './pages/getProject'
 const useStyles = makeStyles((theme) => ({
   wrapper: {
     [theme.breakpoints.down('sm')]: {
@@ -40,35 +40,37 @@ function Dash() {
   useOnClickOutside(node, () => setOpen(false));
   return (
     <>
-    {
-      currentUser ? 
-      (
-        <div className="App">
-          <div className={`wrapper ${classes.wrapper}`} ref={node}>
-            <Router>
-              <TopBar open={open} setOpen={setOpen}/>
-              <Leftbar open={open} setOpen={setOpen} />
-              <Switch>
-                <Route exact path="/" component={Content} />
-                <Route exact path="/createpages" component={create} />
-                <Route exact path="/Content" component={Content} />
-                <Route exact path="/Myprofile" component={Myprofile} />
-                <Route exact path="/Projectpage" component={Projectpage} />
-                <Route exact path="/groups" component={GroupsPage} />
-                <Route exact path="/Huntingground/projectcollab" component={Projectcollab}/>
-                <Route exact path="/Huntingground/projectadopt" component={Projectadopt}/>
-                <Route exact path="/Huntingground" component={Huntingground} />
-                <Route exact path="/Notifications" component={Notifications} />
-                <Route exact path="/Settings" component={Settings} />
-                <Route component={errorpage} />
-              </Switch>
-              <Rightbar />
-            </Router>
-          </div>
-          </div>
-        ) : (
-          <Redirect to="/login" />
-        )
+      {
+        currentUser ?
+          (
+            <div className="App">
+              <div className={`wrapper ${classes.wrapper}`} ref={node}>
+                <Router>
+                  <TopBar open={open} setOpen={setOpen} />
+                  <Leftbar open={open} setOpen={setOpen} />
+                  <Switch>
+                    <Route exact path="/" component={Content} />
+                    <Route exact path="/createpages" component={create} />
+                    <Route exact path="/Content" component={Content} />
+                    <Route exact path="/Myprofile" component={Myprofile} />
+                    <Route exact path="/Projectpage" component={GetProject} />
+                    <Route exact path="/groups" component={GroupsPage} />
+                    <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
+                    <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
+                    <Route exact path="/Huntingground/problemstatement" component={ProblemStatement} />
+                    <Route exact path="/Huntingground/freelance" component={Freelance} />
+                    <Route exact path="/Huntingground" component={Huntingground} />
+                    <Route exact path="/Notifications" component={Notifications} />
+                    <Route exact path="/Settings" component={Settings} />
+                    <Route component={errorpage} />
+                  </Switch>
+                  <Rightbar />
+                </Router>
+              </div>
+            </div>
+          ) : (
+            <Redirect to="/login" />
+          )
       }
     </>
   );

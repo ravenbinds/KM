@@ -9,7 +9,7 @@ import GroundCard from '../GroundCard';
 import { NavLink } from 'react-router-dom';
 import Top from '../Top'
 const useStyles = makeStyles((theme) => ({
-  
+
 }));
 
 const Huntingground = () => {
@@ -17,7 +17,7 @@ const Huntingground = () => {
 
     return (
         <div className="Contents">
-            <Top/>
+            <Top />
             <Box py={3}>
                 <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                     Hunting ground
@@ -49,7 +49,7 @@ const Huntingground = () => {
                         title="Lookout For Mindblowing Ideas?"
                         desc="Dont stress your brain to get the rumoured inspiration. Come and find them ideas"
                         tag="#PROBLEMSTATEMENTS"
-                        link="/Huntingground/"
+                        link="/Huntingground/problemstatement"
                     />
                 </Grid>
                 <Grid item sm={6}>
@@ -58,7 +58,7 @@ const Huntingground = () => {
                         title="Freelancers' For Hire"
                         desc="Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches"
                         tag="#PARTTIMEJOBS"
-                        link="/Huntingground/"
+                        link="/Huntingground/freelance"
                     />
                 </Grid>
                 <Grid item sm={12}>
@@ -70,7 +70,7 @@ const Huntingground = () => {
                             <Button
                                 variant="contained"
                                 color="primary"
-                                endIcon={<KeyboardArrowRightSharp/>}
+                                endIcon={<KeyboardArrowRightSharp />}
                             >
                                 <Typography variant="h6">Get Started</Typography>
                             </Button>
