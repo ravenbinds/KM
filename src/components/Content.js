@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Post from "./Post/index";
+import Post from "./Post/Post";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { Grid, GridList, GridListTile } from '@material-ui/core';
@@ -29,6 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
     },
 
+    large: {
+
+        width: theme.spacing(5),
+        height: theme.spacing(5),
+    },
     Grid: {
         padding: theme.spacing(1),
     },

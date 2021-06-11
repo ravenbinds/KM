@@ -130,7 +130,18 @@ body {
     justify-content: flex-start;
     align-content: space-evenly;
 }
+
 .Post-image img {
-    width: 10;
-    height: 10;
+    display: block;
+    width: 100%;
+}
+
+.Post-caption {
+    flex-direction: column;
+}
+
+.vjs-fade-out {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
