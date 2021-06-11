@@ -75,7 +75,13 @@ function ItemCard(props){
 function SimpleAccordion(props) {
     const classes = useStyles();
 
-    const {items} = props;
+    // const [isCurrentUser,setIsCurrentUser] = useState(false);
+
+    // if(currentUser.uid == props.userdocumentID){
+    //     setIsCurrentUser(true);
+    // }
+
+    const items = props.items;
 
     //MODAL variables, form
     const [expanded, setExpanded] = React.useState(false);
@@ -108,9 +114,17 @@ function SimpleAccordion(props) {
                                             <Typography variant='subtitle1'>Nothing to show here</Typography>
                                         </Grid>
                                         }
-                                <Grid item align='right'>
-                                    <SimpleModal body={item.form} startIcon={<Add/>} title={"Add " + item.title} button={"Add " + item.title}/>
-                                </Grid>
+                                {
+                                    (item.title == 'Posts') ? 
+                                    <Grid item>
+                                        {/* Blank Grid item */}
+                                    </Grid>
+                                    :
+                                    <Grid item align='right'>
+                                        <SimpleModal body={item.form} startIcon={<Add/>} title={"Add " + item.title} variant='outlined' button={"Add " + item.title}/>
+                                    </Grid>
+                                }
+                                
                             </Grid>
                         </AccordionDetails>
                     </Accordion>
@@ -121,3 +135,7 @@ function SimpleAccordion(props) {
 }
 
 export default SimpleAccordion
+
+SimpleAccordion.defaultProps = {
+    userdocumentID: 'sample user'
+}
