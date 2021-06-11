@@ -14,52 +14,18 @@ import { Add } from '@material-ui/icons';
 import SimpleModal from './controls/SimpleModal';
 
 const useStyles = makeStyles((theme) => ({
-
     large: {
-
         width: theme.spacing(3),
         height: theme.spacing(3),
     },
-
-    Grid: {
-        display: 'flex',
-        padding: theme.spacing(1),
-        marginTop: theme.spacing(1),
-
-    },
-
     Box: {
-        display: 'flex',
-        alignItems: 'flex-start ',
         padding: theme.spacing(2),
-        flexDirection: 'column',
         background: '#FFFFFF',
         border: '1px solid #985DFF',
         boxSizing: 'border-box',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
-
     },
-    Box1: {
-        display: 'flex',
-        alignItems: 'flex-start ',
-        padding: theme.spacing(0.8),
-        background: '#FFFFFF',
-        boxSizing: 'border-box',
-        borderRadius: '8px',
-
-    },
-    button: {
-        maxWidth: '64',
-        maxHeight: '39px',
-        position: 'static',
-        color: '#FFFFFF',
-        background: '#8C98FF',
-        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-        borderRadius: '10px',
-
-    },
-
 }));
 
 function HGPosts(props) {
@@ -80,60 +46,51 @@ function HGPosts(props) {
         descriptioncomponentsize = 8;
     }
     return (
-        <Grid container direction='column' justify="flex-start" className={classes.Box} spacing={1}>
+        <div className={classes.Box}>
+            <Grid container direction='column' justify="flex-start" spacing={3}>
                 <Grid item xs={12}>
                     <Typography color="primary" variant="h5" align="left" >
                         {title}
                     </Typography>
                 </Grid>
-                <Grid item xs={12}>
-                    <Grid container direction="row" spacing={1} alignItems='center' justify='flex-start'>
-                        <Grid item xs={descriptioncomponentsize}>
+                <Grid item xs={12} >
+                    <Grid container direction="row" alignItems='center' justify='space-between'>
+                        <Grid item xs={descriptioncomponentsize} >
                             <Typography variant="body1">
                                 {description}
                             </Typography>  
                         </Grid> 
                         {isProjectCollab && seeklist && 
-                            <Grid item xs={4}>
+                            <Grid item xs={12-descriptioncomponentsize} className={classes.Box} >
                                 <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                    <Grid item xs={12} className={classes.Box} >
-                                        <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                            <Grid item xs={12} >
-                                                <Typography>
-                                                    Looking for:
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={12} >
-                                                {seeklist && seeklist.map(item => (
-                                                            <Grid item xs={12}>
-                                                                <Typography variant="body1">+{item}</Typography>
-                                                            </Grid>
-                                                    ))
-                                                }
-                                            </Grid>
+                                    <Grid item xs={12} >
+                                        <Typography>Looking for:</Typography>
+                                    </Grid>
+                                    <Grid item xs={12} >
+                                        <Grid container direction='column'>
+                                            {seeklist.map(item => (
+                                                <Grid item xs={12}>
+                                                    <Typography variant="body1">+{item}</Typography>
+                                                </Grid>
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>
                             </Grid>
                         }
                         {isFreelance && seeklist && 
-                            <Grid item xs={4}>
+                            <Grid item xs={12-descriptioncomponentsize} className={classes.Box}>
                                 <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                    <Grid item xs={12} className={classes.Box} >
-                                        <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                            <Grid item xs={12} >
-                                                <Typography>
-                                                    Looking for:
-                                                </Typography>
-                                            </Grid>
-                                            <Grid item xs={12} >
-                                                {seeklist && seeklist.map(item => (
-                                                            <Grid item xs={12} className={classes.Grid}>
-                                                                <Typography variant="body1">+{item}</Typography>
-                                                            </Grid>
-                                                    ))
-                                                }
-                                            </Grid>
+                                    <Grid item xs={12}>
+                                        <Typography>Looking for: </Typography>
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <Grid container direction='column'>
+                                            {seeklist.map(item => (
+                                                <Grid item xs={12}>
+                                                    <Typography variant="body1">+{item}</Typography>
+                                                </Grid>
+                                            ))}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -141,15 +98,11 @@ function HGPosts(props) {
                         }
                     </Grid>
                 </Grid>              
-                <Grid item xs={12} style={{background: 'pink'}}>
+                <Grid item xs={12}>
                     <Grid container direction='row' justify='space-between'>
                         <Grid item>
                             <Grid container direction='column'>
-                                <Grid item>
-                                    <Typography align="left" color="primary" variant="body1">
-                                        {tag}
-                                    </Typography>
-                                </Grid>
+                                
                                 <Grid item >
                                     <Grid container direction="row" justify="flex-start" spacing={1} alignItems='center'>
                                         <Grid item>
@@ -162,14 +115,19 @@ function HGPosts(props) {
                                         </Grid>
                                     </Grid>
                                 </Grid>
+                                <Grid item>
+                                    <Typography align="left" color="primary" variant="subtitle">
+                                        {tag}
+                                    </Typography>
+                                </Grid>
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Grid container direction="row" justify="space-between">
-                                <Grid item className={classes.Box1}>
+                            <Grid container direction="row" justify="flex-end" spacing={1}>
+                                <Grid item >
                                     <SimpleModal title={"title"} button="More info" variant='outlined' color="textSecondary" />
                                 </Grid>  
-                                <Grid item className={classes.Box1}>
+                                <Grid item >
                                     <SimpleModal title={"title"} button={buttonText} variant='outlined' />
                                 </Grid>
                             </Grid>
@@ -177,6 +135,8 @@ function HGPosts(props) {
                     </Grid>
                 </Grid>
             </Grid>
+        </div>
+        
     );
 }
 
