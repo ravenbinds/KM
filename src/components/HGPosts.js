@@ -61,12 +61,12 @@ function HGPosts(props) {
             <Box className={classes.Box}>
             <Grid item xs={12} alignItems="flex-start" justify="flex-start">
                 <Grid container direction="row" justify="flex-start">
-                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                <Box mt={2} ml={2}>
-                    <Typography color="textPrimary" variant="h6">
-                    {username}
-                    </Typography>
-                </Box>
+                    <Avatar alt="Remy Sharp" src={man} className={classes.large} />
+                    <Box mt={2} ml={2}>
+                        <Typography color="textPrimary" variant="h6">
+                        {username}
+                        </Typography>   
+                    </Box>
                 </Grid>
             </Grid>
             <Grid item xs={12} alignItems="flex-start" justify="flex-start">
