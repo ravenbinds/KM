@@ -1,7 +1,3 @@
-/*
-SHOULD ADD SOMETHING FOR EDUCATION
-*/
-
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -22,6 +18,7 @@ import { Add, School, Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
 import ExperienceForm from './Actions/ExperienceForm'
+import EducationForm from './Actions/EducationForm'
 import CertificationForm from './Actions/CertificationForm'
 import { db } from '../firebase';
 import { useUserContext } from '../UserContext';
@@ -317,7 +314,7 @@ function DetailsAccordion(props) {
             entries: experienceDetails,
         },
 
-        { form: <ProjectForm userdocumentID={props.userdocumentID}/>, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
+        { form: <EducationForm userdocumentID={props.userdocumentID}/>, title: 'Education', panel: 'panel3', startIcon: <School fontSize="large" />, entries: [{ heading: "Abc", description: "Abcd", status: "Compl", statusIcon: <CheckRoundedIcon /> }] },
         //Certification data
         {
             form: <CertificationForm userdocumentID={props.userdocumentID}/>,

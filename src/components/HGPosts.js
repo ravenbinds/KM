@@ -111,7 +111,7 @@ function HGPosts(props) {
                                         <Grid item xs={12} >
                                             <Typography>
                                                 Looking for:
-                                </Typography></Grid>
+                                            </Typography></Grid>
                                         <Grid item xs={12} >
 
                                             {seeklist &&
@@ -145,7 +145,7 @@ function HGPosts(props) {
                                 <Grid item xs={12} >
                                     <Typography>
                                         Looking for:
-                                </Typography></Grid>
+                                    </Typography></Grid>
                                 <Grid item xs={12} >
                                     <Grid direction="row"
                                         justify="flex-start"
