@@ -17,9 +17,7 @@ const Huntingground = () => {
 
     return (
         <div className="Contents">
-
-            <Top />
-
+            <Top/>
             <Box py={3}>
                 <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                     Hunting ground
@@ -81,7 +79,6 @@ const Huntingground = () => {
                 </Grid>
             </Grid>
         </div >
-
     )
 }
 

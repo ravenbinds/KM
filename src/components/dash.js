@@ -11,6 +11,7 @@ import Settings from "./settings";
 import Projectcollab from "./pages/projectcollab";
 import Projectadopt from "./pages/projectadopt";
 import Projectpage from "./pages/Projectpage";
+import GroupsPage from "./pages/GroupsPage";
 import errorpage from "./404";
 import create from "./pages/createpage";
 // import Dashboard from './Dashboard/dashboard'
@@ -51,6 +52,7 @@ function Dash() {
                 <Route exact path="/Content" component={Content} />
                 <Route exact path="/Myprofile" component={Myprofile} />
                 <Route exact path="/Projectpage" component={Projectpage} />
+                <Route exact path="/groups" component={GroupsPage} />
                 <Route exact path="/Huntingground/projectcollab" component={Projectcollab}/>
                 <Route exact path="/Huntingground/projectadopt" component={Projectadopt}/>
                 <Route exact path="/Huntingground" component={Huntingground} />
