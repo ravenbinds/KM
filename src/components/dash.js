@@ -41,7 +41,8 @@ function Dash() {
   return (
     <>
     {
-      currentUser ? (
+      currentUser ? 
+      (
         <div className="App">
           <div className={`wrapper ${classes.wrapper}`} ref={node}>
             <Router>
@@ -63,6 +64,7 @@ function Dash() {
               </Switch>
               <Rightbar />
             </Router>
+          </div>
           </div>
         ) : (
           <Redirect to="/login" />
