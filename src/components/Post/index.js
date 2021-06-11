@@ -10,7 +10,6 @@ const Post = forwardRef(
     ({ nickname, caption, image, avatar }, ref) => {
         return (
             <Grid className="Post" ref={ref}>
-                <header>
                     <Grid className="Post-user">
                         <Grid className="Post-user-avatar">
                             <Avatar src={avatar} alt={nickname} />
@@ -19,7 +18,6 @@ const Post = forwardRef(
                             <span>{nickname}</span>
                         </Grid>
                     </Grid>
-                </header>
                 <Grid className="Post-image">
                     <Grid className="Post-image-bg">
                         <img alt={caption} src={image} />
@@ -29,8 +27,7 @@ const Post = forwardRef(
                     <strong>{nickname}</strong> {caption}
                 </Grid>
                 <Grid container justify="space-evenly" >
-                    <FormControlLabel
-                        control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
+                    <FormControlLabel control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
                     />
 
                     <IconButton aria-label="share">
