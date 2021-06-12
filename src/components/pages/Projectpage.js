@@ -177,16 +177,17 @@ const Projectpage = (props) => {
 
                             <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
                                 <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-
-                                    <GitHubIcon />
-                                    <Box ml={4} >
-                                        https://github.com/xionghc/Facial-Expression-Recognition</Box>
+                                    <Grid item xs={2}>
+                                        <GitHubIcon /></Grid>
+                                    <Grid item xs={10} >
+                                        {project.links.github}</Grid>
                                 </Grid>
                                 <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
 
-                                    <YouTubeIcon />
-                                    <Box ml={4} >
-                                        https://youtu.be/fkgpvkqcoJc</Box>
+                                    <Grid item xs={2}>
+                                        <YouTubeIcon /></Grid>
+                                    <Grid item xs={10}>
+                                        {project.links.youtube}</Grid>
                                 </Grid></Grid>
 
                             <Box color="secondary.main" fontSize={17}>TAGS

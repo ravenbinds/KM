@@ -73,7 +73,7 @@ const Sendposts = (props) => {
                                 <Grid item xs={1}>
                                     <Avatar className={classes.large} src={props.avatar} />
                                 </Grid>
-                                <Grid item xs>
+                                <Grid item xs={11}>
                                     <TextField
                                         InputProps={{ disableUnderline: true }}
                                         onChange={(e) => setsendCaption(e.target.value)}
