@@ -10,12 +10,8 @@ import { NavLink } from 'react-router-dom';
 import SimpleModal from '../controls/SimpleModal';
 import Top from '../Top'
 import CreateHGPost from '../Actions/CreateHGPost'
-const useStyles = makeStyles((theme) => ({
-
-}));
 
 const Huntingground = () => {
-    const classes = useStyles();
 
     return (
         <div className="Contents">
@@ -33,7 +29,7 @@ const Huntingground = () => {
                         title="Collaborate With New Teams"
                         desc="Find the team you can work with to realize your dream projects."
                         tag="#PROJECTCOLLABS"
-                        link="/Huntingground/projectcollab"
+                        link="/Huntingground/hgpage"
                     />
                 </Grid>
                 <Grid item sm={6}>
@@ -42,7 +38,7 @@ const Huntingground = () => {
                         title="Adopt Some Polishable Gems"
                         desc="Look for hidden treasures left behind. Change that freezed project into a diamond"
                         tag="#PROJECTADOPTS"
-                        link="/Huntingground/projectadopt"
+                        link="/Huntingground/hgpage"
                     />
                 </Grid>
                 <Grid item sm={6}>
@@ -51,7 +47,7 @@ const Huntingground = () => {
                         title="Get Inspired"
                         desc="Dont stress your brain to get the rumoured inspiration. Come and find them ideas"
                         tag="#PROBLEMSTATEMENTS"
-                        link="/Huntingground/problemstatement"
+                        link="/Huntingground/hgpage"
                     />
                 </Grid>
                 <Grid item sm={6}>
@@ -60,7 +56,7 @@ const Huntingground = () => {
                         title="Freelancers' For Hire"
                         desc="Find the team you can work with to realize your dream projects."
                         tag="#PARTTIMEJOBS"
-                        link="/Huntingground/freelance"
+                        link="/Huntingground/hgpage"
                     />
                 </Grid>
                 <Grid item sm={12}>

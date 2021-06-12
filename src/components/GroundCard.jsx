@@ -52,7 +52,7 @@ const GroundCard = ( props ) => {
     const Icon = props.icon;
     return (
         <ButtonBase className={classes.touch}>
-        <NavLink to={props.link} className={classes.navlink} exact>
+        <NavLink to={{pathname: props.link, state: {category: props.tag}}} className={classes.navlink} exact>
             <Box textAlign="center" px={4} py={3} className={classes.card} >
                 <Icon className={classes.icon}/>
                 <Typography className={classes.title} variant="h5" textAlign="justify">{props.title}</Typography>

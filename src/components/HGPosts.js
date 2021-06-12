@@ -26,28 +26,42 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
         borderRadius: '8px',
     },
+    card : {
+        padding: theme.spacing(2),
+        background: "white",
+        borderRadius: "10px",
+        minHeight: "200px",
+        transition: "all .2s",
+        boxShadow: "0px 4px 14px #4747470F",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+        fontSmoothing: "antialiased",
+        "& $icon" : {
+            transition: "all .2s",
+        },
+        "&:hover" : {
+            transform: "scale(1.01)",
+            boxShadow: "0px 4px 14px #47474733",
+            "& $icon" : {
+                color: "#985DFF",
+                transform: "scale(1.1)",
+            }
+        }
+    },
 }));
 
 function HGPosts(props) {
 
-    const { username, title, description, tag, category, seeklist, button, buttonText } = props;
+    const { username, title, description, tag, seeklist, buttonText } = props;
     const classes = useStyles();
-    let isProjectCollab = false;
-    let isFreelance = false;
     let descriptioncomponentsize = 12;
 
-    if (category === '1') {
-        isProjectCollab = true;
-    }
-    if (category === '3') {
-        isFreelance = true
-    }
     if(seeklist) {
         descriptioncomponentsize = 8;
     }
     return (
-        <div className={classes.Box}>
-            <Grid container direction='column' justify="flex-start" spacing={3}>
+        <div className={classes.card}>
+            <Grid container direction='column' justify="flex-start" spacing={1}>
                 <Grid item xs={12}>
                     <Typography color="primary" variant="h5" align="left" >
                         {title}
@@ -60,7 +74,7 @@ function HGPosts(props) {
                                 {description}
                             </Typography>  
                         </Grid> 
-                        {isProjectCollab && seeklist && 
+                        {seeklist && 
                             <Grid item xs={12-descriptioncomponentsize} className={classes.Box} >
                                 <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
                                     <Grid item xs={12} >
@@ -78,31 +92,12 @@ function HGPosts(props) {
                                 </Grid>
                             </Grid>
                         }
-                        {isFreelance && seeklist && 
-                            <Grid item xs={12-descriptioncomponentsize} className={classes.Box}>
-                                <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                    <Grid item xs={12}>
-                                        <Typography>Looking for: </Typography>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <Grid container direction='column'>
-                                            {seeklist.map(item => (
-                                                <Grid item xs={12}>
-                                                    <Typography variant="body1">+{item}</Typography>
-                                                </Grid>
-                                            ))}
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        }
                     </Grid>
                 </Grid>              
                 <Grid item xs={12}>
                     <Grid container direction='row' justify='space-between'>
                         <Grid item>
                             <Grid container direction='column'>
-                                
                                 <Grid item >
                                     <Grid container direction="row" justify="flex-start" spacing={1} alignItems='center'>
                                         <Grid item>
@@ -143,98 +138,11 @@ function HGPosts(props) {
 export default HGPosts
 
 HGPosts.defaultProps = {
-    username: 'Username', title: 'Project Name', description: 'Description', tag: 'DEFAULTTAG', category: '0', seeklist: null, button: '#', buttonText: "Apply"
+    username: 'Username', 
+    title: 'Project Name', 
+    description: 'Description', 
+    tag: 'DEFAULTTAG',
+    seeklist: null, 
+    button: '#', 
+    buttonText: "Apply"
 }
-
-{/* <Grid container justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-            <Grid item xs={12} className={classes.Box}>
-                <Grid item xs={12} className={classes.Box1}>
-                    <Typography color="primary" variant="h5" align="left" >
-                        {title}
-                    </Typography>
-                </Grid>
-
-                <Grid container direction="row" className={classes.Grid} >
-                    <Grid item xs={8} className={classes.Box1}>
-                        <Typography variant="body1">
-                            {description}
-                        </Typography>  
-                    </Grid>
-                    <Grid item xs={4}  >
-                        {isProjectCollab && seeklist && <div>
-                            <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                <Grid item xs={12} className={classes.Box} >
-                                    <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                        <Grid item xs={12} >
-                                            <Typography>
-                                                Looking for:
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={12} >
-                                            {seeklist && seeklist.map(item => (
-                                                        <Grid item xs={12} className={classes.Grid}>
-                                                            <Typography variant="body1">+{item}</Typography>
-                                                        </Grid>
-                                                ))
-                                            }
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </div>
-                        }
-                        {isFreelance && seeklist && <div>
-                            <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                <Grid item xs={12} className={classes.Box} >
-                                    <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                        <Grid item xs={12} >
-                                            <Typography>
-                                                Looking for:
-                                            </Typography>
-                                        </Grid>
-                                        <Grid item xs={12} >
-                                            {seeklist && seeklist.map(item => (
-                                                        <Grid item xs={12} className={classes.Grid}>
-                                                            <Typography variant="body1">+{item}</Typography>
-                                                        </Grid>
-                                                ))
-                                            }
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    }
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} >
-                    <Typography align="left" color="primary" variant="body1">
-                        {tag}
-                    </Typography>
-                </Grid>
-                <Grid container direction="row" justify="space-between" >
-                    <Grid item>
-                        <Grid container direction="row" justify="space-between" >
-                            <Grid item className={classes.Box1}>
-                                <Avatar alt="Remy Sharp" className={classes.large} />
-                            </Grid>
-                            <Grid item className={classes.Box1}>
-                                <Typography variant="body1">
-                                    {username}
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item >
-                        <Grid container direction="row" justify="space-between">
-                            <Grid item className={classes.Box1}>
-
-                                <SimpleModal title={"title"} button="More info" variant='outlined' color="textSecondary" />
-                            </Grid>  <Grid item className={classes.Box1}>
-                                <SimpleModal title={"title"} button={buttonText} variant='outlined' /></Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-
-        </Grid> */}
