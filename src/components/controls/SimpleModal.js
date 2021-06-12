@@ -69,7 +69,7 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <Button type="button" variant={props.variant} color={props.color} startIcon={props.startIcon} onClick={handleOpen}>
+      <Button type="button" variant={props.variant} color={props.color} startIcon={props.startIcon} endIcon={props.endIcon} onClick={handleOpen}>
         {props.button}
       </Button>
       <Modal

@@ -7,7 +7,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import GroundCard from '../GroundCard';
 import { NavLink } from 'react-router-dom';
+import SimpleModal from '../controls/SimpleModal';
 import Top from '../Top'
+import CreateHGPost from '../Actions/CreateHGPost'
 const useStyles = makeStyles((theme) => ({
 
 }));
@@ -29,7 +31,7 @@ const Huntingground = () => {
                     <GroundCard
                         icon={GroupSharp}
                         title="Collaborate With New Teams"
-                        desc="Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches"
+                        desc="Find the team you can work with to realize your dream projects."
                         tag="#PROJECTCOLLABS"
                         link="/Huntingground/projectcollab"
                     />
@@ -38,7 +40,7 @@ const Huntingground = () => {
                     <GroundCard
                         icon={Search}
                         title="Adopt Some Polishable Gems"
-                        desc="Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches"
+                        desc="Look for hidden treasures left behind. Change that freezed project into a diamond"
                         tag="#PROJECTADOPTS"
                         link="/Huntingground/projectadopt"
                     />
@@ -46,7 +48,7 @@ const Huntingground = () => {
                 <Grid item sm={6}>
                     <GroundCard
                         icon={EmojiObjects}
-                        title="Lookout For Mindblowing Ideas?"
+                        title="Get Inspired"
                         desc="Dont stress your brain to get the rumoured inspiration. Come and find them ideas"
                         tag="#PROBLEMSTATEMENTS"
                         link="/Huntingground/problemstatement"
@@ -56,7 +58,7 @@ const Huntingground = () => {
                     <GroundCard
                         icon={Work}
                         title="Freelancers' For Hire"
-                        desc="Find the team you can work with to realize your dream projects. Blah Blah Blah Motivation speeches"
+                        desc="Find the team you can work with to realize your dream projects."
                         tag="#PARTTIMEJOBS"
                         link="/Huntingground/freelance"
                     />
@@ -66,7 +68,8 @@ const Huntingground = () => {
                         <Typography variant="h6">
                             Contribute your ideas to the Hunting Ground. And get your dream project off the ground.
                         </Typography>
-                        <NavLink to="/createpages" style={{ textDecoration: "none" }} >
+                        <SimpleModal body={<CreateHGPost /> } endIcon={<KeyboardArrowRightSharp />} title={'Contribute to Hunting Ground'} variant='contained' button={'Get started'}/>
+                        {/* <NavLink to="/createpages" style={{ textDecoration: "none" }} >
                             <Button
                                 variant="contained"
                                 color="primary"
@@ -74,7 +77,7 @@ const Huntingground = () => {
                             >
                                 <Typography variant="h6">Get Started</Typography>
                             </Button>
-                        </NavLink>
+                        </NavLink> */}
                     </Box>
                 </Grid>
             </Grid>
