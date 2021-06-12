@@ -16,6 +16,13 @@ const theme = createMuiTheme({
     spacing: [0, 1, 2, 3, 5, 8],
   },
 
+  overrides: {
+    MuiTypography: {
+      root: {
+        wordWrap: "break-word"
+      }
+    }
+  },
   typography: {
     fontFamily: [
       'sans-serif'
@@ -70,7 +77,7 @@ function App() {
 
   return (
     <>
-      {   currentUser ? (
+      {currentUser ? (
         <ThemeProvider theme={theme}>
           <Dash />
         </ThemeProvider>

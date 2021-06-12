@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
-import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography, Divider } from "@material-ui/core";
+import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
 const useStyles = makeStyles((theme) => ({
     large: {
@@ -66,9 +66,9 @@ const Post = forwardRef(
 
                 </Grid>
                 <Grid container className={classes.Grid}>
-                    <Grid item className={classes.Grid}>
+                    <Grid item xs={12} className={classes.Grid}>
 
-                        {caption}
+                        <Typography >{caption}</Typography>
                     </Grid>   </Grid>
                 <Grid container justify="center" className="Post-image">
                     <Grid item className={classes.Grid}>

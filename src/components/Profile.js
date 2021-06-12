@@ -68,30 +68,30 @@ function ProfileHeader(props) {
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
             <Grid item>
-            <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
+                <Avatar alt="Remy Sharp" src={props.avatar} className={classes.large} />
             </Grid>
             <Grid item>
-            <Grid container direction='column'>
-                <Grid item>
-                    <Typography color="textPrimary" variant="h6" align='left'>
-                        {props.name}
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Grid container direction='row' spacing={1}>
-                        <Grid item>
-                            <Typography variant='body1' component={Link} to='/followers'>
-                                {props.followers} followers
-                            </Typography>
-                        </Grid>
-                        <Grid item>
-                            <Typography variant="body1" component={Link} to='/following'>
-                                {props.following} following
-                            </Typography>
+                <Grid container direction='column'>
+                    <Grid item>
+                        <Typography color="textPrimary" variant="h6" align='left'>
+                            {props.name}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <Grid container direction='row' spacing={1}>
+                            <Grid item>
+                                <Typography variant='body1' component={Link} to='/followers'>
+                                    {props.followers} followers
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant="body1" component={Link} to='/following'>
+                                    {props.following} following
+                                </Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
             </Grid>
         </Grid>
     );
@@ -125,12 +125,14 @@ function Spotlight() {
                             spotlightitems.map(item => (
                                 <Grid item xs={4}>
                                     <Card className={classes.root} alignItems='center' justify='center'>
-                                        <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
-                                            {item.count}
-                                        </Typography>
-                                        <CardActions>
+                                        <Grid item xs={12}>
+                                            <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
+                                                {item.count}
+                                            </Typography></Grid>
+                                        <CardActions>                                        <Grid item xs={12}>
+
                                             <Typography>{item.category}</Typography>
-                                        </CardActions>
+                                        </Grid></CardActions>
                                     </Card>
                                 </Grid>
                             ))
@@ -159,25 +161,25 @@ function RecentActivities() {
             </Grid>
             <Grid item xs={12}>
                 <Grid container direction='column' justify='flex-start'>
-                {
-                    items.map(item => (
-                        <Grid item xs={12} className={classes.Grid2}  >
-                            <Box className={classes.Box}>
-                                <CardActions>
-                                    <Button size="small" >{item.startIcon}</Button>
-                                </CardActions>
-                                <Typography align="left" color="textprimary" variant="body1" gutterBottom>
-                                    {item.content}
-                                </Typography>
-                            </Box>
-                        </Grid>
-                    ))
-                }
+                    {
+                        items.map(item => (
+                            <Grid item xs={12} className={classes.Grid2}  >
+                                <Box className={classes.Box}>
+                                    <CardActions>
+                                        <Button size="small" >{item.startIcon}</Button>
+                                    </CardActions>
+                                    <Typography align="left" color="textprimary" variant="body1" gutterBottom>
+                                        {item.content}
+                                    </Typography>
+                                </Box>
+                            </Grid>
+                        ))
+                    }
                 </Grid>
             </Grid>
             <Grid item xs={12}>
                 <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
-                see all activities...
+                    see all activities...
                 </Typography>
             </Grid>
 
@@ -196,14 +198,14 @@ function DetailsAccordion(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const ref = db.doc('profile/'+props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
+    const ref = db.doc('profile/' + props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
 
     //Function to get all projects of given user
     function getProject() {
         setLoading(true);
-        ref.collection('projects').onSnapshot((querySnapshot)=>{
-            const items=[];
-            querySnapshot.forEach((doc)=>{
+        ref.collection('projects').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
                 items.push({
                     heading: "Project title",
                     description: "Project description",
@@ -220,9 +222,9 @@ function DetailsAccordion(props) {
     //Function to get all education details of given user
     function getEducation() {
         setLoading(true);
-        ref.collection('education').onSnapshot((querySnapshot)=>{
-            const items=[];
-            querySnapshot.forEach((doc)=>{
+        ref.collection('education').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
                 items.push({
                     heading: doc.data().degree,
                     description: doc.data().school,
@@ -239,9 +241,9 @@ function DetailsAccordion(props) {
     //Function to get all posts of given user
     function getPost() {
         setLoading(true);
-        ref.collection('posts').onSnapshot((querySnapshot)=>{
-            const items=[];
-            querySnapshot.forEach((doc)=>{
+        ref.collection('posts').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
                 items.push({
                     heading: "Post title",
                     description: "Post description",
@@ -258,9 +260,9 @@ function DetailsAccordion(props) {
     //Function to get all experiences of given user
     function getExperiences() {
         setLoading(true);
-        ref.collection('experience').onSnapshot((querySnapshot)=>{
-            const items=[];
-            querySnapshot.forEach((doc)=>{
+        ref.collection('experience').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
                 items.push({
                     heading: doc.data().jobTitle,
                     description: doc.data().description,
@@ -277,9 +279,9 @@ function DetailsAccordion(props) {
     //Function to get all certifications of given user
     function getCertifications() {
         setLoading(true);
-        ref.collection('certification').onSnapshot((querySnapshot)=>{
-            const items=[];
-            querySnapshot.forEach((doc)=>{
+        ref.collection('certification').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
                 items.push({
                     heading: doc.data().certificationName,
                     description: doc.data().description,
@@ -308,30 +310,30 @@ function DetailsAccordion(props) {
     const items = [
         //Post data
         {
-            form: <ProjectForm userdocumentID={props.userdocumentID}/>,
+            form: <ProjectForm userdocumentID={props.userdocumentID} />,
             title: 'Posts', panel: 'panel1',
             startIcon: <FolderOpenRoundedIcon fontSize="large" />,
             entries: postDetails,
         },
         //Experience data
         {
-            form: <ExperienceForm userdocumentID={props.userdocumentID}/>,
+            form: <ExperienceForm userdocumentID={props.userdocumentID} />,
             title: 'Experiences',
             panel: 'panel2',
             startIcon: <WorkOutline fontSize="large" />,
             entries: experienceDetails,
         },
 
-        { 
-            form: <EducationForm userdocumentID={props.userdocumentID}/>, 
-            title: 'Education', 
-            panel: 'panel3', 
-            startIcon: <School fontSize="large" />, 
-            entries: educationDetails 
+        {
+            form: <EducationForm userdocumentID={props.userdocumentID} />,
+            title: 'Education',
+            panel: 'panel3',
+            startIcon: <School fontSize="large" />,
+            entries: educationDetails
         },
         //Certification data
         {
-            form: <CertificationForm userdocumentID={props.userdocumentID}/>,
+            form: <CertificationForm userdocumentID={props.userdocumentID} />,
             title: 'Certifications',
             panel: 'panel4',
             startIcon: <School fontSize="large" />,
@@ -339,7 +341,7 @@ function DetailsAccordion(props) {
         },
         //Project data
         {
-            form: <ProjectForm userdocumentID={props.userdocumentID}/>, title: 'Projects',
+            form: <ProjectForm userdocumentID={props.userdocumentID} />, title: 'Projects',
             panel: 'panel5',
             startIcon: <School fontSize="large" />,
             entries: projectDetails,
@@ -347,7 +349,7 @@ function DetailsAccordion(props) {
     ]
 
     return (
-                <SimpleAccordion items={items} userdocumentID={props.userdocumentID}/>
+        <SimpleAccordion items={items} userdocumentID={props.userdocumentID} />
     );
 }
 
@@ -387,7 +389,7 @@ function Profile(props) {
                 <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
                 <Spotlight />
                 <RecentActivities />
-                <DetailsAccordion userdocumentID={props.userdocumentID}/>
+                <DetailsAccordion userdocumentID={props.userdocumentID} />
             </Grid>
         </div >
     )

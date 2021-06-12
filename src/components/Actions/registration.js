@@ -20,7 +20,7 @@ function Copyright() {
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
                 Your Website
-      </Link>{' '}
+            </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
         </Typography>
@@ -62,7 +62,7 @@ const Register = props => {
                         </Avatar>
                         <Typography component="h1" variant="h5">
                             Sign up
-        </Typography>
+                        </Typography>
                         <form className={classes.form} noValidate>
                             <TextField
                                 variant="outlined"
@@ -108,7 +108,7 @@ const Register = props => {
 
                             >
                                 Sign In
-          </Button>
+                            </Button>
                             <Button
                                 type="submit"
                                 fullWidth
@@ -118,12 +118,12 @@ const Register = props => {
                                 onClick={() => setIsAuth(false)}
                             >
                                 Logout
-          </Button>
+                            </Button>
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
                                         Forgot password?
-              </Link>
+                                    </Link>
                                 </Grid>
                                 <Grid item>
                                     <Link href="#" variant="body2">
@@ -131,7 +131,6 @@ const Register = props => {
                                     </Link>
                                 </Grid>
                             </Grid>
-                            {/* <ProtectedRoute path="#" component={dash} isAuth={isAuth} /> */}
                         </form>
                     </div>
                     <Box mt={8}>
