@@ -49,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         width: '100%',
         backgroundColor: theme.palette.background.paper,
-        overflowY: "scroll"
     },
     Grid: {
         padding: theme.spacing(1),
@@ -76,13 +75,13 @@ export default function Createpages() {
 
     return (
         <Box className="Content" overflow="scroll">
-            <Top/>
+            <Top />
             <Grid item xs={12} className={classes.Grid}>
             </Grid>
             <Grid item xs={12} className={classes.Grid}>
                 <Typography align="left" color="textPrimary" variant="h5" padding="40px">
                     Support Requests
-            </Typography>
+                </Typography>
             </Grid>
             <Grid item xs={12} className={classes.Grid}>
             </Grid>
@@ -161,7 +160,7 @@ export default function Createpages() {
                             className={classes.submit}
                         >
                             Submit
-          </Button>
+                        </Button>
                         <Button
                             type="reset"
                             fullWidth
@@ -170,7 +169,7 @@ export default function Createpages() {
                             className={classes.submit}
                         >
                             Reset
-          </Button>
+                        </Button>
 
                     </form>
                 </TabPanel>
