@@ -8,8 +8,9 @@ import Huntingground from "./pages/Huntingground";
 import Myprofile from "./Myprofile";
 import Notifications from "./Notifications";
 import Settings from "./settings";
-import Projectcollab from "./pages/projectcollab";
-import Projectadopt from "./pages/projectadopt";
+// import Projectcollab from "./pages/projectcollab";
+import HGPage from "./pages/HGPage"
+// import Projectadopt from "./pages/projectadopt";
 import Projectpage from "./pages/Projectpage";
 import GroupsPage from "./pages/GroupsPage";
 import errorpage from "./404";
@@ -18,8 +19,8 @@ import { useUserContext } from "../UserContext";
 import { makeStyles } from '@material-ui/core/styles';
 import { useOnClickOutside } from '../hooks';
 import followers from './pages/followers'
-import Freelance from "./pages/Freelance";
-import ProblemStatement from './pages/ProblemStatement';
+// import Freelance from "./pages/Freelance";
+// import ProblemStatement from './pages/ProblemStatement';
 import GetProject from './pages/getProject'
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -55,10 +56,11 @@ function Dash() {
                     <Route exact path="/Myprofile" component={Myprofile} />
                     <Route exact path="/Projectpage" component={GetProject} />
                     <Route exact path="/groups" component={GroupsPage} />
-                    <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
+                    <Route exact path='/Huntingground/hgpage' component={HGPage}/>
+                    {/* <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
                     <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
                     <Route exact path="/Huntingground/problemstatement" component={ProblemStatement} />
-                    <Route exact path="/Huntingground/freelance" component={Freelance} />
+                    <Route exact path="/Huntingground/freelance" component={Freelance} /> */}
                     <Route exact path="/Huntingground" component={Huntingground} />
                     <Route exact path="/Notifications" component={Notifications} />
                     <Route exact path="/Settings" component={Settings} />

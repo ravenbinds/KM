@@ -18,19 +18,18 @@ function CreateHGPost(props) {
 
 
     function sendInfo(values) {
-        db.collection("huntingground").doc()
+        db.collection("HuntingGround").doc()
         .set({
             category: values.category,
             seeklist: values.seeklist,
-            application: [],
+            // application: [],
             hgdescription: values.hgdescription,
             hgtitle: values.hgtitle,
-            paid: values.paid,
             userid: currentUser.uid, //should be the user profile details, not google details
-            avatar: currentUser.photoURL,
-            nickname: currentUser.displayName,
-            createdDate: values.createdDate,
-            timestamp: values.timestamp,
+            // avatar: currentUser.photoURL,
+            // nickname: currentUser.displayName,
+            // createdDate: values.createdDate,
+            // timestamp: values.timestamp,
         })
     }
 
@@ -46,7 +45,7 @@ function CreateHGPost(props) {
     const FORM_VALIDATION = Yup.object().shape(
         {
             category: Yup.string().required('Required'),
-            seeklist: Yup.string(),
+            seeklist: Yup.array(),
             hgdescription: Yup.string().required('Please add some description'),
             hgtitle: Yup.string().required('Please enter an appropriate title'),
             paid: Yup.boolean(),
@@ -72,7 +71,17 @@ function CreateHGPost(props) {
                         <Textfield multiline name='hgdescription' label='Description' />
                     </Grid>
                     <Grid item xs={12}>
-                        <Select InputProps={{ startAdornment: <InputAdornment position='start'>#</InputAdornment> }} name='category' label='Category' options={['ProjectCollabs', 'ProjectAdopts', 'ProblemStatements', 'PartTimeJobs']} />
+                        <Select 
+                        InputProps={{startAdornment: <InputAdornment position='start'>#</InputAdornment>}}
+                        name='category'
+                        label='Category' 
+                        options={
+                            {'#PROJECTCOLLABS':'ProjectCollabs',
+                             '#PROJECTADOPTS':'ProjectAdopts', 
+                             '#PROBLEMSTATEMENTS':'ProblemStatements', 
+                             '#PARTTIMEJOBS':'Jobs'
+                            }} 
+                        />
                     </Grid>
                     {/*NOTEKD Should add ways to append to the array */}
                     <Grid item xs={11}>
