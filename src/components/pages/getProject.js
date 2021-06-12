@@ -15,5 +15,5 @@ const GetProject = (props) => {
 export default GetProject
 
 GetProject.defaultProps = {
-    pname: 'Procastination',
+    pname: 'Emotion Detection through Facial Expression',
 }
