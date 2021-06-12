@@ -12,9 +12,11 @@ import { Avatar, CardHeader } from '@material-ui/core';
 const useStyles = makeStyles({
     root: {
         display: 'flex',
-        justify: 'flex-start',
+        flexDirection: 'column'
     },
-
+    buttons: {
+        alignSelf:"flex-end",
+    }
 });
 function Supportreq() {
     const classes = useStyles();
@@ -25,28 +27,26 @@ function Supportreq() {
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
                         R
-          </Avatar>
+                    </Avatar>
                 }
-
                 title="Hana Banana"
                 subheader="September 14, 2016"
             />
             <CardActionArea>
                 <CardContent>
-
                     <Typography variant="body2" color="textSecondary" component="p">
                         Hi, We are absolute fans of your latest illustration works in project #howwellcanitbedone.
                         Will you help us in the logo design for our latest project Choco Chip Cookies?
-            </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions className={classes.buttons}>
                 <Button variant="outlined" size="small" color="primary">
                     Accept
-          </Button>
+            </Button>
                 <Button variant="outlined" size="small" color="primary">
                     Cancel
-          </Button>
+            </Button>
             </CardActions>
         </Card>
     )
