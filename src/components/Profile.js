@@ -61,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
         height: theme.spacing(10),
         margin: theme.spacing(1)
     },
+    spotlight: {
+    },
 }));
 
 function ProfileHeader(props) {
@@ -107,20 +109,30 @@ ProfileHeader.defaultProps = {
 function Spotlight() {
 
     const spotlightitems = [
-        { category: 'Project', count: 31 },
-        { category: 'Certifications', count: 31 },
-        { category: 'Jobs done', count: 31 },
+        { category: 'Projects', count: 4 },
+        { category: 'Certifications', count: 10 },
+        { category: 'Jobs done', count: 8 },
     ]
 
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.Grid2}  >
-            <Box className={classes.Box}>
+            <Box>
                 <Grid container direction="column" justify="space-around" alignItems="baseline" >
                     <Typography color="textSecondary" gutterBottom>
                         Spotlight
                     </Typography>
-                    <Grid container direction="row" justify="space-around" alignItems="baseline" >
+                    <Grid container direction="row" className={classes.spotlight} justify="space-around" alignItems="baseline" spacing={2} >
+                        {
+                            spotlightitems.map(item => (
+                                <Box textAlign="center" component={Grid} item sm={4}>
+                                    <Typography variant="h5" >{item.count}</Typography>
+                                    <Typography variant="subtitle2" color="secondary">{item.category}</Typography>
+                                </Box>
+                            ))
+                        }
+                    </Grid>
+                    {/* <Grid container direction="row" justify="space-around" alignItems="baseline" >
                         {
                             spotlightitems.map(item => (
                                 <Grid item xs={4}>
@@ -137,7 +149,7 @@ function Spotlight() {
                                 </Grid>
                             ))
                         }
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Box>
         </Grid>
