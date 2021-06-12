@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         width: '100%',
         backgroundColor: theme.palette.background.paper,
+        overflowY: "scroll"
     },
     Grid: {
         padding: theme.spacing(1),
@@ -74,7 +75,7 @@ export default function Createpages() {
     };
 
     return (
-        <div className="Content">
+        <Box className="Content" overflow="scroll">
             <Top/>
             <Grid item xs={12} className={classes.Grid}>
             </Grid>
@@ -187,6 +188,6 @@ export default function Createpages() {
 
                 </TabPanel>
 
-            </div></div>
+            </div></Box>
     );
 }
