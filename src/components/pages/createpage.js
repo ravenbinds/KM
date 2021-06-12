@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { Button, Checkbox, FormControlLabel, InputAdornment, TextField } from '@material-ui/core';
 import Supportreq from './supportreq';
+import Top from '../Top'
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -74,11 +75,12 @@ export default function Createpages() {
 
     return (
         <div className="Content">
+            <Top/>
             <Grid item xs={12} className={classes.Grid}>
             </Grid>
             <Grid item xs={12} className={classes.Grid}>
-                <Typography align="center" color="textPrimary" variant="h5" padding="40px">
-                    Support
+                <Typography align="left" color="textPrimary" variant="h5" padding="40px">
+                    Support Requests
             </Typography>
             </Grid>
             <Grid item xs={12} className={classes.Grid}>
