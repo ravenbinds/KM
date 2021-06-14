@@ -95,7 +95,7 @@ function HGPosts(props) {
                     </Grid>
                 </Grid>              
                 <Grid item xs={12}>
-                    <Grid container direction='row' justify='space-between'>
+                    <Grid container direction='row' justify='space-between' alignItems='center'>
                         <Grid item>
                             <Grid container direction='column'>
                                 <Grid item >

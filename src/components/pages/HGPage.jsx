@@ -47,7 +47,7 @@ const HGPage = (props) => {
         }
 
     useEffect(() => {
-        console.log('location ',props.location)
+        // console.log('location ',props.location)
         getHgPosts();
     },[]);
 
