@@ -70,10 +70,10 @@ const Sendposts = (props) => {
 
                         <Grid item xs={12}>
                             <Grid container direction='row' justify='flex-start' alignItems='center'>
-                                <Grid item xs={1}>
+                                <Grid item >
                                     <Avatar className={classes.large} src={props.avatar} />
                                 </Grid>
-                                <Grid item xs={11}>
+                                <Grid item xs={10}>
                                     <TextField
                                         InputProps={{ disableUnderline: true }}
                                         onChange={(e) => setsendCaption(e.target.value)}
@@ -99,8 +99,8 @@ const Sendposts = (props) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Grid container direction='row' justify='space-between'>
-                                <Grid container xs={4} justify="space-around" alignItems='center'>
+                            <Grid container direction='row' >
+                                <Grid item xs={4} justify="space-between" alignItems='center'>
                                     <Typography align="left" color="primary">
                                         Add
                                     </Typography>
@@ -110,7 +110,7 @@ const Sendposts = (props) => {
                                         <Button><EmojiEventsIcon /></Button>
                                     </ButtonGroup>
                                 </Grid>
-                                <Grid container xs={8} justify="flex-end" alignItems="flex-end">
+                                <Grid item xs={8} justify="flex-end" align="right">
                                     <Button onClick={sendPosts} className={classes.button} type="submit">
                                         Post
                                     </Button>

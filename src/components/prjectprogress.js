@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 });
 
 
-function LinearProgressWithLabel(props) {
+export default function LinearProgressWithLabel(props) {
     const classes = useStyles();
 
     return (
@@ -33,33 +33,8 @@ function LinearProgressWithLabel(props) {
     );
 }
 
-LinearProgressWithLabel.propTypes = {
-    /**
-     * The value of the progress indicator for the determinate and buffer variants.
-     * Value between 0 and 100.
-     */
-    value: PropTypes.number.isRequired,
-};
-
-
-
-export default function LinearWithValueLabel() {
-    const classes = useStyles();
-    const [progress, setProgress] = React.useState(100);
-
-    // React.useEffect(() => {
-    //     const timer = setInterval(() => {
-    //         setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-    //     }, 800);
-    //     return () => {
-    //         clearInterval(timer);
-    //     };
-    // }, []);
-
-    return (
-        <div className={classes.root}>
-
-            <LinearProgressWithLabel value={progress} />
-        </div>
-    );
+LinearProgressWithLabel.defaultProps = {
+    progress: '0',
 }
+
+

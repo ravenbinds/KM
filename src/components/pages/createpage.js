@@ -59,9 +59,19 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(1),
     },
     submit: {
-        maxWidth: '80px',
-        maxHeight: '43px',
+
         margin: theme.spacing(3, 1, 2),
+        position: 'static',
+        color: '#FFFFFF',
+        display: 'flex',
+        background: '#8C98FF',
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        borderRadius: '10px',
+        maxWidth: '300px',
+        maxHeight: '60px',
+    },
+    appbar: {
+        borderRadius: '6px',
     },
 }));
 
@@ -86,7 +96,7 @@ export default function Createpages() {
             <Grid item xs={12} className={classes.Grid}>
             </Grid>
             <div className={classes.root}>
-                <AppBar position="static" color="default">
+                <AppBar position="static" color="inherit" className={classes.appbar}>
                     <Tabs
                         value={value}
                         onChange={handleChange}
@@ -148,29 +158,32 @@ export default function Createpages() {
                             autoFocus
 
                         />
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Paid"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Submit
-                        </Button>
-                        <Button
-                            type="reset"
-                            fullWidth
-                            variant="contained"
-                            color="primary"
-                            className={classes.submit}
-                        >
-                            Reset
-                        </Button>
+                        <Grid container direction="row" justify="flex-end">
 
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                align="right"
+                                label="Paid"
+                            /></Grid>
+                        <Grid container direction="row" justify="space-between">
+
+                            <Button
+                                type="reset"
+                                fullWidth
+                                variant="contained"
+                                className={classes.submit}
+                            >
+                                Reset
+                            </Button>
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                className={classes.submit}
+                            >
+                                Submit
+                            </Button>
+                        </Grid>
                     </form>
                 </TabPanel>
                 <TabPanel value={value} index={1}>

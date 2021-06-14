@@ -110,10 +110,10 @@ const Contents = () => {
                             <Grid component={Typography} variant='h5'>Popular Projects</Grid>
                             <GridList cols={2.5} className={classes.popularCards}>
                                 <GridListTile className={classes.gridTile}>
-                                    <SimpleCard />
+                                    <SimpleCard pname="Emotion Detection through Facial Expression" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
-                                    <SimpleCard />
+                                    <SimpleCard pname="Plant disease detection" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
                                     <SimpleCard />
@@ -146,14 +146,11 @@ const Contents = () => {
                     <FlipMove>
                         {posts.map(post => (
                             <Grid className="Contents-space">
-                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} />
+                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} likes={post.likes} share={post.share} comment={post.comment} />
                             </Grid>
                         ))
                         }
                     </FlipMove>
-                </Grid>
-                <Grid item xs={12}>
-
                 </Grid>
             </Grid>
         </div>

@@ -28,7 +28,7 @@ export const mainListItems = (
         </ListItem>
         <ListItem button component={NavLink} to="/groups">
             <ListItemIcon>
-                <GroupIcon/>
+                <GroupIcon />
             </ListItemIcon>
             <ListItemText primary="Groups" />
         </ListItem>
@@ -58,19 +58,19 @@ export const secondaryListItems = (
         <ListSubheader disableSticky>Your groups</ListSubheader>
         <ListItem button>
             <ListItemIcon>
-                <AssignmentIcon />
+                <GroupIcon />
             </ListItemIcon>
             <ListItemText primary="CSE dept" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <AssignmentIcon />
+                <GroupIcon />
             </ListItemIcon>
             <ListItemText primary="FOSSers" />
         </ListItem>
         <ListItem button>
             <ListItemIcon>
-                <AssignmentIcon />
+                <GroupIcon />
             </ListItemIcon>
             <ListItemText primary="VAST" />
         </ListItem>

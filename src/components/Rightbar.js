@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '10px 30px',
         background: '#E5EEFC',
         [theme.breakpoints.down('sm')]: {
-            display:'none',
+            display: 'none',
         },
 
     },
@@ -27,12 +27,13 @@ const Rightbar = () => {
             <Grid container direction='column' justify='flex-start' spacing={1}>
                 <Grid item xs={12}>
                     <Grid container direction='row' justify='flex-end' spacing={1} alignItems='center'>
-                        <UserDropDown/>
+                        <UserDropDown />
                     </Grid>
                 </Grid>
                 <Grid item>
                     <Grid component={Typography} variant='h5'>Popular Projects</Grid>
-                    <SimpleCard />
+                    <SimpleCard pname='Emotion Detection through Facial Expression' />
+
                 </Grid>
             </Grid>
         </div>

@@ -62,8 +62,9 @@ const useStyles = makeStyles((theme) => ({
 const Projectpage = (props) => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
+    var pname = props.pname
     useEffect(() => {
-        db.collection("projects").where('pname', '==', (props.pname))
+        db.collection("projects").where('pname', '==', (pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
@@ -109,7 +110,7 @@ const Projectpage = (props) => {
                         </Grid>
                         <Grid item xs={12} className={classes.Grid1} alignItems="flex-start">
 
-                            <Milestones /></Grid>
+                            <Milestones startdate={project.startDate} /></Grid>
 
                         <Box className={classes.Box} mt={2} >
                             <Grid container xs={3} className={classes.Grid} justify="space-between" >

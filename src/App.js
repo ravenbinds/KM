@@ -33,10 +33,18 @@ const theme = createMuiTheme({
     },
   },
 });
-
+theme.typography.body2 = {
+  fontSize: "0.6rem",
+  "@media (min-width:600px)": {
+    fontSize: "0.7rem",
+  },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "0.8rem",
+  },
+};
 theme.typography.h6 = {
   fontSize: "0.8rem",
-  fontWeight: 'normal',
+  fontWeight: '600',
   "@media (min-width:600px)": {
     fontSize: "1.0rem",
   },
