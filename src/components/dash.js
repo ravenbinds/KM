@@ -56,11 +56,7 @@ function Dash() {
                     <Route exact path="/Myprofile" component={Myprofile} />
                     <Route exact path="/Projectpage" component={GetProject} />
                     <Route exact path="/groups" component={GroupsPage} />
-                    <Route exact path='/Huntingground/hgpage' component={HGPage}/>
-                    {/* <Route exact path="/Huntingground/projectcollab" component={Projectcollab} />
-                    <Route exact path="/Huntingground/projectadopt" component={Projectadopt} />
-                    <Route exact path="/Huntingground/problemstatement" component={ProblemStatement} />
-                    <Route exact path="/Huntingground/freelance" component={Freelance} /> */}
+                    <Route exact path='/Huntingground/hgpage' component={HGPage} />
                     <Route exact path="/Huntingground" component={Huntingground} />
                     <Route exact path="/Notifications" component={Notifications} />
                     <Route exact path="/Settings" component={Settings} />

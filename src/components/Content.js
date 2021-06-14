@@ -110,10 +110,10 @@ const Contents = () => {
                             <Grid component={Typography} variant='h5'>Popular Projects</Grid>
                             <GridList cols={2.5} className={classes.popularCards}>
                                 <GridListTile className={classes.gridTile}>
-                                    <SimpleCard />
+                                    <SimpleCard pname="Emotion Detection through Facial Expression" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
-                                    <SimpleCard />
+                                    <SimpleCard pname="Plant disease detection" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
                                     <SimpleCard />

@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Milestones = () => {
+const Milestones = (props) => {
     const classes = useStyles();
-
+    const startdate = props.startDate
     return (
 
         <Grid
@@ -40,7 +40,7 @@ const Milestones = () => {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent >Opened on December 20,1985
-                    <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
+                        <Box color="secondary.text" fontSize={13}>{startdate.date}</Box>
                     </TimelineContent>
 
                 </TimelineItem>
@@ -50,7 +50,7 @@ const Milestones = () => {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>Launched product website
-                    <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
+                        <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
 
                     </TimelineContent>
                 </TimelineItem>
@@ -60,7 +60,7 @@ const Milestones = () => {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent>Launched product website
-                    <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
+                        <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
 
                     </TimelineContent>
                 </TimelineItem>
@@ -69,7 +69,7 @@ const Milestones = () => {
                         <TimelineDot />
                     </TimelineSeparator>
                     <TimelineContent>Completed
-                    <Box color="secondary.text" fontSize={13}></Box>
+                        <Box color="secondary.text" fontSize={13}></Box>
 
                     </TimelineContent>
                 </TimelineItem>
@@ -79,3 +79,6 @@ const Milestones = () => {
 }
 
 export default Milestones
+Milestones.defaultProps = {
+    startDate: 'DEcember 25',
+}
