@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const Post = forwardRef(
-    ({ nickname, caption, image, avatar }, ref) => {
+    ({ nickname, caption, image, avatar, likes, share, comment }, ref) => {
         const classes = useStyles();
 
         return (
@@ -77,14 +77,18 @@ const Post = forwardRef(
                 </Grid>
 
                 <Grid container justify="space-around" className={classes.Grid2}>
-                    <FormControlLabel control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
+
+                    <FormControlLabel label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
                     />
-                    <IconButton aria-label="share">
-                        <ShareIcon />
-                    </IconButton>
-                    <IconButton aria-label="comment">
-                        <Comment />
-                    </IconButton></Grid>
+
+                    <FormControlLabel label={<Typography color="textSecondary">{share}</Typography>} control={<Checkbox icon={<ShareIcon />} checkedIcon={<ShareIcon color="primary" />} name="checkedH" />}
+                    />
+
+                    <FormControlLabel label={<Typography color="textSecondary">{comment}</Typography>} control={<Checkbox icon={<Comment />} checkedIcon={<Comment color="primary" />} name="checkedH" />}
+                    />
+
+
+                </Grid>
 
             </Grid>
         );
