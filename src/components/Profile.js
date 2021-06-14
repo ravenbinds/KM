@@ -82,12 +82,12 @@ function ProfileHeader(props) {
                     <Grid item>
                         <Grid container direction='row' spacing={1}>
                             <Grid item>
-                                <Typography variant='body1' component={Link} to='/followers'>
+                                <Typography variant="body2" component={Link} to='/followers'>
                                     {props.followers} followers
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Typography variant="body1" component={Link} to='/following'>
+                                <Typography variant="body2" component={Link} to='/following'>
                                     {props.following} following
                                 </Typography>
                             </Grid>
@@ -190,7 +190,7 @@ function RecentActivities() {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <Typography variant="subtitle2" padding="20px" component={Link} to="/Myprofile">
+                <Typography variant="body2" padding="20px" component={Link} to="/Myprofile">
                     see all activities...
                 </Typography>
             </Grid>

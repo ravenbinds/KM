@@ -40,7 +40,7 @@ const Milestones = (props) => {
                         <TimelineConnector />
                     </TimelineSeparator>
                     <TimelineContent >Opened on December 20,1985
-                        <Box color="secondary.text" fontSize={13}>{startdate.date}</Box>
+                        <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
                     </TimelineContent>
 
                 </TimelineItem>
