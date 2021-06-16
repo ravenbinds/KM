@@ -1,12 +1,12 @@
-import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, Radio, RadioGroup } from '@material-ui/core';
+import { IconButton, InputAdornment } from '@material-ui/core';
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { db } from '../../firebase';
-import { Formik, Form, FieldArray, Field } from 'formik'
+import { Formik, Form, FieldArray } from 'formik'
 import * as Yup from 'yup'
 import Textfield from '../FormsUI/Textfield';
 import Select from '../FormsUI/Select';
-import DateTimePicker from '../FormsUI/DateTimePicker';
+// import DateTimePicker from '../FormsUI/DateTimePicker';
 import Button from '../FormsUI/Button';
 import Checkbox from '../FormsUI/Checkbox';
 // import { Typography } from '@material-ui/core';
@@ -29,6 +29,7 @@ function CreateHGPost(props) {
             userid: currentUser.uid, //should be the user profile details, not google details
             avatar: currentUser.photoURL,
             nickname: currentUser.displayName,
+            seeking: values.seeking,
             // createdDate: values.createdDate,
             // timestamp: values.timestamp,
         })
@@ -37,10 +38,12 @@ function CreateHGPost(props) {
 
     const INITIAL_FORM_VALUES = {
         category: '',
-        seeklist: [''],
+        seeking: false,
+        seeklist: [""],
         hgdescription: '',
         hgtitle: '',
         paid: false,
+        amount: '',
     };
 
     const FORM_VALIDATION = Yup.object().shape(
@@ -91,8 +94,13 @@ function CreateHGPost(props) {
                     {/* <Grid item xs={11}>
                         <Textfield name='seeklist' label='What are you looking for?' />
                     </Grid> */}
-                    <Grid item xs={12}>
-                    <label>Looking for something?</label>
+                     <Grid item xs={12}>
+                        <Checkbox name='seeking' label='Looking for something?' />
+                    </Grid>
+                    {
+                        values.seeking && (
+                            <Grid item xs={12}>
+                    
                     <FieldArray name='seeklist' >
                             {
                                 (fieldArrayProps)=> {
@@ -122,9 +130,18 @@ function CreateHGPost(props) {
                         </FieldArray>
                         
                     </Grid>
-                    <Grid item xs={1}>
+                        )
+                    }
+                    
+                    <Grid item xs={6}>
                         <Checkbox name='paid' label='Paid?' />
                     </Grid>
+                    {
+                        values.paid && 
+                        (<Grid item xs={6}>
+                            <Textfield name='amount' label='Amount'/>
+                        </Grid>)
+                    }
                     <Button>Submit</Button>
                     
                 </Grid>
