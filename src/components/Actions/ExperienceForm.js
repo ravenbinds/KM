@@ -50,7 +50,7 @@ function ExperienceForm(props) {
 
   return (
     <Formik
-      initialValues = {{INITIAL_FORM_VALUES}}
+      initialValues = {INITIAL_FORM_VALUES}
       validationSchema = {FORM_VALIDATION}
       onSubmit = {values => {
         console.log('Experience value: ',values);
