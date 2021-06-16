@@ -113,7 +113,7 @@ const Contents = () => {
                                     <SimpleCard pname="Emotion Detection through Facial Expression" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
-                                    <SimpleCard pname="Plant disease detection" />
+                                    <SimpleCard pname="Plant disease detection using ML" />
                                 </GridListTile>
                                 <GridListTile className={classes.gridTile}>
                                     <SimpleCard />

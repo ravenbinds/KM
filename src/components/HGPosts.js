@@ -1,16 +1,9 @@
-import {useState} from 'react'
+
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import man from "../man.svg"
 import Avatar from '@material-ui/core/Avatar';
-import { List } from '@material-ui/core';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { Add } from '@material-ui/icons';
 import SimpleModal from './controls/SimpleModal';
 
 const useStyles = makeStyles((theme) => ({
@@ -52,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
 
 function HGPosts(props) {
 
-    const { username, title, description, tag, seeklist, buttonText } = props;
+    const { username, title, description, tag, seeklist, buttonText, avatar } = props;
     const classes = useStyles();
     let descriptioncomponentsize = 12;
 
@@ -101,7 +94,7 @@ function HGPosts(props) {
                                 <Grid item >
                                     <Grid container direction="row" justify="flex-start" spacing={1} alignItems='center'>
                                         <Grid item>
-                                            <Avatar alt="Remy Sharp" className={classes.large} />
+                                            <Avatar alt="Remy Sharp" src={avatar} className={classes.large} />
                                         </Grid>
                                         <Grid item>
                                             <Typography variant="body1">
@@ -144,5 +137,6 @@ HGPosts.defaultProps = {
     tag: 'DEFAULTTAG',
     seeklist: null, 
     button: '#', 
-    buttonText: "Apply"
+    buttonText: "Apply",
+    avatar: man,
 }

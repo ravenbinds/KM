@@ -1,8 +1,8 @@
-import { FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup } from '@material-ui/core';
+import { FormControl, FormControlLabel, FormLabel, IconButton, InputAdornment, Radio, RadioGroup } from '@material-ui/core';
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { db } from '../../firebase';
-import { Formik, Form } from 'formik'
+import { Formik, Form, FieldArray, Field } from 'formik'
 import * as Yup from 'yup'
 import Textfield from '../FormsUI/Textfield';
 import Select from '../FormsUI/Select';
@@ -11,6 +11,7 @@ import Button from '../FormsUI/Button';
 import Checkbox from '../FormsUI/Checkbox';
 // import { Typography } from '@material-ui/core';
 import { useUserContext } from '../../UserContext'
+import { Add, Remove } from '@material-ui/icons';
 
 function CreateHGPost(props) {
 
@@ -23,11 +24,11 @@ function CreateHGPost(props) {
             category: values.category,
             seeklist: values.seeklist,
             // application: [],
-            hgdescription: values.hgdescription,
-            hgtitle: values.hgtitle,
+            description: values.hgdescription,
+            title: values.hgtitle,
             userid: currentUser.uid, //should be the user profile details, not google details
-            // avatar: currentUser.photoURL,
-            // nickname: currentUser.displayName,
+            avatar: currentUser.photoURL,
+            nickname: currentUser.displayName,
             // createdDate: values.createdDate,
             // timestamp: values.timestamp,
         })
@@ -36,7 +37,7 @@ function CreateHGPost(props) {
 
     const INITIAL_FORM_VALUES = {
         category: '',
-        seeklist: [],
+        seeklist: [''],
         hgdescription: '',
         hgtitle: '',
         paid: false,
@@ -55,15 +56,18 @@ function CreateHGPost(props) {
 
     return (
         <Formik
-            initialValues={{ INITIAL_FORM_VALUES }}
+            initialValues={ INITIAL_FORM_VALUES }
             validationSchema={FORM_VALIDATION}
             onSubmit={values => {
                 console.log('HG value: ', values);
                 sendInfo(values);
             }}
         >
-            <Form>
-                <Grid container spacing={2}>
+            {({values, errors})=> (
+                <Form>
+                    <Grid container direction='row'>
+                        <Grid item xs={6}>
+                        <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Textfield name='hgtitle' label='Title' />
                     </Grid>
@@ -84,15 +88,58 @@ function CreateHGPost(props) {
                         />
                     </Grid>
                     {/*NOTEKD Should add ways to append to the array */}
-                    <Grid item xs={11}>
+                    {/* <Grid item xs={11}>
                         <Textfield name='seeklist' label='What are you looking for?' />
+                    </Grid> */}
+                    <Grid item xs={12}>
+                    <label>Looking for something?</label>
+                    <FieldArray name='seeklist' >
+                            {
+                                (fieldArrayProps)=> {
+                                    // console.log('fieldArrayProps ', fieldArrayProps)
+                                    // const {push, remove, form} = fieldArrayProps
+                                    // const {values} = form
+                                    // const {seeklist} = values
+                                    return <Grid container spacing={1}>
+                                        {
+                                            fieldArrayProps.form.values.seeklist.map((seeklistItem, index)=> (
+                                                <Grid item xs={12} key={index}>
+                                                    <Grid container direction='row' alignItems='center' justify='space-between'>
+                                                        <Grid item>
+                                                            <Textfield name = {`seeklist[${index}]`} placeholder='What are you looking for?' onKeyPress={(event)=> {if(event.key === 'Enter'){fieldArrayProps.push(index)}}}/>
+                                                        </Grid>
+                                                        <Grid item>
+                                                            <IconButton onClick={()=> fieldArrayProps.remove(index)}><Remove/></IconButton>
+                                                            <IconButton onClick={()=> fieldArrayProps.push(index)}><Add/></IconButton>
+                                                        </Grid>
+                                                    </Grid>
+                                                </Grid>
+                                            ))
+                                        }
+                                    </Grid>     
+                                }
+                            }
+                        </FieldArray>
+                        
                     </Grid>
                     <Grid item xs={1}>
                         <Checkbox name='paid' label='Paid?' />
                     </Grid>
                     <Button>Submit</Button>
+                    
                 </Grid>
+                        </Grid>
+                        <Grid item xs={6}>
+                        <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
+                        </Grid>
+                    </Grid>
+               
             </Form>
+
+            )
+            
+            }
+            
         </Formik>
     );
 }

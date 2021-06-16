@@ -32,12 +32,14 @@ const HGPage = (props) => {
         ref.where('category','==',category).onSnapshot((querySnapshot) => {
                 const items = [];
                 querySnapshot.forEach((doc) => {
+                    console.log('values, ',doc.data())
                     items.push({
-                        username: 'Sample User',
+                        username: doc.data().nickname,
                         title: doc.data().title,
                         description: doc.data().description,
                         tag: doc.data().category,
-                        seeklist: doc.data().seeklist
+                        seeklist: doc.data().seeklist,
+                        avatar: doc.data().avatar
                     }
                     );
                 });
@@ -71,7 +73,7 @@ const HGPage = (props) => {
                             {
                                 hgposts.map(post => (
                                     <Grid item xs={12}>
-                                        <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
+                                        <HGPosts avatar={post.avatar} username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
                                     </Grid>
                                 ))
                             }
