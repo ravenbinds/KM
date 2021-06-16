@@ -38,7 +38,9 @@ const HGPage = (props) => {
                         tag: doc.data().category,
                         seeklist: doc.data().seeklist,
                         avatar: doc.data().avatar,
-                        seeking: doc.data().seeking
+                        seeking: doc.data().seeking,
+                        hgid: doc.data().hgid,
+                        userid: doc.data().userid,
                     }
                     );
                 });
@@ -70,7 +72,7 @@ const HGPage = (props) => {
                             {
                                 hgposts.map(post => (
                                     <Grid item xs={12}>
-                                        <HGPosts seeking={post.seeking} avatar={post.avatar} username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
+                                        <HGPosts post={post} buttonText='Apply' />
                                     </Grid>
                                 ))
                             }

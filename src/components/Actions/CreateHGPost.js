@@ -6,12 +6,13 @@ import { Formik, Form, FieldArray } from 'formik'
 import * as Yup from 'yup'
 import Textfield from '../FormsUI/Textfield';
 import Select from '../FormsUI/Select';
-// import DateTimePicker from '../FormsUI/DateTimePicker';
 import Button from '../FormsUI/Button';
 import Checkbox from '../FormsUI/Checkbox';
-// import { Typography } from '@material-ui/core';
 import { useUserContext } from '../../UserContext'
 import { Add, Remove } from '@material-ui/icons';
+import { uuid } from 'uuidv4';
+// import { Typography } from '@material-ui/core';
+// import DateTimePicker from '../FormsUI/DateTimePicker';
 
 function CreateHGPost(props) {
 
@@ -19,7 +20,8 @@ function CreateHGPost(props) {
 
 
     function sendInfo(values) {
-        db.collection("HuntingGround").doc()
+        const newId = uuid()
+        db.collection("HuntingGround").doc(newId)
         .set({
             category: values.category,
             seeklist: values.seeklist,
@@ -30,6 +32,7 @@ function CreateHGPost(props) {
             avatar: currentUser.photoURL,
             nickname: currentUser.displayName,
             seeking: values.seeking,
+            hgid: newId,
             // createdDate: values.createdDate,
             // timestamp: values.timestamp,
         })
