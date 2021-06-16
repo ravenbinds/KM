@@ -5,6 +5,12 @@ import man from "../man.svg";
 import Avatar from "@material-ui/core/Avatar";
 import SimpleModal from "./controls/SimpleModal";
 import Button from "@material-ui/core/Button";
+import { IconButton } from "@material-ui/core";
+import { Delete, Edit } from "@material-ui/icons";
+import {db} from '../firebase'
+import { useUserContext } from "../UserContext";
+
+
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -90,8 +96,40 @@ function CardFooter({ avatar, username, tag, buttonText }) {
   );
 }
 
+function CardHeader({title, hgid,userid}){
+
+  const currentUser = useUserContext();
+
+  function deleteRecord(hgid){
+    const ref=db.collection("HuntingGround")
+    ref.doc(hgid).delete()
+    // console.log('res, ', res)
+  }
+
+  return (
+    <Grid container direction='row' justify='space-between' alignItems='center'>
+      <Grid item>
+        <Typography color="primary" variant="h5" align="left">
+            {title}
+        </Typography>
+      </Grid>
+      {
+        (userid==currentUser.uid) && <Grid item>
+        <IconButton size='small'><Edit size='small'/></IconButton>
+        <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+      </Grid>
+      }
+      {/* <Grid item>
+        <IconButton size='small'><Edit size='small'/></IconButton>
+        <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+      </Grid> */}
+    </Grid>
+    
+  )
+}
+
 function HGPosts(props) {
-  const { username, title, description, tag, seeklist, buttonText, avatar, seeking, } = props;
+  const {post, buttonText } = props;
   const classes = useStyles();
   // let descriptioncomponentsize = 12;
 
@@ -103,14 +141,12 @@ function HGPosts(props) {
   return (
     <Grid container direction="column" justify="space-between" className={classes.card} spacing={2} >
       <Grid item xs={12}>
-        <Typography color="primary" variant="h5" align="left">
-          {title}
-        </Typography>
+        <CardHeader title={post.title} hgid={post.hgid} userid={post.userid}/>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="body1">{description}</Typography>
+        <Typography variant="body1">{post.description}</Typography>
       </Grid>
-      {seeking && (
+      {post.Gridseeking && (
         <Grid item xs={12}>
           <Grid container direction="column" justify="flex-start" alignItems="flex-start" spacing={1} >
             <Grid item xs={12}>
@@ -118,12 +154,11 @@ function HGPosts(props) {
             </Grid>
             <Grid item xs={12}>
               <Grid container direction="row" spacing={1}>
-                {seeklist.map((item) => (
+                {post.seeklist.map((item) => (
                   <Grid item>
                     <Button variant="outlined" className={classes.tags}>
                       {item}
                     </Button>
-                    {/* <Typography variant="body1">+ {item}</Typography> */}
                   </Grid>
                 ))}
               </Grid>
@@ -131,7 +166,28 @@ function HGPosts(props) {
           </Grid>
         </Grid>
       )}
-      {/* <Grid item xs={12}>
+      
+      <Grid item xs={12}>
+        <CardFooter avatar={post.avatar} username={post.username} tag={post.tag} buttonText={buttonText} />
+      </Grid>
+    </Grid>
+  );
+}
+
+export default HGPosts;
+
+HGPosts.defaultProps = {
+  username: "Username",
+  title: "Project Name",
+  description: "Description",
+  tag: "DEFAULTTAG",
+  seeklist: null,
+  button: "#",
+  buttonText: "Apply",
+  avatar: man,
+};
+
+{/* <Grid item xs={12}>
                     <Grid container direction="row" alignItems='center' justify='space-between'>
                         <Grid item>
                             <Typography variant="body1">
@@ -158,22 +214,3 @@ function HGPosts(props) {
                         }
                     </Grid>
                 </Grid>               */}
-      <Grid item xs={12}>
-        <CardFooter avatar={avatar} username={username} tag={tag} buttonText={buttonText} />
-      </Grid>
-    </Grid>
-  );
-}
-
-export default HGPosts;
-
-HGPosts.defaultProps = {
-  username: "Username",
-  title: "Project Name",
-  description: "Description",
-  tag: "DEFAULTTAG",
-  seeklist: null,
-  button: "#",
-  buttonText: "Apply",
-  avatar: man,
-};
