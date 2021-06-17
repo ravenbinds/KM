@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const Post = forwardRef(
-    ({ nickname, caption, image, avatar, likes, share, comment }, ref) => {
+    ({ nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
         const classes = useStyles();
 
         return (
@@ -58,10 +58,11 @@ const Post = forwardRef(
                     <Grid item className={classes.Box1}>
                         <Avatar src={avatar} className={classes.large} />
                     </Grid>
-                    <Grid item className={classes.Box1}>
+                    <Grid item direction="column" className={classes.Box1}>
                         <Typography className={classes.user}>
                             {nickname}
                         </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">{timestamp}</Typography>
                     </Grid>
 
                 </Grid>

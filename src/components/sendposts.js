@@ -48,20 +48,31 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Sendposts = (props) => {
     const classes = useStyles();
+    var dateString = new Date();
     const [sendCaption, setsendCaption] = useState("");
     const [sendImage, setsendImage] = useState("");
     const sendPosts = (e) => {
         e.preventDefault();
+        dateString = Date.now()
         db.collection("posts").add({
             nickname: props.nickname,
             caption: sendCaption,
             image: sendImage,
             avatar: props.avatar,
             userid: props.uid,
+            timestamp: formatDate(dateString),
         }, { merge: true });
         setsendCaption("");
         setsendImage("");
     };
+
+
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
+
+    console.log(formatDate(dateString))
     return (
         <div>
             <Form>
