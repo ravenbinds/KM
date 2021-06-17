@@ -64,7 +64,8 @@ const Projectpage = (props) => {
     const [projects, setProjects] = useState([])
     var pname = props.pname
     useEffect(() => {
-        db.collection("projects").where('pname', '==', (pname))
+        db.collection("projects")
+            .where('pname', '==', (pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });

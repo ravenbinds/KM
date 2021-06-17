@@ -1,9 +1,10 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
+import { db } from '../../firebase';
 const useStyles = makeStyles((theme) => ({
     large: {
 
@@ -51,7 +52,28 @@ const useStyles = makeStyles((theme) => ({
 const Post = forwardRef(
     ({ nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
         const classes = useStyles();
+        const [counter, setCounter] = useState(0);
+        const [like, setLike] = useState(0);
+        const [posts, setPosts] = useState([])
+        const cityRef = db.collection('posts').where("caption", "==", caption);
+        const res = cityRef.update({ likes: like });
+        const heart = () => {
+            if (counter == 0) {
+                setCounter(1);
+                setLike(likes + 1);
+            }
 
+            else {
+                setLike(likes);
+                setCounter(0);
+            }
+            // {
+
+            //     res.set({
+            //         likes: like,
+            //     }, { merge: true });
+            // }
+        }
         return (
             <Grid container className={classes.Box} ref={ref}>
                 <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.Grid1} >
@@ -62,7 +84,7 @@ const Post = forwardRef(
                         <Typography className={classes.user}>
                             {nickname}
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">{timestamp}</Typography>
+                        <Typography variant="subtitle2" color="textSecondary">{timestamp}</Typography>
                     </Grid>
 
                 </Grid>
@@ -79,8 +101,9 @@ const Post = forwardRef(
 
                 <Grid container justify="space-around" className={classes.Grid2}>
 
-                    <FormControlLabel label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
-                    />
+                    <FormControlLabel onClick={heart} label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
+                    />{counter}{like}{posts.nickname}
+
 
                     <FormControlLabel label={<Typography color="textSecondary">{share}</Typography>} control={<Checkbox icon={<ShareIcon />} checkedIcon={<ShareIcon color="primary" />} name="checkedH" />}
                     />

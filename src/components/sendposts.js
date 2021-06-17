@@ -60,6 +60,7 @@ const Sendposts = (props) => {
             image: sendImage,
             avatar: props.avatar,
             userid: props.uid,
+            likes: 0,
             timestamp: formatDate(dateString),
         }, { merge: true });
         setsendCaption("");
