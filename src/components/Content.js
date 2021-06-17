@@ -67,11 +67,12 @@ const Contents = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        db.collection("posts").onSnapshot((snapshot) => {
-            setPosts(snapshot.docs.map((doc) => doc.data()
-            ));
-        }
-        )
+        db.collection("posts").orderBy("timestamp", 'desc')
+            .onSnapshot((snapshot) => {
+                setPosts(snapshot.docs.map((doc) => doc.data()
+                ));
+            }
+            )
     }, []);
 
     const currentUser = useUserContext();
