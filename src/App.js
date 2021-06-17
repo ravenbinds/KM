@@ -52,7 +52,15 @@ theme.typography.h6 = {
     fontSize: "1rem",
   },
 };
-
+theme.typography.subtitle1 = {
+  fontSize: "0.6rem",
+  "@media (min-width:600px)": {
+    fontSize: "0.8rem",
+  },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "0.7rem",
+  },
+};
 theme.typography.button = {
   textTransform: 'none',
   fontSize: "0.7rem",

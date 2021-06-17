@@ -147,7 +147,7 @@ const Contents = () => {
                     <FlipMove>
                         {posts.map(post => (
                             <Grid className="Contents-space">
-                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} likes={post.likes} share={post.share} comment={post.comment} />
+                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} likes={post.likes} share={post.share} comment={post.comment} timestamp={post.timestamp} />
                             </Grid>
                         ))
                         }
