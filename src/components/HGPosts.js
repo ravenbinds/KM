@@ -63,19 +63,9 @@ function CardFooter({ avatar, username, tag, buttonText }) {
       <Grid item>
         <Grid container direction="column">
           <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              spacing={1}
-              alignItems="center"
-            >
+            <Grid container direction="row" justify="flex-start" spacing={1} alignItems="center" >
               <Grid item>
-                <Avatar
-                  alt="Remy Sharp"
-                  src={avatar}
-                  className={classes.large}
-                />
+                <Avatar alt="Remy Sharp" src={avatar} className={classes.large}/>
               </Grid>
               <Grid item>
                 <Typography variant="body1">{username}</Typography>
@@ -115,14 +105,10 @@ function CardHeader({title, hgid,userid}){
       </Grid>
       {
         (userid==currentUser.uid) && <Grid item>
-        <IconButton size='small'><Edit size='small'/></IconButton>
+        <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton>
         <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
       </Grid>
       }
-      {/* <Grid item>
-        <IconButton size='small'><Edit size='small'/></IconButton>
-        <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
-      </Grid> */}
     </Grid>
     
   )
@@ -131,12 +117,6 @@ function CardHeader({title, hgid,userid}){
 function HGPosts(props) {
   const {post, buttonText } = props;
   const classes = useStyles();
-  // let descriptioncomponentsize = 12;
-
-  // if(seeking) {
-  //     // console.log('Looking for something')
-  //     descriptioncomponentsize = 8;
-  // }
 
   return (
     <Grid container direction="column" justify="space-between" className={classes.card} spacing={2} >
@@ -186,31 +166,3 @@ HGPosts.defaultProps = {
   buttonText: "Apply",
   avatar: man,
 };
-
-{/* <Grid item xs={12}>
-                    <Grid container direction="row" alignItems='center' justify='space-between'>
-                        <Grid item>
-                            <Typography variant="body1">
-                                {description}
-                            </Typography>  
-                        </Grid> 
-                        {seeking &&
-                            <Grid item className={classes.Box} >
-                                <Grid container direction="column" justify="flex-start" alignItems="flex-start" >
-                                    <Grid item xs={12} >
-                                        <Typography>Looking for:</Typography>
-                                    </Grid>
-                                    <Grid item xs={12} >
-                                        <Grid container direction='column'>
-                                            {seeklist.map(item => (
-                                                <Grid item xs={12}>
-                                                    <Typography variant="body1">+ {item}</Typography>
-                                                </Grid>
-                                            ))}
-                                        </Grid>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-                        }
-                    </Grid>
-                </Grid>               */}
