@@ -2,8 +2,6 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import man from "../../man.svg"
-import Avatar from '@material-ui/core/Avatar';
 import Top from '../Top';
 import HGPosts from '../HGPosts';
 import {useState, useEffect} from 'react'
@@ -32,12 +30,17 @@ const HGPage = (props) => {
         ref.where('category','==',category).onSnapshot((querySnapshot) => {
                 const items = [];
                 querySnapshot.forEach((doc) => {
+                    // console.log('values, ',doc.data())
                     items.push({
-                        username: 'Sample User',
+                        username: doc.data().nickname,
                         title: doc.data().title,
                         description: doc.data().description,
                         tag: doc.data().category,
-                        seeklist: doc.data().seeklist
+                        seeklist: doc.data().seeklist,
+                        avatar: doc.data().avatar,
+                        seeking: doc.data().seeking,
+                        hgid: doc.data().hgid,
+                        userid: doc.data().userid,
                     }
                     );
                 });
@@ -47,7 +50,7 @@ const HGPage = (props) => {
         }
 
     useEffect(() => {
-        console.log('location ',props.location)
+        // console.log('location ',props.location)
         getHgPosts();
     },[]);
 
@@ -63,27 +66,23 @@ const HGPage = (props) => {
                     Hunting ground
                 </Typography>
             </Box>
-            <Grid container justify="flex-start" alignItems="flex-start" spacing={1}>
-                {
-                    (hgposts.length>0) ? (
-                        <Grid item xs={12} >
-                            <Grid container justify="flex-start" alignItems="flex-start" spacing={2}>
+            {
+                (hgposts.length>0) ? (
+                        <Grid container direction='column' justify="flex-start" alignItems="stretch" spacing={3}>
                             {
                                 hgposts.map(post => (
                                     <Grid item xs={12}>
-                                        <HGPosts username={post.username} title={post.title} tag={post.tag} category='1' description={post.description} seeklist={post.seeklist} button='#' buttonText='Apply' />
+                                        <HGPosts post={post} buttonText='Apply' />
                                     </Grid>
                                 ))
                             }
-                            </Grid>
                         </Grid>
                         ) 
                         :
-                        (<Grid item xs={12} align='center'>
+                        (
                             <Typography>Nothing to see here</Typography>
-                        </Grid>)
+                        )
                 }
-            </Grid>
         </div >
     )
 }

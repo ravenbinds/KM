@@ -8,7 +8,7 @@ import FaceRoundedIcon from '@material-ui/icons/FaceRounded';
 import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
 import LiveHelpIcon from '@material-ui/icons/LiveHelpRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+// import AssignmentIcon from '@material-ui/icons/Assignment';
 import GroupIcon from '@material-ui/icons/Group';
 import { NavLink } from 'react-router-dom';
 export const mainListItems = (

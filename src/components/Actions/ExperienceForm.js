@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from '@material-ui/core';
+// import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup} from '@material-ui/core';
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import { db } from '../../firebase';
@@ -50,7 +50,7 @@ function ExperienceForm(props) {
 
   return (
     <Formik
-      initialValues = {{INITIAL_FORM_VALUES}}
+      initialValues = {INITIAL_FORM_VALUES}
       validationSchema = {FORM_VALIDATION}
       onSubmit = {values => {
         console.log('Experience value: ',values);
