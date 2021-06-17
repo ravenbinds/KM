@@ -18,9 +18,14 @@ function CreateHGPost(props) {
 
     const currentUser = useUserContext();
 
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
 
     function sendInfo(values) {
         const newId = uuid()
+        var dateString = new Date();
         db.collection("HuntingGround").doc(newId)
         .set({
             category: values.category,
@@ -34,7 +39,7 @@ function CreateHGPost(props) {
             seeking: values.seeking,
             hgid: newId,
             // createdDate: values.createdDate,
-            // timestamp: values.timestamp,
+            timestamp: formatDate(dateString),
         })
     }
 

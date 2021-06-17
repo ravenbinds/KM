@@ -27,7 +27,7 @@ const HGPage = (props) => {
 
     function getHgPosts() {
         setLoading(true);
-        ref.where('category','==',category).onSnapshot((querySnapshot) => {
+        ref.where('category','==',category).orderBy("timestamp", 'desc').onSnapshot((querySnapshot) => {
                 const items = [];
                 querySnapshot.forEach((doc) => {
                     // console.log('values, ',doc.data())
