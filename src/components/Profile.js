@@ -193,109 +193,110 @@ function DetailsAccordion(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const ref = db.doc('profile/' + props.userdocumentID) //Reference to documents of the corresponding user
+    const ref = db.doc('profile/' + props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
+
+    //Function to get all projects of given user
+    function getProject() {
+        setLoading(true);
+        ref.collection('projects').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push({
+                    heading: "Project title",
+                    description: "Project description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setprojectDetails(items);
+            setLoading(false);
+        });
+    }
+
+    //Function to get all education details of given user
+    function getEducation() {
+        setLoading(true);
+        ref.collection('education').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push({
+                    heading: doc.data().degree,
+                    description: doc.data().school,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setEducationDetails(items);
+            setLoading(false);
+        });
+    }
+
+    //Function to get all posts of given user
+    function getPost() {
+        setLoading(true);
+        ref.collection('posts').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push({
+                    heading: "Post title",
+                    description: "Post description",
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setpostDetails(items)
+            setLoading(false);
+        });
+    }
+
+    //Function to get all experiences of given user
+    function getExperiences() {
+        setLoading(true);
+        ref.collection('experience').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push({
+                    heading: doc.data().jobTitle,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setexperienceDetails(items)
+            setLoading(false);
+        });
+    }
+
+    //Function to get all certifications of given user
+    function getCertifications() {
+        setLoading(true);
+        ref.collection('certification').onSnapshot((querySnapshot) => {
+            const items = [];
+            querySnapshot.forEach((doc) => {
+                items.push({
+                    heading: doc.data().certificationName,
+                    description: doc.data().description,
+                    status: 'sample',
+                    statusIcon: <CheckRoundedIcon />,
+                }
+                );
+            });
+            setcertificationDetails(items)
+            setLoading(false);
+        });
+    }
 
     useEffect(() => {
-        //Function to get all projects of given user
-        function getProject() {
-            setLoading(true);
-            ref.collection('projects').onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push({
-                        heading: "Project title",
-                        description: "Project description",
-                        status: 'sample',
-                        statusIcon: <CheckRoundedIcon />,
-                    }
-                    );
-                });
-                setprojectDetails(items);
-                setLoading(false);
-            });
-        }
-
-        //Function to get all education details of given user
-        function getEducation() {
-            setLoading(true);
-            ref.collection('education').onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push({
-                        heading: doc.data().degree,
-                        description: doc.data().school,
-                        status: 'sample',
-                        statusIcon: <CheckRoundedIcon />,
-                    }
-                    );
-                });
-                setEducationDetails(items);
-                setLoading(false);
-            });
-        }
-
-        //Function to get all posts of given user
-        function getPost() {
-            setLoading(true);
-            ref.collection('posts').onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push({
-                        heading: "Post title",
-                        description: "Post description",
-                        status: 'sample',
-                        statusIcon: <CheckRoundedIcon />,
-                    }
-                    );
-                });
-                setpostDetails(items)
-                setLoading(false);
-            });
-        }
-
-        //Function to get all experiences of given user
-        function getExperiences() {
-            setLoading(true);
-            ref.collection('experience').onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push({
-                        heading: doc.data().jobTitle,
-                        description: doc.data().description,
-                        status: 'sample',
-                        statusIcon: <CheckRoundedIcon />,
-                    }
-                    );
-                });
-                setexperienceDetails(items)
-                setLoading(false);
-            });
-        }
-
-        //Function to get all certifications of given user
-        function getCertifications() {
-            setLoading(true);
-            ref.collection('certification').onSnapshot((querySnapshot) => {
-                const items = [];
-                querySnapshot.forEach((doc) => {
-                    items.push({
-                        heading: doc.data().certificationName,
-                        description: doc.data().description,
-                        status: 'sample',
-                        statusIcon: <CheckRoundedIcon />,
-                    }
-                    );
-                });
-                setcertificationDetails(items)
-                setLoading(false);
-            });
-        }
         getProject();
         getPost();
         getExperiences();
         getCertifications();
         getEducation();
-    }, [ref])
+    }, [])
 
     if (loading) {
         return <h2>Loading...</h2>
@@ -357,19 +358,20 @@ function Profile(props) {
     const [loading, setLoading] = useState(false);
 
     const ref = db.collection('users').doc(props.userdocumentID);
-    useEffect(() => {
-        function getUser() {
-            setLoading(true);
-            ref.onSnapshot((querySnapshot) => {
-                const userdata = querySnapshot.data();
-                setuserDetails(userdata);
-                console.log('document retrieved')
-            })
+    function getUser() {
+        setLoading(true);
+        ref.onSnapshot((querySnapshot) => {
+            const userdata = querySnapshot.data();
+            setuserDetails(userdata);
+            console.log('document retrieved')
+        })
 
-            setLoading(false)
-        }
+        setLoading(false)
+    }
+
+    useEffect(() => {
         getUser();
-    }, [ref])
+    }, [])
 
     if (loading) {
         return <h2>Loading...</h2>
