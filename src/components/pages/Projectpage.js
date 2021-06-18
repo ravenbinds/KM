@@ -12,6 +12,7 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Top from '../Top';
 import { db } from '../../firebase';
+
 const useStyles = makeStyles((theme) => ({
 
 
@@ -59,16 +60,20 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
+
 const Projectpage = (props) => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
-    var pname = props.pname
+    
+
     useEffect(() => {
+        const pname = props.pname
         db.collection("projects").where('pname', '==', (pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
     }, []);
+
     const handleClick = () => {
         console.info('You clicked the Chip.');
     };

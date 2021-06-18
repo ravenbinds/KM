@@ -1,4 +1,4 @@
-import { Box, Typography, Container, ButtonBase, Icon } from '@material-ui/core'
+import { Box, Typography, Container, ButtonBase } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import { NavLink } from 'react-router-dom';
 
@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-around",
-        background: "white",
         boxShadow: "0px 4px 14px #4747470F",
     },
     image : {

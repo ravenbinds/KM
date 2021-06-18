@@ -1,8 +1,8 @@
-import { Box, Button, Typography, Icon } from '@material-ui/core';
+import { Box, Button, Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Top from '../Top';
 import { Add, SpeakerNotesOffRounded } from '@material-ui/icons';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import GroupCard from '../GroupCard';
 import { makeStyles } from '@material-ui/core/styles';
 

@@ -8,8 +8,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import { useState } from 'react';
 import classNames from 'classnames'
-import ProjectLists from './pages/Projectlist';
-import UserLists from './pages/Userlist';
+// import ProjectLists from './pages/Projectlist';
+// import UserLists from './pages/Userlist';
 
 
 

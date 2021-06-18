@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import AuthPage from './AuthPage'
 import { useUserContext } from "./UserContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core";

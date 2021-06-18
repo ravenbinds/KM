@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+// import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import LinearProgressWithLabel from './prjectprogress';
-import man from "../man.svg"
-import Avatar from '@material-ui/core/Avatar';
+// import LinearProgress from '@material-ui/core/LinearProgress';
+import LinearProgressWithLabel from './projectprogress';
+// import man from "../man.svg"
+// import Avatar from '@material-ui/core/Avatar';
 import StarsIcon from '@material-ui/icons/Stars';
 import Chip from '@material-ui/core/Chip';
 import { db } from '../firebase';
