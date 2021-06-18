@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
@@ -52,27 +52,25 @@ const useStyles = makeStyles((theme) => ({
 const Post = forwardRef(
     ({ nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
         const classes = useStyles();
+        const temp = likes;
         const [counter, setCounter] = useState(0);
-        const [like, setLike] = useState(0);
-        const [posts, setPosts] = useState([])
-        const cityRef = db.collection('posts').where("caption", "==", caption);
-        const res = cityRef.update({ likes: like });
+        const [like, setLike] = useState(temp);
+        const cityRef = db.collection('posts');
         const heart = () => {
+
             if (counter == 0) {
                 setCounter(1);
-                setLike(likes + 1);
+                setLike(like + 1);
+
             }
 
-            else {
-                setLike(likes);
+            else if (counter == 1) {
                 setCounter(0);
-            }
-            // {
+                setLike(like - 1);
+                // cityRef.update({ likes: like });
 
-            //     res.set({
-            //         likes: like,
-            //     }, { merge: true });
-            // }
+            }
+
         }
         return (
             <Grid container className={classes.Box} ref={ref}>
@@ -102,7 +100,7 @@ const Post = forwardRef(
                 <Grid container justify="space-around" className={classes.Grid2}>
 
                     <FormControlLabel onClick={heart} label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
-                    />{counter}{like}{posts.nickname}
+                    />{counter}{likes}{like}
 
 
                     <FormControlLabel label={<Typography color="textSecondary">{share}</Typography>} control={<Checkbox icon={<ShareIcon />} checkedIcon={<ShareIcon color="primary" />} name="checkedH" />}

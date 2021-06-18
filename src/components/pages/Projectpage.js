@@ -68,7 +68,7 @@ const Projectpage = (props) => {
 
     useEffect(() => {
         db.collection("projects")
-            .where('pname', '==', (pname))
+            .where('pname', '==', (props.pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
