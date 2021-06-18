@@ -7,8 +7,8 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { Button, Checkbox, FormControlLabel, InputAdornment, TextField } from '@material-ui/core';
-import Supportreq from './supportreq';
+import { Button, Checkbox, FormControlLabel, TextField } from '@material-ui/core';
+import Supportreq from './supportrequest';
 import Top from '../Top'
 
 function TabPanel(props) {

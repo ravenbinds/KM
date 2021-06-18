@@ -5,8 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import { useState } from 'react';
-import classNames from 'classnames'
-import Top from '../Top';
+// import classNames from 'classnames'
+// import Top from '../Top';
 import { db } from '../../firebase';
 
 const useStyles = makeStyles((theme) => ({

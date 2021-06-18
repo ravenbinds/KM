@@ -1,6 +1,5 @@
 import { ButtonGroup, Button, Typography } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { HelpRounded } from "@material-ui/icons";
 import React from "react";
 import man from '../../man.svg'
 import Avatar from '@material-ui/core/Avatar'

@@ -1,11 +1,11 @@
 import SimpleCard from './Sidebardash'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import IconButton from '@material-ui/core/IconButton'
+// import Button from '@material-ui/core/Button'
+// import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles';
 import UserDropDown from './controls/UserDropDown';
-import { UserContext, useUserContext } from "../UserContext";
+// import { useUserContext } from "../UserContext";
 
 const useStyles = makeStyles((theme) => ({
     rightbar: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Rightbar = () => {
     const classes = useStyles();
-    const currentUser = useUserContext();
+    // const currentUser = useUserContext();
     return (
         <div className={classes.rightbar} >
             <Grid container direction='column' justify='flex-start' spacing={1}>

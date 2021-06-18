@@ -3,9 +3,9 @@ import firebase from 'firebase'
 import app from './firebase'
 import "./index.css";
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+// import Container from '@material-ui/core/Container';
 import { Button, Box } from '@material-ui/core';
-import logo from "./logo.svg"
+// import logo from "./logo.svg"
 import koala from './koala.svg'
 import { AccountCircle } from '@material-ui/icons';
 import { db } from './firebase'

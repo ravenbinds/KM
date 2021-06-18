@@ -1,6 +1,6 @@
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Top from '../Top';
 import HGPosts from '../HGPosts';
@@ -8,15 +8,7 @@ import {useState, useEffect} from 'react'
 import {db} from '../../firebase'
 import { withRouter } from 'react-router-dom'
 
-const useStyles = makeStyles((theme) => ({
-    Grid: {
-        display: 'flex',
-        padding: theme.spacing(1),
-    },
-}));
-
 const HGPage = (props) => {
-    const classes = useStyles();
 
     const category = props.location.state.category;
 
@@ -27,7 +19,7 @@ const HGPage = (props) => {
 
     function getHgPosts() {
         setLoading(true);
-        ref.where('category','==',category).onSnapshot((querySnapshot) => {
+        ref.where('category','==',category).orderBy("timestamp", 'desc').onSnapshot((querySnapshot) => {
                 const items = [];
                 querySnapshot.forEach((doc) => {
                     // console.log('values, ',doc.data())
