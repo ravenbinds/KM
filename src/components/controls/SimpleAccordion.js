@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Accordion from '@material-ui/core/Accordion';
@@ -115,7 +115,7 @@ function SimpleAccordion(props) {
                                     </Grid>
                                 }
                                 {
-                                    (item.title == 'Posts') ?
+                                    (item.title === 'Posts') ?
                                         <Grid item>
                                             {/* Blank Grid item */}
                                         </Grid>

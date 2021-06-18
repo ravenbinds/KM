@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
+// import Avatar from '@material-ui/core/Avatar';
+// import Box from '@material-ui/core/Box';
 import { useState } from 'react';
-import classNames from 'classnames'
+// import classNames from 'classnames'
 import Top from '../Top';
 import { db } from '../../firebase';
 import { Button } from '@material-ui/core';
-import Projectpage from './Projectpage';
-import GetProject from './getProject';
+// import Projectpage from './Projectpage';
+// import GetProject from './getProject';
 import { Link } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
 

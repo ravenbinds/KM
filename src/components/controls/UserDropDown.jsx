@@ -58,7 +58,7 @@ const UserDropDown = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose} dense="true" component={NavLink} to="/Myprofile">My account</MenuItem>
-                <MenuItem onClick={handleClose} dense="true" onClick={() => app.auth().signOut()}>Logout</MenuItem>
+                <MenuItem onClick={() => app.auth().signOut()} dense="true" >Logout</MenuItem>
             </Menu>
         </Box>
     )

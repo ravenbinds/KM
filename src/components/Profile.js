@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import FolderOpenRoundedIcon from '@material-ui/icons/FolderOpenRounded';
@@ -14,14 +14,15 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import { Add, School, Timelapse } from '@material-ui/icons';
+import {School} from '@material-ui/icons'
+// import { Add,Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
 import ExperienceForm from './Actions/ExperienceForm'
 import EducationForm from './Actions/EducationForm'
 import CertificationForm from './Actions/CertificationForm'
 import { db } from '../firebase';
-import { useUserContext } from '../UserContext';
+// import { useUserContext } from '../UserContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -132,24 +133,6 @@ function Spotlight() {
                             ))
                         }
                     </Grid>
-                    {/* <Grid container direction="row" justify="space-around" alignItems="baseline" >
-                        {
-                            spotlightitems.map(item => (
-                                <Grid item xs={4}>
-                                    <Card className={classes.root} alignItems='center' justify='center'>
-                                        <Grid item xs={12}>
-                                            <Typography variant='inherit' align='center' color="textSecondary" gutterBottom>
-                                                {item.count}
-                                            </Typography></Grid>
-                                        <CardActions>                                        <Grid item xs={12}>
-
-                                            <Typography>{item.category}</Typography>
-                                        </Grid></CardActions>
-                                    </Card>
-                                </Grid>
-                            ))
-                        }
-                    </Grid> */}
                 </Grid>
             </Box>
         </Grid>

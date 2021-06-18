@@ -104,7 +104,7 @@ function CardHeader({title, hgid,userid}){
         </Typography>
       </Grid>
       {
-        (userid==currentUser.uid) && <Grid item>
+        (userid===currentUser.uid) && <Grid item>
         <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton>
         <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
       </Grid>
@@ -126,7 +126,7 @@ function HGPosts(props) {
       <Grid item xs={12}>
         <Typography variant="body1">{post.description}</Typography>
       </Grid>
-      {post.Gridseeking && (
+      {post.seeking && (
         <Grid item xs={12}>
           <Grid container direction="column" justify="flex-start" alignItems="flex-start" spacing={1} >
             <Grid item xs={12}>
