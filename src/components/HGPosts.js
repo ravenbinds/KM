@@ -86,7 +86,7 @@ function CardFooter({ avatar, username, tag, buttonText }) {
   );
 }
 
-function CardHeader({title, hgid,userid}){
+function CardHeader({title, hgid, userid}){
 
   const currentUser = useUserContext();
 
