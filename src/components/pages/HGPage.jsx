@@ -17,33 +17,34 @@ const HGPage = (props) => {
 
     const ref = db.collection('HuntingGround') //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
 
-    useEffect(() => {
-        function getHgPosts() {
-            setLoading(true);
-            ref.where('category','==',category).orderBy("timestamp", 'desc').onSnapshot((querySnapshot) => {
-                    const items = [];
-                    querySnapshot.forEach((doc) => {
-                        // console.log('values, ',doc.data())
-                        items.push({
-                            username: doc.data().nickname,
-                            title: doc.data().title,
-                            description: doc.data().description,
-                            tag: doc.data().category,
-                            seeklist: doc.data().seeklist,
-                            avatar: doc.data().avatar,
-                            seeking: doc.data().seeking,
-                            hgid: doc.data().hgid,
-                            userid: doc.data().userid,
-                        }
-                        );
-                    });
-                    setHgPosts(items);
-                    setLoading(false);
+    function getHgPosts() {
+        setLoading(true);
+        ref.where('category','==',category).orderBy("timestamp", 'desc').onSnapshot((querySnapshot) => {
+                const items = [];
+                querySnapshot.forEach((doc) => {
+                    // console.log('values, ',doc.data())
+                    items.push({
+                        username: doc.data().nickname,
+                        title: doc.data().title,
+                        description: doc.data().description,
+                        tag: doc.data().category,
+                        seeklist: doc.data().seeklist,
+                        avatar: doc.data().avatar,
+                        seeking: doc.data().seeking,
+                        hgid: doc.data().hgid,
+                        userid: doc.data().userid,
+                    }
+                    );
                 });
-            }
-        getHgPosts();
+                setHgPosts(items);
+                setLoading(false);
+            });
+        }
+
+    useEffect(() => {
         // console.log('location ',props.location)
-    },[category, ref]);
+        getHgPosts();
+    },[]);
 
     if(loading){
         return <h6>Loading...</h6>

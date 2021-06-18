@@ -76,7 +76,7 @@ const SimpleCard = (props) => {
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
-    }, [props.pname]);
+    }, []);
 
     return (
         <div>
