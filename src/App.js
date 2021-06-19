@@ -52,8 +52,10 @@ theme.typography.h6 = {
     fontSize: "1rem",
   },
 };
-theme.typography.subtitle1 = {
+theme.typography.subtitle2 = {
+
   fontSize: "0.6rem",
+  fontWeight: 'inherit',
   "@media (min-width:600px)": {
     fontSize: "0.8rem",
   },

@@ -1,9 +1,10 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
+import { db } from '../../firebase';
 const useStyles = makeStyles((theme) => ({
     large: {
 
@@ -51,7 +52,26 @@ const useStyles = makeStyles((theme) => ({
 const Post = forwardRef(
     ({ nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
         const classes = useStyles();
+        const temp = likes;
+        const [counter, setCounter] = useState(0);
+        const [like, setLike] = useState(temp);
+        const cityRef = db.collection('posts');
+        const heart = () => {
 
+            if (counter == 0) {
+                setCounter(1);
+                setLike(like + 1);
+
+            }
+
+            else if (counter == 1) {
+                setCounter(0);
+                setLike(like - 1);
+                // cityRef.update({ likes: like });
+
+            }
+
+        }
         return (
             <Grid container className={classes.Box} ref={ref}>
                 <Grid container direction="row" justify="flex-start" alignItems="center" className={classes.Grid1} >
@@ -62,7 +82,7 @@ const Post = forwardRef(
                         <Typography className={classes.user}>
                             {nickname}
                         </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">{timestamp}</Typography>
+                        <Typography variant="subtitle2" color="textSecondary">{timestamp}</Typography>
                     </Grid>
 
                 </Grid>
@@ -79,8 +99,9 @@ const Post = forwardRef(
 
                 <Grid container justify="space-around" className={classes.Grid2}>
 
-                    <FormControlLabel label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
-                    />
+                    <FormControlLabel onClick={heart} label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
+                    />{counter}{likes}{like}
+
 
                     <FormControlLabel label={<Typography color="textSecondary">{share}</Typography>} control={<Checkbox icon={<ShareIcon />} checkedIcon={<ShareIcon color="primary" />} name="checkedH" />}
                     />

@@ -64,11 +64,11 @@ const useStyles = makeStyles((theme) => ({
 const Projectpage = (props) => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
-    
+
 
     useEffect(() => {
-        const pname = props.pname
-        db.collection("projects").where('pname', '==', (pname))
+        db.collection("projects")
+            .where('pname', '==', (props.pname))
             .onSnapshot((snapshot) => {
                 setProjects(snapshot.docs.map((doc) => doc.data()))
             });
