@@ -8,6 +8,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
 import { useUserContext } from "../UserContext";
+import Searchpage from './pages/Searchpage';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     input: {
@@ -21,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
     Paper: {
         display: 'flex',
         borderRadius: '400px',
-        boxShadow : 'none',
+        boxShadow: 'none',
         border: '2px solid #DDD',
         padding: '2px 4px',
         alignItems: 'right',
     },
 }));
-const Top = () => {
+const Top = (props) => {
     const classes = useStyles();
     const currentUser = useUserContext();
     return (
@@ -39,7 +41,12 @@ const Top = () => {
                         placeholder="Search"
                         inputProps={{ 'aria-label': 'search' }}
                     />
-                    <IconButton type="submit" className={classes.iconButton} aria-label="search" color="secondary.text">
+                    <IconButton component={Link} to={{
+                        pathname: "/Searchpage",
+                        aboutProps: {
+                            pname: "sisi",
+                        }
+                    }} className={classes.iconButton} aria-label="search" color="secondary.text">
                         <SearchIcon />
                     </IconButton>
                 </Paper>
@@ -47,7 +54,7 @@ const Top = () => {
             <Grid item xs={12} sm={6}>
                 <Typography align="right" color="primary" variant="h6" padding="40px">
                     Hi {currentUser.displayName}
-            </Typography>
+                </Typography>
             </Grid>
 
         </Grid>
@@ -56,3 +63,6 @@ const Top = () => {
 
 export default Top
 
+Top.defaultProps = {
+    search: "",
+}

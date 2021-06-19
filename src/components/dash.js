@@ -18,6 +18,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useOnClickOutside } from '../hooks';
 // import followers from './pages/followers'
 import GetProject from './pages/getProject'
+import Searchpage from "./pages/Searchpage";
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -57,6 +58,7 @@ function Dash() {
                     <Route exact path="/Huntingground" component={Huntingground} />
                     <Route exact path="/Notifications" component={Notifications} />
                     <Route exact path="/Settings" component={Settings} />
+                    <Route exact path="/Searchpage" component={Searchpage} />
                     <Route component={errorpage} />
                   </Switch>
                   <Rightbar />
