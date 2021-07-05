@@ -4,7 +4,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import { Avatar, Checkbox, FormControlLabel, IconButton, makeStyles, Typography } from "@material-ui/core";
 import { Comment, Favorite, FavoriteBorder } from "@material-ui/icons";
-import { db } from '../../firebase';
+import { db, increment, decrement } from '../../firebase';
 const useStyles = makeStyles((theme) => ({
     large: {
 
@@ -50,24 +50,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const Post = forwardRef(
-    ({ nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
+    ({ id, nickname, caption, image, avatar, likes, share, comment, timestamp }, ref) => {
         const classes = useStyles();
-        const temp = likes;
         const [counter, setCounter] = useState(0);
-        const [like, setLike] = useState(temp);
-        const cityRef = db.collection('posts');
+        const cityRef = db.collection('posts').doc(id);
         const heart = () => {
 
             if (counter == 0) {
                 setCounter(1);
-                setLike(like + 1);
+                cityRef.set({ likes: increment }, { merge: true });
 
             }
 
             else if (counter == 1) {
                 setCounter(0);
-                setLike(like - 1);
-                // cityRef.update({ likes: like });
+                cityRef.set({ likes: decrement }, { merge: true });
+
 
             }
 
@@ -100,7 +98,7 @@ const Post = forwardRef(
                 <Grid container justify="space-around" className={classes.Grid2}>
 
                     <FormControlLabel onClick={heart} label={<Typography color="textSecondary">{likes}</Typography>} control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite color="primary" />} name="checkedH" />}
-                    />{counter}{likes}{like}
+                    />
 
 
                     <FormControlLabel label={<Typography color="textSecondary">{share}</Typography>} control={<Checkbox icon={<ShareIcon />} checkedIcon={<ShareIcon color="primary" />} name="checkedH" />}

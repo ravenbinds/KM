@@ -69,7 +69,11 @@ const Contents = () => {
     useEffect(() => {
         db.collection("posts").orderBy("timestamp", 'desc')
             .onSnapshot((snapshot) => {
-                setPosts(snapshot.docs.map((doc) => doc.data()
+                setPosts(snapshot.docs.map(doc =>
+                ({
+                    id: doc.id,
+                    post: doc.data()
+                })
                 ));
             }
             )
@@ -145,9 +149,9 @@ const Contents = () => {
                 <Grid item xs={12}>
                     <Sendposts nickname={userDetails.nickname} avatar={userDetails.avatar} uid={currentUser.uid} />
                     <FlipMove>
-                        {posts.map(post => (
+                        {posts.map(({ id, post }) => (
                             <Grid className="Contents-space">
-                                <Post nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} likes={post.likes} share={post.share} comment={post.comment} timestamp={post.timestamp} />
+                                <Post id={id} nickname={post.nickname} avatar={post.avatar} caption={post.caption} image={post.image} likes={post.likes} share={post.share} comment={post.comment} timestamp={post.timestamp} />
                             </Grid>
                         ))
                         }
