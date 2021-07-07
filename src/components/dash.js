@@ -49,7 +49,7 @@ function Dash() {
                   <Leftbar open={open} setOpen={setOpen} />
                   <Switch>
                     <Route exact path="/" component={Content} />
-                    <Route exact path="/createpages" component={create} />
+                    <Route exact path="/supportrequests" component={create} />
                     <Route exact path="/Content" component={Content} />
                     <Route exact path="/Myprofile" component={Myprofile} />
                     <Route exact path="/Projectpage" component={GetProject} />
