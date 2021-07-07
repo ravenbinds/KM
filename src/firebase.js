@@ -14,7 +14,8 @@ const firebaseConfig = {
 };
 const app = firebase.initializeApp(firebaseConfig);
 
-
+export const increment = firebase.firestore.FieldValue.increment(1);
+export const decrement = firebase.firestore.FieldValue.increment(-1);
 export const auth = app.auth();
 export const db = app.firestore();
 
