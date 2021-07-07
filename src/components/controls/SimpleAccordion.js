@@ -121,7 +121,12 @@ function SimpleAccordion(props) {
                                         </Grid>
                                         :
                                         <Grid item align='right'>
-                                            <SimpleModal body={item.form} startIcon={<Add />} title={"Add " + item.title} variant='outlined' button={"Add " + item.title} />
+                                            <SimpleModal 
+                                            body={item.form} 
+                                            startIcon={<Add />} 
+                                            title={"Add " + item.title} 
+                                            variant='outlined' 
+                                            buttonText={"Add " + item.title} />
                                         </Grid>
                                 }
 

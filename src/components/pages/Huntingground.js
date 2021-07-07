@@ -64,7 +64,12 @@ const Huntingground = () => {
                         <Typography variant="h6">
                             Contribute your ideas to the Hunting Ground. And get your dream project off the ground.
                         </Typography>
-                        <SimpleModal body={<CreateHGPost /> } endIcon={<KeyboardArrowRightSharp />} title={'Contribute to Hunting Ground'} variant='contained' button={'Get started'}/>
+                        <SimpleModal 
+                        body={<CreateHGPost /> } 
+                        endIcon={<KeyboardArrowRightSharp />} 
+                        title={'Contribute to Hunting Ground'} 
+                        variant='contained' 
+                        buttonText={'Get started'}/>
                         {/* <NavLink to="/createpages" style={{ textDecoration: "none" }} >
                             <Button
                                 variant="contained"

@@ -9,6 +9,7 @@ import { IconButton } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 import {db} from '../firebase'
 import { useUserContext } from "../UserContext";
+import UpdateHGPost from "./Actions/UpdateHGPost";
 
 
 
@@ -80,13 +81,13 @@ function CardFooter({ avatar, username, tag, buttonText }) {
         </Grid>
       </Grid>
       <Grid item>
-        <SimpleModal title={"title"} button={buttonText} variant="outlined" />
+        <SimpleModal title={"title"} buttonText={buttonText} variant="outlined" />
       </Grid>
     </Grid>
   );
 }
 
-function CardHeader({title, hgid,userid}){
+function CardHeader({title, hgid,userid, post}){
 
   const currentUser = useUserContext();
 
@@ -105,8 +106,15 @@ function CardHeader({title, hgid,userid}){
       </Grid>
       {
         (userid===currentUser.uid) && <Grid item>
-        <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton>
-        <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+          <Grid container direction ='row'>
+            <Grid item>
+              <SimpleModal body={<UpdateHGPost initialValues={post}/>} title='Edit this post' isIconButton={true} icon={<Edit/>} iconSize={'small'}/>
+            </Grid>
+            <Grid item>
+              <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+            </Grid>
+        {/* <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton> */}
+      </Grid>
       </Grid>
       }
     </Grid>
@@ -121,7 +129,7 @@ function HGPosts(props) {
   return (
     <Grid container direction="column" justify="space-between" className={classes.card} spacing={2} >
       <Grid item xs={12}>
-        <CardHeader title={post.title} hgid={post.hgid} userid={post.userid}/>
+        <CardHeader title={post.title} hgid={post.hgid} userid={post.userid} post={post}/>
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1">{post.description}</Typography>

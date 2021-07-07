@@ -33,6 +33,7 @@ const theme = createMuiTheme({
     },
   },
 });
+
 theme.typography.body2 = {
   fontSize: "0.6rem",
   "@media (min-width:600px)": {
