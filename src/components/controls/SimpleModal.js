@@ -4,7 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import { Button, Dialog, DialogContent, DialogTitle, Typography } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import ActionButton from './ActionButton';
-
+import { IconButton } from "@material-ui/core";
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -69,9 +69,14 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <Button type="button" variant={props.variant} color={props.color} startIcon={props.startIcon} endIcon={props.endIcon} onClick={handleOpen}>
-        {props.button}
+      {props.isIconButton ? (
+        <IconButton size={props.iconSize} onClick={handleOpen}>{props.icon}</IconButton>
+      ):(
+        <Button type="button" variant={props.variant} color={props.color} startIcon={props.startIcon} endIcon={props.endIcon} onClick={handleOpen}>
+        {props.buttonText}
       </Button>
+      )
+      }
       <Modal
         open={open}
         onClose={handleClose}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
@@ -9,6 +10,9 @@ import { IconButton } from "@material-ui/core";
 import { Delete, Edit } from "@material-ui/icons";
 import {db} from '../firebase'
 import { useUserContext } from "../UserContext";
+import UpdateHGPost from "./Actions/UpdateHGPost";
+import ApplicationForm from "./Actions/ApplicationForm";
+import Applications from "./Applications";
 
 
 
@@ -56,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CardFooter({ avatar, username, tag, buttonText }) {
+function CardFooter({ avatar, username, tag, buttonText, isCurrentUser, hgid }) {
   const classes = useStyles();
   return (
     <Grid container direction="row" justify="space-between" alignItems="center">
@@ -79,16 +83,26 @@ function CardFooter({ avatar, username, tag, buttonText }) {
           </Grid>
         </Grid>
       </Grid>
+      {/* Reduce this code */}
+      {
+        isCurrentUser ? (
       <Grid item>
-        <SimpleModal title={"title"} button={buttonText} variant="outlined" />
+        <SimpleModal body={<Applications hgid={hgid}/>} title={"Applications"} buttonText={"View Applications"} variant="outlined" />
       </Grid>
+        ):(
+
+      <Grid item>
+        <SimpleModal body={<ApplicationForm hgid={hgid}/>} title={"Application"} buttonText={buttonText} variant="outlined" />
+      </Grid>
+        )
+      }
     </Grid>
   );
 }
 
-function CardHeader({title, hgid,userid}){
+function CardHeader({title, hgid,userid, post, isCurrentUser}){
 
-  const currentUser = useUserContext();
+  // const currentUser = useUserContext();
 
   function deleteRecord(hgid){
     const ref=db.collection("HuntingGround")
@@ -104,9 +118,16 @@ function CardHeader({title, hgid,userid}){
         </Typography>
       </Grid>
       {
-        (userid===currentUser.uid) && <Grid item>
-        <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton>
-        <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+        isCurrentUser && <Grid item>
+          <Grid container direction ='row'>
+            {/* <Grid item>
+              <SimpleModal body={<UpdateHGPost initialValues={post}/>} title='Edit this post' isIconButton={true} icon={<Edit/>} iconSize={'small'}/>
+            </Grid> */}
+            <Grid item>
+              <IconButton size='small' onClick={()=>deleteRecord(hgid)}><Delete/></IconButton>
+            </Grid>
+        {/* <IconButton size='small' onClick={()=>{console.log('Date ',Date.now() )}}><Edit size='small'/></IconButton> */}
+      </Grid>
       </Grid>
       }
     </Grid>
@@ -117,11 +138,18 @@ function CardHeader({title, hgid,userid}){
 function HGPosts(props) {
   const {post, buttonText } = props;
   const classes = useStyles();
+  const currentUser = useUserContext();
+  // const [isCurrentUser, setIsCurrentUser] = useState(false)
+  var isCurrentUser = false
+  if (post.userid === currentUser.uid) {
+    // setIsCurrentUser(true)
+    isCurrentUser = true
+  }
 
   return (
     <Grid container direction="column" justify="space-between" className={classes.card} spacing={2} >
       <Grid item xs={12}>
-        <CardHeader title={post.title} hgid={post.hgid} userid={post.userid}/>
+        <CardHeader title={post.title} hgid={post.hgid} userid={post.userid} post={post} isCurrentUser={isCurrentUser} />
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1">{post.description}</Typography>
@@ -148,7 +176,7 @@ function HGPosts(props) {
       )}
       
       <Grid item xs={12}>
-        <CardFooter avatar={post.avatar} username={post.username} tag={post.tag} buttonText={buttonText} />
+        <CardFooter avatar={post.avatar} username={post.username} tag={post.tag} buttonText={buttonText} isCurrentUser={isCurrentUser} hgid={post.hgid}/>
       </Grid>
     </Grid>
   );

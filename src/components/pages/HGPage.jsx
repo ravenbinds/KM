@@ -7,9 +7,22 @@ import HGPosts from '../HGPosts';
 import {useState, useEffect} from 'react'
 import {db} from '../../firebase'
 import { withRouter } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core';
+import { SportsEsportsOutlined } from '@material-ui/icons';
+
+const UseStyles = makeStyles((theme)=>({
+    empty: {
+        border: '2px dotted grey',
+        padding: theme.spacing(3),
+        minWidth: '200px',
+        maxWidth: '200px',
+        borderRadius: '5px',
+        color: 'grey'
+    }
+}))
 
 const HGPage = (props) => {
-
+    const classes = UseStyles();
     const category = props.location.state.category;
 
     const [hgposts,setHgPosts] = useState([]);
@@ -47,7 +60,7 @@ const HGPage = (props) => {
     },[]);
 
     if(loading){
-        return <h6>Loading...</h6>
+        return <h2>Loading...</h2>
     }
 
     return (
@@ -71,8 +84,11 @@ const HGPage = (props) => {
                         </Grid>
                         ) 
                         :
-                        (
-                            <Typography>Nothing to see here</Typography>
+                        (   <Grid container justify='flex-end' alignContent='stretch' direction='column' alignItems='center'>
+                            <Grid item xs={6} className={classes.empty}>
+                                <Typography variant='subtitile'>Nothing to see here</Typography>
+                            </Grid>
+                        </Grid>
                         )
                 }
         </div >
