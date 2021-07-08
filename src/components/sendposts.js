@@ -44,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     Grid: {
+        background: '#8C98FF',
+
         padding: theme.spacing(1),
     },
 }));
@@ -51,6 +53,7 @@ const Sendposts = (props) => {
     const handleChange = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0]);
+
         }
     }
     const handleUpload = () => {
@@ -83,6 +86,7 @@ const Sendposts = (props) => {
     const [progress, setProgress] = useState(0)
     const [sendCaption, setsendCaption] = useState("");
     const [image, setImage] = useState(null);
+
     const sendPosts = (e) => {
         e.preventDefault();
         dateString = Date.now()
@@ -138,14 +142,10 @@ const Sendposts = (props) => {
                             <Grid container direction='row' >
                                 <Grid item xs={8} justify="space-between" alignItems='center'>
                                     <Typography align="left" color="primary">
-                                        <AddAPhotoIcon /> <input type="file" onChange={handleChange} />
-                                    </Typography>
+                                        <AddAPhotoIcon />
+                                        <input type="file" accept="image/*, video/mp4" className={classes.Grid} onChange={handleChange} />
 
-                                    {/* <ButtonGroup color="primary" size="small">
-                                        <Button><AddAPhotoIcon /></Button>
-                                        <Button><VideocamIcon /></Button>
-                                        <Button><EmojiEventsIcon /></Button>
-                                    </ButtonGroup> */}
+                                    </Typography>
                                 </Grid>
 
                                 <Grid item xs={2} justify="space-between" align="right">
