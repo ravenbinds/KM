@@ -14,7 +14,7 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import {School} from '@material-ui/icons'
+import {AccessTime, Adjust, School} from '@material-ui/icons'
 // import { Add,Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
@@ -198,14 +198,28 @@ function DetailsAccordion(props) {
     //Function to get all projects of given user
     function getProject() {
         setLoading(true);
-        ref.collection('projects').onSnapshot((querySnapshot) => {
+        db.collection('projects').where("owner","==",props.userdocumentID).onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
+                var statusIconWill
+                if (doc.data().status == 'Completed')
+                {
+                    statusIconWill = <CheckRoundedIcon/>
+                }
+                else if (doc.data().status == 'Incomplete')
+                {
+                    statusIconWill = <AccessTime/>
+                }
+                else
+                {
+                    statusIconWill = <Adjust/>
+                }
                 items.push({
-                    heading: "Project title",
-                    description: "Project description",
-                    status: 'sample',
-                    statusIcon: <CheckRoundedIcon />,
+                    heading: doc.data().pname,
+                    description: doc.data().description,
+                    status: doc.data().status,
+                    statusIcon: statusIconWill,
+                    link: true,
                 }
                 );
             });
@@ -225,6 +239,7 @@ function DetailsAccordion(props) {
                     description: doc.data().school,
                     status: 'sample',
                     statusIcon: <CheckRoundedIcon />,
+                    link: false,
                 }
                 );
             });
@@ -244,6 +259,7 @@ function DetailsAccordion(props) {
                     description: "Post description",
                     status: 'sample',
                     statusIcon: <CheckRoundedIcon />,
+                    link: false,
                 }
                 );
             });
@@ -263,6 +279,7 @@ function DetailsAccordion(props) {
                     description: doc.data().description,
                     status: 'sample',
                     statusIcon: <CheckRoundedIcon />,
+                    link: false,
                 }
                 );
             });
@@ -282,6 +299,7 @@ function DetailsAccordion(props) {
                     description: doc.data().description,
                     status: 'sample',
                     statusIcon: <CheckRoundedIcon />,
+                    link: false,
                 }
                 );
             });

@@ -9,26 +9,44 @@ import DateTimePicker from '../FormsUI/DateTimePicker';
 import Checkbox from '../FormsUI/Checkbox';
 import Button from '../FormsUI/Button';
 import { Typography } from '@material-ui/core';
+import {useUserContext} from '../../UserContext'
+import { uuid } from 'uuidv4';
 
 function ProjectForm(props) {
 
+    const currentUser = useUserContext();
+
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
+
     function sendInfo(values) {
-        db.collection("projects").doc()
+        const newId = uuid()
+        var dateString = new Date();
+        db.collection("projects").doc(newId)
             .set({
                 pname: values.projectName,
                 description: values.description,
-                owner: values.owner,
+                owner: currentUser.uid,
+                email: currentUser.email,
+                owneravatar: currentUser.photoURL,
+                username: currentUser.displayName,
                 teamMembers: values.teammembers,
                 startDate: values.startDate,
                 status: values.status,
                 mentor: values.mentor,
+                projectid: newId,
             });
+        db.collection("projects").doc(newId).collection("milestones").add({
+            timestamp: formatDate(dateString),
+            text: "Opened on"
+        })
     }
 
     const INITIAL_FORM_VALUES = {
         projectName: '',
         description: '',
-        owner: props.userdocumentID,
         teammembers: '',
         startDate: new Date(),
         status: '',
@@ -75,7 +93,7 @@ function ProjectForm(props) {
                         <Textfield name='teammembers' label='Team members' />
                     </Grid>
                     <Grid item xs={12}>
-                        <Select name='status' label='Project status' options={['Completed', 'Incomplete', 'Freezed']} />
+                        <Select name='status' label='Project status' options={{'Completed':'Completed', 'Incomplete':'Incomplete', 'Freezed':'Freezed'}} />
                     </Grid>
                     <Grid item xs={6}>
                         <Checkbox name='isCompleted' label='Completed?' onChange={() => { setIsComplete(true) }} />
