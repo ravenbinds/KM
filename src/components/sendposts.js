@@ -8,7 +8,6 @@ import Grid from '@material-ui/core/Grid';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
-import FileUpload from "./pages/FileUpload";
 const useStyles = makeStyles((theme) => ({
     large: {
 
@@ -143,7 +142,7 @@ const Sendposts = (props) => {
                                 <Grid item xs={8} justify="space-between" alignItems='center'>
                                     <Typography align="left" color="primary">
                                         <AddAPhotoIcon />
-                                        <input type="file" accept="image/*, video/mp4" className={classes.Grid} onChange={handleChange} />
+                                        <input type="file" accept="image/*" onChange={handleChange} />
 
                                     </Typography>
                                 </Grid>

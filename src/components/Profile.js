@@ -14,7 +14,7 @@ import EventNoteRoundedIcon from '@material-ui/icons/EventNoteRounded';
 import { Link } from 'react-router-dom';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
 import Top from './Top';
-import {AccessTime, Adjust, School} from '@material-ui/icons'
+import { AccessTime, Adjust, School } from '@material-ui/icons'
 // import { Add,Timelapse } from '@material-ui/icons';
 import SimpleAccordion from './controls/SimpleAccordion';
 import ProjectForm from './Actions/ProjectForm';
@@ -23,8 +23,6 @@ import EducationForm from './Actions/EducationForm'
 import CertificationForm from './Actions/CertificationForm'
 import { db } from '../firebase';
 // import { useUserContext } from '../UserContext';
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -65,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
     spotlight: {
     },
 }));
-
 function ProfileHeader(props) {
     const classes = useStyles();
     return (
@@ -107,13 +104,31 @@ ProfileHeader.defaultProps = {
     following: 0,
 }
 
-function Spotlight() {
+function Spotlight(props) {
+    const [projectNo, setprojectNo] = useState(0);
+    const [certificationNo, setcertificationNo] = useState(0);
+    const [jobNo, setjobNo] = useState(0);
 
+    const ref = db.doc('profile/' + props.userdocumentID)
+    ref.collection('certification').onSnapshot((querySnapshot) => {
+        setcertificationNo(querySnapshot.size);
+
+    });
+    ref.collection('experience').onSnapshot((querySnapshot) => {
+        setjobNo(querySnapshot.size);
+
+    });
     const spotlightitems = [
-        { category: 'Projects', count: 4 },
-        { category: 'Certifications', count: 10 },
-        { category: 'Jobs done', count: 8 },
+        { category: 'Projects', count: projectNo },
+        { category: 'Certifications', count: certificationNo },
+        { category: 'Jobs done', count: jobNo },
+
     ]
+    db.collection('projects').where("owner", "==", props.userdocumentID)
+        .onSnapshot((querySnapshot) => {
+            setprojectNo(querySnapshot.size);
+        }
+        );
 
     const classes = useStyles();
     return (
@@ -198,21 +213,20 @@ function DetailsAccordion(props) {
     //Function to get all projects of given user
     function getProject() {
         setLoading(true);
-        db.collection('projects').where("owner","==",props.userdocumentID).onSnapshot((querySnapshot) => {
+        db.collection('projects').where("owner", "==", props.userdocumentID).onSnapshot((querySnapshot) => {
+
             const items = [];
             querySnapshot.forEach((doc) => {
+
                 var statusIconWill
-                if (doc.data().status == 'Completed')
-                {
-                    statusIconWill = <CheckRoundedIcon/>
+                if (doc.data().status == 'Completed') {
+                    statusIconWill = <CheckRoundedIcon />
                 }
-                else if (doc.data().status == 'Incomplete')
-                {
-                    statusIconWill = <AccessTime/>
+                else if (doc.data().status == 'Incomplete') {
+                    statusIconWill = <AccessTime />
                 }
-                else
-                {
-                    statusIconWill = <Adjust/>
+                else {
+                    statusIconWill = <Adjust />
                 }
                 items.push({
                     heading: doc.data().pname,
@@ -400,7 +414,7 @@ function Profile(props) {
             <Top />
             <Grid item xs={12} className={classes.Grid} >
                 <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
-                <Spotlight />
+                <Spotlight userdocumentID={props.userdocumentID} />
                 <RecentActivities />
                 <DetailsAccordion userdocumentID={props.userdocumentID} />
             </Grid>
