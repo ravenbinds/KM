@@ -69,9 +69,10 @@ function UpdateHGPost(props) {
         <Formik
             initialValues={ INITIAL_FORM_VALUES }
             validationSchema={FORM_VALIDATION}
-            onSubmit={values => {
+            onSubmit={(values, {resetForm}) => {
                 console.log('HG value: ', values);
                 sendInfo(values);
+                resetForm(INITIAL_FORM_VALUES)
             }}
         >
             {({values, errors})=> (

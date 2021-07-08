@@ -69,15 +69,16 @@ function CreateHGPost(props) {
         <Formik
             initialValues={ INITIAL_FORM_VALUES }
             validationSchema={FORM_VALIDATION}
-            onSubmit={values => {
+            onSubmit={(values, {resetForm}) => {
                 console.log('HG value: ', values);
                 sendInfo(values);
+                resetForm(INITIAL_FORM_VALUES)
             }}
         >
             {({values, errors})=> (
                 <Form>
                     <Grid container direction='row'>
-                        <Grid item xs={6}>
+                        <Grid item xs={12}>
                         <Grid container spacing={2}>
                     <Grid item xs={12}>
                         <Textfield name='hgtitle' label='Title' />
@@ -154,9 +155,9 @@ function CreateHGPost(props) {
                     
                 </Grid>
                         </Grid>
-                        <Grid item xs={6}>
+                        {/* <Grid item xs={6}>
                         <pre>{JSON.stringify({ values, errors }, null, 4)}</pre>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                
             </Form>

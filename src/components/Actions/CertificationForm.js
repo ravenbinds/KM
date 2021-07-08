@@ -55,9 +55,10 @@ function CertificationForm(props) {
     <Formik
       initialValues = {INITIAL_FORM_VALUES}
       validationSchema = {FORM_VALIDATION}
-      onSubmit = {values => {
+      onSubmit = {(values, {resetForm}) => {
         console.log('Certification value: ',values);
         sendInfo(values);
+        resetForm(INITIAL_FORM_VALUES)
     }}
     >
       <Form>
