@@ -13,7 +13,7 @@ const firebaseConfig = {
     measurementId: "G-8936WWMFKW"
 };
 const app = firebase.initializeApp(firebaseConfig);
-
+export const storage = firebase.storage();
 export const increment = firebase.firestore.FieldValue.increment(1);
 export const decrement = firebase.firestore.FieldValue.increment(-1);
 export const auth = app.auth();
