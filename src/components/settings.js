@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import ProjectLists from './pages/Projectlist';
 import UserLists from './pages/Userlist';
 import TagsInput from './FormsUI/TagsInput'
-
+import TrackedProjectLists from './pages/trackedProjects';
 const Settings = () => {
 
     const selectedTags = tags => {
@@ -16,6 +16,7 @@ const Settings = () => {
                 <TagsInput selectedTags={selectedTags} tags={['Nodejs', 'MongoDB']} />
                 <ProjectLists />
                 <UserLists />
+                <TrackedProjectLists userid="7aROHQMUiZXrqavWooPmIyrJVDh2" />
             </Grid>
 
         </div>

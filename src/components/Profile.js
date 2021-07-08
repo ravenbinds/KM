@@ -71,6 +71,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 function ProfileHeader(props) {
+    const [follower, setfollower] = useState(0)
+    const [following, setfollowing] = useState(0)
+
+    db.collection("followers").where("followingWho", "==", props.userdocumentID)
+        .onSnapshot((querySnapshot) => {
+            setfollower(querySnapshot.size);
+            setfollowing(querySnapshot.size);
+
+        });
     const classes = useStyles();
     return (
         <Grid container direction="row" justify="flex-start" alignItems="center">
@@ -87,13 +96,25 @@ function ProfileHeader(props) {
                     <Grid item>
                         <Grid container direction='row' spacing={1}>
                             <Grid item>
-                                <Typography variant="body2" component={Link} to='/followers'>
-                                    {props.followers} followers
+                                <Typography variant="body2" component={Link} to={{
+                                    pathname: "/followers",
+                                    aboutProps: {
+                                        userid: props.userdocumentID,
+
+                                    }
+                                }}>
+                                    {follower} followers
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Typography variant="body2" component={Link} to='/following'>
-                                    {props.following} following
+                                <Typography variant="body2" component={Link} to={{
+                                    pathname: "/following",
+                                    aboutProps: {
+                                        userid: props.userdocumentID,
+
+                                    }
+                                }}>
+                                    {following} following
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -364,6 +385,7 @@ function DetailsAccordion(props) {
             startIcon: <FolderOpenRoundedIcon fontSize="large" />,
             entries: postDetails,
         },
+
         //Experience data
         {
             form: <ExperienceForm userdocumentID={props.userdocumentID} />,
@@ -435,7 +457,7 @@ function Profile(props) {
         <div className="Contents">
             <Top />
             <Grid item xs={12} className={classes.Grid} >
-                <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} />
+                <ProfileHeader name={userDetails.name} avatar={userDetails.avatar} userdocumentID={props.userdocumentID} />
                 <Spotlight userdocumentID={props.userdocumentID} />
                 <RecentActivities />
                 <DetailsAccordion userdocumentID={props.userdocumentID} />
