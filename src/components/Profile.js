@@ -31,7 +31,14 @@ const useStyles = makeStyles((theme) => ({
         marginInline: theme.spacing(0.5),
         background: "#FFFFFF",
     },
-
+    button: {
+        maxHeight: '39px',
+        color: '#FFFFFF',
+        background: '#8C98FF',
+        padding: theme.spacing(0.5),
+        borderRadius: '0.5em',
+        fontSize: '12px',
+    },
     Box: {
         display: 'flex',
         flexDirection: 'row',
@@ -114,6 +121,7 @@ function Spotlight(props) {
         setcertificationNo(querySnapshot.size);
 
     });
+
     ref.collection('experience').onSnapshot((querySnapshot) => {
         setjobNo(querySnapshot.size);
 
@@ -209,7 +217,6 @@ function DetailsAccordion(props) {
     const [loading, setLoading] = useState(false);
 
     const ref = db.doc('profile/' + props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
-
     //Function to get all projects of given user
     function getProject() {
         setLoading(true);
@@ -265,13 +272,28 @@ function DetailsAccordion(props) {
     //Function to get all posts of given user
     function getPost() {
         setLoading(true);
-        ref.collection('posts').onSnapshot((querySnapshot) => {
+        db.collection('posts').onSnapshot((querySnapshot) => {
             const items = [];
             querySnapshot.forEach((doc) => {
                 items.push({
-                    heading: "Post title",
-                    description: "Post description",
-                    status: 'sample',
+                    heading: doc.data().caption,
+                    description: doc.data().timestamp,
+                    status: <Button component={Link} to={{
+                        pathname: "/Post",
+                        aboutProps: {
+                            docid: doc.data().docid,
+                            nickname: doc.data().nickname,
+                            avatar: doc.data().avatar,
+                            caption: doc.data().caption,
+                            image: doc.data().image,
+                            likes: doc.data().likes,
+                            share: doc.data().share,
+                            comment: doc.data().comment,
+                            timestamp: doc.data().timestamp,
+                        }
+                    }}  >
+                        View
+                    </Button>,
                     statusIcon: <CheckRoundedIcon />,
                     link: false,
                 }
