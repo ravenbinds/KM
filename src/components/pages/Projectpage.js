@@ -146,6 +146,12 @@ function OtherDetails({project}) {
                         <Typography>TEAM</Typography>
                     </Grid>
                     <Grid item xs={12}>
+                        {
+                            console.log(project.teamMembers)
+                        }
+                        {project.teamMembers.forEach((member)=>{
+                            <UserCard nickname={member}/>
+                        })}
                         <UserCard nickname={project.teamMembers}/>
                     </Grid>
                 </Grid>
@@ -282,9 +288,9 @@ const Projectpage = (props) => {
                         <Grid item xs={12}>
                             <Milestones startdate={project.startDate} projectid={project.projectid} owner={project.owner}/>
                         </Grid>
-                        <Grid item xs={12}>
+                        {/* <Grid item xs={12}>
                             <OnTheHunt/>
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={12}>
                             <OtherDetails project={project}/>
                         </Grid>
