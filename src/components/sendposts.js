@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Avatar, Button, ButtonGroup, InputBase, TextField, Typography } from "@material-ui/core";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 import { makeStyles } from '@material-ui/core/styles';
 import { Form } from './useForm';
 import Box from '@material-ui/core/Box';
@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import VideocamIcon from '@material-ui/icons/Videocam';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import FileUpload from "./pages/FileUpload";
 const useStyles = makeStyles((theme) => ({
     large: {
 
@@ -47,25 +48,59 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const Sendposts = (props) => {
+    const handleChange = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0]);
+        }
+    }
+    const handleUpload = () => {
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+                const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+                setProgress(progress);
+            },
+            (error) => {
+                console.log(error);
+                alert(error.message);
+            },
+            () => {
+                storage
+                    .ref("images")
+                    .child(image.name)
+                    .getDownloadURL()
+                    .then(url => {
+                        setImage(url)
+                    });
+
+            }
+        )
+
+    }
     const classes = useStyles();
     var dateString = new Date();
+    const [progress, setProgress] = useState(0)
     const [sendCaption, setsendCaption] = useState("");
-    const [sendImage, setsendImage] = useState("");
+    const [image, setImage] = useState(null);
     const sendPosts = (e) => {
         e.preventDefault();
         dateString = Date.now()
         db.collection("posts").add({
             nickname: props.nickname,
             caption: sendCaption,
-            image: sendImage,
+            image: image,
             avatar: props.avatar,
             userid: props.uid,
             likes: 0,
             timestamp: formatDate(dateString),
         }, { merge: true });
+
+        setProgress(0);
         setsendCaption("");
-        setsendImage("");
-    };
+        setImage(null);
+    }
+
 
 
     const formatDate = (dateString) => {
@@ -99,30 +134,26 @@ const Sendposts = (props) => {
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={12} >
-                            <TextField value={sendImage}
-                                InputProps={{ disableUnderline: true }}
-                                onChange={(e) => setsendImage(e.target.value)}
-                                className={classes.input}
-
-                                placeholder="Optional: Enter image URL"
-                                type="text"
-                            />
-                        </Grid>
-
                         <Grid item xs={12}>
                             <Grid container direction='row' >
-                                <Grid item xs={4} justify="space-between" alignItems='center'>
+                                <Grid item xs={8} justify="space-between" alignItems='center'>
                                     <Typography align="left" color="primary">
-                                        Add
+                                        <AddAPhotoIcon /> <input type="file" onChange={handleChange} />
                                     </Typography>
-                                    <ButtonGroup color="primary" size="small">
+
+                                    {/* <ButtonGroup color="primary" size="small">
                                         <Button><AddAPhotoIcon /></Button>
                                         <Button><VideocamIcon /></Button>
                                         <Button><EmojiEventsIcon /></Button>
-                                    </ButtonGroup>
+                                    </ButtonGroup> */}
                                 </Grid>
-                                <Grid item xs={8} justify="flex-end" align="right">
+
+                                <Grid item xs={2} justify="space-between" align="right">
+                                    <Button onClick={handleUpload} className={classes.button}>
+                                        Upload picture
+                                    </Button>    </Grid>
+                                <Grid item xs={2} justify="space-between" align="right">
+
                                     <Button onClick={sendPosts} className={classes.button} type="submit">
                                         Post
                                     </Button>
@@ -136,5 +167,4 @@ const Sendposts = (props) => {
         </div>
     )
 }
-
 export default Sendposts

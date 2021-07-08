@@ -54,6 +54,7 @@ const Post = forwardRef(
         const classes = useStyles();
         const [counter, setCounter] = useState(0);
         const cityRef = db.collection('posts').doc(id);
+        cityRef.set({ docid: id }, { merge: true });
         const heart = () => {
 
             if (counter == 0) {
