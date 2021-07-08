@@ -9,55 +9,66 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Avatar, CardHeader } from '@material-ui/core';
 import { db } from '../../firebase';
-const useStyles = makeStyles({
+import { useUserContext } from '../../UserContext';
+const useStyles = makeStyles((theme)=>({
     root: {
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        marginTop: theme.spacing(2),
     },
     buttons: {
         alignSelf: "flex-end",
     }
-});
-function Supportreq() {
+}));
+
+function Supportreq({category}) {
     const [posts, setPosts] = useState([])
     const classes = useStyles();
+    const currentUser = useUserContext();
+
     useEffect(() => {
-        db.collection("supportreq").onSnapshot((snapshot) => {
+        db.collection("supportreq").where('category','==',category).where('email','==',currentUser.email).onSnapshot((snapshot) => {
             setPosts(snapshot.docs.map((doc) => doc.data()
             ));
         }
         )
     }, []);
+
     return (
         <div>
 
-            {
-                posts.map(post => (
+            {   (posts.length>0) ?
+                (posts.map(post => (
                     <Card className={classes.root}>
                         <CardHeader
                             avatar={
                                 <Avatar aria-label="recipe" src={post.avatar} className={classes.avatar} />
                             }
-                            title={post.username}
-                            subheader={post.date}
+                            title={post.nickname}
+                            subheader={post.timestamp}
                         />
                         <CardActionArea>
                             <CardContent>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {post.description}
+                                <Typography variant="body1" color="textSecondary" component="p">
+                                    {post.requestDescription}
+                                </Typography>
+                                <Typography variant="subtitle2" color="textSecondary" component="p">
+                                    {post.projectTitle}
                                 </Typography>
                             </CardContent>
                         </CardActionArea>
                         <CardActions className={classes.buttons}>
                             <Button variant="outlined" size="small" color="primary">
-                                Accept
+                                Cancel
                             </Button>
                             <Button variant="outlined" size="small" color="primary">
-                                Cancel
+                                Accept
                             </Button>
                         </CardActions>
                     </Card>
-                ))
+                ))) : (
+                    <Typography>Nothing to see here</Typography>
+                )
             }
         </div>)
 }

@@ -38,7 +38,7 @@ export const mainListItems = (
             </ListItemIcon>
             <ListItemText primary="Hunting Ground" />
         </ListItem>
-        <ListItem button component={NavLink} to="/createpages">
+        <ListItem button component={NavLink} to="/supportrequests">
             <ListItemIcon>
                 <LiveHelpIcon />
             </ListItemIcon>

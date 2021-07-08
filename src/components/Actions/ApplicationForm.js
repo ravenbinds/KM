@@ -42,7 +42,7 @@ function ApplicationForm({hgid}) {
             <Form>
                 <Grid container spacing={1}>
                     <Grid item xs={12}>
-                        <Textfield multiline name='applicationText' label='Application'/>
+                        <Textfield multiline rows={4} name='applicationText' label='Application'/>
                     </Grid>
                     <Grid item xs={8}>
 

@@ -7,9 +7,19 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import { Button, Checkbox, FormControlLabel, TextField } from '@material-ui/core';
+// import { Button, Checkbox, FormControlLabel, TextField } from '@material-ui/core';
 import Supportreq from './supportrequest';
 import Top from '../Top'
+import * as Yup from 'yup'
+import { Formik, Form, FieldArray } from 'formik'
+import Textfield from '../FormsUI/Textfield';
+import Checkbox from '../FormsUI/Checkbox';
+import Button from '../FormsUI/Button';
+import { useUserContext } from '../../UserContext';
+import { uuid } from 'uuidv4';
+import { db } from '../../firebase';
+import Select from '../FormsUI/Select';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -79,9 +89,54 @@ export default function Createpages() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
 
+    const currentUser = useUserContext();
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+    }
+
+    function sendInfo(values) {
+        const newId = uuid()
+        var dateString = new Date();
+        db.collection("supportreq").doc(newId)
+        .set({
+            email: values.email,
+            requestDescription: values.requestDescription,
+            projectTitle: values.projectTitle,
+            userid: currentUser.uid, //should be the user profile details, not google details
+            avatar: currentUser.photoURL,
+            nickname: currentUser.displayName,
+            timestamp: formatDate(dateString),
+            requestid: newId,
+            category: values.category,
+        })
+    }
+
+
+    const INITIAL_FORM_VALUES = {
+        //temporarily using email as unique identifier
+        //username
+        email: '',
+        requestDescription: '',
+        projectTitle: '',
+        paid: false,
+        category: '',
+        // accepted: false,
+    }
+
+    const FORM_VALIDATION = Yup.object().shape(
+        {
+            email: Yup.string().email().required("Please enter email"),
+            requestDescription: Yup.string().required("Please enter something"),
+            paid: Yup.boolean(),
+            category: Yup.string().required('Required'),
+        }
+    )
 
     return (
         <Box className="Content" overflow="scroll">
@@ -115,7 +170,49 @@ export default function Createpages() {
                     </Tabs>
                 </AppBar>
                 <TabPanel value={value} index={0}>
-                    <form className={classes.form} noValidate>
+                    <Formik
+                        initialValues = {INITIAL_FORM_VALUES}
+                        validationSchema={FORM_VALIDATION}
+                        onSubmit={values=>{
+                            console.log('SR value: ',values);
+                            sendInfo(values);
+                        }}
+                    >
+                        {({values, errors})=>(
+                            <Form>
+                                <Grid container direction='column' spacing={2}>
+                                    <Grid item xs={12}>
+                                        <Select 
+                                        name='category'
+                                        label='Category' 
+                                        options={
+                                            {'Acknowledgement':'Request for Acknowledgement',
+                                            'TaskRequest':'Request for Help/Support', 
+                                            }} 
+                                        />
+                                    </Grid>
+                                    <Grid item>
+                                        <Textfield name='email' label='Email' />
+                                    </Grid>
+                                    <Grid item>
+                                        <Textfield multiline rows={4} name='requestDescription' label='Request Description' />
+                                    </Grid>
+                                    <Grid item>
+                                        <Textfield name='projectTitle' label='Project Title'/>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <Checkbox name='paid' label='Paid?' />
+                                    </Grid>
+                                    <Grid item>
+                                        <Button>
+                                            Submit
+                                        </Button>
+                                    </Grid>
+                                </Grid>
+                            </Form>
+                        )}
+                    </Formik>
+                    {/* <form className={classes.form} noValidate>
                         <TextField
 
                             variant="outlined"
@@ -184,20 +281,16 @@ export default function Createpages() {
                                 Submit
                             </Button>
                         </Grid>
-                    </form>
+                    </form> */}
                 </TabPanel>
                 <TabPanel value={value} index={1}>
-                    <Supportreq />
-                    <Supportreq />
+                    <Supportreq category='TaskRequest' />
                 </TabPanel>
                 <TabPanel value={value} index={2}>
-                    <Supportreq />
-                    <Supportreq />
+                    <Supportreq category='Acknowledgement' />
                 </TabPanel>
                 <TabPanel value={value} index={3}>
-                    <Supportreq />
-                    <Supportreq />
-
+                    <Supportreq category='Dummy' />
                 </TabPanel>
 
             </div></Box>
