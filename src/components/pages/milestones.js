@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
 
     Grid: {
         padding: theme.spacing(2),
-        display: 'flex',
         background: '#FFFFFF',
         boxSizing: 'border-box',
         boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
@@ -59,7 +58,7 @@ const Milestones = (props) => {
     },[]);
 
     return (
-        <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
+        <Grid container direction="row" justify="space-evenly" alignItems="space-between" className={classes.Grid}>
             <Grid item xs={12}>
                 <Grid container direction="row" alignItems='center' justify='space-between'>
                     <Grid item>
@@ -71,7 +70,7 @@ const Milestones = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12}>
-                <Timeline align="alternate">
+                <Timeline align="alternate" >
                     {
                         milestones && milestones.map(item=> (
                             <TimelineItem>
@@ -85,45 +84,16 @@ const Milestones = (props) => {
                             </TimelineItem>
                         ))
                     }
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary"/>
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent >Opened on December 20,1985
-                            <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
-                        </TimelineContent>
-                    </TimelineItem>
-
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent>Launched product website
-                            <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
-
-                        </TimelineContent>
-                    </TimelineItem>
-                    <TimelineItem>
-                        <TimelineSeparator>
-                            <TimelineDot color="primary" />
-                            <TimelineConnector />
-                        </TimelineSeparator>
-                        <TimelineContent>Launched product website
-                            <Box color="secondary.text" fontSize={13}>December 20,1985 2.17AM</Box>
-
-                        </TimelineContent>
-                    </TimelineItem>
+                    
                     <TimelineItem>
                         <TimelineSeparator>
                             <TimelineDot />
                         </TimelineSeparator>
                         <TimelineContent>Completed
                             <Box color="secondary.text" fontSize={13}></Box>
-
                         </TimelineContent>
                     </TimelineItem>
+
                 </Timeline>
             </Grid>
         </Grid>

@@ -4,7 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
-import man from "../../man.svg"
+import koala from "../../koala.svg"
+import { useEffect,useState } from 'react';
+import { db } from '../../firebase';
+
 
 const useStyles = makeStyles((theme) => ({
     Grid: {
@@ -17,15 +20,35 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function UserCard({avatar, nickname}) {
+function UserCard(props) {
+    const userRef = db.collection('users')
+    const [userDetails, setUserDetails] = useState({
+        avatar: props.avatar,
+        nickname: props.nickname,
+    })
+    // useEffect(()=> {
+    //     function getUserDetails() {
+    //         userRef.where('email','==',(props.email)).get().then((querySnapshot)=> {
+    //             querySnapshot.forEach((doc)=> {
+    //                 setUserDetails({
+    //                     avatar: doc.data().avatar,
+    //                     nickname: doc.data().nickname
+    //                 })
+    //             })
+    //         }).catch((error)=>{
+    //             console.log("Error: ",error)
+    //         })
+    //     }
+    //     getUserDetails();
+    // })
     const classes = useStyles();
     return (
         <Grid item xs={12} className={classes.Grid}  >
             {/* <Grid item xs={12} className={notificationClass}  > */}
-            <Avatar alt="Remy Sharp" src={avatar} />
+            <Avatar alt="Remy Sharp" src={userDetails.avatar} />
             <Box mt={1} ml={2}>
                 <Typography color="textPrimary" variant="body1" >
-                    {nickname}
+                    {userDetails.nickname}
                 </Typography>
             </Box>
         </Grid>
@@ -36,5 +59,6 @@ export default UserCard
 
 UserCard.defaultProps = {
     nickname: 'Sample User',
-    avatar: man
+    avatar: koala,
+    email: 'cartalover@gmail.com'
 }
