@@ -9,6 +9,8 @@ import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Add } from '@material-ui/icons';
 import SimpleModal from './SimpleModal';
+import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -44,12 +46,12 @@ const useStyles = makeStyles((theme) => ({
 
 function ItemCard(props) {
 
-    const { startIcon, heading, description, statusIcon, status } = props;
+    const { startIcon, heading, description, statusIcon, status, link } = props;
 
     const classes = useStyles();
     return (
         <Box className={classes.Box}>
-            <Grid container xs={12} direction="column">
+            <Grid container xs={12} direction="column" spacing={1}>
                 <Grid container direction="row" justify="space-between">
                     <Grid item xs={1}>
                         {startIcon}
@@ -66,7 +68,16 @@ function ItemCard(props) {
                             <Typography align="right" className={classes.cardText}>  {status} </Typography>
                         </Grid>
                     </Grid>
+                {
+                    link &&
+                    <Grid item align='right'>
+                        <Button component={Link} to={{pathname: "/Projectpage", aboutProps: {pname: heading}}} variant='outlined'>
+                            View
+                        </Button>
+                    </Grid>
+                }
                 </Grid>
+
             </Grid>
         </Box>
     );
@@ -104,7 +115,7 @@ function SimpleAccordion(props) {
                                         <Grid container direction="column">
                                             {
                                                 item.entries.map(entry => (
-                                                    <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon} />
+                                                    <ItemCard startIcon={item.startIcon} heading={entry.heading} description={entry.description} status={entry.status} statusIcon={entry.statusIcon} link={entry.link}/>
                                                 ))
                                             }
                                         </Grid>

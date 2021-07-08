@@ -12,6 +12,8 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import Top from '../Top';
 import { db } from '../../firebase';
+import UserCard from './UserCard'
+import { AccessTime, Adjust, CheckCircleOutline, HelpOutlineOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -61,6 +63,193 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+function ProjectDescription({project}) {
+    var statusIcon
+    if (project.status === 'Completed') {
+        statusIcon = <CheckCircleOutline/>
+    }
+    else if (project.status === 'Incomplete') {
+        statusIcon = <AccessTime/>
+    }
+    else if (project.status === 'Freezed') {
+        statusIcon = <Adjust/>
+    }
+    else {
+        statusIcon = <HelpOutlineOutlined/>
+    }
+    return(
+        <Grid container direction="column" justify="center" alignItems="center" spacing={1}>
+            <Grid item xs={12}>
+                <Typography variant='h5' color='primary'>{project.pname}</Typography>
+            </Grid>
+            <Grid item xs={12} align='center'>
+                <Typography variant='subtitle1'  color='secondary'>{project.description}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Typography>Project status: {statusIcon} {project.status}</Typography>
+            </Grid>
+            <Grid item xs={12}>
+                <Button variant='contained' color='primary'>
+                    Track this project
+                </Button>
+            </Grid>
+        </Grid>
+    )
+}
+
+function OnTheHunt() {
+    const classes = useStyles();
+    return(
+        <Box className={classes.Box} mt={2} >
+            <Grid container xs={3} className={classes.Grid} justify="space-between" >
+                <TrackChangesRoundedIcon fontSize="large" color="primary" /> ON THE HUNT
+            </Grid>
+
+            <Grid container xs={12} direction="row" justify="space-between" alignItems="flex-end">
+                <List dense > Looking for:
+                    <ListItem >
+                        <ListItemIcon>+</ListItemIcon>
+                        <ListItemText primary="Logo Designer" />
+                    </ListItem>
+                    <ListItem >
+                        <ListItemIcon>+</ListItemIcon>
+                        <ListItemText primary="Software Tester" />
+                    </ListItem>
+                </List>
+                <Button variant="contained" component={Link} to="/Projectpage" className={classes.button} >Apply</Button>
+            </Grid>
+        </Box>
+    )
+}
+
+function ShowLink({icon,link}) {
+    const classes = useStyles();
+    return (
+        <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
+            <Grid item xs={2}> {icon} </Grid>
+            <Grid item xs={10}> {link} </Grid>
+        </Grid>
+    )
+}
+
+function OtherDetails({project}) {
+    const classes = useStyles();
+    const handleClick = () => {
+        console.info('You clicked the Chip.');
+    };
+    return (
+        <Grid container className={classes.Grid2} alignItems="flex-start" spacing={1} >
+            {/* TEAM */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>TEAM</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <UserCard nickname={project.teamMembers}/>
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* MENTOR */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>MENTOR</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <UserCard nickname={project.mentor}/>
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* LINKS */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>LINKS</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        {
+                            project.links && 
+                                project.links.github && 
+                                    <ShowLink icon={<GitHubIcon/>} link={project.links.github}/>
+                        }    
+                        {   project.links &&  
+                                project.links.youtube &&
+                                    <ShowLink icon={<YouTubeIcon/>} link={project.links.youtube}/>
+                        }
+                        
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* TAGS */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>TAGS</Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid} spacing={1}>
+                            <Grid item>
+                                <Chip label="#machinelearning" onClick={handleClick} variant="outlined"/>
+                            </Grid>
+                            <Grid item>
+                                <Chip label="#python" onClick={handleClick} variant="outlined" />
+                            </Grid>
+                            <Grid item>
+                                <Chip label="#mainproject" onClick={handleClick} variant="outlined"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* GALLERY */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>GALLERY</Typography>
+                    </Grid>
+                    <Grid item xs={12} align='center'>
+                        Nothing to see here
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* SUPPORTED BY */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>SUPPORTED BY</Typography>
+                    </Grid>
+                    <Grid item xs={12} align='center'>
+                        Nothing to see here
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* STAKEHOLDERS */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>STAKEHOLDERS</Typography>
+                    </Grid>
+                    <Grid item xs={12} align='center'>
+                        Nothing to see here
+                    </Grid>
+                </Grid>
+            </Grid>
+            {/* STATS */}
+            <Grid item xs={12}>
+                <Grid container direction='column'>
+                    <Grid item xs={12}>
+                        <Typography>STATS</Typography>
+                    </Grid>
+                    <Grid item xs={12} align='center'>
+                        Tracked by
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    )
+}
+
 const Projectpage = (props) => {
     const classes = useStyles();
     const [projects, setProjects] = useState([])
@@ -74,182 +263,33 @@ const Projectpage = (props) => {
             });
     }, []);
 
-    const handleClick = () => {
-        console.info('You clicked the Chip.');
-    };
+    
 
     return (
         <div className="Contents">
             <Top />
-            <Grid item xs={12} className={classes.Grid}>
-            </Grid>
             {
                 projects.map(project => (
-                    <Grid item xs={12} className={classes.Grid}>
-                        <Typography align="left" color="textPrimary" variant="h6" padding="40px">
-                            #Projects
-                        </Typography>
-
-                        <Grid container direction="column" justify="center" alignItems="center" className={classes.Grid1}>
-                            <Box color="primary.main" fontSize="h5.fontSize">
-                                {project.pname}</Box>
-                            <Grid item xs={12} className={classes.Grid}>
-
-                                <Box color="secondary.main" fontSize="subtitle1.fontSize">
-
-                                    {project.description}
-                                </Box>
-                            </Grid>
-                            <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
-                                <Grid item xs={2} >
-                                    Project Status:</Grid>
-                                <Grid container xs={2} >
-                                    <SpeedRoundedIcon />
-                                    {project.status}</Grid>
-                            </Grid>
-                            <Grid container justify="center" alignItems="center" >
-                                <Button variant="contained" component={Link} to="/Huntingground/projectcollab" className={classes.button} >
-                                    Track this project                </Button></Grid>
+                    <Grid container className={classes.Grid} spacing={1}>
+                        <Grid item>
+                            <Typography align="left" color="textPrimary" variant="h6" padding="40px">
+                                {project.username}'s Projects
+                            </Typography>
                         </Grid>
-                        <Grid item xs={12} className={classes.Grid}>
+                        <Grid item xs={12}>
+                            <ProjectDescription project={project}/>
                         </Grid>
-                        <Grid item xs={12} className={classes.Grid1} alignItems="flex-start">
-
-                            <Milestones startdate={project.startDate} /></Grid>
-
-                        <Box className={classes.Box} mt={2} >
-                            <Grid container xs={3} className={classes.Grid} justify="space-between" >
-
-                                <TrackChangesRoundedIcon fontSize="large" color="primary" />
-                                <Box color="secondary.main" fontSize={17}>ON THE HUNT
-                                </Box></Grid>
-
-                            <Grid container xs={12} direction="row" justify="space-between" alignItems="flex-end">
-
-                                <List dense > Looking for:
-                                    <ListItem >
-                                        <ListItemIcon>
-                                            +
-                                        </ListItemIcon>
-                                        <ListItemText primary="Logo Designer" />
-                                    </ListItem>
-                                    <ListItem >
-                                        <ListItemIcon>
-                                            +
-                                        </ListItemIcon>
-                                        <ListItemText primary="Software Tester" />
-                                    </ListItem>
-
-                                </List>
-
-                                <Button variant="contained" component={Link} to="/Projectpage" className={classes.button} >
-                                    Apply              </Button>
-                            </Grid>
-                        </Box>
-                        <Grid item xs={12} className={classes.Grid}>
+                        <Grid item xs={12}>
+                            <Milestones startdate={project.startDate} projectid={project.projectid} owner={project.owner}/>
                         </Grid>
-                        <Grid container className={classes.Grid2} background="primary" alignItems="flex-start" >
-
-                            <Box color="secondary.main" fontSize={17}>TEAM
-                            </Box>
-                            <Grid item xs={12} className={classes.Grid2} >
-                                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                                <Box mt={1} ml={2}>
-
-                                    <Typography color="textPrimary" variant="body1" >
-                                        {project.teamMembers}
-                                    </Typography></Box>
-                            </Grid>
-
-
-                            <Grid item xs={12} className={classes.Grid}>
-                            </Grid>
-
-                            <Box color="secondary.main" fontSize={17}>MENTOR
-                            </Box>
-                            <Grid item xs={12} className={classes.Grid2} >
-                                <Avatar alt="Remy Sharp" src={man} className={classes.large} />
-                                <Box mt={1} ml={2}>
-
-                                    <Typography color="textPrimary" variant="body1" >
-                                        {project.mentor}
-                                    </Typography></Box>
-                            </Grid>
-
-                            <Grid item xs={12} className={classes.Grid}>
-                            </Grid>
-                            <Box color="secondary.main" fontSize={17}>LINKS
-                            </Box>
-
-                            <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-                                <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-                                    <Grid item xs={2}>
-                                        <GitHubIcon /></Grid>
-                                    <Grid item xs={10} >
-                                        {project.links.github}</Grid>
-                                </Grid>
-                                <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-
-                                    <Grid item xs={2}>
-                                        <YouTubeIcon /></Grid>
-                                    <Grid item xs={10}>
-                                        {project.links.youtube}</Grid>
-                                </Grid></Grid>
-
-                            <Box color="secondary.main" fontSize={17}>TAGS
-                            </Box>
-                            <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-
-                                <Chip
-                                    label="#machinelearning"
-                                    onClick={handleClick}
-                                    variant="outlined"
-                                />
-                                <Chip
-                                    label="#python"
-                                    onClick={handleClick}
-                                    variant="outlined"
-                                /><Chip
-                                    label="#mainproject"
-                                    onClick={handleClick}
-                                    variant="outlined"
-                                />
-
-                            </Grid>
-
-
-
-
-                            <Box color="secondary.main" mt={2} mb={2} fontSize={17}>GALLERY
-                            </Box>
-                            <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
-                                Nothing to see here
-
-                            </Grid>
-
-                            <Box color="secondary.main" mt={2} mb={2} fontSize={17}>SUPPORTED BY
-                            </Box>
-                            <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
-                                Nothing to see here
-                            </Grid>
-
-                            <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STAKEHOLDERS
-                            </Box>
-                            <Grid container direction="row" justify="center" alignItems="center" className={classes.Grid}>
-                                Nothing to see here
-
-                            </Grid>
-
-                            <Box color="secondary.main" mt={2} mb={2} fontSize={17}>STATS
-                            </Box>
-                            <Grid container direction="row" justify="flex-start" alignItems="flex-start" className={classes.Grid}>
-                                Tracked by
-                            </Grid>
+                        <Grid item xs={12}>
+                            <OnTheHunt/>
                         </Grid>
-
+                        <Grid item xs={12}>
+                            <OtherDetails project={project}/>
+                        </Grid>
                     </Grid>
                 ))}
-
         </div >
     )
 }
