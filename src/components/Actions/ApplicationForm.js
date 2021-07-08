@@ -34,10 +34,11 @@ function ApplicationForm({hgid}) {
     )
 
     return (
-        <Formik initialValues = {INITIAL_FORM_VALUES} validationSchema = {FORM_VALIDATION} onSubmit= {values => {
+        <Formik initialValues = {INITIAL_FORM_VALUES} validationSchema = {FORM_VALIDATION} onSubmit= {(values, {resetForm}) => {
             console.log('Application: ', values);
             //function to send info to firestore
             sendInfo(values);
+            resetForm(INITIAL_FORM_VALUES)
         }}>
             <Form>
                 <Grid container spacing={1}>
