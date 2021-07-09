@@ -114,7 +114,7 @@ function ProfileHeader(props) {
 
                                     }
                                 }}>
-                                    {following} followingSasy
+                                    {following} following
                                 </Typography>
                             </Grid>
                         </Grid>
