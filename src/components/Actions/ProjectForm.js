@@ -58,6 +58,8 @@ function ProjectForm(props) {
             status: values.status,
             mentor: values.mentor,
             projectid: newId,
+            progress: "0", //change according to status
+            tracking: "0" //should be calculated rather than assigned...?
         });
         db.collection("projects").doc(newId).collection("milestones").add({
             timestamp: formatDate(dateString),

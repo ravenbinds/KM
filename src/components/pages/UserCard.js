@@ -27,8 +27,8 @@ function UserCard(props) {
         nickname: props.nickname,
     })
     // useEffect(()=> {
-    //     function getUserDetails() {
-    //         userRef.where('email','==',(props.email)).get().then((querySnapshot)=> {
+    //     const getUserDetails = async () => {
+    //         await userRef.where('email','==',(props.email)).get().then((querySnapshot)=> {
     //             querySnapshot.forEach((doc)=> {
     //                 setUserDetails({
     //                     avatar: doc.data().avatar,

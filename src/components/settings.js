@@ -13,7 +13,7 @@ const Settings = () => {
     return (
         <div className="Contents">
             <Grid >
-                <TagsInput selectedTags={selectedTags} tags={['Nodejs', 'MongoDB']} />
+                {/* <TagsInput selectedTags={selectedTags} tags={['Nodejs', 'MongoDB']} /> */}
                 <ProjectLists />
                 <UserLists />
                 <TrackedProjectLists userid="7aROHQMUiZXrqavWooPmIyrJVDh2" />

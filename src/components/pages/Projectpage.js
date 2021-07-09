@@ -4,7 +4,6 @@ import { List, ListItem, ListItemIcon, ListItemText, Box, Chip, Button, Typograp
 import TrackChangesRoundedIcon from '@material-ui/icons/TrackChangesRounded';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import SpeedRoundedIcon from '@material-ui/icons/SpeedRounded';
 import Milestones from './milestones';
 import man from "../../man.svg"
 import Avatar from '@material-ui/core/Avatar';
@@ -13,7 +12,9 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import Top from '../Top';
 import { db } from '../../firebase';
 import UserCard from './UserCard'
-import { AccessTime, Adjust, CheckCircleOutline, HelpOutlineOutlined } from "@material-ui/icons";
+import { AccessTime, AddRounded, Adjust, CheckCircleOutline, HelpOutlineOutlined } from "@material-ui/icons";
+import { useUserContext } from "../../UserContext";
+import SimpleModal from "../controls/SimpleModal";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -134,6 +135,15 @@ function ShowLink({icon,link}) {
 
 function OtherDetails({project}) {
     const classes = useStyles();
+    const currentUser = useUserContext();
+    var isOwner = false
+    if(currentUser.uid===project.owner){
+        isOwner = true
+    }
+    function check() {
+        console.log('Members: ',project.teamMembers)
+    }
+    check();
     const handleClick = () => {
         console.info('You clicked the Chip.');
     };
@@ -146,12 +156,6 @@ function OtherDetails({project}) {
                         <Typography>TEAM</Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        {
-                            console.log(project.teamMembers)
-                        }
-                        {project.teamMembers.forEach((member)=>{
-                            <UserCard nickname={member}/>
-                        })}
                         <UserCard nickname={project.teamMembers}/>
                     </Grid>
                 </Grid>
@@ -172,6 +176,7 @@ function OtherDetails({project}) {
                 <Grid container direction='column'>
                     <Grid item xs={12}>
                         <Typography>LINKS</Typography>
+                        
                     </Grid>
                     <Grid item xs={12}>
                         {
@@ -183,7 +188,9 @@ function OtherDetails({project}) {
                                 project.links.youtube &&
                                     <ShowLink icon={<YouTubeIcon/>} link={project.links.youtube}/>
                         }
-                        
+                        { isOwner &&
+                            <SimpleModal title={'Add link'} isIconButton={true} icon={<AddRounded/>} iconSize={'small'}/>
+                        }
                     </Grid>
                 </Grid>
             </Grid>
@@ -248,7 +255,7 @@ function OtherDetails({project}) {
                         <Typography>STATS</Typography>
                     </Grid>
                     <Grid item xs={12} align='center'>
-                        Tracked by
+                        Tracked by {project.tracking}
                     </Grid>
                 </Grid>
             </Grid>
