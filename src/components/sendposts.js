@@ -138,8 +138,8 @@ const Sendposts = (props) => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <Grid container direction='row' >
-                                <Grid item xs={8} justify="space-between" alignItems='center'>
+                            <Grid container justify="space-between" spacing={1}>
+                                <Grid item xs={12} alignItems='left'>
                                     <Typography align="left" color="primary">
                                         <AddAPhotoIcon />
                                         <input type="file" accept="image/*" onChange={handleChange} />
@@ -147,11 +147,11 @@ const Sendposts = (props) => {
                                     </Typography>
                                 </Grid>
 
-                                <Grid item xs={2} justify="space-between" align="right">
+                                <Grid item xs={6} justify="flex-end" align="left">
                                     <Button onClick={handleUpload} className={classes.button}>
                                         Upload picture
                                     </Button>    </Grid>
-                                <Grid item xs={2} justify="space-between" align="right">
+                                <Grid item xs={6} justify="flex-end" align="right">
 
                                     <Button onClick={sendPosts} className={classes.button} type="submit">
                                         Post
