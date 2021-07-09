@@ -15,6 +15,7 @@ import UserCard from './UserCard'
 import { AccessTime, AddRounded, Adjust, CheckCircleOutline, HelpOutlineOutlined } from "@material-ui/icons";
 import { useUserContext } from "../../UserContext";
 import SimpleModal from "../controls/SimpleModal";
+import AddLink from '../Actions/AddLink'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -189,7 +190,7 @@ function OtherDetails({project}) {
                                     <ShowLink icon={<YouTubeIcon/>} link={project.links.youtube}/>
                         }
                         { isOwner &&
-                            <SimpleModal title={'Add link'} isIconButton={true} icon={<AddRounded/>} iconSize={'small'}/>
+                            <SimpleModal body={<AddLink/>} title={'Add link'} isIconButton={true} icon={<AddRounded/>} iconSize={'small'}/>
                         }
                     </Grid>
                 </Grid>
