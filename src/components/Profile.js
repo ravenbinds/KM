@@ -114,7 +114,7 @@ function ProfileHeader(props) {
 
                                     }
                                 }}>
-                                    {following} followingSasy
+                                    {following} following
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -237,7 +237,8 @@ function DetailsAccordion(props) {
 
     const [loading, setLoading] = useState(false);
 
-    const ref = db.doc('profile/' + props.userdocumentID) //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
+    const ref = db.doc('profile/' + props.userdocumentID)
+    //instead of YpDaruUKtfj8RENfJV86 we can add user Id here
     //Function to get all projects of given user
     function getProject() {
         setLoading(true);
@@ -293,36 +294,37 @@ function DetailsAccordion(props) {
     //Function to get all posts of given user
     function getPost() {
         setLoading(true);
-        db.collection('posts').onSnapshot((querySnapshot) => {
-            const items = [];
-            querySnapshot.forEach((doc) => {
-                items.push({
-                    heading: doc.data().caption,
-                    description: doc.data().timestamp,
-                    status: <Button component={Link} to={{
-                        pathname: "/Post",
-                        aboutProps: {
-                            docid: doc.data().docid,
-                            nickname: doc.data().nickname,
-                            avatar: doc.data().avatar,
-                            caption: doc.data().caption,
-                            image: doc.data().image,
-                            likes: doc.data().likes,
-                            share: doc.data().share,
-                            comment: doc.data().comment,
-                            timestamp: doc.data().timestamp,
-                        }
-                    }}  >
-                        View
-                    </Button>,
-                    statusIcon: <CheckRoundedIcon />,
-                    link: false,
-                }
-                );
+        db.collection('posts').where("userid", "==", props.userdocumentID)
+            .onSnapshot((querySnapshot) => {
+                const items = [];
+                querySnapshot.forEach((doc) => {
+                    items.push({
+                        heading: doc.data().caption,
+                        description: doc.data().timestamp,
+                        status: <Button component={Link} to={{
+                            pathname: "/Post",
+                            aboutProps: {
+                                docid: doc.data().docid,
+                                nickname: doc.data().nickname,
+                                avatar: doc.data().avatar,
+                                caption: doc.data().caption,
+                                image: doc.data().image,
+                                likes: doc.data().likes,
+                                share: doc.data().share,
+                                comment: doc.data().comment,
+                                timestamp: doc.data().timestamp,
+                            }
+                        }}  >
+                            View
+                        </Button>,
+                        statusIcon: <CheckRoundedIcon />,
+                        link: false,
+                    }
+                    );
+                });
+                setpostDetails(items)
+                setLoading(false);
             });
-            setpostDetails(items)
-            setLoading(false);
-        });
     }
 
     //Function to get all experiences of given user
